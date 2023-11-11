@@ -7,9 +7,9 @@ export default function RightSide() {
     const [hasAccount, setHasAccount] = useState(true);
 
     return (
-        <div className='relative mt-8 flex flex-col gap-12 overflow-hidden bg-white px-4 pb-12 md:mt-0 md:w-1/2 md:justify-center lg:w-1/3 lg:px-12'>
+        <div className='relative mt-8 flex flex-col gap-12 overflow-hidden bg-white dark:bg-black px-4 pb-12 md:mt-0 md:w-1/2 md:justify-center lg:w-1/3 lg:px-12'>
             <div className='flex justify-start'>
-                <Logo />
+                <Logo classNames='w-20' />
             </div>
 
             <div>
@@ -23,7 +23,7 @@ export default function RightSide() {
 
             {hasAccount ? "LoginForm" : "SignUpForm"}
 
-            <p className='mt-8 text-center text-xs font-light text-gray-700'>
+            <p className='mt-8 text-center text-xs font-light text-gray-700 dark:text-gray-200'>
                 {hasAccount ? "Pas encore de compte ? 🤗 " : "Vous avez déjà un compte ? 😎 "}
                 <button onClick={() => setHasAccount(!hasAccount)} className='font-medium hover:underline'>
                     {hasAccount ? "Créez-en un" : "Connectez-vous"}

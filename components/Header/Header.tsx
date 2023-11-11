@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 export function Header() {
     return (
         <header>
-            <nav className='mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8'>
-                <div className='flex items-center text-2xl font-bold'>
-                    <Logo size='small' classNames='w-12' />
+            <nav className='mx-auto flex max-w-7xl items-center justify-between py-3 px-6 lg:px-8'>
+                <div className='flex items-center gap-2 text-2xl font-bold'>
+                    <Logo size='small' classNames='w-10' />
                     <h2>Waletoo</h2>
                 </div>
 
