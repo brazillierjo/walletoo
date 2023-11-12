@@ -31,7 +31,9 @@ export default function SignUpForm() {
                 {errors.password && <span className='text-xs text-red-500'>{errors.password.message}</span>}
 
                 <Input type='password' placeholder='Confirmer le mot de passe' {...register("passwordConfirmation")} />
-                {errors.passwordConfirmation && <span className='text-xs text-red-500'>{errors.passwordConfirmation.message}</span>}
+                {errors.passwordConfirmation && (
+                    <span className='text-xs text-red-500'>{errors.passwordConfirmation.message}</span>
+                )}
             </div>
 
             <Button type='submit'>Se connecter</Button>

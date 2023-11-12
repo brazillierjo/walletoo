@@ -1,8 +1,6 @@
-import React from "react";
-import { Button } from "../ui/button";
 import Link from "next/link";
+import { Button } from "../ui/button";
 import { Route } from "@/utils/routes";
-import Logo from "../Common/Logo";
 
 function Hero() {
     return (
