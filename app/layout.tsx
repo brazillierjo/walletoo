@@ -31,7 +31,6 @@ export default async function RootLayout({ children }: Props) {
                     </ThemeProvider>
                 </SessionProvider>
 
-                {/* colored background */}
                 <div
                     className='absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl'
                     aria-hidden='true'>
