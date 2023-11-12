@@ -36,7 +36,7 @@ export default function SignUpForm() {
                 )}
             </div>
 
-            <Button type='submit'>Se connecter</Button>
+            <Button type='submit'>S&apos;inscrire</Button>
         </form>
     );
 }
