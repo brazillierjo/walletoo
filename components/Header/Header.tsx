@@ -4,7 +4,7 @@ import Link from "next/link";
 import Logo from "@/components/Common/Logo";
 import { ModeToggle } from "../Common/ModeToggle";
 import { Button } from "@/components/ui/button";
-import { Route } from "@/lib/utils/routes";
+import { Route } from "@/lib/routes";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { signOut, useSession } from "next-auth/react";
 
