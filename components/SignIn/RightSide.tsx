@@ -11,7 +11,7 @@ export default function RightSide() {
 
     return (
         <div className='flex flex-col gap-4 overflow-hidden px-4 pb-12 md:mt-0 md:w-1/2 md:justify-center lg:w-1/3 lg:px-12'>
-            <div className='mt-8 md:mt-0 flex justify-start gap-8'>
+            <div className='mt-8 md:mt-0 flex flex-col lg:flex-row justify-start gap-8'>
                 <Logo classNames='w-32' />
 
                 <div>
