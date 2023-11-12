@@ -1,5 +1,5 @@
+require("dotenv").config({ path: __dirname + "/.env.local" });
 const express = require("express");
-require("dotenv").config();
 const userRoutes = require("./routes/auth.routes");
 const incomesRoutes = require("./routes/incomes.routes");
 const expensesRoutes = require("./routes/expenses.routes");
@@ -9,8 +9,8 @@ const cors = require("cors");
 require("./config/db");
 
 const app = express();
-const port = process.env.PORT || 3001;
-
+const port = process.env.PORT || 5000;
+console.log(process.env.PORT);
 const corsOptions = {
     origin: "*",
     credentials: true,
