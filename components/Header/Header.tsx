@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "@/components/Common/Logo";
 import { ModeToggle } from "../Common/ModeToggle";
 import { buttonVariants } from "@/components/ui/button";
-import { Route } from "@/utils/routes";
+import { Route } from "@/lib/utils/routes";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 
