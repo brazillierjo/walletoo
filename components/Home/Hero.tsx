@@ -4,7 +4,7 @@ import { Route } from "@/utils/routes";
 
 function Hero() {
     return (
-        <div className='px-6 h-fit mt-20 md:mt-0 md:h-screen flex flex-col justify-center lg:px-8'>
+        <div className='px-6 mt-20 flex flex-col justify-center lg:px-8'>
             <div className='mx-auto flex flex-col gap-6 max-w-2xl'>
                 <div className='mb-8 mx-auto text-center w-fit justify-center'>
                     <h1 className='rounded-full px-3 dark:text-gray-200 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-gray-300/50'>
