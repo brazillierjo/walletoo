@@ -1,12 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "@/components/Common/Logo";
 import { ModeToggle } from "../Common/ModeToggle";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Route } from "@/lib/utils/routes";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
-import { cn } from "@/lib/utils";
+import { signOut, useSession } from "next-auth/react";
 
 export function Header() {
+    const { data: session } = useSession();
+
     return (
         <header>
             <nav className='mx-auto flex max-w-7xl items-center justify-between py-3 px-6 lg:px-8'>
@@ -15,12 +19,21 @@ export function Header() {
                     <h2>Waletoo</h2>
                 </div>
 
-                <div className='flex gap-3 items-center'>
-                    <ModeToggle />
+                <div className='flex gap-6 items-center'>
+                    {session?.user?.name ? (
+                        <div className='flex gap-6 items-center'>
+                            <span>Bonjour {session.user.name} 👋</span>
+                            <Button onClick={() => signOut()}>Se déconnecter</Button>
+                        </div>
+                    ) : (
+                        <Link href={Route.SIGNIN}>
+                            <Button className='flex gap-2'>
+                                Se connecter <ArrowRightIcon />
+                            </Button>
+                        </Link>
+                    )}
 
-                    <Link href={Route.SIGNIN} className={cn("flex gap-2", buttonVariants({ variant: "outline" }))}>
-                        Se connecter <ArrowRightIcon />
-                    </Link>
+                    <ModeToggle />
                 </div>
             </nav>
         </header>

@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "concurrently \"next dev\" \"node backend/index.js\"",
+        "dev": "next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint"
@@ -22,6 +22,7 @@
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.0.0",
         "next": "14.0.2",
+        "next-auth": "^4.24.5",
         "next-themes": "^0.2.1",
         "react": "^18",
         "react-dom": "^18",

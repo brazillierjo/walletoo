@@ -1,9 +1,11 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header/Header";
 import { cn } from "@/lib/utils";
+import { getServerSession } from "next-auth";
+import SessionProvider from "@/components/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,14 +18,18 @@ interface Props {
     children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: Props) {
+export default async function RootLayout({ children }: Props) {
+    const session = await getServerSession();
+
     return (
         <html lang='fr' suppressHydrationWarning>
             <body className={cn(inter.className, "relative")}>
-                <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-                    <Header />
-                    {children}
-                </ThemeProvider>
+                <SessionProvider session={session}>
+                    <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+                        <Header />
+                        {children}
+                    </ThemeProvider>
+                </SessionProvider>
 
                 {/* colored background */}
                 <div
