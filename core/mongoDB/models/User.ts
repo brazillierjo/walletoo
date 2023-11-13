@@ -1,14 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-
-interface IUser extends Document {
-    email: string;
-    password: string;
-    firstname: string;
-    lastname: string;
-    resetCode: string | null;
-    isValidPassword: (password: string) => Promise<boolean>;
-}
+import { IUser } from "@/ui/interfaces/User";
 
 const UserSchema = new mongoose.Schema({
     email: {
