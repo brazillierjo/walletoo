@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Logo from "@/components/Common/Logo";
+import Logo from "@/ui/components/Common/Logo";
 import { ModeToggle } from "../Common/ModeToggle";
-import { Button } from "@/components/ui/button";
-import { Route } from "@/lib/routes";
+import { Button } from "@/ui/components/ui/button";
+import { Route } from "@/core/enums/route";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { signOut, useSession } from "next-auth/react";
 

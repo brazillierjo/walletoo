@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { Route } from "@/lib/routes";
+import { Route } from "@/lib/enums/route";
 
 function Hero() {
     return (

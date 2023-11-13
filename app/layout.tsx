@@ -1,11 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { Header } from "@/components/Header/Header";
-import { cn } from "@/lib/utils";
 import { getServerSession } from "next-auth";
-import SessionProvider from "@/components/SessionProvider";
+import SessionProvider from "@/ui/components/SessionProvider";
+import { ThemeProvider } from "@/ui/components/ThemeProvider";
+import { Header } from "@/ui/components/Header/Header";
+import { cn } from "@/core/utils/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 

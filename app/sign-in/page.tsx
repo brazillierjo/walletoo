@@ -1,5 +1,5 @@
-import LeftSide from "@/components/SignIn/LeftSide";
-import RightSide from "@/components/SignIn/RightSide";
+import LeftSide from "@/ui/components/SignIn/LeftSide";
+import RightSide from "@/ui/components/SignIn/RightSide";
 
 export default function SignIn() {
     return (
