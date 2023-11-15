@@ -5,16 +5,15 @@ import IncomeModel from "@/core/mongoDB/models/incomes.model";
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
     try {
         const session = await getSession({ req });
+        console.log(session);
+        // if (!session?.user?.email) {
+        //     return res.status(401).json({ message: "Unauthorized" });
+        // }
 
-        if (!session?.user?.email) {
-            return res.status(401).json({ message: "Unauthorized" });
-        }
+        // const userEmail = session.user.email;
+        // const incomes = await IncomeModel.find({ userId: userEmail });
 
-        const userEmail = session.user.email;
-
-        const incomes = await IncomeModel.find({ userId: userEmail });
-
-        return res.status(200).json(incomes);
+        // return res.status(200).json(incomes);
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Internal Server Error" });
