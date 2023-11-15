@@ -18,7 +18,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-export default async function RootLayout({ children }: Props) {
+const RootLayout: ({ children }: Props) => Promise<JSX.Element> = async ({ children }: Props) => {
     const session = await getServerSession();
 
     return (
@@ -45,4 +45,6 @@ export default async function RootLayout({ children }: Props) {
             </body>
         </html>
     );
-}
+};
+
+export default RootLayout;

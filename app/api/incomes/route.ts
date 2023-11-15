@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
-import IncomeModel from "@/core/mongoDB/models/incomes.model";
 import { NextResponse } from "next/server";
+import IncomeModel from "@/core/mongoDB/models/incomes.model";
 import connectDB from "@/core/mongoDB/connect";
 
 export async function GET() {
@@ -9,9 +9,7 @@ export async function GET() {
     try {
         const session = await getServerSession();
 
-        if (!session?.user?.email) {
-            throw new Error("Unauthorized");
-        }
+        if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;
         const incomes = await IncomeModel.find({ userId: userEmail });

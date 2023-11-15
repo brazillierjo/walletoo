@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { Route } from "@/core/enums/route";
+import { Route } from "@/core/enums/frontend-routes";
 
 function Hero() {
     return (

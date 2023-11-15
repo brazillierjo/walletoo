@@ -1,3 +1,3 @@
-export default function page() {
-    return <div>page</div>;
-}
+const Profile = () => {
+    return <div>profile</div>;
+};

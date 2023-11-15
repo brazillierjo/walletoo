@@ -1,26 +1,18 @@
 "use client";
 import { useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import { Route } from "@/core/enums/route";
+import { IncomesApi } from "@/core/APIs/incomes";
+import isAuth from "@/ui/components/isAuth";
 
-export default function Wallet() {
-    const { data: session } = useSession();
-    if (!session) redirect(Route.SIGNIN);
-
+const Wallet: React.FC = () => {
     useEffect(() => {
-        async function fetchIncomes() {
-            const response = await fetch("/api/incomes");
-            const data = await response.json();
-            console.log(data);
-        }
-
-        fetchIncomes();
-    }, [session]);
+        IncomesApi.get();
+    }, []);
 
     return (
         <div>
             <h1>Wallet</h1>
         </div>
     );
-}
+};
+
+export default isAuth(Wallet);
