@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import Logo from "@/ui/components/Common/Logo";
 import { ModeToggle } from "../Common/ModeToggle";
@@ -7,6 +6,15 @@ import { Button } from "@/ui/components/ui/button";
 import { Route } from "@/core/enums/route";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { signOut, useSession } from "next-auth/react";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 export function Header() {
     const { data: session } = useSession();
@@ -20,12 +28,7 @@ export function Header() {
                 </div>
 
                 <div className='flex gap-6 items-center'>
-                    {session?.user?.name ? (
-                        <div className='flex gap-6 items-center'>
-                            <span>Bonjour {session.user.name} 👋</span>
-                            <Button onClick={() => signOut()}>Se déconnecter</Button>
-                        </div>
-                    ) : (
+                    {!session && (
                         <Link href={Route.SIGNIN}>
                             <Button className='flex gap-2'>
                                 Se connecter <ArrowRightIcon />
@@ -34,6 +37,28 @@ export function Header() {
                     )}
 
                     <ModeToggle />
+
+                    {session?.user?.name && (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <HamburgerMenuIcon />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <Link href={Route.WALLET}>Mon Wallet</Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link href={Route.PROFILE}>Mon profile</Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <Button onClick={() => signOut()}>Se déconnecter</Button>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    )}
                 </div>
             </nav>
         </header>
