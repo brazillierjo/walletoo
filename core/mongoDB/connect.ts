@@ -1,10 +1,16 @@
 import mongoose from "mongoose";
 
-const connectDB = async () => {
+const connectDB = async (): Promise<void> => {
     const mongoUri = process.env.MONGO_URI;
 
     if (!mongoUri) {
-        throw new Error("No mongo uri found");
+        throw new Error("No mongo URI found");
+    }
+
+    // Vérifiez si la connexion existe déjà
+    if (mongoose.connection.readyState === 1) {
+        console.log("Already connected to MongoDB");
+        return;
     }
 
     try {

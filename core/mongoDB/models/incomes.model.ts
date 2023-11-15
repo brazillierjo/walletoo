@@ -12,6 +12,7 @@ const IncomeSchema: Schema = new Schema({
     amount: { type: Number, required: true },
 });
 
-const IncomeModel = mongoose.model<IIncome>("Income", IncomeSchema);
+// Check if the model exists before creating a new one
+const IncomeModel = mongoose.models.Income || mongoose.model<IIncome>("Income", IncomeSchema);
 
 export default IncomeModel;

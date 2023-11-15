@@ -1,21 +1,24 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import IncomeModel from "@/core/mongoDB/models/incomes.model";
+import { NextResponse } from "next/server";
+import connectDB from "@/core/mongoDB/connect";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
+    await connectDB();
+
     try {
-        const session = await getSession({ req });
-        console.log(session);
-        // if (!session?.user?.email) {
-        //     return res.status(401).json({ message: "Unauthorized" });
-        // }
+        const session = await getServerSession();
 
-        // const userEmail = session.user.email;
-        // const incomes = await IncomeModel.find({ userId: userEmail });
+        if (!session?.user?.email) {
+            throw new Error("Unauthorized");
+        }
 
-        // return res.status(200).json(incomes);
+        const userEmail = session.user.email;
+        const incomes = await IncomeModel.find({ userId: userEmail });
+
+        return NextResponse.json(incomes);
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: "Internal Server Error" });
+        throw new Error("Internal Server Error");
     }
 }
