@@ -1,27 +1,22 @@
-import IncomeModel from "@/core/mongoDB/models/incomes.model";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
+import IncomeModel from "@/core/mongoDB/models/incomes.model";
 
-export async function GET(request: Request) {
-    const session = await getSession({ req: request });
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+    try {
+        const session = await getSession({ req });
 
-    if (!session || !session.user) return res.status(401).json({ message: "Unauthorized" });
+        if (!session?.user?.email) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
 
-    const userEmail = session.user.email;
+        const userEmail = session.user.email;
 
-    const income = await IncomeModel.find({ userEmail: userEmail });
-    return res.status(200).json(income);
+        const incomes = await IncomeModel.find({ userId: userEmail });
+
+        return res.status(200).json(incomes);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
 }
-
-// export async function GET(request: Request) {
-//     const { searchParams } = new URL(request.url);
-//     const id = searchParams.get("id");
-//     const res = await fetch(`https://data.mongodb-api.com/product/${id}`, {
-//         headers: {
-//             "Content-Type": "application/json",
-//             "API-Key": process.env.DATA_API_KEY,
-//         },
-//     });
-//     const product = await res.json();
-
-//     return Response.json({ product });
-// }
