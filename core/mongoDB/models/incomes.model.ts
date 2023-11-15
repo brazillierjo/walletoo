@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface IIncome extends Document {
+export interface IIncome extends Document {
     userId: string;
     label: string;
     amount: number;
