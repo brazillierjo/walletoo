@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import IncomeModel from "@/core/mongoDB/models/incomes.model";
-import connectDB from "@/core/mongoDB/connect";
+import IncomeModel from "@/src/mongoDB/models/incomes.model";
+import connectDB from "@/src/mongoDB/connect";
 
 export async function GET() {
     await connectDB();

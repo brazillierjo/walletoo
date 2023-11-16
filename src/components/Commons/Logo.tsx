@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import WaletooLogoSmall from "@/ui/assets/webp/waletoo-logo-small.webp";
-import WaletooLogoMedium from "@/ui/assets/webp/waletoo-logo-medium.webp";
-import WaletooLogoLarge from "@/ui/assets/webp/waletoo-logo-wide.webp";
+import WaletooLogoSmall from "@/src/assets/webp/waletoo-logo-small.webp";
+import WaletooLogoMedium from "@/src/assets/webp/waletoo-logo-medium.webp";
+import WaletooLogoLarge from "@/src/assets/webp/waletoo-logo-wide.webp";
 import Link from "next/link";
-import { cn } from "@/core/utils/utils";
+import { cn } from "@/src/tools/tailwindMerge";
 
 interface LogoProps {
     size?: "small" | "medium" | "large";

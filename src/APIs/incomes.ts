@@ -1,4 +1,4 @@
-import { ApiRoute } from "@/core/enums/backend-routes";
+import { ApiRoute } from "@/src/enums/backend-routes";
 
 export class IncomesApi {
     static async get() {

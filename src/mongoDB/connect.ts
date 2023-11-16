@@ -7,7 +7,6 @@ const connectDB = async (): Promise<void> => {
         throw new Error("No mongo URI found");
     }
 
-    // Vérifiez si la connexion existe déjà
     if (mongoose.connection.readyState === 1) {
         console.log("Already connected to MongoDB");
         return;

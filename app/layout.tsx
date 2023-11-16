@@ -2,10 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
-import SessionProvider from "@/ui/components/SessionProvider";
-import { ThemeProvider } from "@/ui/components/ThemeProvider";
-import { Header } from "@/ui/components/Header/Header";
-import { cn } from "@/core/utils/utils";
+import SessionProvider from "@/src/Providers/SessionProvider";
+import { ThemeProvider } from "@/src/Providers/ThemeProvider";
+import { Header } from "@/src/components/Header/Header";
+import { cn } from "@/src/tools/tailwindMerge";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +27,7 @@ const RootLayout: ({ children }: Props) => Promise<JSX.Element> = async ({ child
                 <SessionProvider session={session}>
                     <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
                         <Header />
-                        {children}
+                        <main className='px-4 lg:px-8'>{children}</main>
                     </ThemeProvider>
                 </SessionProvider>
 

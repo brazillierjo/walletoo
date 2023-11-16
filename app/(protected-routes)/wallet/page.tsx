@@ -1,18 +1,9 @@
-"use client";
-import { useEffect } from "react";
-import { IncomesApi } from "@/core/APIs/incomes";
-import isAuth from "@/ui/components/isAuth";
-
 const Wallet: React.FC = () => {
-    useEffect(() => {
-        IncomesApi.get();
-    }, []);
-
     return (
         <div>
-            <h1>Wallet</h1>
+            <h1 className='shrink text-4xl capitalize text-navy-700 font-bold dark:text-white'>Mon wallet</h1>
         </div>
     );
 };
 
-export default isAuth(Wallet);
+export default Wallet;

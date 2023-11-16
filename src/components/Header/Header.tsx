@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import Logo from "@/ui/components/Common/Logo";
-import { ModeToggle } from "../Common/ModeToggle";
-import { Button } from "@/ui/components/ui/button";
-import { Route } from "@/core/enums/frontend-routes";
+import Logo from "@/src/components/Commons/Logo";
+import { ModeToggle } from "../Commons/ModeToggle";
+import { Button } from "@/src/components/ui/button";
+import { Route } from "@/src/enums/frontend-routes";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { signOut, useSession } from "next-auth/react";
 import {

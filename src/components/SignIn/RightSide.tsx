@@ -2,7 +2,7 @@
 import { signIn, useSession } from "next-auth/react";
 import { Button } from "../ui/button";
 import { redirect } from "next/navigation";
-import Logo from "../Common/Logo";
+import Logo from "../Commons/Logo";
 
 export default function RightSide() {
     const { data: session } = useSession();
