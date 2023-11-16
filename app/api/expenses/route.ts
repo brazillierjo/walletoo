@@ -12,9 +12,12 @@ export async function GET() {
         if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;
-        const expenses = await ExpenseModel.find({ userId: userEmail });
+        const expenses = await ExpenseModel.find({ id: userEmail });
 
-        return NextResponse.json(expenses);
+        return new Response(JSON.stringify(expenses), {
+            status: 200,
+            headers: { "Content-Type": "application/json" },
+        });
     } catch (error) {
         console.error(error);
         throw new Error("Internal Server Error");

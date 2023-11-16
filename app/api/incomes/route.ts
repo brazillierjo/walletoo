@@ -1,5 +1,4 @@
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
 import IncomeModel from "@/src/mongoDB/models/incomes.model";
 import connectDB from "@/src/mongoDB/connect";
 
@@ -12,9 +11,12 @@ export async function GET() {
         if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;
-        const incomes = await IncomeModel.find({ userId: userEmail });
+        const incomes = await IncomeModel.find({ id: userEmail });
 
-        return NextResponse.json(incomes);
+        return new Response(JSON.stringify(incomes), {
+            status: 200,
+            headers: { "Content-Type": "application/json" },
+        });
     } catch (error) {
         console.error(error);
         throw new Error("Internal Server Error");

@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 const Wallet: React.FC = () => {
     const [incomes] = useAtom(incomesAtom);
     const [expenses] = useAtom(expensesAtom);
+    console.log(incomes, expenses);
 
     if (!incomes || !expenses) return null;
 
