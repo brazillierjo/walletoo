@@ -10,8 +10,8 @@ export default function RightSide() {
 
     return (
         <div className='flex flex-col gap-16 overflow-hidden px-4 pb-12 md:mt-0 md:w-1/2 md:justify-center lg:w-1/3 lg:px-12'>
-            <div className='md:flex md:gap-5'>
-                <Logo classNames='w-32 min-w-[128px]' />
+            <div className='flex flex-col gap-10'>
+                <Logo />
 
                 <div className='flex flex-col gap-3'>
                     <h1 className='text-3xl font-semibold'>Se connecter</h1>

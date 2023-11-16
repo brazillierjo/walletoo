@@ -46,9 +46,12 @@ const Sidebar: React.FC = () => {
 
             <Separator className='bg-gray-300' />
 
-            <div className='flex flex-col gap-6 py-8 pl-8'>
+            <div className='flex flex-col gap-2 py-8 pl-8'>
                 {links.map((link, index) => (
-                    <Link href={link.path} key={index} className='flex gap-3'>
+                    <Link
+                        href={link.path}
+                        key={index}
+                        className={cn("flex gap-3 py-2", isActivelink(link.path) && "border-r-4 border-indigo-500")}>
                         <link.icon
                             className={cn(
                                 "h-6 w-6 fill-indigo-500 dark:fill-white",
