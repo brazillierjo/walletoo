@@ -1,10 +1,5 @@
-import mongoose, { Schema, Document } from "mongoose";
-
-export interface IIncome extends Document {
-    userId: string;
-    label: string;
-    amount: number;
-}
+import { ITransaction } from "@/src/interfaces/transaction";
+import mongoose, { Schema } from "mongoose";
 
 const IncomeSchema: Schema = new Schema({
     userId: { type: String, required: true },
@@ -13,6 +8,6 @@ const IncomeSchema: Schema = new Schema({
 });
 
 // Check if the model exists before creating a new one
-const IncomeModel = mongoose.models.Income || mongoose.model<IIncome>("Income", IncomeSchema);
+const IncomeModel = mongoose.models.Income || mongoose.model<ITransaction>("Income", IncomeSchema);
 
 export default IncomeModel;

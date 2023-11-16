@@ -1,18 +1,13 @@
-import mongoose from "mongoose";
+import { ITransaction } from "@/src/interfaces/transaction";
+import mongoose, { Schema } from "mongoose";
 
-const ExpenseSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-    },
-    label: {
-        type: String,
-        required: [true, "Label is required."],
-    },
-    amount: {
-        type: Number,
-        required: [true, "Amount is required."],
-    },
+const ExpenseSchema: Schema = new Schema({
+    userId: { type: String, required: true },
+    label: { type: String, required: true },
+    amount: { type: Number, required: true },
 });
 
-module.exports = mongoose.model("Expense", ExpenseSchema);
+// Check if the model exists before creating a new one
+const ExpenseModel = mongoose.models.Expense || mongoose.model<ITransaction>("Expense", ExpenseSchema);
+
+export default ExpenseModel;

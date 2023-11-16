@@ -6,3 +6,10 @@ export class IncomesApi {
         return response.json();
     }
 }
+
+export class ExpensesApi {
+    static async get() {
+        const response = await fetch(ApiRoute.EXPENSES);
+        return response.json();
+    }
+}
