@@ -1,7 +1,7 @@
 const Wallet: React.FC = () => {
     return (
         <div>
-            <h1 className='text-navy-700 shrink text-4xl font-bold capitalize dark:text-white'>Mon wallet</h1>
+            <h1 className='text-navy-700 shrink text-3xl font-bold dark:text-white'>Mon Wallet personnel</h1>
         </div>
     );
 };

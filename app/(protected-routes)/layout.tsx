@@ -7,7 +7,7 @@ type AuthLayoutProps = {
 };
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
-    return <div className='flex px-4 lg:px-8'>{children}</div>;
+    return <div className='flex p-4 lg:p-8'>{children}</div>;
 };
 
 export default isAuth(AuthLayout);

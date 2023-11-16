@@ -23,8 +23,7 @@ export function Header() {
         <header>
             <nav className='mx-auto flex items-center justify-between px-4 py-2 lg:px-8'>
                 <div className='flex items-center gap-2 text-xl font-bold'>
-                    <Logo size='small' classNames='w-10' />
-                    <h2>Waletoo</h2>
+                    <Logo />
                 </div>
 
                 <div className='flex items-center gap-6'>

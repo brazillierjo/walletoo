@@ -1,35 +1,13 @@
 "use client";
-import Image from "next/image";
-import WaletooLogoSmall from "@/src/assets/webp/waletoo-logo-small.webp";
-import WaletooLogoMedium from "@/src/assets/webp/waletoo-logo-medium.webp";
-import WaletooLogoLarge from "@/src/assets/webp/waletoo-logo-wide.webp";
+import { Route } from "@/src/enums/frontend-routes";
 import Link from "next/link";
-import { cn } from "@/src/tools/tailwindMerge";
 
-interface LogoProps {
-    size?: "small" | "medium" | "large";
-    classNames?: string;
-}
-
-export default function Logo({ size = "large", classNames }: LogoProps) {
-    const getLogoSrc = () => {
-        switch (size) {
-            case "small":
-                return WaletooLogoSmall;
-            case "medium":
-                return WaletooLogoMedium;
-            case "large":
-                return WaletooLogoLarge;
-            default:
-                return WaletooLogoLarge;
-        }
-    };
-
+export default function Logo() {
     return (
-        <Link href='/'>
-            <button>
-                <Image src={getLogoSrc()} alt='Waletoo logo' className={cn("rounded-xl", classNames)} />
-            </button>
+        <Link className='h-fit' href={Route.HOME}>
+            <div className='text-4xl font-bold text-[#2e388b] dark:text-white'>
+                Wale<span className='font-extrabold text-[#6574aa]'>too</span>
+            </div>
         </Link>
     );
 }
