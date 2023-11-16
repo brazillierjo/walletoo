@@ -1,10 +1,11 @@
 "use client";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { Separator } from "@/src/components/ui/separator";
 import { MdHome } from "react-icons/md";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { IoIosSettings } from "react-icons/io";
-import Link from "next/link";
+import { FaWallet } from "react-icons/fa6";
 
 const Sidebar: React.FC = () => {
     const { data: session } = useSession();
@@ -14,6 +15,11 @@ const Sidebar: React.FC = () => {
             name: "Accueil",
             path: "/",
             icon: MdHome,
+        },
+        {
+            name: "Mon Wallet",
+            path: "/wallet",
+            icon: FaWallet,
         },
         {
             name: "Mon compte",
