@@ -3,5 +3,6 @@ export enum Route {
     SIGNIN = "/sign-in",
     WALLET = "/wallet",
     PROFILE = "/profile",
+    SETTINGS = "/settings",
     NOT_FOUND = "/404",
 }

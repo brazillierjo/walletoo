@@ -1,8 +1,8 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
-import { Button } from "../ui/button";
+import { Button } from "@/src/components/ui/button";
 import { redirect } from "next/navigation";
-import Logo from "../Commons/Logo";
+import Logo from "@/src/components/Commons/Logo";
 
 export default function RightSide() {
     const { data: session } = useSession();

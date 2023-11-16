@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/src/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
@@ -6,6 +6,7 @@ import SessionProvider from "@/src/Providers/SessionProvider";
 import { ThemeProvider } from "@/src/Providers/ThemeProvider";
 import { Header } from "@/src/components/Header/Header";
 import { cn } from "@/src/tools/tailwindMerge";
+import Sidebar from "@/src/components/Sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,8 +27,14 @@ const RootLayout: ({ children }: Props) => Promise<JSX.Element> = async ({ child
             <body className={cn(inter.className, "relative")}>
                 <SessionProvider session={session}>
                     <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-                        <Header />
-                        <main className='px-4 lg:px-8'>{children}</main>
+                        <div className={session ? "flex" : "block"}>
+                            {session && <Sidebar />}
+
+                            <div className='w-full'>
+                                <Header />
+                                <main>{children}</main>
+                            </div>
+                        </div>
                     </ThemeProvider>
                 </SessionProvider>
 
