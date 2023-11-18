@@ -3,7 +3,8 @@ import React, { ReactNode, useEffect } from "react";
 import isAuth from "@/src/Providers/isAuth";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { useAtom } from "jotai";
-import { UserDataApi } from "@/src/APIs/transactions";
+import { UserDataApi } from "@/src/APIs/userData";
+import { useSession } from "next-auth/react";
 
 type AuthLayoutProps = {
     children: ReactNode;
@@ -12,11 +13,14 @@ type AuthLayoutProps = {
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
     const [userData, setUserData] = useAtom(userDataAtom);
 
+    const { data: session } = useSession();
+
     useEffect(() => {
-        if (!userData) {
+        if (!userData && session) {
+            console.log("req");
             UserDataApi.get().then((data) => setUserData(data));
         }
-    }, [userData, setUserData]);
+    }, [userData, setUserData, session]);
 
     if (!userData) return <>Chargement...</>;
 

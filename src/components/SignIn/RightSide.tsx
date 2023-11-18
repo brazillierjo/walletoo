@@ -3,10 +3,11 @@ import { signIn, useSession } from "next-auth/react";
 import { Button } from "@/src/components/ui/button";
 import { redirect } from "next/navigation";
 import Logo from "@/src/components/Commons/Logo";
+import { Route } from "@/src/enums/frontend-routes";
 
 export default function RightSide() {
     const { data: session } = useSession();
-    if (session?.user?.name) redirect("/");
+    if (session?.user?.name) redirect(Route.WALLET);
 
     return (
         <div className='flex flex-col gap-16 overflow-hidden px-4 pb-12 md:mt-0 md:w-1/2 md:justify-center lg:w-1/3 lg:px-12'>
