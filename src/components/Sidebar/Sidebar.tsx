@@ -51,10 +51,10 @@ const Sidebar: React.FC = () => {
                     <Link
                         href={link.path}
                         key={index}
-                        className={cn("flex gap-3 py-2", isActivelink(link.path) && "border-r-4 border-indigo-500")}>
+                        className={cn("flex gap-3 py-2", isActivelink(link.path) && "border-r-4 border-slate-500")}>
                         <link.icon
                             className={cn(
-                                "h-6 w-6 fill-indigo-500 dark:fill-white",
+                                "h-6 w-6 fill-slate-500 dark:fill-white",
                                 !isActivelink(link.path) && "opacity-40"
                             )}
                         />
