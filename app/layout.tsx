@@ -24,7 +24,7 @@ const RootLayout: ({ children }: Props) => Promise<JSX.Element> = async ({ child
 
     return (
         <html lang='fr' suppressHydrationWarning>
-            <body className={cn(inter.className, "relative")}>
+            <body className={cn(inter.className, "relative bg-slate-200 dark:bg-slate-800")}>
                 <SessionProvider session={session}>
                     <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
                         <div className={session ? "flex" : "block"}>
