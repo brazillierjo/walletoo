@@ -17,12 +17,11 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
 
     useEffect(() => {
         if (!userData && session) {
-            console.log("req");
             UserDataApi.get().then((data) => setUserData(data));
         }
     }, [userData, setUserData, session]);
 
-    if (!userData) return <>Chargement...</>;
+    if (!userData) return <div className='flex p-4 lg:p-8'>Chargement...</div>;
 
     return <div className='flex p-4 lg:p-8'>{children}</div>;
 };
