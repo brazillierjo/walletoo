@@ -1,15 +1,8 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
 
-export class IncomesApi {
+export class UserDataApi {
     static async get() {
-        const response = await fetch(ApiRoute.INCOMES);
-        return response.json();
-    }
-}
-
-export class ExpensesApi {
-    static async get() {
-        const response = await fetch(ApiRoute.EXPENSES);
+        const response = await fetch(ApiRoute.USER_DATA);
         return response.json();
     }
 }

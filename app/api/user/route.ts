@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
-import ExpenseModel from "@/src/mongoDB/models/expense.model";
 import connectDB from "@/src/mongoDB/connect";
+import UserModel from "@/src/mongoDB/userSchema";
 
 export async function GET() {
     await connectDB();
@@ -12,9 +11,9 @@ export async function GET() {
         if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;
-        const expenses = await ExpenseModel.find({ id: userEmail });
+        const userInformations = await UserModel.find({ email: userEmail });
 
-        return new Response(JSON.stringify(expenses), {
+        return new Response(JSON.stringify(userInformations), {
             status: 200,
             headers: { "Content-Type": "application/json" },
         });
