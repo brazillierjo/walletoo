@@ -1,10 +1,9 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
-import { useGetSignInBackground } from "@/src/hooks/useGetSignInBackground";
+import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
 
 export default function LeftSide() {
-    const { getRandomImage } = useGetSignInBackground();
+    const { getRandomImage } = useGetRandomImage();
     const [backgroundImageUrl, setBackgroundImageUrl] = useState<string | null>(null);
     const backgroundImageStyle = backgroundImageUrl ? { backgroundImage: `url(${backgroundImageUrl})` } : {};
 

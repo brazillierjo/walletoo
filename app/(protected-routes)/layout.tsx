@@ -17,7 +17,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
 
     useEffect(() => {
         if (!userData && session) {
-            UserDataApi.get().then((data) => setUserData(data));
+            UserDataApi.get().then((data) => setUserData(data[0]));
         }
     }, [userData, setUserData, session]);
 
