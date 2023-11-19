@@ -15,6 +15,7 @@ import {
     DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 
 export function Header() {
     const { data: session } = useSession();
@@ -26,7 +27,7 @@ export function Header() {
                     <Logo />
                 </div>
 
-                <div className='flex items-center gap-6'>
+                <div className='flex items-center gap-6 rounded-full bg-white px-4 py-2 dark:bg-slate-600'>
                     {!session && (
                         <Link href={Route.SIGNIN}>
                             <Button className='flex gap-2'>
@@ -37,11 +38,22 @@ export function Header() {
 
                     <ModeToggle />
 
+                    {session?.user?.image && (
+                        <Image
+                            src={session.user.image}
+                            width={40}
+                            height={40}
+                            alt='user avatar'
+                            className='rounded-full'
+                        />
+                    )}
+
                     {session?.user?.name && (
                         <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <HamburgerMenuIcon />
                             </DropdownMenuTrigger>
+
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
@@ -49,9 +61,14 @@ export function Header() {
                                     <Link href={Route.WALLET}>Mon Wallet</Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
-                                    <Link href={Route.PROFILE}>Mon profile</Link>
+                                    <Link href={Route.PROFILE}>Mon compte</Link>
                                 </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link href={Route.SETTINGS}>Paramètres</Link>
+                                </DropdownMenuItem>
+
                                 <DropdownMenuSeparator />
+
                                 <DropdownMenuItem>
                                     <Button onClick={() => signOut()}>Se déconnecter</Button>
                                 </DropdownMenuItem>

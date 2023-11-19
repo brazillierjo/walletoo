@@ -41,7 +41,7 @@ const Sidebar: React.FC = () => {
     };
 
     return (
-        <div className='min-h-screen w-3/12 bg-white dark:bg-slate-600 2xl:w-2/12'>
+        <div className='hidden min-h-screen w-3/12 bg-white dark:bg-slate-600 lg:block 2xl:w-2/12'>
             <h2 className='px-4 py-8 text-center text-xl font-bold'>{session?.user?.name ?? "..."}</h2>
 
             <Separator className='bg-gray-300' />
