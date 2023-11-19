@@ -14,10 +14,7 @@ export async function GET() {
         const userEmail = session.user.email;
         const userInformations = await UserModel.find({ email: userEmail });
 
-        return new Response(JSON.stringify(userInformations), {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-        });
+        return new Response(JSON.stringify(userInformations));
     } catch (error) {
         console.error(error);
         throw new Error("Internal Server Error");
