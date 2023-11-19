@@ -8,7 +8,8 @@ export interface ITransaction extends Document {
 
 export interface IUserSchema extends Document {
     email: string;
-    fullName: string;
+    fullName?: string;
+    avatar: string;
     incomes: ITransaction[];
     expenses: ITransaction[];
     currency: string;
@@ -24,6 +25,7 @@ const TransactionSchema: Schema = new Schema({
 const UserSchema: Schema = new Schema({
     email: { type: String, required: true },
     fullName: { type: String, required: true },
+    avatar: { type: String },
     incomes: [TransactionSchema],
     expenses: [TransactionSchema],
     currency: { type: String },
