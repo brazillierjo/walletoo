@@ -1,12 +1,13 @@
 import { getServerSession } from "next-auth";
 import connectDB from "@/src/mongoDB/connect";
 import UserModel from "@/src/mongoDB/userSchema";
+import { authOptions } from "@/src/utils/authOptions";
 
 export async function GET() {
     await connectDB();
 
     try {
-        const session = await getServerSession();
+        const session = await getServerSession(authOptions);
 
         if (!session?.user?.email) throw new Error("Unauthorized");
 
