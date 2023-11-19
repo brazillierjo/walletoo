@@ -3,6 +3,7 @@ import connectDB from "@/src/mongoDB/connect";
 import UserModel from "@/src/mongoDB/userSchema";
 import { authOptions } from "@/src/utils/authOptions";
 
+export const dynamic = "force-dynamic";
 export async function GET() {
     await connectDB();
 
