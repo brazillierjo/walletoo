@@ -1,5 +1,5 @@
-import { ITransaction } from "@/src/interfaces/transaction";
 import { Card } from "@/src/components/ui/card";
+import { ITransaction } from "@/src/mongoDB/userSchema";
 
 type CardTableProps = {
     title: string;
