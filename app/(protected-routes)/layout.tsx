@@ -5,6 +5,7 @@ import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { useAtom } from "jotai";
 import { UserApi } from "@/src/APIs/user";
 import { useSession } from "next-auth/react";
+import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
 
 type AuthLayoutProps = {
     children: ReactNode;
@@ -21,7 +22,12 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
         }
     }, [userData, setUserData, session]);
 
-    if (!userData) return <div className='flex p-4 lg:p-8'>Chargement...</div>;
+    if (!userData)
+        return (
+            <div className='flex h-[90vh] p-4 lg:p-8'>
+                <SpinnerLoadingScreen />
+            </div>
+        );
 
     return <div className='flex p-4 lg:p-8'>{children}</div>;
 };

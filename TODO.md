@@ -5,7 +5,7 @@
 -   modifier la photo de profil
 -   mettre un favicon
 -   Ajouter des tooltip sur les cartes
--   Ajouter un toast de notification
+-   Ajouter un toast de notification (shadcn)
 -   afficher deux tableau d'incomes et expenses
 -   éditer les données rentrées des tableaux
 -   supprimer les données rentrées des tableaux

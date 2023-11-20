@@ -27,7 +27,7 @@ export const MyAccountCard: React.FC = () => {
             hour: "numeric",
         });
 
-    if (!userData) return <div className='flex p-4 lg:p-8'>Chargement...</div>;
+    if (!userData) return null;
 
     return (
         <Card className='w-full lg:w-fit'>

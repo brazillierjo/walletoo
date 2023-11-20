@@ -25,17 +25,16 @@ export const DeleteAccountCard: React.FC = () => {
     const handleDelete = () => {
         !hasConfirmedDeletion && setHasConfirmedDeletion(true);
 
-        if (hasConfirmedDeletion) {
+        hasConfirmedDeletion &&
             UserApi.delete().then((res) => {
                 if (!res) return;
 
                 signOut();
                 redirect(Route.HOME);
             });
-        }
     };
 
-    if (!userData) return <div className='flex p-4 lg:p-8'>Chargement...</div>;
+    if (!userData) return null;
 
     return (
         <Card className='w-full lg:w-fit'>
