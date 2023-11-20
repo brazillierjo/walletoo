@@ -70,7 +70,9 @@ export const Header: React.FC = () => {
                                 <DropdownMenuSeparator />
 
                                 <DropdownMenuItem>
-                                    <Button onClick={() => signOut()}>Se déconnecter</Button>
+                                    <Button onClick={() => signOut()}>
+                                        Se déconnecter
+                                    </Button>
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>

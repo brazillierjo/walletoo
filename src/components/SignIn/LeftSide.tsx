@@ -5,7 +5,9 @@ import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
 export const LeftSide: React.FC = () => {
     const { getRandomImage } = useGetRandomImage();
     const [backgroundImageUrl, setBackgroundImageUrl] = useState<string | null>(null);
-    const backgroundImageStyle = backgroundImageUrl ? { backgroundImage: `url(${backgroundImageUrl})` } : {};
+    const backgroundImageStyle = backgroundImageUrl
+        ? { backgroundImage: `url(${backgroundImageUrl})` }
+        : {};
 
     useEffect(() => {
         setBackgroundImageUrl(getRandomImage());

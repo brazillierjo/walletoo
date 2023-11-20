@@ -12,6 +12,6 @@ export class UserApi {
             method: "DELETE",
         });
 
-        return response.status === 204 ? null : response.json();
+        return response.json();
     }
 }

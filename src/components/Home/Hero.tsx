@@ -18,12 +18,14 @@ function Hero() {
                     </h1>
 
                     <p className='mt-6 text-lg leading-8 text-gray-600 dark:text-gray-200'>
-                        Waletoo vous aide à visualiser et optimiser vos finances personnelles avec des graphiques et des
-                        calculs intuitifs.
+                        Waletoo vous aide à visualiser et optimiser vos finances
+                        personnelles avec des graphiques et des calculs intuitifs.
                     </p>
 
                     <div className='mt-10 flex items-center justify-center gap-x-6'>
-                        <Link className={buttonVariants({ variant: "default" })} href={Route.WALLET}>
+                        <Link
+                            className={buttonVariants({ variant: "default" })}
+                            href={Route.WALLET}>
                             Je me lance ! 😍
                         </Link>
                     </div>

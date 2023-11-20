@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/utils/authOptions";
 import UserModel from "@/src/mongoDB/userSchema";
 
-export async function POST() {
+export async function DELETE() {
     try {
         const session = await getServerSession(authOptions);
 

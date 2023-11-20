@@ -1,5 +1,12 @@
 "use client";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter, CardDescription } from "@/src/components/ui/card";
+import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardContent,
+    CardFooter,
+    CardDescription,
+} from "@/src/components/ui/card";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { useAtom } from "jotai";
@@ -9,6 +16,7 @@ import { cn } from "@/src/tools/tailwindMerge";
 import { useState } from "react";
 import { redirect } from "next/navigation";
 import { Route } from "@/src/enums/frontend-routes";
+import { signOut } from "next-auth/react";
 
 export const DeleteAccountCard: React.FC = () => {
     const [hasConfirmedDeletion, setHasConfirmedDeletion] = useState(false);
@@ -20,6 +28,8 @@ export const DeleteAccountCard: React.FC = () => {
         if (hasConfirmedDeletion) {
             UserApi.delete().then((res) => {
                 if (!res) return;
+
+                signOut();
                 redirect(Route.HOME);
             });
         }
@@ -30,10 +40,13 @@ export const DeleteAccountCard: React.FC = () => {
     return (
         <Card className='w-full lg:w-fit'>
             <CardHeader className='p-2'>
-                <CardTitle className='text-center text-lg font-semibold'>Suppression du compte</CardTitle>
+                <CardTitle className='text-center text-lg font-semibold'>
+                    Suppression du compte
+                </CardTitle>
 
                 <CardDescription className='text-center text-sm'>
-                    <span className='text-red-500'>Attention</span>, cette action est irréversible.
+                    <span className='text-red-500'>Attention</span>, cette action est
+                    irréversible.
                 </CardDescription>
             </CardHeader>
 
@@ -47,7 +60,7 @@ export const DeleteAccountCard: React.FC = () => {
 
             <CardFooter className='flex justify-center p-5'>
                 <Button
-                    className={cn(hasConfirmedDeletion && "bg-red-500 hover:bg-red-500 hover:opacity-50")}
+                    className={cn(hasConfirmedDeletion && "bg-red-500 hover:bg-red-500")}
                     onClick={handleDelete}>
                     {hasConfirmedDeletion ? "Confirmer la suppression" : "Supprimer"}
                 </Button>

@@ -16,7 +16,9 @@ export const RightSide: React.FC = () => {
 
                 <div className='flex flex-col gap-3'>
                     <h1 className='text-3xl font-semibold'>Se connecter</h1>
-                    <h3 className='text-sm'>Vous avez raison, il est temps de prendre en main vos finances.</h3>
+                    <h3 className='text-sm'>
+                        Vous avez raison, il est temps de prendre en main vos finances.
+                    </h3>
                 </div>
             </div>
 
@@ -24,7 +26,10 @@ export const RightSide: React.FC = () => {
                 <Button role='button' onClick={() => signIn("github")}>
                     Se connecter avec Github
                 </Button>
-                <Button role='button' className='bg-red-500 text-white' onClick={() => signIn("google")}>
+                <Button
+                    role='button'
+                    className='bg-red-500 text-white'
+                    onClick={() => signIn("google")}>
                     Se connecter avec Google
                 </Button>
             </div>

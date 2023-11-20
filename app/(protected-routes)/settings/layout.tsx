@@ -9,7 +9,9 @@ type Props = {
     children: React.ReactNode;
 };
 
-const SettingsLayout: ({ children }: Props) => Promise<JSX.Element> = async ({ children }: Props) => {
+const SettingsLayout: ({ children }: Props) => Promise<JSX.Element> = async ({
+    children,
+}: Props) => {
     return children as JSX.Element;
 };
 

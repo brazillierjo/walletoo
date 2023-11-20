@@ -42,7 +42,9 @@ export const Sidebar: React.FC = () => {
 
     return (
         <div className='hidden min-h-screen w-3/12 bg-white dark:bg-slate-600 lg:block 2xl:w-2/12'>
-            <h2 className='px-4 py-8 text-center text-xl font-bold'>{session?.user?.name ?? "..."}</h2>
+            <h2 className='px-4 py-8 text-center text-xl font-bold'>
+                {session?.user?.name ?? "..."}
+            </h2>
 
             <Separator className='bg-gray-300' />
 
@@ -51,14 +53,19 @@ export const Sidebar: React.FC = () => {
                     <Link
                         href={link.path}
                         key={index}
-                        className={cn("flex gap-3 py-2", isActivelink(link.path) && "border-r-4 border-slate-500")}>
+                        className={cn(
+                            "flex gap-3 py-2",
+                            isActivelink(link.path) && "border-r-4 border-slate-500"
+                        )}>
                         <link.icon
                             className={cn(
                                 "h-6 w-6 fill-slate-500 dark:fill-white",
                                 !isActivelink(link.path) && "opacity-40"
                             )}
                         />
-                        <span className={cn(!isActivelink(link.path) && "text-gray-400")}>{link.name}</span>
+                        <span className={cn(!isActivelink(link.path) && "text-gray-400")}>
+                            {link.name}
+                        </span>
                     </Link>
                 ))}
             </div>

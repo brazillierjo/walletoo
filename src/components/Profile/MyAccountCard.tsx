@@ -2,7 +2,13 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/src/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/src/components/ui/card";
 import { Separator } from "@/src/components/ui/separator";
 import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
 import { useAtom } from "jotai";
@@ -49,7 +55,9 @@ export const MyAccountCard: React.FC = () => {
                     )}
                 </div>
 
-                <CardTitle className='text-center text-lg font-semibold'>{userData.fullName}</CardTitle>
+                <CardTitle className='text-center text-lg font-semibold'>
+                    {userData.fullName}
+                </CardTitle>
             </CardHeader>
 
             <Separator />
