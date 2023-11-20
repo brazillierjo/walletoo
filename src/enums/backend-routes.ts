@@ -1,3 +1,4 @@
 export enum ApiRoute {
-    USER_DATA = "/api/user",
+    USER = "/api/user",
+    USER_DELETE = "/api/user/delete",
 }
