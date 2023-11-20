@@ -9,7 +9,7 @@ import { IoIosSettings } from "react-icons/io";
 import { FaWallet } from "react-icons/fa6";
 import { cn } from "@/src/tools/tailwindMerge";
 
-const Sidebar: React.FC = () => {
+export const Sidebar: React.FC = () => {
     const { data: session } = useSession();
     const pathname = usePathname();
 
@@ -65,5 +65,3 @@ const Sidebar: React.FC = () => {
         </div>
     );
 };
-
-export default Sidebar;

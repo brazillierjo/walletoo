@@ -2,24 +2,27 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/src/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card";
-import { IUserSchema } from "@/src/mongoDB/userSchema";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Separator } from "@/src/components/ui/separator";
 import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
+import { useAtom } from "jotai";
+import { userDataAtom } from "@/src/atoms/userData.atoms";
 
-interface IMyAccountCardProps {
-    userProfile: IUserSchema;
-}
+export const MyAccountCard: React.FC = () => {
+    const [userData] = useAtom(userDataAtom);
 
-const MyAccountCard: React.FC<IMyAccountCardProps> = ({ userProfile }) => {
     const { getRandomImage } = useGetRandomImage();
 
-    const formattedDate = new Date(userProfile.createdAt).toLocaleDateString("fr-FR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-    });
+    const formattedDate =
+        userData &&
+        new Date(userData.createdAt).toLocaleDateString("fr-FR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+        });
+
+    if (!userData) return <div className='flex p-4 lg:p-8'>Chargement...</div>;
 
     return (
         <Card className='w-full lg:w-fit'>
@@ -34,32 +37,32 @@ const MyAccountCard: React.FC<IMyAccountCardProps> = ({ userProfile }) => {
                         />
                     </picture>
 
-                    {userProfile.avatar && (
+                    {userData.avatar && (
                         <Image
                             className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black'
                             width={100}
                             height={100}
-                            src={userProfile.avatar}
+                            src={userData.avatar}
                             alt='Avatar'
                             priority
                         />
                     )}
                 </div>
 
-                <CardTitle className='text-center text-lg font-semibold'>{userProfile.fullName}</CardTitle>
+                <CardTitle className='text-center text-lg font-semibold'>{userData.fullName}</CardTitle>
             </CardHeader>
 
             <Separator />
 
             <CardContent className='flex flex-col gap-2 p-5'>
                 <p>
-                    E-mail : <b>{userProfile.email}</b>
+                    E-mail : <b>{userData.email}</b>
                 </p>
                 <p>
                     Date de création : <b>{formattedDate}</b>.
                 </p>
                 <p>
-                    Devise : <b>{userProfile.currency}</b>
+                    Devise : <b>{userData.currency}</b>
                 </p>
             </CardContent>
 
@@ -71,5 +74,3 @@ const MyAccountCard: React.FC<IMyAccountCardProps> = ({ userProfile }) => {
         </Card>
     );
 };
-
-export default MyAccountCard;

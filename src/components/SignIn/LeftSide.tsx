@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
 
-export default function LeftSide() {
+export const LeftSide: React.FC = () => {
     const { getRandomImage } = useGetRandomImage();
     const [backgroundImageUrl, setBackgroundImageUrl] = useState<string | null>(null);
     const backgroundImageStyle = backgroundImageUrl ? { backgroundImage: `url(${backgroundImageUrl})` } : {};
@@ -16,4 +16,4 @@ export default function LeftSide() {
             <div className='h-full w-full bg-cover' style={backgroundImageStyle} />
         </div>
     );
-}
+};

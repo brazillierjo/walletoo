@@ -1,5 +1,5 @@
-import LeftSide from "@/src/components/SignIn/LeftSide";
-import RightSide from "@/src/components/SignIn/RightSide";
+import { LeftSide } from "@/src/components/SignIn/LeftSide";
+import { RightSide } from "@/src/components/SignIn/RightSide";
 
 const SignIn: React.FC = () => {
     return (

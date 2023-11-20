@@ -1,16 +1,15 @@
 import { getServerSession } from "next-auth";
-import UserModel from "@/src/mongoDB/userSchema";
 import { authOptions } from "@/src/utils/authOptions";
+import UserModel from "@/src/mongoDB/userSchema";
 
-export const dynamic = "force-dynamic";
-export async function GET() {
+export async function POST() {
     try {
         const session = await getServerSession(authOptions);
 
         if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;
-        const userInformations = await UserModel.find({ email: userEmail });
+        const userInformations = await UserModel.deleteOne({ email: userEmail });
 
         return new Response(JSON.stringify(userInformations));
     } catch (error) {

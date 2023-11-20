@@ -2,7 +2,7 @@
 import { Route } from "@/src/enums/frontend-routes";
 import Link from "next/link";
 
-export default function Logo() {
+export const Logo: React.FC = () => {
     return (
         <Link className='h-fit' href={Route.HOME}>
             <div className='text-4xl font-bold text-[#2e388b] dark:text-white'>
@@ -10,4 +10,4 @@ export default function Logo() {
             </div>
         </Link>
     );
-}
+};

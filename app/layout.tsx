@@ -1,12 +1,12 @@
 import "@/src/globals.css";
 import type { Metadata } from "next";
+import SessionProvider from "@/src/Providers/SessionProvider";
 import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
-import SessionProvider from "@/src/Providers/SessionProvider";
 import { ThemeProvider } from "@/src/Providers/ThemeProvider";
 import { Header } from "@/src/components/Header/Header";
+import { Sidebar } from "@/src/components/Sidebar/Sidebar";
 import { cn } from "@/src/tools/tailwindMerge";
-import Sidebar from "@/src/components/Sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -2,10 +2,10 @@
 import { signIn, useSession } from "next-auth/react";
 import { Button } from "@/src/components/ui/button";
 import { redirect } from "next/navigation";
-import Logo from "@/src/components/Commons/Logo";
 import { Route } from "@/src/enums/frontend-routes";
+import { Logo } from "@/src/components/Commons/Logo";
 
-export default function RightSide() {
+export const RightSide: React.FC = () => {
     const { data: session } = useSession();
     if (session?.user?.name) redirect(Route.WALLET);
 
@@ -30,4 +30,4 @@ export default function RightSide() {
             </div>
         </div>
     );
-}
+};

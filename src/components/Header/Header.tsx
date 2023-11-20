@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
-import Logo from "@/src/components/Commons/Logo";
+import Image from "next/image";
+import { Logo } from "@/src/components/Commons/Logo";
 import { ModeToggle } from "@/src/components/Commons/ModeToggle";
 import { Button } from "@/src/components/ui/button";
 import { Route } from "@/src/enums/frontend-routes";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { signOut, useSession } from "next-auth/react";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { RxHamburgerMenu } from "react-icons/rx";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -14,10 +16,8 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import Image from "next/image";
 
-export function Header() {
+export const Header: React.FC = () => {
     const { data: session } = useSession();
 
     return (
@@ -31,7 +31,7 @@ export function Header() {
                     {!session && (
                         <Link href={Route.SIGNIN}>
                             <Button className='flex gap-2'>
-                                Se connecter <ArrowRightIcon />
+                                Se connecter <IoIosArrowRoundForward />
                             </Button>
                         </Link>
                     )}
@@ -51,7 +51,7 @@ export function Header() {
                     {session?.user?.name && (
                         <DropdownMenu>
                             <DropdownMenuTrigger>
-                                <HamburgerMenuIcon />
+                                <RxHamburgerMenu />
                             </DropdownMenuTrigger>
 
                             <DropdownMenuContent>
@@ -79,4 +79,4 @@ export function Header() {
             </nav>
         </header>
     );
-}
+};
