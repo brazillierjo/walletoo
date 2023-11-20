@@ -1,5 +1,6 @@
 ## MVP
 
+-   typer les retours api avec Zod
 -   modifier la devise
 -   modifier la photo de profil
 -   mettre un favicon
@@ -11,4 +12,7 @@
 -   ajouter un tableau récapitulatif
 -   ajouter des graphique de rendu des dépenses et revenus
 -   créer un thème moderne
-<!-- -   ajouter une page dashboard avec météo, prise de notes -->
+-   implémenter les skeletons
+-   implémenter les tests
+-   faire un logo
+<!-- -   ajouter une page dashboard avec météo, prise de notes, calendrier -->
