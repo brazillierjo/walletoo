@@ -5,7 +5,7 @@ import * as z from "zod";
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { toast } from "@/src/components/ui/use-toast";
-import { IoMdAddCircle } from "react-icons/io";
+import { FaCheckDouble } from "react-icons/fa";
 import {
     Form,
     FormControl,
@@ -29,7 +29,7 @@ export function TransactionForm() {
         },
     });
 
-    function onSubmit(data: z.infer<typeof TransactionFormSchema>) {
+    const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
         toast({
             title: "You submitted the following values:",
             description: (
@@ -38,7 +38,7 @@ export function TransactionForm() {
                 </pre>
             ),
         });
-    }
+    };
 
     return (
         <Form {...form}>
@@ -63,7 +63,7 @@ export function TransactionForm() {
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input type='number' placeholder='Amount' {...field} />
+                                <Input type='number' placeholder='Montant' {...field} />
                             </FormControl>
                             <FormDescription>Montant de la transaction.</FormDescription>
                             <FormMessage />
@@ -71,8 +71,8 @@ export function TransactionForm() {
                     )}
                 />
 
-                <Button type='submit'>
-                    <IoMdAddCircle />
+                <Button variant='ghost' type='submit'>
+                    <FaCheckDouble className='h-5 w-5 fill-green-600' />
                 </Button>
             </form>
         </Form>
