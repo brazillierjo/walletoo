@@ -6,6 +6,8 @@ import { useAtom } from "jotai";
 import { UserApi } from "@/src/APIs/user";
 import { useSession } from "next-auth/react";
 import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
+import { redirect } from "next/navigation";
+import { Route } from "@/src/enums/frontend-routes";
 
 type AuthLayoutProps = {
     children: ReactNode;
@@ -18,7 +20,10 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
 
     useEffect(() => {
         if (!userData && session) {
-            UserApi.get().then((data) => setUserData(data[0]));
+            UserApi.get().then((data) => {
+                if (data) return setUserData(data[0]);
+                else redirect(Route.SIGNIN);
+            });
         }
     }, [userData, setUserData, session]);
 

@@ -8,8 +8,7 @@
 -   ajouter des graphique de rendu des dépenses et revenus
 -   créer un thème moderne
 -   implémenter les tests
--   faire un logo
+-   faire des skeletons
 -   faire des animations
--   fix error quand le user est déjà co, pour la récupération des données
 -   fix tooltip mobile
 <!-- -   ajouter une page dashboard avec météo, prise de notes, calendrier -->
