@@ -16,7 +16,6 @@ import { Tooltip } from "../Commons/Tooltip";
 export const MyAccountCard: React.FC = () => {
     const [bannerImage, setBannerImage] = useState<string | null>(null);
     const [userData, setUserData] = useAtom(userDataAtom);
-    const [isEditingCurrency, setIsEditingCurrency] = useState(false);
 
     const { getRandomImage } = useGetRandomImage();
     const { toast } = useToast();
@@ -97,9 +96,7 @@ export const MyAccountCard: React.FC = () => {
                     <EditableContentSelect
                         options={currenciesNames}
                         value={userData.currency}
-                        isEditing={isEditingCurrency}
                         onChange={handleCurrencyChange}
-                        setIsEditing={(state) => setIsEditingCurrency(state)}
                     />
                 </div>
             </CardContent>

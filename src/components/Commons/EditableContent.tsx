@@ -1,4 +1,3 @@
-import { Button } from "@/src/components/ui/button";
 import {
     Select,
     SelectContent,
@@ -10,44 +9,27 @@ import {
 type EditableContentSelectProps = {
     options: string[];
     value: string;
-    isEditing: boolean;
-    setIsEditing: (value: boolean) => void;
     onChange: (value: string) => void;
 };
 
 export const EditableContentSelect: React.FC<EditableContentSelectProps> = ({
     options,
     value,
-    isEditing,
-    setIsEditing,
     onChange,
 }) => {
-    const handleValueChange = (newValue: string) => {
-        onChange(newValue);
-        setIsEditing(false);
-    };
-
     return (
-        <div>
-            {!isEditing ? (
-                <Button onClick={() => setIsEditing(true)} variant='outline'>
-                    {value}
-                </Button>
-            ) : (
-                <Select defaultValue={value} onValueChange={handleValueChange}>
-                    <SelectTrigger>
-                        <SelectValue />
-                    </SelectTrigger>
+        <Select defaultValue={value} onValueChange={(newValue) => onChange(newValue)}>
+            <SelectTrigger className='w-fit'>
+                <SelectValue />
+            </SelectTrigger>
 
-                    <SelectContent>
-                        {options.map((option) => (
-                            <SelectItem key={option} value={option}>
-                                {option}
-                            </SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            )}
-        </div>
+            <SelectContent>
+                {options.map((option) => (
+                    <SelectItem key={option} value={option}>
+                        {option}
+                    </SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
     );
 };
