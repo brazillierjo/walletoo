@@ -44,7 +44,7 @@ export const MyAccountCard: React.FC = () => {
     if (!userData) return null;
 
     return (
-        <Card className='w-full lg:w-fit'>
+        <Card className='w-full lg:w-fit lg:min-w-[400px]'>
             <CardHeader className='p-2'>
                 <div className='relative mb-16'>
                     <picture>
@@ -81,7 +81,7 @@ export const MyAccountCard: React.FC = () => {
 
             <Separator />
 
-            <CardContent className='flex flex-col gap-2 p-5'>
+            <CardContent className='flex flex-col gap-3 p-5'>
                 <div className='flex items-center gap-2'>
                     <label className='break-keep'>E-mail :</label>
                     <b>{userData.email}</b>
