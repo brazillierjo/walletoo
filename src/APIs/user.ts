@@ -1,4 +1,5 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
+import { IUserSchema } from "@/src/mongoDB/userSchema";
 
 export class UserApi {
     static async get() {
@@ -7,8 +8,20 @@ export class UserApi {
         return response.json();
     }
 
+    static async update(data: IUserSchema) {
+        const response = await fetch(ApiRoute.USER, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        return response.json();
+    }
+
     static async delete() {
-        const response = await fetch(ApiRoute.USER_DELETE, {
+        const response = await fetch(ApiRoute.USER, {
             method: "DELETE",
         });
 

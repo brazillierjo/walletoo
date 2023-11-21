@@ -7,6 +7,15 @@ import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { useState } from "react";
 import { currencies } from "@/src/utils/currencies";
+import { Button } from "@/src/components/ui/button";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/src/components/ui/select";
+import useDateFormatter from "@/src/hooks/useDateFormatter";
 
 export const MyAccountCard: React.FC = () => {
     const [userData] = useAtom(userDataAtom);
@@ -17,15 +26,7 @@ export const MyAccountCard: React.FC = () => {
     });
 
     const { getRandomImage } = useGetRandomImage();
-
-    const formattedDate =
-        userData &&
-        new Date(userData.createdAt).toLocaleDateString("fr-FR", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-        });
+    const formattedDate = useDateFormatter(userData ? userData.createdAt : new Date());
 
     if (!userData) return null;
 
@@ -62,26 +63,42 @@ export const MyAccountCard: React.FC = () => {
 
             <CardContent className='flex flex-col gap-2 p-5'>
                 <div className='flex items-center gap-3'>
-                    <label>E-mail :</label>
-                    <p>{userData.email}</p>
+                    <label className='break-keep'>E-mail :</label>
+                    <b>{userData.email}</b>
                 </div>
+
                 <div>
-                    <label>Date de création : </label>
+                    <label className='break-keep'>Création : </label>
                     <b>{formattedDate}</b>.
                 </div>
-                <div>
-                    <label>Devise : </label>
 
+                <div className='flex items-center gap-3'>
+                    <label className='whitespace-nowrap'>Devise :</label>
                     {!isEditing.currency ? (
-                        <b>{userData.currency}</b>
+                        <Button
+                            onClick={() =>
+                                setIsEditing({
+                                    ...isEditing,
+                                    currency: true,
+                                })
+                            }
+                            variant='outline'>
+                            <b>{userData.currency}</b>
+                        </Button>
                     ) : (
-                        <select name='currency'>
-                            {currencies.map((currency) => (
-                                <option key={currency.name} value={currency.name}>
-                                    {currency.name}
-                                </option>
-                            ))}
-                        </select>
+                        <Select defaultValue={userData.currency}>
+                            <SelectTrigger>
+                                <SelectValue />
+                            </SelectTrigger>
+
+                            <SelectContent>
+                                {currencies.map((currency) => (
+                                    <SelectItem key={currency.name} value={currency.name}>
+                                        {currency.name}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     )}
                 </div>
             </CardContent>
