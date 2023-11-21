@@ -5,7 +5,7 @@ import { Separator } from "@/src/components/ui/separator";
 import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
 import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { currencies } from "@/src/utils/currencies";
 import { EditableContentSelect } from "../Commons/EditableContent";
 import { UserApi } from "@/src/APIs/user";
@@ -13,18 +13,20 @@ import { useToast } from "@/src/components/ui/use-toast";
 import useDateFormatter from "@/src/hooks/useDateFormatter";
 
 export const MyAccountCard: React.FC = () => {
+    const [bannerImage, setBannerImage] = useState<string | null>(null);
     const [userData, setUserData] = useAtom(userDataAtom);
-    const [isEditing, setIsEditing] = useState({
-        email: false,
-        fullName: false,
-        currency: false,
-    });
+    const [isEditingCurrency, setIsEditingCurrency] = useState(false);
 
     const { getRandomImage } = useGetRandomImage();
     const { toast } = useToast();
     const formattedDate = useDateFormatter(userData ? userData.createdAt : new Date());
 
     const currenciesNames = currencies.map((currency) => currency.name);
+
+    useEffect(() => {
+        setBannerImage(getRandomImage());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleCurrencyChange = (newCurrency: string) => {
         if (userData && newCurrency !== userData.currency) {
@@ -51,7 +53,7 @@ export const MyAccountCard: React.FC = () => {
                     <picture>
                         <img
                             className='h-32 w-full rounded-md object-cover'
-                            src={getRandomImage()}
+                            src={bannerImage ?? ""}
                             alt='user banner'
                         />
                     </picture>
@@ -91,11 +93,9 @@ export const MyAccountCard: React.FC = () => {
                     <EditableContentSelect
                         options={currenciesNames}
                         value={userData.currency}
-                        isEditing={isEditing.currency}
+                        isEditing={isEditingCurrency}
                         onChange={handleCurrencyChange}
-                        setIsEditing={(state) =>
-                            setIsEditing({ ...isEditing, currency: state })
-                        }
+                        setIsEditing={(state) => setIsEditingCurrency(state)}
                     />
                 </div>
             </CardContent>
