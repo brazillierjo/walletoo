@@ -5,7 +5,16 @@ import { ModeToggle } from "@/src/components/Commons/ModeToggle";
 import { Button } from "@/src/components/ui/button";
 import { Route } from "@/src/enums/frontend-routes";
 import { signOut, useSession } from "next-auth/react";
-import { IoIosArrowRoundForward } from "react-icons/io";
+import { PiSignInBold, PiSignOut } from "react-icons/pi";
+import { RxHamburgerMenu } from "react-icons/rx";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/src/components/ui/dropdown-menu";
 
 export const Header: React.FC = () => {
     const { data: session } = useSession();
@@ -20,14 +29,35 @@ export const Header: React.FC = () => {
                 <div className='flex items-center gap-6 rounded-full bg-white px-4 py-2 dark:bg-slate-600'>
                     <ModeToggle />
 
+                    {session?.user?.name && (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <RxHamburgerMenu />
+                            </DropdownMenuTrigger>
+
+                            <DropdownMenuContent className='right-'>
+                                <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <Link href={Route.WALLET}>Mon Wallet</Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link href={Route.ACCOUNT}>Mon compte</Link>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    )}
+
                     {!session ? (
                         <Link href={Route.SIGNIN}>
                             <Button className='flex gap-2'>
-                                Se connecter <IoIosArrowRoundForward />
+                                <PiSignInBold />
                             </Button>
                         </Link>
                     ) : (
-                        <Button onClick={() => signOut()}>Se déconnecter</Button>
+                        <Button onClick={() => signOut()}>
+                            <PiSignOut className='rotate-180' />
+                        </Button>
                     )}
                 </div>
             </nav>
