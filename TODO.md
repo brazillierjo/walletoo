@@ -7,7 +7,6 @@
 -   ajouter un tableau récapitulatif
 -   ajouter des graphique de rendu des dépenses et revenus
 -   créer un thème moderne
--   implémenter les skeletons
 -   implémenter les tests
 -   faire un logo
 -   fix error quand le user est déjà co, pour la récupération des données
