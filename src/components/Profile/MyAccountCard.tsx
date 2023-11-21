@@ -7,11 +7,13 @@ import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { useState } from "react";
 import { currencies } from "@/src/utils/currencies";
-import useDateFormatter from "@/src/hooks/useDateFormatter";
 import { EditableContentSelect } from "../Commons/EditableContent";
+import { UserApi } from "@/src/APIs/user";
+import { useToast } from "@/src/components/ui/use-toast";
+import useDateFormatter from "@/src/hooks/useDateFormatter";
 
 export const MyAccountCard: React.FC = () => {
-    const [userData] = useAtom(userDataAtom);
+    const [userData, setUserData] = useAtom(userDataAtom);
     const [isEditing, setIsEditing] = useState({
         email: false,
         fullName: false,
@@ -19,12 +21,25 @@ export const MyAccountCard: React.FC = () => {
     });
 
     const { getRandomImage } = useGetRandomImage();
+    const { toast } = useToast();
     const formattedDate = useDateFormatter(userData ? userData.createdAt : new Date());
 
     const currenciesNames = currencies.map((currency) => currency.name);
 
     const handleCurrencyChange = (newCurrency: string) => {
-        console.log(newCurrency);
+        if (userData && newCurrency !== userData.currency) {
+            UserApi.patch({ currency: newCurrency })
+                .then((updatedUserData) => {
+                    setUserData(updatedUserData);
+                    toast({
+                        title: "Devise mise à jour",
+                        description: `La devise a bien été mise à jour.`,
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error updating currency:", error);
+                });
+        }
     };
 
     if (!userData) return null;
@@ -36,7 +51,7 @@ export const MyAccountCard: React.FC = () => {
                     <picture>
                         <img
                             className='h-32 w-full rounded-md object-cover'
-                            src={`${getRandomImage()}.jpg`}
+                            src={getRandomImage()}
                             alt='user banner'
                         />
                     </picture>
@@ -61,17 +76,17 @@ export const MyAccountCard: React.FC = () => {
             <Separator />
 
             <CardContent className='flex flex-col gap-2 p-5'>
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-2'>
                     <label className='break-keep'>E-mail :</label>
                     <b>{userData.email}</b>
                 </div>
 
-                <div>
+                <div className='flex items-center gap-2'>
                     <label className='break-keep'>Création : </label>
                     <b>{formattedDate}</b>.
                 </div>
 
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-2'>
                     <label className='whitespace-nowrap'>Devise :</label>
                     <EditableContentSelect
                         options={currenciesNames}

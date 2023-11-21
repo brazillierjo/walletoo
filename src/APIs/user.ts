@@ -8,9 +8,9 @@ export class UserApi {
         return response.json();
     }
 
-    static async update(data: IUserSchema) {
+    static async patch(data: unknown) {
         const response = await fetch(ApiRoute.USER, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },

@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { ThemeProvider } from "@/src/Providers/ThemeProvider";
 import { Header } from "@/src/components/Header/Header";
 import { Sidebar } from "@/src/components/Sidebar/Sidebar";
+import { Toaster } from "@/src/components/ui/toaster";
 import { cn } from "@/src/tools/tailwindMerge";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -43,6 +44,7 @@ const RootLayout: ({ children }: Props) => Promise<JSX.Element> = async ({
                             <div className='w-full'>
                                 <Header />
                                 <main>{children}</main>
+                                <Toaster />
                             </div>
                         </div>
                     </ThemeProvider>

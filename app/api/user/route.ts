@@ -20,16 +20,19 @@ export async function GET() {
     }
 }
 
-export async function PUT(request: Request) {
+export async function PATCH(request: Request) {
     try {
         const session = await getServerSession(authOptions);
 
         if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;
-        const userInformations = await UserModel.updateOne(
+        const body = await request.json();
+
+        const userInformations = await UserModel.findOneAndUpdate(
             { email: userEmail },
-            { $set: await request.json() }
+            { $set: body },
+            { new: true }
         );
 
         return new Response(JSON.stringify(userInformations));
