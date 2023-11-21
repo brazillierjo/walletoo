@@ -24,6 +24,7 @@ export const EditableContentSelect: React.FC<EditableContentSelectProps> = ({
 }) => {
     const handleValueChange = (newValue: string) => {
         onChange(newValue);
+        setIsEditing(false);
     };
 
     return (

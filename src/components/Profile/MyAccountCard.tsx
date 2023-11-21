@@ -23,6 +23,10 @@ export const MyAccountCard: React.FC = () => {
 
     const currenciesNames = currencies.map((currency) => currency.name);
 
+    const handleCurrencyChange = (newCurrency: string) => {
+        console.log(newCurrency);
+    };
+
     if (!userData) return null;
 
     return (
@@ -73,7 +77,7 @@ export const MyAccountCard: React.FC = () => {
                         options={currenciesNames}
                         value={userData.currency}
                         isEditing={isEditing.currency}
-                        onChange={() => console.log("change")}
+                        onChange={handleCurrencyChange}
                         setIsEditing={(state) =>
                             setIsEditing({ ...isEditing, currency: state })
                         }
