@@ -41,7 +41,7 @@ export const DeleteAccountCard: React.FC = () => {
     return (
         <Card className='flex w-full flex-col justify-between lg:w-fit lg:min-w-[400px]'>
             <CardHeader className='p-2'>
-                <div className='relative'>
+                <div className='relative mb-16'>
                     <picture>
                         <img
                             className='h-32 w-full rounded-md object-cover'
@@ -52,8 +52,8 @@ export const DeleteAccountCard: React.FC = () => {
 
                     <div className='float-right'>
                         <Tooltip
-                            title='Pourquoi ne puis-je pas modifier mes informations personnelles ?'
-                            description='Waletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Waletoo ne peut pas modifier ces informations.'
+                            title='Demande de suppression de compte'
+                            description="Pour procéder à la suppression intégrale de votre compte, il est nécessaire de supprimer vos données personnelles au préalable. Par la suite, veuillez vous diriger vers le service tiers utilisé lors de la création de votre compte afin de révoquer l'accès accordé à notre application."
                         />
                     </div>
                 </div>
