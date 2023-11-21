@@ -7,15 +7,8 @@ import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { useState } from "react";
 import { currencies } from "@/src/utils/currencies";
-import { Button } from "@/src/components/ui/button";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/src/components/ui/select";
 import useDateFormatter from "@/src/hooks/useDateFormatter";
+import { EditableContentSelect } from "../Commons/EditableContent";
 
 export const MyAccountCard: React.FC = () => {
     const [userData] = useAtom(userDataAtom);
@@ -27,6 +20,8 @@ export const MyAccountCard: React.FC = () => {
 
     const { getRandomImage } = useGetRandomImage();
     const formattedDate = useDateFormatter(userData ? userData.createdAt : new Date());
+
+    const currenciesNames = currencies.map((currency) => currency.name);
 
     if (!userData) return null;
 
@@ -74,32 +69,15 @@ export const MyAccountCard: React.FC = () => {
 
                 <div className='flex items-center gap-3'>
                     <label className='whitespace-nowrap'>Devise :</label>
-                    {!isEditing.currency ? (
-                        <Button
-                            onClick={() =>
-                                setIsEditing({
-                                    ...isEditing,
-                                    currency: true,
-                                })
-                            }
-                            variant='outline'>
-                            <b>{userData.currency}</b>
-                        </Button>
-                    ) : (
-                        <Select defaultValue={userData.currency}>
-                            <SelectTrigger>
-                                <SelectValue />
-                            </SelectTrigger>
-
-                            <SelectContent>
-                                {currencies.map((currency) => (
-                                    <SelectItem key={currency.name} value={currency.name}>
-                                        {currency.name}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                    )}
+                    <EditableContentSelect
+                        options={currenciesNames}
+                        value={userData.currency}
+                        isEditing={isEditing.currency}
+                        onChange={() => console.log("change")}
+                        setIsEditing={(state) =>
+                            setIsEditing({ ...isEditing, currency: state })
+                        }
+                    />
                 </div>
             </CardContent>
         </Card>

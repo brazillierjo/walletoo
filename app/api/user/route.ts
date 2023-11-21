@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
-import UserModel from "@/src/mongoDB/userSchema";
 import { authOptions } from "@/src/utils/authOptions";
+import UserModel from "@/src/mongoDB/userSchema";
 
 export const dynamic = "force-dynamic";
 
