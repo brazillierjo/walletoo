@@ -41,7 +41,7 @@ export const DeleteAccountCard: React.FC = () => {
     return (
         <Card className='flex w-full flex-col justify-between lg:w-fit lg:min-w-[400px]'>
             <CardHeader className='p-2'>
-                <div className='relative mb-16'>
+                <div className='relative'>
                     <picture>
                         <img
                             className='h-32 w-full rounded-md object-cover'
