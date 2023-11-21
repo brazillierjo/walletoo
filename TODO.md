@@ -10,7 +10,6 @@
 -   implémenter les tests
 -   faire un logo
 -   faire des animations
--   utiliser un switch Shadcn pour le toggle du thème
 -   fix error quand le user est déjà co, pour la récupération des données
 -   fix tooltip mobile
 <!-- -   ajouter une page dashboard avec météo, prise de notes, calendrier -->
