@@ -1,20 +1,20 @@
 "use client";
 import Image from "next/image";
-import { Button } from "@/src/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/src/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Separator } from "@/src/components/ui/separator";
 import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
 import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
+import { useState } from "react";
+import { currencies } from "@/src/utils/currencies";
 
 export const MyAccountCard: React.FC = () => {
     const [userData] = useAtom(userDataAtom);
+    const [isEditing, setIsEditing] = useState({
+        email: false,
+        fullName: false,
+        currency: false,
+    });
 
     const { getRandomImage } = useGetRandomImage();
 
@@ -38,7 +38,6 @@ export const MyAccountCard: React.FC = () => {
                             className='h-32 w-full rounded-md object-cover'
                             src={`${getRandomImage()}.jpg`}
                             alt='user banner'
-                            loading='lazy'
                         />
                     </picture>
 
@@ -62,22 +61,30 @@ export const MyAccountCard: React.FC = () => {
             <Separator />
 
             <CardContent className='flex flex-col gap-2 p-5'>
-                <p>
-                    E-mail : <b>{userData.email}</b>
-                </p>
-                <p>
-                    Date de création : <b>{formattedDate}</b>.
-                </p>
-                <p>
-                    Devise : <b>{userData.currency}</b>
-                </p>
+                <div className='flex items-center gap-3'>
+                    <label>E-mail :</label>
+                    <p>{userData.email}</p>
+                </div>
+                <div>
+                    <label>Date de création : </label>
+                    <b>{formattedDate}</b>.
+                </div>
+                <div>
+                    <label>Devise : </label>
+
+                    {!isEditing.currency ? (
+                        <b>{userData.currency}</b>
+                    ) : (
+                        <select name='currency'>
+                            {currencies.map((currency) => (
+                                <option key={currency.name} value={currency.name}>
+                                    {currency.name}
+                                </option>
+                            ))}
+                        </select>
+                    )}
+                </div>
             </CardContent>
-
-            <Separator />
-
-            <CardFooter className='p-5'>
-                <Button>Modifier</Button>
-            </CardFooter>
         </Card>
     );
 };
