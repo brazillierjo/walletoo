@@ -64,17 +64,17 @@ export const MyAccountCard: React.FC = () => {
                             priority
                         />
                     )}
-                </div>
 
-                <CardTitle className='relative text-center text-lg font-semibold'>
-                    {userData.fullName}
-
-                    <div className='absolute -top-16 right-0'>
+                    <div className='float-right'>
                         <Tooltip
                             title='Pourquoi ne puis-je pas modifier mes informations personnelles ?'
                             description='Waletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Waletoo ne peut pas modifier ces informations.'
                         />
                     </div>
+                </div>
+
+                <CardTitle className='relative text-center text-lg font-semibold'>
+                    {userData.fullName}
                 </CardTitle>
             </CardHeader>
 

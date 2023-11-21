@@ -41,24 +41,27 @@ export const DeleteAccountCard: React.FC = () => {
     return (
         <Card className='flex w-full flex-col justify-between lg:w-fit lg:min-w-[400px]'>
             <CardHeader className='p-2'>
-                <picture>
-                    <img
-                        className='h-32 w-full rounded-md object-cover'
-                        src={DeleteBanner.src}
-                        alt='Delete banner'
-                    />
-                </picture>
+                <div className='relative'>
+                    <picture>
+                        <img
+                            className='h-32 w-full rounded-md object-cover'
+                            src={DeleteBanner.src}
+                            alt='Delete banner'
+                        />
+                    </picture>
+
+                    <div className='float-right'>
+                        <Tooltip
+                            title='Pourquoi ne puis-je pas modifier mes informations personnelles ?'
+                            description='Waletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Waletoo ne peut pas modifier ces informations.'
+                        />
+                    </div>
+                </div>
             </CardHeader>
 
             <div>
                 <CardTitle className='relative text-center text-lg font-semibold'>
                     Suppression du compte
-                    <div className='absolute -top-6 right-0'>
-                        <Tooltip
-                            title='Demande de suppression de compte'
-                            description="Pour procéder à la suppression intégrale de votre compte, il est nécessaire de supprimer vos données personnelles au préalable. Par la suite, veuillez vous diriger vers le service tiers utilisé lors de la création de votre compte afin de révoquer l'accès accordé à notre application."
-                        />
-                    </div>
                 </CardTitle>
                 <CardDescription className='text-center text-sm'>
                     <span className='text-red-500'>Attention</span>, cette action est

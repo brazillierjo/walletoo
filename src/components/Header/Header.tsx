@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
                                 <RxHamburgerMenu />
                             </DropdownMenuTrigger>
 
-                            <DropdownMenuContent className='right-'>
+                            <DropdownMenuContent>
                                 <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>
@@ -44,6 +44,10 @@ export const Header: React.FC = () => {
                                 <DropdownMenuItem>
                                     <Link href={Route.ACCOUNT}>Mon compte</Link>
                                 </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <Button className='w-full' onClick={() => signOut()}>
+                                    Déconnexion
+                                </Button>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     )}
