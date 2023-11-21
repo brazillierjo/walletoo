@@ -1,11 +1,11 @@
 "use client";
 import React, { ReactNode, useEffect } from "react";
 import isAuth from "@/src/Providers/isAuth";
+import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { useAtom } from "jotai";
 import { UserApi } from "@/src/APIs/user";
 import { useSession } from "next-auth/react";
-import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
 import { redirect } from "next/navigation";
 import { Route } from "@/src/enums/frontend-routes";
 

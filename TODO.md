@@ -10,4 +10,5 @@
 -   faire des skeletons
 -   faire des animations
 -   fix tooltip mobile
+-   fix erreur de loading quand user revien après un délai
 <!-- -   ajouter une page dashboard avec météo, prise de notes, calendrier -->
