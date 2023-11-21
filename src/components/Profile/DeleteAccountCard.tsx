@@ -7,8 +7,8 @@ import {
     CardFooter,
     CardDescription,
 } from "@/src/components/ui/card";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
+import { Button } from "@/src/components/ui/button";
+import { Separator } from "@/src/components/ui/separator";
 import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { UserApi } from "@/src/APIs/user";
@@ -17,6 +17,8 @@ import { useState } from "react";
 import { redirect } from "next/navigation";
 import { Route } from "@/src/enums/frontend-routes";
 import { signOut } from "next-auth/react";
+import { Tooltip } from "@/src/components/Commons/Tooltip";
+import DeleteBanner from "@/src/assets/webp/delete-banner.webp";
 
 export const DeleteAccountCard: React.FC = () => {
     const [hasConfirmedDeletion, setHasConfirmedDeletion] = useState(false);
@@ -37,23 +39,35 @@ export const DeleteAccountCard: React.FC = () => {
     if (!userData) return null;
 
     return (
-        <Card className='w-full lg:w-fit'>
+        <Card className='flex w-full flex-col justify-between lg:w-fit lg:min-w-[400px]'>
             <CardHeader className='p-2'>
-                <CardTitle className='text-center text-lg font-semibold'>
-                    Suppression du compte
-                </CardTitle>
+                <picture>
+                    <img
+                        className='h-32 w-full rounded-md object-cover'
+                        src={DeleteBanner.src}
+                        alt='Delete banner'
+                    />
+                </picture>
+            </CardHeader>
 
+            <div>
+                <CardTitle className='relative text-center text-lg font-semibold'>
+                    Suppression du compte
+                    <div className='absolute -top-6 right-0'>
+                        <Tooltip
+                            title='Demande de suppression de compte'
+                            description="Pour procéder à la suppression intégrale de votre compte, il est nécessaire de supprimer vos données personnelles au préalable. Par la suite, veuillez vous diriger vers le service tiers utilisé lors de la création de votre compte afin de révoquer l'accès accordé à notre application."
+                        />
+                    </div>
+                </CardTitle>
                 <CardDescription className='text-center text-sm'>
                     <span className='text-red-500'>Attention</span>, cette action est
                     irréversible.
                 </CardDescription>
-            </CardHeader>
-
-            <Separator />
-
-            <CardContent className='flex flex-col gap-2 p-5'>
-                Je souhaite supprimer mon compte définitivement
-            </CardContent>
+                <CardContent className='flex flex-col gap-2 p-5 text-center text-sm'>
+                    Je souhaite supprimer mon compte définitivement
+                </CardContent>
+            </div>
 
             <Separator />
 

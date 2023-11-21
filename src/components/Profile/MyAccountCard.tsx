@@ -81,7 +81,7 @@ export const MyAccountCard: React.FC = () => {
 
             <Separator />
 
-            <CardContent className='flex flex-col gap-3 p-5'>
+            <CardContent className='flex flex-col gap-3 p-5 text-sm'>
                 <div className='flex items-center gap-2'>
                     <label className='break-keep'>E-mail :</label>
                     <b>{userData.email}</b>
