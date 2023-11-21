@@ -1,6 +1,5 @@
 ## MVP
 
--   mettre un favicon
 -   afficher deux tableau d'incomes et expenses
 -   éditer les données rentrées des tableaux
 -   supprimer les données rentrées des tableaux
