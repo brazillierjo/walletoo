@@ -1,8 +1,6 @@
 ## MVP
 
 -   typer les retours api avec Zod
--   modifier la devise
--   modifier la photo de profil
 -   mettre un favicon
 -   Ajouter des tooltip sur les cartes
 -   Ajouter un toast de notification (shadcn)

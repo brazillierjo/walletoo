@@ -11,6 +11,7 @@ import { EditableContentSelect } from "../Commons/EditableContent";
 import { UserApi } from "@/src/APIs/user";
 import { useToast } from "@/src/components/ui/use-toast";
 import useDateFormatter from "@/src/hooks/useDateFormatter";
+import { Tooltip } from "../Commons/Tooltip";
 
 export const MyAccountCard: React.FC = () => {
     const [bannerImage, setBannerImage] = useState<string | null>(null);
@@ -66,8 +67,15 @@ export const MyAccountCard: React.FC = () => {
                     )}
                 </div>
 
-                <CardTitle className='text-center text-lg font-semibold'>
+                <CardTitle className='relative text-center text-lg font-semibold'>
                     {userData.fullName}
+
+                    <div className='absolute -top-16 right-0'>
+                        <Tooltip
+                            title='Pourquoi ne puis-je pas modifier mes informations personnelles ?'
+                            description='Waletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Waletoo ne peut pas modifier ces informations.'
+                        />
+                    </div>
                 </CardTitle>
             </CardHeader>
 
@@ -81,7 +89,7 @@ export const MyAccountCard: React.FC = () => {
 
                 <div className='flex items-center gap-2'>
                     <label className='break-keep'>Création : </label>
-                    <b>{formattedDate}</b>.
+                    <b>{formattedDate}</b>
                 </div>
 
                 <div className='flex items-center gap-2'>
