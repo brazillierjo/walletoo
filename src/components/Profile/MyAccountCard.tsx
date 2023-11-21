@@ -30,17 +30,13 @@ export const MyAccountCard: React.FC = () => {
 
     const handleCurrencyChange = (newCurrency: string) => {
         if (userData && newCurrency !== userData.currency) {
-            UserApi.patch({ currency: newCurrency })
-                .then((updatedUserData) => {
-                    setUserData(updatedUserData);
-                    toast({
-                        title: "Devise mise à jour",
-                        description: `La devise a bien été mise à jour.`,
-                    });
-                })
-                .catch((error) => {
-                    console.error("Error updating currency:", error);
+            UserApi.patch({ currency: newCurrency }).then((updatedUserData) => {
+                setUserData(updatedUserData);
+                toast({
+                    title: "Devise",
+                    description: "La devise a bien été mise à jour.",
                 });
+            });
         }
     };
 
