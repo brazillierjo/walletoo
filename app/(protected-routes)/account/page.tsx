@@ -1,5 +1,5 @@
-import { DeleteAccountCard } from "@/src/components/Profile/DeleteAccountCard";
-import { MyAccountCard } from "@/src/components/Profile/MyAccountCard";
+import { DeleteAccountCard } from "@/src/components/Account/DeleteAccountCard";
+import { MyAccountCard } from "@/src/components/Account/MyAccountCard";
 
 const Profile: React.FC = () => {
     return (
