@@ -1,6 +1,6 @@
+import UserModel from "@/src/mongoDB/userSchema";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/utils/authOptions";
-import UserModel from "@/src/mongoDB/userSchema";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {

@@ -1,8 +1,14 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
+import { Route } from "@/src/enums/frontend-routes";
+import { signOut } from "next-auth/react";
 
 export class UserApi {
     static async get() {
         const response = await fetch(ApiRoute.USER);
+
+        if (response.status === 500) {
+            signOut({ callbackUrl: Route.SIGNIN });
+        }
 
         return response.json();
     }
