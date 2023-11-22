@@ -1,21 +1,23 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
+import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
+import SpinnerLoadingScreen from "../Commons/LoadingScreen";
 
 export const LeftSide: React.FC = () => {
-    const { getRandomImage } = useGetRandomImage();
-    const [backgroundImageUrl, setBackgroundImageUrl] = useState<string | null>(null);
-    const backgroundImageStyle = backgroundImageUrl
-        ? { backgroundImage: `url(${backgroundImageUrl})` }
-        : {};
-
-    useEffect(() => {
-        setBackgroundImageUrl(getRandomImage());
-    }, [getRandomImage]);
+    const randomImageUrl = useGetRandomImageUrl();
 
     return (
         <div className='h-40 w-full bg-no-repeat object-contain md:h-auto md:w-1/2 lg:w-2/3'>
-            <div className='h-full w-full bg-cover' style={backgroundImageStyle} />
+            {randomImageUrl ? (
+                <picture>
+                    <img
+                        className='h-full w-full bg-cover'
+                        src={randomImageUrl ?? ""}
+                        alt='Left side presentation'
+                    />
+                </picture>
+            ) : (
+                <SpinnerLoadingScreen />
+            )}
         </div>
     );
 };

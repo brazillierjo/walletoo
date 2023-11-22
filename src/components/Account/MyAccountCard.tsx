@@ -2,10 +2,9 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Separator } from "@/src/components/ui/separator";
-import { useGetRandomImage } from "@/src/hooks/useGetRandomImage";
+import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
-import { useEffect, useState } from "react";
 import { currencies } from "@/src/utils/currencies";
 import { EditableContentSelect } from "../Commons/EditableContent";
 import { UserApi } from "@/src/APIs/userApi";
@@ -14,19 +13,13 @@ import useDateFormatter from "@/src/hooks/useDateFormatter";
 import { Tooltip } from "../Commons/Tooltip";
 
 export const MyAccountCard: React.FC = () => {
-    const [bannerImage, setBannerImage] = useState<string | null>(null);
     const [userData, setUserData] = useAtom(userDataAtom);
 
-    const { getRandomImage } = useGetRandomImage();
     const { toast } = useToast();
     const formattedDate = useDateFormatter(userData ? userData.createdAt : new Date());
+    const randomImageUrl = useGetRandomImageUrl();
 
     const currenciesNames = currencies.map((currency) => currency.name);
-
-    useEffect(() => {
-        setBannerImage(getRandomImage());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const handleCurrencyChange = (newCurrency: string) => {
         if (userData && newCurrency !== userData.currency) {
@@ -49,7 +42,7 @@ export const MyAccountCard: React.FC = () => {
                     <picture>
                         <img
                             className='h-32 w-full rounded-md object-cover'
-                            src={bannerImage ?? ""}
+                            src={randomImageUrl ?? ""}
                             alt='user banner'
                         />
                     </picture>

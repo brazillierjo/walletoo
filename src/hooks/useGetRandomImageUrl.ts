@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackgroundImage1 from "@/src/assets/webp/background-image-1.webp";
 import BackgroundImage2 from "@/src/assets/webp/background-image-2.webp";
 import BackgroundImage3 from "@/src/assets/webp/background-image-3.webp";
@@ -9,7 +9,7 @@ import BackgroundImage7 from "@/src/assets/webp/background-image-7.webp";
 import BackgroundImage8 from "@/src/assets/webp/background-image-8.webp";
 import BackgroundImage9 from "@/src/assets/webp/background-image-9.webp";
 
-export function useGetRandomImage() {
+export function useGetRandomImageUrl() {
     const imageArray = [
         BackgroundImage1,
         BackgroundImage2,
@@ -22,12 +22,19 @@ export function useGetRandomImage() {
         BackgroundImage9,
     ];
 
-    const [images] = useState(imageArray);
+    const [randomImageUrl, setRandomImageUrl] = useState<string | null>(null);
 
-    const getRandomImage = () => {
-        const randomIndex = Math.floor(Math.random() * images.length);
-        return images[randomIndex];
-    };
+    useEffect(() => {
+        const randomIndex = Math.floor(Math.random() * imageArray.length);
+        const randomImage = imageArray[randomIndex];
 
-    return { images, getRandomImage };
+        if (typeof randomImage === "object" && "src" in randomImage) {
+            setRandomImageUrl(randomImage.src);
+        } else {
+            setRandomImageUrl(randomImage);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return randomImageUrl;
 }
