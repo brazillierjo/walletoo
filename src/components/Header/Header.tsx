@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
     const { data: session } = useSession();
 
     return (
-        <header>
+        <header className='bg-white dark:bg-black'>
             <nav className='mx-auto flex items-center justify-between px-4 py-2 lg:px-8'>
                 <div className='flex items-center gap-2 text-xl font-bold'>
                     <Logo withLabel withCatchPhrase />
