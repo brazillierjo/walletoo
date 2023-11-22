@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/utils/authOptions";
 import UserModel from "@/src/mongoDB/userSchema";
-import { NextApiRequest } from "next";
+import { NextRequest } from "next/server";
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         const user = await UserModel.findOne({ email: session?.user?.email });
