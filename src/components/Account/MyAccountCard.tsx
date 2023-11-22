@@ -82,17 +82,17 @@ export const MyAccountCard: React.FC = () => {
 
             <CardContent className='flex flex-col gap-3 p-5 text-sm'>
                 <div className='flex items-center gap-2'>
-                    <label className='break-keep'>E-mail :</label>
+                    <p className='break-keep'>E-mail :</p>
                     <b>{userData.email}</b>
                 </div>
 
                 <div className='flex items-center gap-2'>
-                    <label className='break-keep'>Création : </label>
+                    <p className='break-keep'>Création : </p>
                     <b>{formattedDate}</b>
                 </div>
 
                 <div className='flex items-center gap-2'>
-                    <label className='whitespace-nowrap'>Devise :</label>
+                    <p className='whitespace-nowrap'>Devise :</p>
                     <EditableContentSelect
                         options={currenciesNames}
                         value={userData.currency ?? ""}
