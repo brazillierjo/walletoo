@@ -10,4 +10,5 @@
 -   faire des skeletons
 -   faire des animations
 -   fix tooltip mobile
+-   fix session expiré
 <!-- -   ajouter une page dashboard avec météo, prise de notes, calendrier -->

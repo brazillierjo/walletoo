@@ -20,7 +20,7 @@ type CardTableProps = {
 
 export const CardTable: React.FC<CardTableProps> = ({ title, transactions }) => {
     return (
-        <Card className='w-1/2 bg-white p-4 dark:bg-slate-600'>
+        <Card className='w-full bg-white p-4 dark:bg-slate-600 md:w-1/2'>
             <h2 className='mb-4 text-lg font-semibold'>{title}</h2>
 
             {transactions?.length > 0 ? (

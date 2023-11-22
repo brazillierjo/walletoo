@@ -45,7 +45,7 @@ export const MyAccountCard: React.FC = () => {
     return (
         <Card className='w-full lg:w-fit lg:min-w-[400px]'>
             <CardHeader className='p-2'>
-                <div className='relative mb-16'>
+                <div className='relative mb-8'>
                     <picture>
                         <img
                             className='h-32 w-full rounded-md object-cover'
@@ -56,7 +56,7 @@ export const MyAccountCard: React.FC = () => {
 
                     {userData.avatar && (
                         <Image
-                            className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black'
+                            className='absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black'
                             width={100}
                             height={100}
                             src={userData.avatar}
