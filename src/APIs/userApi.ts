@@ -6,7 +6,7 @@ export class UserApi {
     static async get() {
         const response = await fetch(ApiRoute.USER);
 
-        if (response.status === 500) {
+        if (response.status >= 500 && response.status < 600) {
             signOut({ callbackUrl: Route.SIGNIN });
         }
 
