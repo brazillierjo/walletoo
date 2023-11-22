@@ -95,7 +95,7 @@ export const MyAccountCard: React.FC = () => {
                     <label className='whitespace-nowrap'>Devise :</label>
                     <EditableContentSelect
                         options={currenciesNames}
-                        value={userData.currency}
+                        value={userData.currency ?? ""}
                         onChange={handleCurrencyChange}
                     />
                 </div>

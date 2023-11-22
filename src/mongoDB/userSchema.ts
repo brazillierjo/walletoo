@@ -16,6 +16,8 @@ export interface IUserSchema extends Document {
     createdAt: Date;
 }
 
+export type PartialUserUpdate = Partial<IUserSchema>;
+
 const TransactionSchema: Schema = new Schema({
     label: { type: String, required: true },
     amount: { type: Number, required: true },

@@ -1,5 +1,5 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
-import { IUserSchema } from "@/src/mongoDB/userSchema";
+import { PartialUserUpdate } from "@/src/mongoDB/userSchema";
 
 export class UserApi {
     static async get() {
@@ -14,7 +14,7 @@ export class UserApi {
         return response.json();
     }
 
-    static async patch(data: IUserSchema) {
+    static async patch(data: PartialUserUpdate) {
         const response = await fetch(ApiRoute.USER, {
             method: "PATCH",
             headers: {
