@@ -12,7 +12,7 @@ export interface IUserSchema extends Document {
     avatar: string;
     incomes: ITransaction[];
     expenses: ITransaction[];
-    currency: string;
+    currency?: string;
     createdAt: Date;
 }
 
