@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Separator } from "@/src/components/ui/separator";
@@ -7,9 +8,11 @@ import { MdHome } from "react-icons/md";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa6";
 import { cn } from "@/src/tools/tailwindMerge";
-import Image from "next/image";
+import { useState } from "react";
 
 export const Sidebar: React.FC = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
     const { data: session } = useSession();
     const pathname = usePathname();
 
@@ -36,7 +39,17 @@ export const Sidebar: React.FC = () => {
     };
 
     return (
-        <div className='hidden min-h-screen w-3/12 bg-white dark:bg-black lg:block 2xl:w-2/12'>
+        <div
+            className={cn(
+                "relative hidden min-h-screen w-3/12 bg-white dark:bg-black lg:block 2xl:w-2/12",
+                `sidebar ${isSidebarOpen ? "open" : "closed"}`
+            )}>
+            <button
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className='absolute -right-8 top-1/2 m-4 -translate-y-1/2'>
+                {isSidebarOpen ? "<" : ">"}
+            </button>
+
             <div className='flex flex-col gap-5 p-6'>
                 {session?.user?.image && (
                     <Image
@@ -57,8 +70,8 @@ export const Sidebar: React.FC = () => {
             <div className='flex flex-col gap-2 py-8 pl-8'>
                 {links.map((link, index) => (
                     <Link
-                        href={link.path}
                         key={index}
+                        href={link.path}
                         className={cn(
                             "flex gap-3 py-2",
                             isActivelink(link.path) &&
