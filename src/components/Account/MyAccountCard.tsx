@@ -8,7 +8,7 @@ import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { useEffect, useState } from "react";
 import { currencies } from "@/src/utils/currencies";
 import { EditableContentSelect } from "../Commons/EditableContent";
-import { UserApi } from "@/src/APIs/user";
+import { UserApi } from "@/src/APIs/userApi";
 import { useToast } from "@/src/components/ui/use-toast";
 import useDateFormatter from "@/src/hooks/useDateFormatter";
 import { Tooltip } from "../Commons/Tooltip";

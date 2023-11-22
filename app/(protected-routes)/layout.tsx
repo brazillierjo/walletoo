@@ -4,7 +4,7 @@ import isAuth from "@/src/Providers/isAuth";
 import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { useAtom } from "jotai";
-import { UserApi } from "@/src/APIs/user";
+import { UserApi } from "@/src/APIs/userApi";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { Route } from "@/src/enums/frontend-routes";

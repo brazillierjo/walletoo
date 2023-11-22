@@ -11,7 +11,7 @@ import { Button } from "@/src/components/ui/button";
 import { Separator } from "@/src/components/ui/separator";
 import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
-import { UserApi } from "@/src/APIs/user";
+import { UserApi } from "@/src/APIs/userApi";
 import { cn } from "@/src/tools/tailwindMerge";
 import { useState } from "react";
 import { redirect } from "next/navigation";

@@ -7,6 +7,7 @@ import { Input } from "@/src/components/ui/input";
 import { toast } from "@/src/components/ui/use-toast";
 import { FaSquarePlus } from "react-icons/fa6";
 import { TransactionFormSchema } from "@/src/utils/formSchemas";
+import { IncomesApi } from "@/src/APIs/incomesApi";
 import {
     Form,
     FormControl,
@@ -20,19 +21,17 @@ export function TransactionForm() {
     const form = useForm<z.infer<typeof TransactionFormSchema>>({
         resolver: zodResolver(TransactionFormSchema),
         defaultValues: {
-            label: undefined,
-            amount: undefined,
+            label: "",
+            amount: 0,
         },
     });
 
     const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-                    <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
+        IncomesApi.post(data).then((res) => {
+            toast({
+                title: "Transaction ajoutée",
+                description: res.data.message,
+            });
         });
     };
 
