@@ -10,6 +10,11 @@ export class IncomesApi {
             },
         });
 
-        return response.json();
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+
+        const responseBody = await response.text();
+        return responseBody ? JSON.parse(responseBody) : {};
     }
 }

@@ -1,4 +1,4 @@
 import { atom } from "jotai";
-import { IUserSchema } from "../mongoDB/userSchema";
+import { IUser } from "../interfaces/userInterface";
 
-export const userDataAtom = atom<null | IUserSchema>(null);
+export const userDataAtom = atom<null | IUser>(null);

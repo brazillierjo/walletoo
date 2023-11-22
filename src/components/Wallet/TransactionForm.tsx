@@ -16,8 +16,13 @@ import {
     FormItem,
     FormMessage,
 } from "@/src/components/ui/form";
+import { useAtom } from "jotai";
+import { userDataAtom } from "@/src/atoms/userData.atoms";
 
 export function TransactionForm() {
+    const [userData, setUserData] = useAtom(userDataAtom);
+    console.log(userData?.incomes);
+
     const form = useForm<z.infer<typeof TransactionFormSchema>>({
         resolver: zodResolver(TransactionFormSchema),
         defaultValues: {
@@ -28,10 +33,9 @@ export function TransactionForm() {
 
     const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
         IncomesApi.post(data).then((res) => {
-            toast({
-                title: "Transaction ajoutée",
-                description: res.data.message,
-            });
+            if (res.ok && res.data && userData) {
+                // set atom
+            }
         });
     };
 

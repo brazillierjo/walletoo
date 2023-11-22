@@ -8,19 +8,25 @@ export async function POST(req: NextRequest) {
         const session = await getServerSession(authOptions);
         const user = await UserModel.findOne({ email: session?.user?.email });
 
-        const { label, amount } = JSON.parse(JSON.stringify(req.body));
+        if (!user) {
+            return new Response(JSON.stringify({ message: "User not found" }), {
+                status: 404,
+            });
+        }
 
-        const newIncome = {
-            label,
-            amount,
-        };
+        const { label, amount } = await req.json();
+        const newIncome = { label, amount };
 
         user.incomes.push(newIncome);
         await user.save();
 
-        return new Response(JSON.stringify(user), { status: 200 });
+        return new Response(JSON.stringify({ message: "Success" }), {
+            status: 200,
+        });
     } catch (error) {
         console.error(error);
-        throw new Error("Internal Server Error");
+        return new Response(JSON.stringify({ message: "Internal Server Error" }), {
+            status: 500,
+        });
     }
 }

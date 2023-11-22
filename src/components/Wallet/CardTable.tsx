@@ -1,6 +1,6 @@
 import { Card } from "@/src/components/ui/card";
-import { ITransaction } from "@/src/mongoDB/userSchema";
 import { TransactionForm } from "./TransactionForm";
+import { ITransaction } from "@/src/interfaces/transactionInterface";
 
 type CardTableProps = {
     title: string;
@@ -24,7 +24,7 @@ export const CardTable: React.FC<CardTableProps> = ({ title, transactions }) => 
 
                     <tbody>
                         {transactions.map((transaction) => (
-                            <tr key={transaction.id}>
+                            <tr key={transaction._id}>
                                 <td>{transaction.label}</td>
                                 <td>{transaction.amount}</td>
                                 <td>{transaction.category}</td>

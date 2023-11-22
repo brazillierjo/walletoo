@@ -1,7 +1,7 @@
 "use client";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 import { CardTable } from "@/src/components/Wallet/CardTable";
-import { ITransaction } from "@/src/mongoDB/userSchema";
+import { ITransaction } from "@/src/interfaces/transactionInterface";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 
