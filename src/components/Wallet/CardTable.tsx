@@ -1,16 +1,5 @@
 import { Card } from "@/src/components/ui/card";
 import { ITransaction } from "@/src/mongoDB/userSchema";
-import { Input } from "@/src/components/ui/input";
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/src/components/ui/form";
-import { Button } from "@/src/components/ui/button";
 import { TransactionForm } from "./TransactionForm";
 
 type CardTableProps = {
@@ -20,7 +9,7 @@ type CardTableProps = {
 
 export const CardTable: React.FC<CardTableProps> = ({ title, transactions }) => {
     return (
-        <Card className='w-full bg-white p-4 dark:bg-slate-600 md:w-1/2'>
+        <Card className='w-full p-4 md:w-1/2'>
             <h2 className='mb-4 text-lg font-semibold'>{title}</h2>
 
             {transactions?.length > 0 ? (

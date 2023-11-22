@@ -36,7 +36,7 @@ export const Sidebar: React.FC = () => {
     };
 
     return (
-        <div className='hidden min-h-screen w-3/12 bg-white dark:bg-slate-600 lg:block 2xl:w-2/12'>
+        <div className='hidden min-h-screen w-3/12 bg-white dark:bg-black lg:block 2xl:w-2/12'>
             <div className='flex flex-col gap-5 p-6'>
                 {session?.user?.image && (
                     <Image
@@ -61,15 +61,19 @@ export const Sidebar: React.FC = () => {
                         key={index}
                         className={cn(
                             "flex gap-3 py-2",
-                            isActivelink(link.path) && "border-r-4 border-slate-500"
+                            isActivelink(link.path) &&
+                                "border-r-4 border-slate-600 dark:border-white"
                         )}>
                         <link.icon
                             className={cn(
-                                "h-6 w-6 fill-slate-500 dark:fill-white",
+                                "h-6 w-6",
                                 !isActivelink(link.path) && "opacity-40"
                             )}
                         />
-                        <span className={cn(!isActivelink(link.path) && "text-gray-400")}>
+                        <span
+                            className={cn(
+                                !isActivelink(link.path) && "opacity-60 hover:opacity-100"
+                            )}>
                             {link.name}
                         </span>
                     </Link>

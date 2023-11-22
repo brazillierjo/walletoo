@@ -5,7 +5,7 @@ import * as z from "zod";
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { toast } from "@/src/components/ui/use-toast";
-import { FaSquarePlus } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
 import { TransactionFormSchema } from "@/src/utils/formSchemas";
 import { IncomesApi } from "@/src/APIs/incomesApi";
 import {
@@ -73,8 +73,8 @@ export function TransactionForm() {
                     )}
                 />
 
-                <Button variant='ghost' type='submit'>
-                    <FaSquarePlus className='h-6 w-6 fill-green-600' />
+                <Button variant='default' type='submit'>
+                    <FaCheck className='w-4' />
                 </Button>
             </form>
         </Form>
