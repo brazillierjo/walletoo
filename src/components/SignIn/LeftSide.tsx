@@ -10,7 +10,7 @@ export const LeftSide: React.FC = () => {
             {randomImageUrl ? (
                 <picture>
                     <img
-                        className='h-full w-full bg-cover'
+                        className='h-full w-full bg-cover object-cover'
                         src={randomImageUrl ?? ""}
                         alt='Left side presentation'
                     />
