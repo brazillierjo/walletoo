@@ -1,8 +1,8 @@
 import { NextAuthOptions, User } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import connectDB from "../mongoDB/connect";
-import UserModel from "../mongoDB/userSchema";
+import connectDB from "@/src/mongoDB/connect";
+import UserModel from "@/src/mongoDB/userSchema";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -15,6 +15,10 @@ export const authOptions: NextAuthOptions = {
             clientSecret: process.env.GOOGLE_SECRET ?? "",
         }),
     ],
+    session: {
+        maxAge: 24 * 60 * 60, // 1 day
+        updateAge: 12 * 60 * 60, // 12 hours
+    },
     callbacks: {
         async signIn({ user }: { user: User }) {
             const { email, name, image } = user;
@@ -23,21 +27,13 @@ export const authOptions: NextAuthOptions = {
 
             await connectDB();
 
-            const existingUser = await UserModel.findOne({ email });
+            const userDoc = await UserModel.findOneAndUpdate(
+                { email },
+                { email, fullName: name || "", avatar: image || "", currency: "EUR" },
+                { upsert: true, new: true }
+            );
 
-            if (!existingUser) {
-                // if user doesn't exist, create it
-                await UserModel.create({
-                    email,
-                    fullName: name || "",
-                    avatar: image || "",
-                    incomes: [],
-                    expenses: [],
-                    currency: "EUR",
-                });
-            }
-
-            return true;
+            return !!userDoc;
         },
     },
 };

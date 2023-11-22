@@ -1,19 +1,20 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
-import { Route } from "@/src/enums/frontend-routes";
-import { signOut } from "next-auth/react";
+import { IUserSchema } from "@/src/mongoDB/userSchema";
 
 export class UserApi {
     static async get() {
-        const response = await fetch(ApiRoute.USER);
+        const response = await fetch(ApiRoute.USER, {
+            method: "GET",
+        });
 
-        if (response.status >= 500 && response.status < 600) {
-            signOut({ callbackUrl: Route.SIGNIN });
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP, statut = ${response.status}`);
         }
 
         return response.json();
     }
 
-    static async patch(data: unknown) {
+    static async patch(data: IUserSchema) {
         const response = await fetch(ApiRoute.USER, {
             method: "PATCH",
             headers: {

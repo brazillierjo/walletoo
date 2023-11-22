@@ -8,7 +8,7 @@ export interface ITransaction extends Document {
 
 export interface IUserSchema extends Document {
     email: string;
-    fullName?: string;
+    fullName: string;
     avatar: string;
     incomes: ITransaction[];
     expenses: ITransaction[];

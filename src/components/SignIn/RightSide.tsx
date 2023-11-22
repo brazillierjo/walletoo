@@ -26,6 +26,7 @@ export const RightSide: React.FC = () => {
                 <Button role='button' onClick={() => signIn("github")}>
                     Se connecter avec Github
                 </Button>
+
                 <Button
                     role='button'
                     className='bg-red-500 text-white'
