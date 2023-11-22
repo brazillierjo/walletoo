@@ -8,12 +8,11 @@ export async function POST(req: NextRequest) {
         const session = await getServerSession(authOptions);
         const user = await UserModel.findOne({ email: session?.user?.email });
 
-        const { label, amount, category } = JSON.parse(JSON.stringify(req.body));
+        const { label, amount } = JSON.parse(JSON.stringify(req.body));
 
         const newIncome = {
             label,
             amount,
-            category,
         };
 
         user.incomes.push(newIncome);
