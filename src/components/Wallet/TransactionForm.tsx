@@ -1,21 +1,23 @@
 "use client";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
-import { toast } from "@/src/components/ui/use-toast";
 import { FaCheck } from "react-icons/fa6";
 import { TransactionFormSchema } from "@/src/utils/formSchemas";
 import { IncomesApi } from "@/src/APIs/incomesApi";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form";
-import { useAtom } from "jotai";
-import { userDataAtom } from "@/src/atoms/userData.atoms";
+import { TransactionType } from "@/src/enums/transactionType";
+import { IUser } from "@/src/interfaces/userInterface";
 
-export function TransactionForm() {
-    const [userData, setUserData] = useAtom(userDataAtom);
-    console.log(userData?.incomes);
+type TransactionFormProps = {
+    type: TransactionType;
+    user: IUser;
+    setUser: any;
+};
 
+export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user: user, setUser: setUser }) => {
     const form = useForm<z.infer<typeof TransactionFormSchema>>({
         resolver: zodResolver(TransactionFormSchema),
         defaultValues: {
@@ -26,8 +28,8 @@ export function TransactionForm() {
 
     const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
         IncomesApi.post(data).then((res) => {
-            if (res.ok && res.data && userData) {
-                // set atom
+            if (res.ok && res.data) {
+                setUser({ ...user, incomes: [...user.incomes, res.data] });
             }
         });
     };
@@ -69,4 +71,4 @@ export function TransactionForm() {
             </form>
         </Form>
     );
-}
+};

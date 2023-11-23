@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/ca
 import { Separator } from "@/src/components/ui/separator";
 import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { useAtom } from "jotai";
-import { userDataAtom } from "@/src/atoms/userData.atoms";
+import { userAtom } from "@/src/atoms/user.atom";
 import { currencies } from "@/src/utils/currencies";
 import { EditableContentSelect } from "../Commons/EditableContent";
 import { UserApi } from "@/src/APIs/userApi";
@@ -13,18 +13,18 @@ import useDateFormatter from "@/src/hooks/useDateFormatter";
 import { Tooltip } from "../Commons/Tooltip";
 
 export const MyAccountCard: React.FC = () => {
-    const [userData, setUserData] = useAtom(userDataAtom);
+    const [user, setUser] = useAtom(userAtom);
 
     const { toast } = useToast();
-    const formattedDate = useDateFormatter(userData ? userData.createdAt : new Date());
+    const formattedDate = useDateFormatter(user ? user.createdAt : new Date());
     const randomImageUrl = useGetRandomImageUrl();
 
     const currenciesNames = currencies.map((currency) => currency.name);
 
     const handleCurrencyChange = (newCurrency: string) => {
-        if (userData && newCurrency !== userData.currency) {
-            UserApi.patch({ currency: newCurrency }).then((updatedUserData) => {
-                setUserData(updatedUserData);
+        if (user && newCurrency !== user.currency) {
+            UserApi.patch({ currency: newCurrency }).then((updatedUser) => {
+                setUser(updatedUser);
                 toast({
                     title: "Devise",
                     description: "La devise a bien été mise à jour.",
@@ -33,7 +33,7 @@ export const MyAccountCard: React.FC = () => {
         }
     };
 
-    if (!userData) return null;
+    if (!user) return null;
 
     return (
         <Card className='w-full lg:w-fit lg:min-w-[400px]'>
@@ -43,12 +43,12 @@ export const MyAccountCard: React.FC = () => {
                         <img className='h-32 w-full rounded-md object-cover' src={randomImageUrl ?? ""} alt='user banner' />
                     </picture>
 
-                    {userData.avatar && (
+                    {user.avatar && (
                         <Image
                             className='absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black'
                             width={100}
                             height={100}
-                            src={userData.avatar}
+                            src={user.avatar}
                             alt='Avatar'
                             priority
                         />
@@ -62,7 +62,7 @@ export const MyAccountCard: React.FC = () => {
                     </div>
                 </div>
 
-                <CardTitle className='relative text-center text-lg font-semibold'>{userData.fullName}</CardTitle>
+                <CardTitle className='relative text-center text-lg font-semibold'>{user.fullName}</CardTitle>
             </CardHeader>
 
             <Separator />
@@ -70,7 +70,7 @@ export const MyAccountCard: React.FC = () => {
             <CardContent className='flex flex-col gap-3 p-5 text-sm'>
                 <div className='flex items-center gap-2'>
                     <p className='break-keep'>E-mail :</p>
-                    <b>{userData.email}</b>
+                    <b>{user.email}</b>
                 </div>
 
                 <div className='flex items-center gap-2'>
@@ -80,7 +80,7 @@ export const MyAccountCard: React.FC = () => {
 
                 <div className='flex items-center gap-2'>
                     <p className='whitespace-nowrap'>Devise :</p>
-                    <EditableContentSelect options={currenciesNames} value={userData.currency ?? ""} onChange={handleCurrencyChange} />
+                    <EditableContentSelect options={currenciesNames} value={user.currency ?? ""} onChange={handleCurrencyChange} />
                 </div>
             </CardContent>
         </Card>

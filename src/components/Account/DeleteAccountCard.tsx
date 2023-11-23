@@ -3,7 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter, CardDescription }
 import { Button } from "@/src/components/ui/button";
 import { Separator } from "@/src/components/ui/separator";
 import { useAtom } from "jotai";
-import { userDataAtom } from "@/src/atoms/userData.atoms";
+import { userAtom } from "@/src/atoms/user.atom";
 import { UserApi } from "@/src/APIs/userApi";
 import { cn } from "@/src/tools/tailwindMerge";
 import { useState } from "react";
@@ -15,7 +15,7 @@ import DeleteBanner from "@/src/assets/webp/delete-banner.webp";
 
 export const DeleteAccountCard: React.FC = () => {
     const [hasConfirmedDeletion, setHasConfirmedDeletion] = useState(false);
-    const [userData] = useAtom(userDataAtom);
+    const [user] = useAtom(userAtom);
 
     const handleDelete = () => {
         !hasConfirmedDeletion && setHasConfirmedDeletion(true);
@@ -29,7 +29,7 @@ export const DeleteAccountCard: React.FC = () => {
             });
     };
 
-    if (!userData) return null;
+    if (!user) return null;
 
     return (
         <Card className='flex w-full flex-col justify-between lg:w-fit lg:min-w-[400px]'>
