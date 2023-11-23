@@ -9,6 +9,8 @@ import { ITransaction } from "@/src/interfaces/transactionInterface";
 import { Switch } from "@/src/components/ui/switch";
 import { MdModeEdit } from "react-icons/md";
 import { cn } from "@/src/tools/tailwindMerge";
+import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
+import { TransactionApi } from "@/src/APIs/transactionApi";
 
 type TransactionTableProps = {
     type: TransactionType;
@@ -19,9 +21,19 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     const [isEditMode, setIsEditMode] = useState(true);
 
     const transactions = type === TransactionType.INCOMES ? user?.incomes : user?.expenses;
+    const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
 
     const handleDelete = (transaction: ITransaction) => {
-        console.log(transaction);
+        if (user && transaction._id) {
+            TransactionApi.delete(transaction._id, urlParam).then((res) => {
+                if (res.status === 200) {
+                    const newUser = { ...user };
+
+                    newUser[urlParam] = newUser[urlParam].filter((t) => t._id !== transaction._id);
+                    setUser(newUser);
+                }
+            });
+        }
     };
 
     if (!transactions || !user) return null;

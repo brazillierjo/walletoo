@@ -17,4 +17,21 @@ export class TransactionApi {
         const responseBody = await response.text();
         return responseBody ? JSON.parse(responseBody) : {};
     }
+
+    static async delete(id: string, type: string) {
+        const response = await fetch(`${ApiRoute.TRANSACTION}/${type}`, {
+            method: "DELETE",
+            body: JSON.stringify(id),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+
+        const responseBody = await response.text();
+        return responseBody ? JSON.parse(responseBody) : {};
+    }
 }
