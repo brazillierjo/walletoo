@@ -9,6 +9,7 @@ import { RiAccountPinCircleFill } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa6";
 import { cn } from "@/src/tools/tailwindMerge";
 import { useState } from "react";
+import { MdChevronRight } from "react-icons/md";
 
 export const Sidebar: React.FC = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -46,8 +47,12 @@ export const Sidebar: React.FC = () => {
             )}>
             <button
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className='absolute -right-8 top-1/2 m-4 -translate-y-1/2'>
-                {isSidebarOpen ? "<" : ">"}
+                className='absolute -right-10 top-1/2 m-4 -translate-y-1/2'>
+                {isSidebarOpen ? (
+                    <MdChevronRight className='h-5 w-5 rotate-180 opacity-50 transition-all duration-300 hover:opacity-100' />
+                ) : (
+                    <MdChevronRight className='h-5 w-5 rotate-0 opacity-50 transition-all duration-300 hover:opacity-100' />
+                )}
             </button>
 
             <div className='flex flex-col gap-5 p-6'>
