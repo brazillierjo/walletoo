@@ -9,7 +9,6 @@ export async function POST(req: NextRequest, config: { params: { type: string } 
         const session = await getServerSession(authOptions);
         const user = await UserModel.findOne({ email: session?.user?.email });
         const { type } = config.params;
-        console.log(type);
 
         if (!user) {
             return new Response(JSON.stringify({ message: "User not found" }), {
