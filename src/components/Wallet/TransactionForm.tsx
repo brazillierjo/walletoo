@@ -48,7 +48,7 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
 
     if (!isFormDisplayed) {
         return (
-            <div className='text-center'>
+            <div className='mt-auto text-center'>
                 <Button variant='ghost' onClick={() => setIsFormDisplayed(true)}>
                     <LuCopyPlus className='w-8' />
                 </Button>
