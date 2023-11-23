@@ -18,32 +18,33 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
         <Card className='w-full p-4 md:w-1/2'>
             <h2 className='mb-4 text-lg font-semibold'>{type}</h2>
 
-            {transactions.length > 0 ? (
-                <table>
-                    <thead>
-                        <tr>
-                            <th className='text-sm uppercase'>Label</th>
-                            <th className='text-sm uppercase'>Montant</th>
-                            <th className='text-sm uppercase'>Catégorie</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {transactions.map((transaction, index) => (
-                            <tr key={index}>
-                                <td>{transaction.label}</td>
-                                <td>{transaction.amount}</td>
-                                <td>{transaction.category}</td>
+            <div className='mb-4'>
+                {transactions.length > 0 ? (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th className='text-sm uppercase'>Label</th>
+                                <th className='text-sm uppercase'>Montant</th>
+                                <th className='text-sm uppercase'>Catégorie</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (
-                <>
-                    <p className='mb-8 text-center text-sm italic'>Aucune transaction enregistrée.</p>
-                    <TransactionForm type={type} user={user} setUser={setUser} />
-                </>
-            )}
+                        </thead>
+
+                        <tbody>
+                            {transactions.map((transaction, index) => (
+                                <tr key={index}>
+                                    <td>{transaction.label}</td>
+                                    <td>{transaction.amount}</td>
+                                    <td>{transaction.category}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <p className='mb-8 text-center text-xs italic'>Aucune transaction enregistrée.</p>
+                )}
+            </div>
+
+            <TransactionForm type={type} user={user} setUser={setUser} />
         </Card>
     );
 };

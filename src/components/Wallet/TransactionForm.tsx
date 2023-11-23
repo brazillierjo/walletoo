@@ -1,5 +1,6 @@
 "use client";
 import * as z from "zod";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/src/components/ui/button";
@@ -11,6 +12,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } 
 import { TransactionType } from "@/src/enums/transactionType";
 import { IUser } from "@/src/interfaces/userInterface";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
+import { LuCopyPlus } from "react-icons/lu";
 
 type TransactionFormProps = {
     type: TransactionType;
@@ -19,6 +21,8 @@ type TransactionFormProps = {
 };
 
 export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, setUser }) => {
+    const [isFormDisplayed, setIsFormDisplayed] = useState(false);
+
     const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
 
     const form = useForm<z.infer<typeof TransactionFormSchema>>({
@@ -33,11 +37,24 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
         TransactionApi.post(data, urlParam).then((res) => {
             if (res.status === 200) {
                 const newUser = { ...user };
+
                 newUser[urlParam] = [...newUser[urlParam], data];
                 setUser(newUser);
+                form.reset();
+                setIsFormDisplayed(false);
             }
         });
     };
+
+    if (!isFormDisplayed) {
+        return (
+            <div className='text-center'>
+                <Button variant='ghost' onClick={() => setIsFormDisplayed(true)}>
+                    <LuCopyPlus className='w-8' />
+                </Button>
+            </div>
+        );
+    }
 
     return (
         <Form {...form}>
