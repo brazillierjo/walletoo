@@ -12,8 +12,8 @@ import { cn } from "@/src/tools/tailwindMerge";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Waletoo - Page d'accueil",
-    description: "Gérez vos finances personnelles en toute simplicité avec Waletoo",
+    title: "Walletoo - Page d'accueil",
+    description: "Gérez vos finances personnelles en toute simplicité avec Walletoo",
 };
 
 interface Props {

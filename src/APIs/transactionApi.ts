@@ -5,9 +5,6 @@ export class TransactionApi {
         const response = await fetch(`${ApiRoute.TRANSACTION}/${type}`, {
             method: "POST",
             body: JSON.stringify(data),
-            headers: {
-                "Content-Type": "application/json",
-            },
         });
 
         if (!response.ok) {
@@ -22,9 +19,6 @@ export class TransactionApi {
         const response = await fetch(`${ApiRoute.TRANSACTION}/${type}`, {
             method: "DELETE",
             body: JSON.stringify(id),
-            headers: {
-                "Content-Type": "application/json",
-            },
         });
 
         if (!response.ok) {

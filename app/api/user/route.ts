@@ -8,6 +8,7 @@ export async function GET() {
     try {
         const session = await getServerSession(authOptions);
 
+        // IF NO SESSION FOUND, RETURN 401
         if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;
@@ -24,6 +25,7 @@ export async function PATCH(request: Request) {
     try {
         const session = await getServerSession(authOptions);
 
+        // IF NO SESSION FOUND, RETURN 401
         if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;
@@ -42,6 +44,7 @@ export async function DELETE() {
     try {
         const session = await getServerSession(authOptions);
 
+        // IF NO SESSION FOUND, RETURN 401
         if (!session?.user?.email) throw new Error("Unauthorized");
 
         const userEmail = session.user.email;

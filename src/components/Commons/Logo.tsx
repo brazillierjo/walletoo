@@ -1,7 +1,7 @@
 "use client";
 import { Route } from "@/src/enums/frontend-routes";
 import Link from "next/link";
-import WaletooLogo from "@/src/assets/svg/logo-waletoo.svg";
+import WalletooLogo from "@/src/assets/svg/logo-walletoo.svg";
 import Image from "next/image";
 
 type LogoProps = {
@@ -13,10 +13,10 @@ export const Logo: React.FC<LogoProps> = ({ withLabel = false, withCatchPhrase =
     return (
         <Link className='h-fit' href={Route.HOME}>
             <div className='flex items-center gap-4'>
-                <Image src={WaletooLogo} className='rounded-md p-1 dark:bg-slate-300' alt='Waletoo' height={45} />
+                <Image src={WalletooLogo} className='rounded-md p-1 dark:bg-slate-300' alt='Walletoo' height={45} />
 
                 <div className='hidden flex-col lg:flex'>
-                    {withLabel && <h2 className='text-2xl'>Waletoo</h2>}
+                    {withLabel && <h2 className='text-2xl'>Walletoo</h2>}
                     {withCatchPhrase && <h3 className='text-xs'>Simplifiez vos finances, maximisez votre succès.</h3>}
                 </div>
             </div>

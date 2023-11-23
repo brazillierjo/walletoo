@@ -1,8 +1,8 @@
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
-    title: "Waletoo - Mon compte",
-    description: "Gérez vos finances personnelles en toute simplicité avec Waletoo",
+    title: "Walletoo - Mon compte",
+    description: "Gérez vos finances personnelles en toute simplicité avec Walletoo",
 };
 
 type Props = {

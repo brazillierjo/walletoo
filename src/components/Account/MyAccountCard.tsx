@@ -57,7 +57,7 @@ export const MyAccountCard: React.FC = () => {
                     <div className='float-right'>
                         <Tooltip
                             title='Pourquoi ne puis-je pas modifier mes informations personnelles ?'
-                            description='Waletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Waletoo ne peut pas modifier ces informations.'
+                            description='Walletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Walletoo ne peut pas modifier ces informations.'
                         />
                     </div>
                 </div>

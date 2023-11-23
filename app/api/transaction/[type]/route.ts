@@ -11,14 +11,26 @@ export async function POST(req: NextRequest, config: { params: { type: string } 
         const user = await UserModel.findOne({ email: session?.user?.email });
         const { type } = config.params;
 
+        // IF NO SESSION FOUND, RETURN 401
+        if (!session?.user?.email) throw new Error("Unauthorized");
+
+        // IF NO USER FOUND, RETURN 404
         if (!user) {
             return new Response(JSON.stringify({ message: "User not found" }), {
                 status: 404,
             });
         }
 
+        // IF TYPE IS NOT INCOMES OR EXPENSES, RETURN 400
         if (type !== DynamicUrlParams.INCOMES && type !== DynamicUrlParams.EXPENSES) {
             return new Response(JSON.stringify({ message: "Invalid type" }), {
+                status: 400,
+            });
+        }
+
+        // IF THERE IS NO BODY, RETURN 400
+        if (!req.body) {
+            return new Response(JSON.stringify({ message: "No body provided" }), {
                 status: 400,
             });
         }
@@ -45,21 +57,33 @@ export async function DELETE(req: NextRequest, config: { params: { type: string 
         const session = await getServerSession(authOptions);
         const user = await UserModel.findOne({ email: session?.user?.email });
         const { type } = config.params;
+        const { id } = await req.json();
 
+        // IF NO SESSION FOUND, RETURN 401
+        if (!session?.user?.email) throw new Error("Unauthorized");
+
+        // IF NO USER FOUND, RETURN 404
         if (!user) {
             return new Response(JSON.stringify({ message: "User not found" }), {
                 status: 404,
             });
         }
 
+        // IF TYPE IS NOT INCOMES OR EXPENSES, RETURN 400
         if (type !== DynamicUrlParams.INCOMES && type !== DynamicUrlParams.EXPENSES) {
             return new Response(JSON.stringify({ message: "Invalid type" }), {
                 status: 400,
             });
         }
 
-        const { id } = await req.json();
+        // IF THERE IS NO ID IN THE BODY, RETURN 400
+        if (!id) {
+            return new Response(JSON.stringify({ message: "No id provided" }), {
+                status: 400,
+            });
+        }
 
+        // IF TYPE IS "incomes" OR "expenses", FILTER THE ARRAY TO REMOVE THE TRANSACTION
         if (type === DynamicUrlParams.INCOMES) {
             user.incomes = user.incomes.filter((income: ITransaction) => income._id !== id);
         }

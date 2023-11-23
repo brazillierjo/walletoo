@@ -17,9 +17,6 @@ export class UserApi {
     static async patch(data: PartialUserUpdate) {
         const response = await fetch(ApiRoute.USER, {
             method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
             body: JSON.stringify(data),
         });
 
