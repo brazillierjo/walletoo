@@ -40,11 +40,7 @@ export const MyAccountCard: React.FC = () => {
             <CardHeader className='p-2'>
                 <div className='relative mb-8'>
                     <picture>
-                        <img
-                            className='h-32 w-full rounded-md object-cover'
-                            src={randomImageUrl ?? ""}
-                            alt='user banner'
-                        />
+                        <img className='h-32 w-full rounded-md object-cover' src={randomImageUrl ?? ""} alt='user banner' />
                     </picture>
 
                     {userData.avatar && (
@@ -66,9 +62,7 @@ export const MyAccountCard: React.FC = () => {
                     </div>
                 </div>
 
-                <CardTitle className='relative text-center text-lg font-semibold'>
-                    {userData.fullName}
-                </CardTitle>
+                <CardTitle className='relative text-center text-lg font-semibold'>{userData.fullName}</CardTitle>
             </CardHeader>
 
             <Separator />
@@ -86,11 +80,7 @@ export const MyAccountCard: React.FC = () => {
 
                 <div className='flex items-center gap-2'>
                     <p className='whitespace-nowrap'>Devise :</p>
-                    <EditableContentSelect
-                        options={currenciesNames}
-                        value={userData.currency ?? ""}
-                        onChange={handleCurrencyChange}
-                    />
+                    <EditableContentSelect options={currenciesNames} value={userData.currency ?? ""} onChange={handleCurrencyChange} />
                 </div>
             </CardContent>
         </Card>

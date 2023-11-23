@@ -8,14 +8,7 @@ import { toast } from "@/src/components/ui/use-toast";
 import { FaCheck } from "react-icons/fa6";
 import { TransactionFormSchema } from "@/src/utils/formSchemas";
 import { IncomesApi } from "@/src/APIs/incomesApi";
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormMessage,
-} from "@/src/components/ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form";
 import { useAtom } from "jotai";
 import { userDataAtom } from "@/src/atoms/userData.atoms";
 
@@ -41,21 +34,14 @@ export function TransactionForm() {
 
     return (
         <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className='flex justify-between gap-5'>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='flex justify-between gap-5'>
                 <FormField
                     control={form.control}
                     name='label'
                     render={({ field }) => (
                         <FormItem className='w-full'>
                             <FormControl>
-                                <Input
-                                    className='capitalize'
-                                    type='text'
-                                    placeholder='Label'
-                                    {...field}
-                                />
+                                <Input className='capitalize' type='text' placeholder='Label' {...field} />
                             </FormControl>
                             <FormDescription>Label de la transaction.</FormDescription>
                             <FormMessage />

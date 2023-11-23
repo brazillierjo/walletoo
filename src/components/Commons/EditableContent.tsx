@@ -1,10 +1,4 @@
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/src/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/src/components/ui/select";
 
 type EditableContentSelectProps = {
     options: string[];
@@ -12,11 +6,7 @@ type EditableContentSelectProps = {
     onChange: (value: string) => void;
 };
 
-export const EditableContentSelect: React.FC<EditableContentSelectProps> = ({
-    options,
-    value,
-    onChange,
-}) => {
+export const EditableContentSelect: React.FC<EditableContentSelectProps> = ({ options, value, onChange }) => {
     return (
         <Select defaultValue={value} onValueChange={(newValue) => onChange(newValue)}>
             <SelectTrigger className='w-fit'>

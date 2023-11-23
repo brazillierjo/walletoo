@@ -7,6 +7,7 @@ import { Route } from "@/src/enums/frontend-routes";
 import { signOut, useSession } from "next-auth/react";
 import { PiSignInBold, PiSignOut } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { links } from "@/src/utils/sidebarLinks";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -38,14 +39,15 @@ export const Header: React.FC = () => {
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>
-                                    <Link href={Route.WALLET}>Mon Wallet</Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <Link href={Route.ACCOUNT}>Mon compte</Link>
-                                </DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <Button className='w-full' onClick={() => signOut()}>
+
+                                {links.map((link, index) => (
+                                    <DropdownMenuItem key={index} className='flex gap-2'>
+                                        <link.icon className='h-4 w-4' />
+                                        <Link href={link.path}>{link.name}</Link>
+                                    </DropdownMenuItem>
+                                ))}
+
+                                <Button className='mt-1 w-full' onClick={() => signOut()}>
                                     Déconnexion
                                 </Button>
                             </DropdownMenuContent>

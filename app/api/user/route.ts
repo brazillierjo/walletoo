@@ -29,11 +29,7 @@ export async function PATCH(request: Request) {
         const userEmail = session.user.email;
         const body = await request.json();
 
-        const userInformations = await UserModel.findOneAndUpdate(
-            { email: userEmail },
-            { $set: body },
-            { new: true }
-        );
+        const userInformations = await UserModel.findOneAndUpdate({ email: userEmail }, { $set: body }, { new: true });
 
         return new Response(JSON.stringify(userInformations));
     } catch (error) {

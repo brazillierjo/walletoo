@@ -34,9 +34,7 @@ export const CardTable: React.FC<CardTableProps> = ({ title, transactions }) => 
                 </table>
             ) : (
                 <>
-                    <p className='mb-8 text-center text-sm italic'>
-                        Aucune transaction enregistrée.
-                    </p>
+                    <p className='mb-8 text-center text-sm italic'>Aucune transaction enregistrée.</p>
 
                     <TransactionForm />
                 </>

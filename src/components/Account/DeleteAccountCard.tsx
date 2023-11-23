@@ -1,12 +1,5 @@
 "use client";
-import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
-    CardFooter,
-    CardDescription,
-} from "@/src/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter, CardDescription } from "@/src/components/ui/card";
 import { Button } from "@/src/components/ui/button";
 import { Separator } from "@/src/components/ui/separator";
 import { useAtom } from "jotai";
@@ -43,11 +36,7 @@ export const DeleteAccountCard: React.FC = () => {
             <CardHeader className='p-2'>
                 <div className='relative'>
                     <picture>
-                        <img
-                            className='h-32 w-full rounded-md object-cover'
-                            src={DeleteBanner.src}
-                            alt='Delete banner'
-                        />
+                        <img className='h-32 w-full rounded-md object-cover' src={DeleteBanner.src} alt='Delete banner' />
                     </picture>
 
                     <div className='float-right'>
@@ -60,24 +49,17 @@ export const DeleteAccountCard: React.FC = () => {
             </CardHeader>
 
             <div>
-                <CardTitle className='relative text-center text-lg font-semibold'>
-                    Suppression du compte
-                </CardTitle>
+                <CardTitle className='relative text-center text-lg font-semibold'>Suppression du compte</CardTitle>
                 <CardDescription className='text-center text-sm'>
-                    <span className='text-red-500'>Attention</span>, cette action est
-                    irréversible.
+                    <span className='text-red-500'>Attention</span>, cette action est irréversible.
                 </CardDescription>
-                <CardContent className='flex flex-col gap-2 p-5 text-center text-sm'>
-                    Je souhaite supprimer mon compte définitivement
-                </CardContent>
+                <CardContent className='flex flex-col gap-2 p-5 text-center text-sm'>Je souhaite supprimer mon compte définitivement</CardContent>
             </div>
 
             <Separator />
 
             <CardFooter className='flex justify-center p-5'>
-                <Button
-                    className={cn(hasConfirmedDeletion && "bg-red-500 hover:bg-red-500")}
-                    onClick={handleDelete}>
+                <Button className={cn(hasConfirmedDeletion && "bg-red-500 hover:bg-red-500")} onClick={handleDelete}>
                     {hasConfirmedDeletion ? "Confirmer la suppression" : "Supprimer"}
                 </Button>
             </CardFooter>
