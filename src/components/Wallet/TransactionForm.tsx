@@ -6,10 +6,11 @@ import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { FaCheck } from "react-icons/fa6";
 import { TransactionFormSchema } from "@/src/utils/formSchemas";
-import { IncomesApi } from "@/src/APIs/incomesApi";
+import { TransactionApi } from "@/src/APIs/transactionApi";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form";
 import { TransactionType } from "@/src/enums/transactionType";
 import { IUser } from "@/src/interfaces/userInterface";
+import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
 
 type TransactionFormProps = {
     type: TransactionType;
@@ -17,7 +18,9 @@ type TransactionFormProps = {
     setUser: any;
 };
 
-export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user: user, setUser: setUser }) => {
+export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, setUser }) => {
+    const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+
     const form = useForm<z.infer<typeof TransactionFormSchema>>({
         resolver: zodResolver(TransactionFormSchema),
         defaultValues: {
@@ -27,9 +30,11 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user: us
     });
 
     const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
-        IncomesApi.post(data).then((res) => {
-            if (res.ok && res.data) {
-                setUser({ ...user, incomes: [...user.incomes, res.data] });
+        TransactionApi.post(data, urlParam).then((res) => {
+            if (res.status === 200) {
+                const newUser = { ...user };
+                newUser[urlParam] = [...newUser[urlParam], data];
+                setUser(newUser);
             }
         });
     };

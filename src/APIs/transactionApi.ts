@@ -1,8 +1,8 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
 
-export class IncomesApi {
-    static async post(data: { label: string; amount: number }) {
-        const response = await fetch(ApiRoute.INCOMES, {
+export class TransactionApi {
+    static async post(data: { label: string; amount: number }, type: string) {
+        const response = await fetch(`${ApiRoute.TRANSACTION}/${type}`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

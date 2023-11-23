@@ -29,8 +29,8 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                     </thead>
 
                     <tbody>
-                        {transactions.map((transaction) => (
-                            <tr key={transaction._id}>
+                        {transactions.map((transaction, index) => (
+                            <tr key={index}>
                                 <td>{transaction.label}</td>
                                 <td>{transaction.amount}</td>
                                 <td>{transaction.category}</td>
