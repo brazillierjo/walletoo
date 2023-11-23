@@ -1,7 +1,6 @@
 ## MVP
 
--   faut-il sécuriser les routes api sur les protected routes ?
--   gérer incomes et expenses
+-   gérer le middleware pour sécuriser les routes auth
 -   ajouter des graphique de rendu des dépenses et revenus
 -   implémenter les tests
 -   fix tooltip mobile
