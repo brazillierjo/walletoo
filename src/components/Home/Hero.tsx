@@ -22,7 +22,7 @@ function Hero() {
                     </p>
 
                     <div className='mt-10 flex items-center justify-center gap-x-6'>
-                        <Link className={buttonVariants({ variant: "default" })} href={Route.WALLET}>
+                        <Link className={buttonVariants({ variant: "default" })} href={Route.SIGNIN}>
                             Je me lance ! 😍
                         </Link>
                     </div>

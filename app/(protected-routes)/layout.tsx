@@ -1,9 +1,7 @@
 "use client";
+import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
 import { UserApi } from "@/src/APIs/userApi";
 import { userAtom } from "@/src/atoms/user.atom";
-import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
-import { Button } from "@/src/components/ui/button";
-import { toast } from "@/src/components/ui/use-toast";
 import { Route } from "@/src/enums/frontend-routes";
 import { useAtom } from "jotai";
 import { useSession } from "next-auth/react";
@@ -22,16 +20,9 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
         if (!session) return redirect(Route.SIGNIN);
 
         if (!user && session)
-            UserApi.get().then((data) => {
-                if (data.status === 200) setUser(data.user);
-                else {
-                    toast({
-                        variant: "destructive",
-                        title: "Oh oh! Une erreur s'est produite.",
-                        description: "Il y a eu un problème dans la récupération de vos données.",
-                        action: <Button onClick={() => window.location.reload()}>Recharger</Button>,
-                    });
-                }
+            UserApi.get().then((res) => {
+                if (res.status === 200 && res.data) setUser(res.data);
+                else redirect(Route.SIGNIN);
             });
     }, [session, setUser, user]);
 

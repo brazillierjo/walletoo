@@ -1,5 +1,5 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
-import fetchAPI from "../utils/fetchAPI";
+import fetchAPI from "@/src/utils/fetchAPI";
 
 export class TransactionApi {
     static async post(data: { label: string; amount: number }, type: string) {

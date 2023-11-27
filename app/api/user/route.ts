@@ -15,7 +15,7 @@ export async function GET() {
         const userInformations = await UserModel.find({ email: userEmail });
 
         return Response.json({
-            user: userInformations[0],
+            data: userInformations[0],
             status: 200,
         });
     } catch (error) {

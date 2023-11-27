@@ -23,8 +23,8 @@ export const MyAccountCard: React.FC = () => {
 
     const handleCurrencyChange = (newCurrency: string) => {
         if (user && newCurrency !== user.currency) {
-            UserApi.patch({ currency: newCurrency }).then((updatedUser) => {
-                setUser(updatedUser);
+            UserApi.patch({ currency: newCurrency }).then((res) => {
+                if (res.data && res.status === 200) setUser(res.data);
                 toast({
                     title: "Devise",
                     description: "La devise a bien été mise à jour.",

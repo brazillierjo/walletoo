@@ -1,14 +1,15 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
 import { PartialUserUpdate } from "@/src/mongoDB/userSchema";
 import fetchAPI from "../utils/fetchAPI";
+import { IUser } from "../interfaces/userInterface";
 
 export class UserApi {
     static async get() {
-        return fetchAPI(ApiRoute.USER, "GET");
+        return fetchAPI<IUser>(ApiRoute.USER, "GET");
     }
 
     static async patch(data: PartialUserUpdate) {
-        return fetchAPI(ApiRoute.USER, "PATCH", data);
+        return fetchAPI<IUser>(ApiRoute.USER, "PATCH", data);
     }
 
     static async delete() {
