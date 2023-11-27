@@ -47,7 +47,13 @@ export const Header: React.FC = () => {
                                     </DropdownMenuItem>
                                 ))}
 
-                                <Button className='mt-1 w-full' onClick={() => signOut()}>
+                                <Button
+                                    className='mt-1 w-full'
+                                    onClick={() =>
+                                        signOut({
+                                            callbackUrl: Route.SIGNIN,
+                                        })
+                                    }>
                                     Déconnexion
                                 </Button>
                             </DropdownMenuContent>
@@ -61,7 +67,12 @@ export const Header: React.FC = () => {
                             </Button>
                         </Link>
                     ) : (
-                        <Button onClick={() => signOut()}>
+                        <Button
+                            onClick={() =>
+                                signOut({
+                                    callbackUrl: Route.SIGNIN,
+                                })
+                            }>
                             <PiSignOut className='rotate-180' />
                         </Button>
                     )}

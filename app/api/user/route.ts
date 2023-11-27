@@ -14,7 +14,10 @@ export async function GET() {
         const userEmail = session.user.email;
         const userInformations = await UserModel.find({ email: userEmail });
 
-        return new Response(JSON.stringify(userInformations));
+        return Response.json({
+            user: userInformations[0],
+            status: 200,
+        });
     } catch (error) {
         console.error(error);
         throw new Error("Internal Server Error");
@@ -33,7 +36,10 @@ export async function PATCH(request: Request) {
 
         const userInformations = await UserModel.findOneAndUpdate({ email: userEmail }, { $set: body }, { new: true });
 
-        return new Response(JSON.stringify(userInformations));
+        return Response.json({
+            data: userInformations,
+            status: 200,
+        });
     } catch (error) {
         console.error(error);
         throw new Error("Internal Server Error");
@@ -50,7 +56,10 @@ export async function DELETE() {
         const userEmail = session.user.email;
         const userInformations = await UserModel.deleteOne({ email: userEmail });
 
-        return new Response(JSON.stringify(userInformations));
+        return Response.json({
+            data: userInformations,
+            status: 200,
+        });
     } catch (error) {
         console.error(error);
         throw new Error("Internal Server Error");

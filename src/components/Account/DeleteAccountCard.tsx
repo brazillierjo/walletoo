@@ -24,8 +24,9 @@ export const DeleteAccountCard: React.FC = () => {
             UserApi.delete().then((res) => {
                 if (!res) return;
 
-                signOut();
-                redirect(Route.HOME);
+                signOut({
+                    callbackUrl: Route.HOME,
+                });
             });
     };
 
