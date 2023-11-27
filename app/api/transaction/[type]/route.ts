@@ -85,11 +85,11 @@ export async function DELETE(req: NextRequest, config: { params: { type: string 
 
         // IF TYPE IS "incomes" OR "expenses", FILTER THE ARRAY TO REMOVE THE TRANSACTION
         if (type === DynamicUrlParams.INCOMES) {
-            user.incomes = user.incomes.filter((income: ITransaction) => income._id !== id);
+            user.incomes = user.incomes.filter((income: ITransaction) => income._id?.toString() !== id);
         }
 
         if (type === DynamicUrlParams.EXPENSES) {
-            user.expenses = user.expenses.filter((expense: ITransaction) => expense._id !== id);
+            user.expenses = user.expenses.filter((expense: ITransaction) => expense._id?.toString() !== id);
         }
 
         await user.save();
