@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import { useState } from "react";
+import { RefObject, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/src/components/ui/button";
@@ -14,6 +14,7 @@ import { IUser } from "@/src/interfaces/userInterface";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
 import { LuCopyPlus } from "react-icons/lu";
 import { toast } from "@/src/components/ui/use-toast";
+import { useClickAway } from "@uidotdev/usehooks";
 
 type TransactionFormProps = {
     type: TransactionType;
@@ -23,6 +24,10 @@ type TransactionFormProps = {
 
 export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, setUser }) => {
     const [isFormDisplayed, setIsFormDisplayed] = useState(false);
+
+    const ref = useClickAway<HTMLFormElement>(() => {
+        setIsFormDisplayed(false);
+    });
 
     const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
 
@@ -63,7 +68,7 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='flex justify-between gap-5'>
+            <form ref={ref} onSubmit={form.handleSubmit(onSubmit)} className='flex justify-between gap-5'>
                 <FormField
                     control={form.control}
                     name='label'
