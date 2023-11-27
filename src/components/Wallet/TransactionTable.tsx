@@ -77,7 +77,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                         </tbody>
                     </table>
                 ) : (
-                    <p className='mb-8 text-center text-xs italic'>Aucune transaction enregistrée.</p>
+                    <p className='mt-8 text-center text-xs italic'>Aucune transaction enregistrée.</p>
                 )}
             </div>
 
