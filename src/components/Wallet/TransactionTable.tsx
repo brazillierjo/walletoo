@@ -8,7 +8,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { ITransaction } from "@/src/interfaces/transactionInterface";
 import { Switch } from "@/src/components/ui/switch";
 import { MdModeEdit } from "react-icons/md";
-import { cn } from "@/src/tools/tailwindMerge";
+import { cn } from "@/src/utils/tailwindMerge";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
 import { TransactionApi } from "@/src/APIs/transactionApi";
 

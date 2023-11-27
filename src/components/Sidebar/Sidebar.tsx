@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Separator } from "@/src/components/ui/separator";
-import { cn } from "@/src/tools/tailwindMerge";
+import { cn } from "@/src/utils/tailwindMerge";
 import { useState } from "react";
 import { MdChevronRight } from "react-icons/md";
 import { links } from "@/src/utils/sidebarLinks";

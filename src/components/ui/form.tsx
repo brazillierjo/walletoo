@@ -3,7 +3,7 @@ import * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from "react-hook-form";
 
-import { cn } from "@/src/tools/tailwindMerge";
+import { cn } from "@/src/utils/tailwindMerge";
 import { Label } from "@/src/components/ui/label";
 
 const Form = FormProvider;

@@ -5,7 +5,7 @@ import { Separator } from "@/src/components/ui/separator";
 import { useAtom } from "jotai";
 import { userAtom } from "@/src/atoms/user.atom";
 import { UserApi } from "@/src/APIs/userApi";
-import { cn } from "@/src/tools/tailwindMerge";
+import { cn } from "@/src/utils/tailwindMerge";
 import { useState } from "react";
 import { redirect } from "next/navigation";
 import { Route } from "@/src/enums/frontend-routes";

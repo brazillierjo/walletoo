@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/src/Providers/ThemeProvider";
 import { Header } from "@/src/components/Header/Header";
 import { Sidebar } from "@/src/components/Sidebar/Sidebar";
 import { Toaster } from "@/src/components/ui/toaster";
-import { cn } from "@/src/tools/tailwindMerge";
+import { cn } from "@/src/utils/tailwindMerge";
 
 const inter = Inter({ subsets: ["latin"] });
 

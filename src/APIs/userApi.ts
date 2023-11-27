@@ -1,33 +1,17 @@
 import { ApiRoute } from "@/src/enums/backend-routes";
 import { PartialUserUpdate } from "@/src/mongoDB/userSchema";
+import fetchAPI from "../utils/fetchAPI";
 
 export class UserApi {
     static async get() {
-        const response = await fetch(ApiRoute.USER, {
-            method: "GET",
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP, statut = ${response.status}`);
-        }
-
-        return response.json();
+        return fetchAPI(ApiRoute.USER, "GET");
     }
 
     static async patch(data: PartialUserUpdate) {
-        const response = await fetch(ApiRoute.USER, {
-            method: "PATCH",
-            body: JSON.stringify(data),
-        });
-
-        return response.json();
+        return fetchAPI(ApiRoute.USER, "PATCH", data);
     }
 
     static async delete() {
-        const response = await fetch(ApiRoute.USER, {
-            method: "DELETE",
-        });
-
-        return response.json();
+        return fetchAPI(ApiRoute.USER, "DELETE");
     }
 }

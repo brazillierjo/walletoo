@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/src/tools/tailwindMerge";
+import { cn } from "@/src/utils/tailwindMerge";
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
     <div ref={ref} className={cn("rounded-xl border bg-card text-card-foreground shadow", className)} {...props} />
