@@ -3,7 +3,7 @@ import { TransactionForm } from "./TransactionForm";
 import { TransactionType } from "@/src/enums/transactionType";
 import { useAtom } from "jotai";
 import { userAtom } from "@/src/atoms/user.atom";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { ITransaction } from "@/src/interfaces/transactionInterface";
 import { Switch } from "@/src/components/ui/switch";
@@ -11,6 +11,7 @@ import { MdModeEdit } from "react-icons/md";
 import { cn } from "@/src/utils/tailwindMerge";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
 import { TransactionApi } from "@/src/APIs/transactionApi";
+import { TransactionFilter } from "@/src/enums/transactionFilter";
 
 type TransactionTableProps = {
     type: TransactionType;
@@ -19,9 +20,28 @@ type TransactionTableProps = {
 export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     const [user, setUser] = useAtom(userAtom);
     const [isEditMode, setIsEditMode] = useState(false);
+    const [sortType, setSortType] = useState<TransactionFilter>(TransactionFilter.AmountDESC);
 
     const transactions = type === TransactionType.INCOMES ? user?.incomes : user?.expenses;
     const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+
+    const sortedTransactions = useMemo(() => {
+        if (!transactions) return [];
+
+        return [...transactions].sort((a, b) => {
+            switch (sortType) {
+                case TransactionFilter.LabelDESC:
+                    return a.label.localeCompare(b.label);
+                case TransactionFilter.LabelASC:
+                    return b.label.localeCompare(a.label);
+                case TransactionFilter.AmountASC:
+                    return a.amount - b.amount;
+                case TransactionFilter.AmountDESC:
+                default:
+                    return b.amount - a.amount;
+            }
+        });
+    }, [transactions, sortType]);
 
     const handleDelete = (transaction: ITransaction) => {
         if (user && transaction._id) {
@@ -34,6 +54,14 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                 }
             });
         }
+    };
+
+    const toggleLabelSort = () => {
+        setSortType((prevType) => (prevType === TransactionFilter.LabelDESC ? TransactionFilter.LabelASC : TransactionFilter.LabelDESC));
+    };
+
+    const toggleAmountSort = () => {
+        setSortType((prevType) => (prevType === TransactionFilter.AmountDESC ? TransactionFilter.AmountASC : TransactionFilter.AmountDESC));
     };
 
     if (!transactions || !user) return null;
@@ -50,18 +78,28 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
             </div>
 
             <div className='mb-4 px-2'>
-                {transactions.length > 0 ? (
+                {sortedTransactions.length > 0 ? (
                     <table className='w-full'>
                         <thead>
                             <tr>
-                                <th className={cn("px-4 py-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>Label</th>
-                                <th className={cn("px-4 py-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>Montant</th>
+                                <th className={cn("px-4 py-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
+                                    <button
+                                        onClick={toggleLabelSort}
+                                        className='rounded-md px-2 text-base font-bold uppercase transition-all duration-200 hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                        Label
+                                    </button>
+                                </th>
+                                <th className={cn("px-4 py-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>
+                                    <button onClick={toggleAmountSort} className='text-base font-bold uppercase'>
+                                        Montant
+                                    </button>
+                                </th>
                                 {isEditMode && <th className='w-2/12 px-4 py-1 text-right text-sm uppercase'>Actions</th>}
                             </tr>
                         </thead>
 
                         <tbody>
-                            {transactions.map((transaction, index) => (
+                            {sortedTransactions.map((transaction, index) => (
                                 <tr key={index} className='border-b border-t'>
                                     <td className='border-r px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
                                     <td className={cn("px-4 py-1 text-right text-sm font-bold", isEditMode && "border-r")}>{transaction.amount}</td>
