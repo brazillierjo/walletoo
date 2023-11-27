@@ -64,7 +64,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                             {transactions.map((transaction, index) => (
                                 <tr key={index} className='border-b border-t'>
                                     <td className='border-r px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
-                                    <td className={cn("px-4 py-1 text-right text-sm", isEditMode && "border-r")}>{transaction.amount}</td>
+                                    <td className={cn("px-4 py-1 text-right text-sm font-bold", isEditMode && "border-r")}>{transaction.amount}</td>
                                     {isEditMode && (
                                         <td
                                             onClick={() => handleDelete(transaction)}

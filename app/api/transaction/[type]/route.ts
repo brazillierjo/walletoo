@@ -36,14 +36,19 @@ export async function POST(req: NextRequest, config: { params: { type: string } 
         }
 
         const { label, amount } = await req.json();
-        const nexTransaction = { label, amount };
+        const newTransaction = { label, amount };
 
-        if (type === DynamicUrlParams.INCOMES) user.incomes.push(nexTransaction);
-        if (type === DynamicUrlParams.EXPENSES) user.expenses.push(nexTransaction);
+        if (type === DynamicUrlParams.INCOMES) {
+            user.incomes.push(newTransaction);
+            await user.save();
+            return new Response(JSON.stringify({ data: user.incomes[user.incomes.length - 1], message: "Transaction added.", status: 200 }));
+        }
 
-        await user.save();
-
-        return new Response(JSON.stringify({ message: "Transaction added.", status: 200 }));
+        if (type === DynamicUrlParams.EXPENSES) {
+            user.expenses.push(newTransaction);
+            await user.save();
+            return new Response(JSON.stringify({ data: user.expenses[user.expenses.length - 1], message: "Transaction added.", status: 200 }));
+        }
     } catch (error) {
         console.error(error);
         return new Response(JSON.stringify({ message: "Internal Server Error" }), {
@@ -57,7 +62,7 @@ export async function DELETE(req: NextRequest, config: { params: { type: string 
         const session = await getServerSession(authOptions);
         const user = await UserModel.findOne({ email: session?.user?.email });
         const { type } = config.params;
-        const { id } = await req.json();
+        const { id: _id } = await req.json();
 
         // IF NO SESSION FOUND, RETURN 401
         if (!session?.user?.email) throw new Error("Unauthorized");
@@ -77,7 +82,7 @@ export async function DELETE(req: NextRequest, config: { params: { type: string 
         }
 
         // IF THERE IS NO ID IN THE BODY, RETURN 400
-        if (!id) {
+        if (!_id) {
             return new Response(JSON.stringify({ message: "No id provided" }), {
                 status: 400,
             });
@@ -85,11 +90,11 @@ export async function DELETE(req: NextRequest, config: { params: { type: string 
 
         // IF TYPE IS "incomes" OR "expenses", FILTER THE ARRAY TO REMOVE THE TRANSACTION
         if (type === DynamicUrlParams.INCOMES) {
-            user.incomes = user.incomes.filter((income: ITransaction) => income._id?.toString() !== id);
+            user.incomes = user.incomes.filter((income: ITransaction) => income._id?.toString() !== _id);
         }
 
         if (type === DynamicUrlParams.EXPENSES) {
-            user.expenses = user.expenses.filter((expense: ITransaction) => expense._id?.toString() !== id);
+            user.expenses = user.expenses.filter((expense: ITransaction) => expense._id?.toString() !== _id);
         }
 
         await user.save();

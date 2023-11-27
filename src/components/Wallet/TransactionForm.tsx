@@ -18,7 +18,7 @@ import { toast } from "@/src/components/ui/use-toast";
 type TransactionFormProps = {
     type: TransactionType;
     user: IUser;
-    setUser: any;
+    setUser: (user: IUser) => void;
 };
 
 export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, setUser }) => {
@@ -37,10 +37,7 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
     const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
         TransactionApi.post(data, urlParam).then((res) => {
             if (res.status === 200) {
-                const newUser = { ...user };
-
-                newUser[urlParam] = [...newUser[urlParam], data];
-                setUser(newUser);
+                setUser({ ...user, [urlParam]: [...user[urlParam], res.data] });
 
                 toast({
                     title: "Transaction ajoutée",
