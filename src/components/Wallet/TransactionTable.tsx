@@ -54,17 +54,17 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                     <table className='w-full'>
                         <thead>
                             <tr>
-                                <th className='px-4 py-1 text-left text-sm uppercase'>Label</th>
-                                <th className='px-4 py-1 text-right text-sm uppercase'>Montant</th>
-                                {isEditMode && <th className='px-4 py-1 text-right text-sm uppercase'>Actions</th>}
+                                <th className={cn("px-4 py-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>Label</th>
+                                <th className={cn("px-4 py-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>Montant</th>
+                                {isEditMode && <th className='w-2/12 px-4 py-1 text-right text-sm uppercase'>Actions</th>}
                             </tr>
                         </thead>
 
                         <tbody>
                             {transactions.map((transaction, index) => (
                                 <tr key={index} className='border-b border-t'>
-                                    <td className='border-r px-4 py-1 text-left'>{transaction.label}</td>
-                                    <td className={cn("px-4 py-1 text-right", isEditMode && "border-r")}>{transaction.amount}</td>
+                                    <td className='border-r px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
+                                    <td className={cn("px-4 py-1 text-right text-sm", isEditMode && "border-r")}>{transaction.amount}</td>
                                     {isEditMode && (
                                         <td
                                             onClick={() => handleDelete(transaction)}

@@ -56,7 +56,7 @@ export const Sidebar: React.FC = () => {
                                 href={link.path}
                                 className={cn("flex gap-3 py-2", isActivelink(link.path) && "border-r-4 border-slate-600 dark:border-white")}>
                                 <link.icon className={cn("h-6 w-6", !isActivelink(link.path) && "opacity-40")} />
-                                <span className={cn(!isActivelink(link.path) && "opacity-60 hover:opacity-100")}>{link.name}</span>
+                                <span className={cn(!isActivelink(link.path) && "text-sm opacity-60 hover:opacity-100")}>{link.name}</span>
                             </Link>
                         ))}
                     </div>

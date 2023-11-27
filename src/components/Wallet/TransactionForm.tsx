@@ -13,6 +13,7 @@ import { TransactionType } from "@/src/enums/transactionType";
 import { IUser } from "@/src/interfaces/userInterface";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
 import { LuCopyPlus } from "react-icons/lu";
+import { toast } from "@/src/components/ui/use-toast";
 
 type TransactionFormProps = {
     type: TransactionType;
@@ -40,6 +41,13 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
 
                 newUser[urlParam] = [...newUser[urlParam], data];
                 setUser(newUser);
+
+                toast({
+                    title: "Transaction ajoutée",
+                    description: `La transaction "${data.label}" a bien été ajoutée.`,
+                    duration: 2000,
+                });
+
                 form.reset();
                 setIsFormDisplayed(false);
             }
@@ -65,7 +73,7 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
                     render={({ field }) => (
                         <FormItem className='w-full'>
                             <FormControl>
-                                <Input className='capitalize' type='text' placeholder='Label' {...field} />
+                                <Input type='text' placeholder='Label' {...field} />
                             </FormControl>
                             <FormDescription>Label de la transaction.</FormDescription>
                             <FormMessage />
