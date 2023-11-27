@@ -85,12 +85,14 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                                 <th className={cn("px-4 py-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
                                     <button
                                         onClick={toggleLabelSort}
-                                        className='rounded-md px-2 text-base font-bold uppercase transition-all duration-200 hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                        className='rounded px-2 text-sm font-bold uppercase transition-all duration-200 hover:bg-gray-100 hover:dark:bg-gray-700'>
                                         Label
                                     </button>
                                 </th>
                                 <th className={cn("px-4 py-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>
-                                    <button onClick={toggleAmountSort} className='text-base font-bold uppercase'>
+                                    <button
+                                        onClick={toggleAmountSort}
+                                        className='rounded px-2 text-sm font-bold uppercase transition-all duration-200 hover:bg-gray-100 hover:dark:bg-gray-700'>
                                         Montant
                                     </button>
                                 </th>
