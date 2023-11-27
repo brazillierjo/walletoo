@@ -12,7 +12,7 @@ export async function POST(req: NextRequest, config: { params: { type: string } 
         const { type } = config.params;
 
         // IF NO SESSION FOUND, RETURN 401
-        if (!session?.user?.email) throw new Error("Unauthorized");
+        if (!session) throw new Error("Unauthorized");
 
         // IF NO USER FOUND, RETURN 404
         if (!user) {

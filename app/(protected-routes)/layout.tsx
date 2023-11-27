@@ -19,7 +19,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
     useEffect(() => {
         if (!session) return redirect(Route.SIGNIN);
 
-        if (!user && session)
+        if (!user)
             UserApi.get().then((res) => {
                 if (res.status === 200 && res.data) setUser(res.data);
                 else redirect(Route.SIGNIN);

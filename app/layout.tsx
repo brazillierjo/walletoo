@@ -20,7 +20,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-const RootLayout: ({ children }: Props) => Promise<JSX.Element> = async ({ children }: Props) => {
+const RootLayout: React.FC<Props> = async ({ children }: Props) => {
     const session = await getServerSession();
 
     return (

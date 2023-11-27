@@ -9,7 +9,7 @@ type Props = {
     children: React.ReactNode;
 };
 
-const ProfileLayout: ({ children }: Props) => Promise<JSX.Element> = async ({ children }: Props) => {
+const ProfileLayout: React.FC<Props> = async ({ children }: Props) => {
     return children as JSX.Element;
 };
 

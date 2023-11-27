@@ -7,7 +7,6 @@ import { userAtom } from "@/src/atoms/user.atom";
 import { UserApi } from "@/src/APIs/userApi";
 import { cn } from "@/src/utils/tailwindMerge";
 import { useState } from "react";
-import { redirect } from "next/navigation";
 import { Route } from "@/src/enums/frontend-routes";
 import { signOut } from "next-auth/react";
 import { Tooltip } from "@/src/components/Commons/Tooltip";
