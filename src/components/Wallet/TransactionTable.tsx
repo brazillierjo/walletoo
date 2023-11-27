@@ -18,7 +18,7 @@ type TransactionTableProps = {
 
 export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     const [user, setUser] = useAtom(userAtom);
-    const [isEditMode, setIsEditMode] = useState(true);
+    const [isEditMode, setIsEditMode] = useState(false);
 
     const transactions = type === TransactionType.INCOMES ? user?.incomes : user?.expenses;
     const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
