@@ -54,9 +54,18 @@ export const Sidebar: React.FC = () => {
                             <Link
                                 key={index}
                                 href={link.path}
-                                className={cn("flex gap-3 py-2", isActivelink(link.path) && "border-r-4 border-slate-600 dark:border-white")}>
-                                <link.icon className={cn("h-6 w-6", !isActivelink(link.path) && "opacity-40")} />
-                                <span className={cn(!isActivelink(link.path) && "text-sm opacity-60 hover:opacity-100")}>{link.name}</span>
+                                className={cn(
+                                    "flex items-center gap-3 py-2",
+                                    isActivelink(link.path) && "border-r-4 border-slate-600 dark:border-white"
+                                )}>
+                                <link.icon className={cn("h-5 w-5", !isActivelink(link.path) && "opacity-40")} />
+                                <span
+                                    className={cn(
+                                        "transition-all duration-100",
+                                        !isActivelink(link.path) ? "text-sm opacity-60 hover:opacity-100" : "test-base font-bold"
+                                    )}>
+                                    {link.name}
+                                </span>
                             </Link>
                         ))}
                     </div>

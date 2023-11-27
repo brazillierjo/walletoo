@@ -21,8 +21,10 @@ export const MyAccountCard: React.FC = () => {
 
     const currenciesNames = currencies.map((currency) => currency.name);
 
-    const handleCurrencyChange = (newCurrency: string) => {
-        if (user && newCurrency !== user.currency) {
+    const handleCurrencyChange = (newCurrencyName: string) => {
+        const newCurrency = currencies.find((currency) => currency.name === newCurrencyName);
+
+        if (user && newCurrency && newCurrency.name !== user.currency.name) {
             UserApi.patch({ currency: newCurrency }).then((res) => {
                 if (res.data && res.status === 200) setUser(res.data);
                 toast({
@@ -80,7 +82,7 @@ export const MyAccountCard: React.FC = () => {
 
                 <div className='flex items-center gap-2'>
                     <p className='whitespace-nowrap'>Devise :</p>
-                    <EditableContentSelect options={currenciesNames} value={user.currency ?? ""} onChange={handleCurrencyChange} />
+                    <EditableContentSelect options={currenciesNames} value={user.currency.name ?? ""} onChange={handleCurrencyChange} />
                 </div>
             </CardContent>
         </Card>

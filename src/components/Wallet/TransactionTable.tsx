@@ -12,6 +12,7 @@ import { cn } from "@/src/utils/tailwindMerge";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
 import { TransactionApi } from "@/src/APIs/transactionApi";
 import { TransactionFilter } from "@/src/enums/transactionFilter";
+import amountHandler from "@/src/utils/amountHandler";
 
 type TransactionTableProps = {
     type: TransactionType;
@@ -24,6 +25,12 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
 
     const transactions = type === TransactionType.INCOMES ? user?.incomes : user?.expenses;
     const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+
+    const total = useMemo(() => {
+        if (!transactions) return 0;
+
+        return transactions.reduce((acc, curr) => acc + curr.amount, 0);
+    }, [transactions]);
 
     const sortedTransactions = useMemo(() => {
         if (!transactions) return [];
@@ -104,7 +111,9 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                             {sortedTransactions.map((transaction, index) => (
                                 <tr key={index} className='border-b border-t'>
                                     <td className='border-r px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
-                                    <td className={cn("px-4 py-1 text-right text-sm font-bold", isEditMode && "border-r")}>{transaction.amount}</td>
+                                    <td className={cn("px-4 py-1 text-right text-sm", isEditMode && "border-r")}>
+                                        {amountHandler(transaction.amount, "EU", user.currency.symbol)}
+                                    </td>
                                     {isEditMode && (
                                         <td
                                             onClick={() => handleDelete(transaction)}
@@ -114,6 +123,13 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                                     )}
                                 </tr>
                             ))}
+                            {total && (
+                                <tr className='border-t'>
+                                    <td className='border-r px-4 py-1 text-left text-base font-bold uppercase'>Total</td>
+                                    <td className='px-4 py-1 text-right text-base font-bold'>{amountHandler(total, "EU", user.currency.symbol)}</td>
+                                    {isEditMode && <td className='px-4 py-1 text-right text-sm font-bold'></td>}
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 ) : (

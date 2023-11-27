@@ -19,7 +19,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ title, description }) => {
             <HoverCardContent>
                 <div className='flex flex-col gap-5'>
                     {title && <h3 className='text-sm'>{title}</h3>}
-                    {description && <p className='text-justify text-sm font-normal'>{description}</p>}
+                    {description && <p className='text-sm font-normal'>{description}</p>}
                 </div>
             </HoverCardContent>
         </HoverCard>

@@ -47,11 +47,11 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
                 toast({
                     title: "Transaction ajoutée",
                     description: `La transaction "${data.label}" a bien été ajoutée.`,
-                    duration: 2000,
+                    duration: 3000,
                 });
 
-                form.reset();
                 setIsFormDisplayed(false);
+                form.reset();
             }
         });
     };
@@ -77,7 +77,7 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
                             <FormControl>
                                 <Input type='text' placeholder='Label' {...field} />
                             </FormControl>
-                            <FormDescription>Label de la transaction.</FormDescription>
+                            <FormDescription className='px-2 text-xs italic'>Label de la transaction.</FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}
@@ -91,13 +91,13 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, se
                             <FormControl>
                                 <Input type='number' placeholder='Montant' {...field} />
                             </FormControl>
-                            <FormDescription>Montant de la transaction.</FormDescription>
+                            <FormDescription className='px-2 text-xs italic'>Montant de la transaction.</FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
 
-                <Button variant='default' type='submit'>
+                <Button variant='secondary' type='submit'>
                     <FaCheck className='w-4' />
                 </Button>
             </form>

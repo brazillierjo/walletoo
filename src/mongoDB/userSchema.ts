@@ -15,7 +15,10 @@ const UserSchema: Schema = new Schema({
     avatar: { type: String },
     incomes: [TransactionSchema],
     expenses: [TransactionSchema],
-    currency: { type: String },
+    currency: {
+        name: { type: String, required: true },
+        symbol: { type: String, required: true },
+    },
     createdAt: { type: Date, default: Date.now },
 });
 

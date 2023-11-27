@@ -6,6 +6,9 @@ export interface IUser {
     avatar: string;
     incomes: ITransaction[];
     expenses: ITransaction[];
-    currency?: string;
+    currency: {
+        name: string;
+        symbol: string;
+    };
     createdAt: Date;
 }
