@@ -9,7 +9,7 @@ type EditableContentSelectProps = {
 export const EditableContentSelect: React.FC<EditableContentSelectProps> = ({ options, value, onChange }) => {
     return (
         <Select defaultValue={value} onValueChange={(newValue) => onChange(newValue)}>
-            <SelectTrigger className='w-fit'>
+            <SelectTrigger className='h-6 w-fit'>
                 <SelectValue />
             </SelectTrigger>
 
