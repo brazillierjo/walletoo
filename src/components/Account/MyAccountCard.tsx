@@ -26,11 +26,13 @@ export const MyAccountCard: React.FC = () => {
 
         if (user && newCurrency && newCurrency.name !== user.currency.name) {
             UserApi.patch({ currency: newCurrency }).then((res) => {
-                if (res.data && res.status === 200) setUser(res.data);
-                toast({
-                    title: "Devise",
-                    description: "La devise a bien été mise à jour.",
-                });
+                if (res.data && res.status === 200) {
+                    setUser(res.data);
+                    toast({
+                        title: "Devise",
+                        description: "La devise a bien été mise à jour.",
+                    });
+                }
             });
         }
     };
