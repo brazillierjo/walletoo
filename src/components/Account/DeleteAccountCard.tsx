@@ -60,7 +60,7 @@ export const DeleteAccountCard: React.FC = () => {
 
             <CardFooter className='flex justify-center p-5'>
                 <Button className={cn(hasConfirmedDeletion && "bg-red-500 hover:bg-red-500")} onClick={handleDelete}>
-                    {hasConfirmedDeletion ? "Confirmer la suppression" : "Supprimer"}
+                    {hasConfirmedDeletion ? "Confirmer la suppression" : "Supprimer mon compte"}
                 </Button>
             </CardFooter>
         </Card>
