@@ -12,6 +12,7 @@ import { cn } from "@/src/utils/tailwindMerge";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
 import { TransactionApi } from "@/src/APIs/transactionApi";
 import { TransactionFilter } from "@/src/enums/transactionFilter";
+import { IoChevronDownOutline } from "react-icons/io5";
 import amountHandler from "@/src/utils/amountHandler";
 
 type TransactionTableProps = {
@@ -91,17 +92,29 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                         <thead>
                             <tr>
                                 <th className={cn("px-4 py-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
+                                    Label
                                     <button
                                         onClick={toggleLabelSort}
-                                        className='duration-50 rounded px-2 text-sm font-bold uppercase transition-all hover:bg-gray-100 hover:dark:bg-gray-700'>
-                                        Label
+                                        className='rounded px-2 text-sm font-bold uppercase transition-all duration-100 hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                        <IoChevronDownOutline
+                                            className={cn(
+                                                "inline-block fill-gray-500 dark:fill-white",
+                                                sortType === TransactionFilter.LabelASC ? "rotate-180" : "rotate-0"
+                                            )}
+                                        />
                                     </button>
                                 </th>
                                 <th className={cn("px-4 py-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>
+                                    Montant
                                     <button
                                         onClick={toggleAmountSort}
-                                        className='duration-50 rounded px-2 text-sm font-bold uppercase transition-all hover:bg-gray-100 hover:dark:bg-gray-700'>
-                                        Montant
+                                        className='rounded px-2 text-sm font-bold uppercase transition-all duration-100 hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                        <IoChevronDownOutline
+                                            className={cn(
+                                                "inline-block fill-gray-500 dark:fill-white",
+                                                sortType === TransactionFilter.AmountASC ? "rotate-180" : "rotate-0"
+                                            )}
+                                        />
                                     </button>
                                 </th>
                                 {isEditMode && <th className='w-2/12 px-4 py-1 text-right text-sm uppercase'>Actions</th>}
