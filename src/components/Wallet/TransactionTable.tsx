@@ -1,3 +1,4 @@
+"use client";
 import { Card } from "@/src/components/ui/card";
 import { TransactionForm } from "./TransactionForm";
 import { TransactionType } from "@/src/enums/transactionType";
@@ -13,7 +14,7 @@ import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
 import { TransactionApi } from "@/src/APIs/transactionApi";
 import { TransactionFilter } from "@/src/enums/transactionFilter";
 import { IoChevronDownOutline } from "react-icons/io5";
-import amountHandler from "@/src/utils/amountHandler";
+import FormattedTransaction from "@/src/components/Commons/FormattedTransaction";
 
 type TransactionTableProps = {
     type: TransactionType;
@@ -88,7 +89,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
             <div className='mb-4 px-2'>
                 {sortedTransactions.length > 0 ? (
                     <table className='w-full'>
-                        <thead>
+                        <thead className='border-b'>
                             <tr>
                                 <th className={cn("pb-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
                                     Label
@@ -112,10 +113,10 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
 
                         <tbody>
                             {sortedTransactions.map((transaction, index) => (
-                                <tr key={index} className='border-b border-t'>
-                                    <td className='border-r px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
+                                <tr key={index} className='border-b hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                    <td className='px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
                                     <td className={cn("px-4 py-1 text-right text-sm", isEditMode && "border-r")}>
-                                        {amountHandler(transaction.amount, user.transactionFormat, user.currency.symbol)}
+                                        <FormattedTransaction amount={transaction.amount} />
                                     </td>
                                     {isEditMode && (
                                         <td
@@ -128,11 +129,11 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                             ))}
                             {total && (
                                 <tr className='border-t'>
-                                    <td className='border-r px-4 py-1 text-left text-base font-bold uppercase'>Total</td>
-                                    <td className='px-4 py-1 text-right text-base font-bold'>
-                                        {amountHandler(total, user.transactionFormat, user.currency.symbol)}
+                                    <td className='py-1 text-left text-base font-bold uppercase'>Total</td>
+                                    <td className='py-1 text-right text-base font-bold'>
+                                        <FormattedTransaction amount={total} />
                                     </td>
-                                    {isEditMode && <td className='px-4 py-1 text-right text-sm font-bold'></td>}
+                                    {isEditMode && <td className='py-1 text-right text-sm font-bold' />}
                                 </tr>
                             )}
                         </tbody>

@@ -1,4 +1,4 @@
-"use client";
+import BalanceTable from "@/src/components/Wallet/BalanceTable";
 import { TransactionTable } from "@/src/components/Wallet/TransactionTable";
 import { TransactionType } from "@/src/enums/transactionType";
 
@@ -11,6 +11,8 @@ const Wallet: React.FC = () => {
                 <TransactionTable type={TransactionType.INCOMES} />
                 <TransactionTable type={TransactionType.EXPENSES} />
             </div>
+
+            <BalanceTable />
         </div>
     );
 };
