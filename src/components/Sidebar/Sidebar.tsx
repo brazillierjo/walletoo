@@ -7,7 +7,7 @@ import { Separator } from "@/src/components/ui/separator";
 import { cn } from "@/src/utils/tailwindMerge";
 import { useState } from "react";
 import { MdChevronRight } from "react-icons/md";
-import { links } from "@/src/utils/sidebarLinks";
+import { links } from "@/src/utils/navbarLinks";
 
 export const Sidebar: React.FC = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);

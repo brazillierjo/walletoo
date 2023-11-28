@@ -7,7 +7,7 @@ import { Logo } from "@/src/components/Commons/Logo";
 
 export const RightSide: React.FC = () => {
     const { data: session } = useSession();
-    if (session?.user?.name) redirect(Route.WALLET);
+    if (session?.user?.name) redirect(Route.DASHBOARD);
 
     return (
         <div className='flex flex-col gap-16 overflow-hidden px-4 pb-12 md:mt-0 md:w-1/2 md:justify-center lg:w-1/3 lg:px-12'>

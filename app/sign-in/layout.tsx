@@ -12,7 +12,7 @@ const SignIn: React.FC<SignInProps> = ({ children }) => {
     const { data: session } = useSession();
 
     useEffect(() => {
-        if (session) return redirect(Route.WALLET);
+        if (session) return redirect(Route.DASHBOARD);
     }, [session]);
 
     return children as JSX.Element;

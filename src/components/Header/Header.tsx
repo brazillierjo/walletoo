@@ -7,7 +7,7 @@ import { Route } from "@/src/enums/frontend-routes";
 import { signOut, useSession } from "next-auth/react";
 import { PiSignInBold, PiSignOut } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { links } from "@/src/utils/sidebarLinks";
+import { links } from "@/src/utils/navbarLinks";
 import {
     DropdownMenu,
     DropdownMenuContent,
