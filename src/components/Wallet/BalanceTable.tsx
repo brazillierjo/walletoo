@@ -17,6 +17,8 @@ const BalanceTable: React.FC = () => {
     const totalExpenses = calculateTotal(user.expenses);
     const netIncome = totalIncomes - totalExpenses;
 
+    if (user.incomes.length === 0 && user.expenses.length === 0) return null;
+
     return (
         <div className='flex justify-center gap-5'>
             <Card className='w-full rounded-lg p-4 lg:w-2/5'>

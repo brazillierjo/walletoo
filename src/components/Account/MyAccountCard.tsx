@@ -7,10 +7,10 @@ import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { useAtom } from "jotai";
 import { userAtom } from "@/src/atoms/user.atom";
 import { currencies } from "@/src/utils/currencies";
-import { EditableContentSelect } from "../Commons/EditableContent";
+import { EditableContentSelect } from "@/src/components/Commons/EditableContent";
 import { UserApi } from "@/src/APIs/userApi";
 import { useToast } from "@/src/components/ui/use-toast";
-import { Tooltip } from "../Commons/Tooltip";
+import { Tooltip } from "@/src/components/Commons/Tooltip";
 import { transactionFormats } from "@/src/utils/transactionFormat";
 
 export const MyAccountCard: React.FC = () => {
