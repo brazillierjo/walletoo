@@ -7,7 +7,7 @@ import { Route } from "@/src/enums/frontend-routes";
 import { signOut, useSession } from "next-auth/react";
 import { PiSignInBold, PiSignOut } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { links } from "@/src/utils/navbarLinks";
+import { links } from "@/src/utils/links";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -19,6 +19,8 @@ import {
 
 export const Header: React.FC = () => {
     const { data: session } = useSession();
+
+    const headerLinks = links.filter((link) => link.isInHeader);
 
     return (
         <header className='bg-white dark:bg-black'>
@@ -40,10 +42,10 @@ export const Header: React.FC = () => {
                                 <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
 
-                                {links.map((link, index) => (
+                                {headerLinks.map((link, index) => (
                                     <DropdownMenuItem key={index} className='flex gap-2'>
-                                        <link.icon className='h-4 w-4' />
-                                        <Link href={link.path}>{link.name}</Link>
+                                        {link.icon && <link.icon className='h-4 w-4' />}
+                                        <Link href={link.to}>{link.label}</Link>
                                     </DropdownMenuItem>
                                 ))}
 

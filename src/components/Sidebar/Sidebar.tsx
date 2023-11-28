@@ -7,7 +7,7 @@ import { Separator } from "@/src/components/ui/separator";
 import { cn } from "@/src/utils/tailwindMerge";
 import { useState } from "react";
 import { MdChevronRight } from "react-icons/md";
-import { links } from "@/src/utils/navbarLinks";
+import { links } from "@/src/utils/links";
 import { Button } from "@/src/components/ui/button";
 import { Route } from "@/src/enums/frontend-routes";
 
@@ -15,11 +15,13 @@ export const Sidebar: React.FC = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isContentVisible, setIsContentVisible] = useState(true);
 
+    const sidebarLinks = links.filter((link) => link.isInSidebar);
+
     const { data: session } = useSession();
     const pathname = usePathname();
 
-    const isActivelink = (path: string) => {
-        return pathname === path;
+    const isActivelink = (to: string) => {
+        return pathname === to;
     };
 
     const timeoutVisibleContent = () => {
@@ -53,21 +55,21 @@ export const Sidebar: React.FC = () => {
                         <Separator className='bg-gray-300' />
 
                         <div className='flex flex-col gap-2 py-8 pl-8'>
-                            {links.map((link, index) => (
+                            {sidebarLinks.map((link, index) => (
                                 <Link
                                     key={index}
-                                    href={link.path}
+                                    href={link.to}
                                     className={cn(
                                         "flex items-center gap-3 py-2",
-                                        isActivelink(link.path) && "border-r-4 border-slate-600 dark:border-white"
+                                        isActivelink(link.to) && "border-r-4 border-slate-600 dark:border-white"
                                     )}>
-                                    <link.icon className={cn("h-5 w-5", !isActivelink(link.path) && "opacity-40")} />
+                                    {link.icon && <link.icon className={cn("h-5 w-5", !isActivelink(link.to) && "opacity-40")} />}
                                     <span
                                         className={cn(
                                             "transition-all duration-100",
-                                            !isActivelink(link.path) ? "text-sm opacity-60 hover:opacity-100" : "test-base font-bold"
+                                            !isActivelink(link.to) ? "text-sm opacity-60 hover:opacity-100" : "test-base font-bold"
                                         )}>
-                                        {link.name}
+                                        {link.label}
                                     </span>
                                 </Link>
                             ))}
