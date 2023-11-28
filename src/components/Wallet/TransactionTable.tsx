@@ -21,6 +21,7 @@ type TransactionTableProps = {
 
 export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     const [user, setUser] = useAtom(userAtom);
+    console.log("user", user);
     const [isEditMode, setIsEditMode] = useState(false);
     const [sortType, setSortType] = useState<TransactionFilter>(TransactionFilter.AmountDESC);
 
@@ -54,7 +55,6 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     const handleDelete = (transaction: ITransaction) => {
         if (user && transaction._id) {
             TransactionApi.delete(transaction._id, urlParam).then((res) => {
-                console.log(res);
                 if (res.status === 200) {
                     const newUser = { ...user };
 
@@ -116,7 +116,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                                 <tr key={index} className='border-b border-t'>
                                     <td className='border-r px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
                                     <td className={cn("px-4 py-1 text-right text-sm", isEditMode && "border-r")}>
-                                        {amountHandler(transaction.amount, "EU", user.currency.symbol)}
+                                        {amountHandler(transaction.amount, user.transactionFormat, user.currency.symbol)}
                                     </td>
                                     {isEditMode && (
                                         <td
@@ -130,7 +130,9 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                             {total && (
                                 <tr className='border-t'>
                                     <td className='border-r px-4 py-1 text-left text-base font-bold uppercase'>Total</td>
-                                    <td className='px-4 py-1 text-right text-base font-bold'>{amountHandler(total, "EU", user.currency.symbol)}</td>
+                                    <td className='px-4 py-1 text-right text-base font-bold'>
+                                        {amountHandler(total, user.transactionFormat, user.currency.symbol)}
+                                    </td>
                                     {isEditMode && <td className='px-4 py-1 text-right text-sm font-bold'></td>}
                                 </tr>
                             )}

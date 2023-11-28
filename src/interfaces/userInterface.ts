@@ -10,5 +10,6 @@ export interface IUser {
         name: string;
         symbol: string;
     };
+    transactionFormat: string;
     createdAt: Date;
 }
