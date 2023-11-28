@@ -21,7 +21,6 @@ type TransactionTableProps = {
 
 export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     const [user, setUser] = useAtom(userAtom);
-    console.log("user", user);
     const [isEditMode, setIsEditMode] = useState(false);
     const [sortType, setSortType] = useState<TransactionFilter>(TransactionFilter.AmountDESC);
 

@@ -42,7 +42,7 @@ export const DeleteAccountCard: React.FC = () => {
                     <div className='float-right'>
                         <Tooltip
                             title='Demande de suppression de compte'
-                            description="Pour procéder à la suppression intégrale de votre compte, il est nécessaire de supprimer vos données personnelles au préalable. Par la suite, veuillez vous diriger vers le service tiers utilisé lors de la création de votre compte afin de révoquer l'accès accordé à notre application."
+                            description="Pour procéder à la suppression intégrale de votre compte, il est nécessaire de supprimer vos données personnelles au préalable. Par la suite, veuillez vous diriger vers le service tiers utilisé lors de la création de votre compte afin de révoquer l'accès accordé à Waletoo."
                         />
                     </div>
                 </div>
