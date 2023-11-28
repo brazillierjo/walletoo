@@ -53,6 +53,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     const handleDelete = (transaction: ITransaction) => {
         if (user && transaction._id) {
             TransactionApi.delete(transaction._id, urlParam).then((res) => {
+                console.log(res);
                 if (res.status === 200) {
                     const newUser = { ...user };
 
@@ -74,7 +75,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     if (!transactions || !user) return null;
 
     return (
-        <Card className='flex w-full flex-col p-4 md:w-1/2'>
+        <Card className='flex w-full flex-col rounded-md p-4 md:w-1/2'>
             <div className='mb-4 flex items-center justify-between'>
                 <h2 className='text-lg font-semibold'>{type}</h2>
 
@@ -92,14 +93,14 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                                 <th className={cn("px-4 py-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
                                     <button
                                         onClick={toggleLabelSort}
-                                        className='rounded px-2 text-sm font-bold uppercase transition-all duration-200 hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                        className='duration-50 rounded px-2 text-sm font-bold uppercase transition-all hover:bg-gray-100 hover:dark:bg-gray-700'>
                                         Label
                                     </button>
                                 </th>
                                 <th className={cn("px-4 py-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>
                                     <button
                                         onClick={toggleAmountSort}
-                                        className='rounded px-2 text-sm font-bold uppercase transition-all duration-200 hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                        className='duration-50 rounded px-2 text-sm font-bold uppercase transition-all hover:bg-gray-100 hover:dark:bg-gray-700'>
                                         Montant
                                     </button>
                                 </th>
