@@ -69,7 +69,7 @@ export const links: Link[] = [
         isInFooter: true,
     },
     {
-        label: "Conditions générales d'utilisation",
+        label: "CGU",
         to: Route.TERMS,
         description: "Consultez nos conditions générales d'utilisation",
         isInSidebar: false,
@@ -77,7 +77,7 @@ export const links: Link[] = [
         isInFooter: true,
     },
     {
-        label: "Politique de confidentialité",
+        label: "Confidentialité",
         to: Route.PRIVACY,
         description: "Consultez notre politique de confidentialité",
         isInSidebar: false,

@@ -75,6 +75,26 @@
     }
 }
 
+/* custom min height */
+.custom-min-h-screen {
+    min-height: calc(100vh - 322px);
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1 0;
+}
+::-webkit-scrollbar-thumb {
+    background: #000000;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #000000;
+}
+
 /* loading screen */
 .spinner-container {
     display: flex;
