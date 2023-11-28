@@ -1,10 +1,13 @@
 import UserModel from "@/src/mongoDB/userSchema";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/utils/authOptions";
+import connectDB from "@/src/mongoDB/connect";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+    connectDB();
+
     try {
         const session = await getServerSession(authOptions);
 
