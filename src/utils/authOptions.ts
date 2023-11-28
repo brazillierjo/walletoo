@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
 
             const userDoc = await UserModel.findOneAndUpdate(
                 { email },
-                { email, fullName: name || "", avatar: image || "", currency: { name: "EUR", symbol: "€" } },
+                { email, fullName: name || "", avatar: image || "", currency: { name: "EUR", symbol: "€" }, transactionFormat: "EU" },
                 { upsert: true, new: true }
             );
 

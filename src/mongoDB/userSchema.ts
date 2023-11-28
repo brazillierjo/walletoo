@@ -16,9 +16,10 @@ const UserSchema: Schema = new Schema({
     incomes: [TransactionSchema],
     expenses: [TransactionSchema],
     currency: {
-        name: { type: String, required: true },
-        symbol: { type: String, required: true },
+        name: { type: String, required: true, default: "EUR" },
+        symbol: { type: String, required: true, default: "€" },
     },
+    transactionFormat: { type: String, required: true, default: "EU" },
     createdAt: { type: Date, default: Date.now },
 });
 
