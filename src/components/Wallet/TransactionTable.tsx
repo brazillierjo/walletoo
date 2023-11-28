@@ -7,7 +7,6 @@ import { userAtom } from "@/src/atoms/user.atom";
 import { useMemo, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { ITransaction } from "@/src/interfaces/transactionInterface";
-import { Switch } from "@/src/components/ui/switch";
 import { MdModeEdit } from "react-icons/md";
 import { cn } from "@/src/utils/tailwindMerge";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
@@ -15,6 +14,8 @@ import { TransactionApi } from "@/src/APIs/transactionApi";
 import { TransactionFilter } from "@/src/enums/transactionFilter";
 import { IoChevronDownOutline } from "react-icons/io5";
 import FormattedTransaction from "@/src/components/Commons/FormattedTransaction";
+import { motion } from "framer-motion";
+import { makeCardOpacity } from "@/src/utils/animations";
 
 type TransactionTableProps = {
     type: TransactionType;
@@ -76,74 +77,82 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
     if (!transactions || !user) return null;
 
     return (
-        <Card className='flex w-full flex-col rounded-md p-4 md:w-1/2'>
-            <div className='mb-4 flex items-center justify-between'>
-                <h2 className='text-lg font-semibold'>{type}</h2>
+        <motion.div
+            className='w-full'
+            initial='hidden'
+            animate='visible'
+            variants={type === TransactionType.EXPENSES ? makeCardOpacity(0.2) : makeCardOpacity()}>
+            <Card className='flex h-full flex-col rounded-md p-4'>
+                <div className='mb-4 flex items-center justify-between'>
+                    <h2 className='text-lg font-semibold'>{type}</h2>
 
-                <div className='flex items-center gap-2'>
-                    <Switch checked={isEditMode} onClick={() => setIsEditMode(!isEditMode)} />
-                    <MdModeEdit className='fill-gray-500 dark:fill-white' />
+                    <div className='flex items-center gap-2'>
+                        <div className='switch' data-isOn={isEditMode} onClick={() => setIsEditMode(!isEditMode)}>
+                            <motion.div className='handle' layout />
+                        </div>
+                        <MdModeEdit className='fill-gray-500 dark:fill-white' />
+                    </div>
                 </div>
-            </div>
 
-            <div className='mb-4 px-2'>
-                {sortedTransactions.length > 0 ? (
-                    <table className='w-full'>
-                        <thead className='border-b'>
-                            <tr>
-                                <th className={cn("pb-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
-                                    Label
-                                    <button onClick={toggleLabelSort}>
-                                        <IoChevronDownOutline
-                                            className={cn("ml-1 h-3 w-3", sortType === TransactionFilter.LabelASC ? "rotate-180" : "rotate-0")}
-                                        />
-                                    </button>
-                                </th>
-                                <th className={cn("pb-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>
-                                    Montant
-                                    <button onClick={toggleAmountSort}>
-                                        <IoChevronDownOutline
-                                            className={cn("ml-1 h-3 w-3", sortType === TransactionFilter.AmountASC ? "rotate-180" : "rotate-0")}
-                                        />
-                                    </button>
-                                </th>
-                                {isEditMode && <th className='w-2/12 text-right text-sm uppercase'>Actions</th>}
-                            </tr>
-                        </thead>
+                <div className='mb-4 px-2'>
+                    {sortedTransactions.length > 0 ? (
+                        <table className='w-full'>
+                            <thead className='border-b'>
+                                <tr>
+                                    <th className={cn("pb-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
+                                        Label
+                                        <button onClick={toggleLabelSort}>
+                                            <IoChevronDownOutline
+                                                className={cn("ml-1 h-3 w-3", sortType === TransactionFilter.LabelASC ? "rotate-180" : "rotate-0")}
+                                            />
+                                        </button>
+                                    </th>
+                                    <th className={cn("pb-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>
+                                        Montant
+                                        <button onClick={toggleAmountSort}>
+                                            <IoChevronDownOutline
+                                                className={cn("ml-1 h-3 w-3", sortType === TransactionFilter.AmountASC ? "rotate-180" : "rotate-0")}
+                                            />
+                                        </button>
+                                    </th>
+                                    {isEditMode && <th className='w-2/12 text-right text-sm uppercase'>Actions</th>}
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            {sortedTransactions.map((transaction, index) => (
-                                <tr key={index} className='border-b hover:bg-gray-100 hover:dark:bg-gray-700'>
-                                    <td className='px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
-                                    <td className={cn("px-4 py-1 text-right text-sm", isEditMode && "border-r")}>
-                                        <FormattedTransaction amount={transaction.amount} />
-                                    </td>
-                                    {isEditMode && (
-                                        <td
-                                            onClick={() => handleDelete(transaction)}
-                                            className='flex items-center justify-end px-4 pt-2 hover:cursor-pointer'>
-                                            <MdDeleteForever className='fill-red-500 transition-all duration-150 hover:opacity-50' />
+                            <tbody>
+                                {sortedTransactions.map((transaction, index) => (
+                                    <tr key={index} className='border-b hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                        <td className='px-4 py-1 text-left text-sm capitalize'>{transaction.label}</td>
+                                        <td className={cn("px-4 py-1 text-right text-sm", isEditMode && "border-r")}>
+                                            <FormattedTransaction amount={transaction.amount} />
                                         </td>
-                                    )}
-                                </tr>
-                            ))}
-                            {total && (
-                                <tr className='border-t'>
-                                    <td className='py-1 text-left text-base font-bold uppercase'>Total</td>
-                                    <td className='py-1 text-right text-base font-bold'>
-                                        <FormattedTransaction amount={total} />
-                                    </td>
-                                    {isEditMode && <td className='py-1 text-right text-sm font-bold' />}
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                ) : (
-                    <p className='mt-8 text-center text-xs italic'>Aucune transaction enregistrée.</p>
-                )}
-            </div>
+                                        {isEditMode && (
+                                            <td
+                                                onClick={() => handleDelete(transaction)}
+                                                className='flex items-center justify-end px-4 pt-2 hover:cursor-pointer'>
+                                                <MdDeleteForever className='fill-red-500 transition-all duration-150 hover:opacity-50' />
+                                            </td>
+                                        )}
+                                    </tr>
+                                ))}
+                                {total && (
+                                    <tr className='border-t'>
+                                        <td className='py-1 text-left text-base font-bold uppercase'>Total</td>
+                                        <td className='py-1 text-right text-base font-bold'>
+                                            <FormattedTransaction amount={total} />
+                                        </td>
+                                        {isEditMode && <td className='py-1 text-right text-sm font-bold' />}
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <p className='mt-8 text-center text-xs italic'>Aucune transaction enregistrée.</p>
+                    )}
+                </div>
 
-            <TransactionForm type={type} user={user} setUser={setUser} />
-        </Card>
+                <TransactionForm type={type} user={user} setUser={setUser} />
+            </Card>
+        </motion.div>
     );
 };

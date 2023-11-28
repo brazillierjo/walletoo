@@ -12,6 +12,8 @@ import { UserApi } from "@/src/APIs/userApi";
 import { useToast } from "@/src/components/ui/use-toast";
 import { Tooltip } from "@/src/components/Commons/Tooltip";
 import { transactionFormats } from "@/src/utils/transactionFormat";
+import { motion } from "framer-motion";
+import { makeCardOpacity } from "@/src/utils/animations";
 
 export const MyAccountCard: React.FC = () => {
     const [user, setUser] = useAtom(userAtom);
@@ -61,58 +63,60 @@ export const MyAccountCard: React.FC = () => {
     if (!user) return null;
 
     return (
-        <Card className='w-full lg:w-fit lg:min-w-[400px]'>
-            <CardHeader className='p-2'>
-                <div className='relative mb-8'>
-                    <picture>
-                        <img className='h-32 w-full rounded-md object-cover' src={randomImageUrl ?? ""} alt='user banner' />
-                    </picture>
+        <motion.div className='w-full lg:w-fit' initial='hidden' animate='visible' variants={makeCardOpacity()}>
+            <Card className='w-full lg:w-fit lg:min-w-[400px]'>
+                <CardHeader className='p-2'>
+                    <div className='relative mb-8'>
+                        <picture>
+                            <img className='h-32 w-full rounded-md object-cover' src={randomImageUrl ?? ""} alt='user banner' />
+                        </picture>
 
-                    {user.avatar && (
-                        <Image
-                            className='absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black'
-                            width={100}
-                            height={100}
-                            src={user.avatar}
-                            alt='Avatar'
-                            priority
-                        />
-                    )}
+                        {user.avatar && (
+                            <Image
+                                className='absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black'
+                                width={100}
+                                height={100}
+                                src={user.avatar}
+                                alt='Avatar'
+                                priority
+                            />
+                        )}
 
-                    <div className='float-right'>
-                        <Tooltip
-                            title='Pourquoi ne puis-je pas modifier mes informations personnelles ?'
-                            description='Walletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Walletoo ne peut pas modifier ces informations.'
-                        />
+                        <div className='float-right'>
+                            <Tooltip
+                                title='Pourquoi ne puis-je pas modifier mes informations personnelles ?'
+                                description='Walletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Walletoo ne peut pas modifier ces informations.'
+                            />
+                        </div>
                     </div>
-                </div>
 
-                <CardTitle className='relative text-center text-lg font-semibold'>{user.fullName}</CardTitle>
-            </CardHeader>
+                    <CardTitle className='relative text-center text-lg font-semibold'>{user.fullName}</CardTitle>
+                </CardHeader>
 
-            <Separator />
+                <Separator />
 
-            <CardContent className='flex flex-col gap-3 p-5 text-sm'>
-                <div className='flex items-center gap-2'>
-                    <p className='break-keep'>E-mail :</p>
-                    <b>{user.email}</b>
-                </div>
+                <CardContent className='flex flex-col gap-3 p-5 text-sm'>
+                    <div className='flex items-center gap-2'>
+                        <p className='break-keep'>E-mail :</p>
+                        <b>{user.email}</b>
+                    </div>
 
-                <div className='flex items-center gap-2'>
-                    <p className='break-keep'>Création : </p>
-                    <b>{formattedDate}</b>
-                </div>
+                    <div className='flex items-center gap-2'>
+                        <p className='break-keep'>Création : </p>
+                        <b>{formattedDate}</b>
+                    </div>
 
-                <div className='flex items-center gap-2'>
-                    <p className='whitespace-nowrap'>Format des transactions :</p>
-                    <EditableContentSelect options={transactionFormats} value={user.transactionFormat ?? ""} onChange={handleFormatChange} />
-                </div>
+                    <div className='flex items-center gap-2'>
+                        <p className='whitespace-nowrap'>Format des transactions :</p>
+                        <EditableContentSelect options={transactionFormats} value={user.transactionFormat ?? ""} onChange={handleFormatChange} />
+                    </div>
 
-                <div className='flex items-center gap-2'>
-                    <p className='whitespace-nowrap'>Devise :</p>
-                    <EditableContentSelect options={currenciesNames} value={user.currency.name ?? ""} onChange={handleCurrencyChange} />
-                </div>
-            </CardContent>
-        </Card>
+                    <div className='flex items-center gap-2'>
+                        <p className='whitespace-nowrap'>Devise :</p>
+                        <EditableContentSelect options={currenciesNames} value={user.currency.name ?? ""} onChange={handleCurrencyChange} />
+                    </div>
+                </CardContent>
+            </Card>
+        </motion.div>
     );
 };

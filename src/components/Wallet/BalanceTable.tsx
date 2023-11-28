@@ -1,9 +1,11 @@
 "use client";
+import FormattedTransaction from "../Commons/FormattedTransaction";
 import { userAtom } from "@/src/atoms/user.atom";
 import { useAtom } from "jotai";
 import { Card } from "@/src/components/ui/card";
-import FormattedTransaction from "../Commons/FormattedTransaction";
 import { Separator } from "@/src/components/ui/separator";
+import { motion } from "framer-motion";
+import { makeCardOpacity } from "@/src/utils/animations";
 
 const BalanceTable: React.FC = () => {
     const [user] = useAtom(userAtom);
@@ -20,7 +22,7 @@ const BalanceTable: React.FC = () => {
     if (user.incomes.length === 0 && user.expenses.length === 0) return null;
 
     return (
-        <div className='flex justify-center gap-5'>
+        <motion.div className='flex justify-center gap-5' initial='hidden' animate='visible' variants={makeCardOpacity(0.4)}>
             <Card className='w-full rounded-lg p-4 lg:w-2/5'>
                 <h2 className='mb-4 text-lg font-semibold'>Récapitulatif</h2>
 
@@ -48,7 +50,7 @@ const BalanceTable: React.FC = () => {
                     </p>
                 </div>
             </Card>
-        </div>
+        </motion.div>
     );
 };
 
