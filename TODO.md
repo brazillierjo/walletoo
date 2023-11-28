@@ -4,4 +4,5 @@
 -   implémenter les tests
 -   fix tooltip mobile
 -   mettre à jour les images bannières
-<!-- -   ajouter une page dashboard avec météo, prise de notes, calendrier -->
+-   créer les pages manquantes (frontend-routes)
+-   ajouter une page dashboard avec météo, prise de notes, calendrier
