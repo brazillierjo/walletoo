@@ -91,33 +91,23 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
                     <table className='w-full'>
                         <thead>
                             <tr>
-                                <th className={cn("px-4 py-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
+                                <th className={cn("pb-1 text-left text-sm uppercase", !isEditMode ? "w-5/12" : "w-5/12")}>
                                     Label
-                                    <button
-                                        onClick={toggleLabelSort}
-                                        className='rounded px-2 text-sm font-bold uppercase transition-all duration-100 hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                    <button onClick={toggleLabelSort}>
                                         <IoChevronDownOutline
-                                            className={cn(
-                                                "inline-block fill-gray-500 dark:fill-white",
-                                                sortType === TransactionFilter.LabelASC ? "rotate-180" : "rotate-0"
-                                            )}
+                                            className={cn("ml-1 h-3 w-3", sortType === TransactionFilter.LabelASC ? "rotate-180" : "rotate-0")}
                                         />
                                     </button>
                                 </th>
-                                <th className={cn("px-4 py-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>
+                                <th className={cn("pb-1 text-right text-sm uppercase", !isEditMode ? "w-7/12" : "w-5/12")}>
                                     Montant
-                                    <button
-                                        onClick={toggleAmountSort}
-                                        className='rounded px-2 text-sm font-bold uppercase transition-all duration-100 hover:bg-gray-100 hover:dark:bg-gray-700'>
+                                    <button onClick={toggleAmountSort}>
                                         <IoChevronDownOutline
-                                            className={cn(
-                                                "inline-block fill-gray-500 dark:fill-white",
-                                                sortType === TransactionFilter.AmountASC ? "rotate-180" : "rotate-0"
-                                            )}
+                                            className={cn("ml-1 h-3 w-3", sortType === TransactionFilter.AmountASC ? "rotate-180" : "rotate-0")}
                                         />
                                     </button>
                                 </th>
-                                {isEditMode && <th className='w-2/12 px-4 py-1 text-right text-sm uppercase'>Actions</th>}
+                                {isEditMode && <th className='w-2/12 text-right text-sm uppercase'>Actions</th>}
                             </tr>
                         </thead>
 
