@@ -8,6 +8,7 @@ import { Header } from "@/src/components/Header/Header";
 import { Sidebar } from "@/src/components/Sidebar/Sidebar";
 import { Toaster } from "@/src/components/ui/toaster";
 import { cn } from "@/src/utils/tailwindMerge";
+import { Footer } from "@/src/components/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ const RootLayout: React.FC<Props> = async ({ children }: Props) => {
                             <div className='w-full'>
                                 <Header />
                                 <main>{children}</main>
+                                <Footer />
                                 <Toaster />
                             </div>
                         </div>
