@@ -89,7 +89,7 @@ export const Footer: React.FC = () => {
                     © {new Date().getFullYear()} <b>Walletoo</b>. Tous droits réservés.
                 </div>
                 <div className='text-sm text-muted-foreground'>
-                    Fait avec <span className='text-accent'>♥</span> par RINCON-BRAZILLIER Johan.
+                    Fait avec <span className='text-accent'>❤️</span> par RINCON-BRAZILLIER Johan.
                     <a className='text-accent hover:underline focus:underline' href='' target='_blank'>
                         Walletoo
                     </a>
