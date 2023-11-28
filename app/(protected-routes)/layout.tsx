@@ -33,7 +33,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
             </div>
         );
 
-    return <div className='flex p-4 lg:p-8'>{children}</div>;
+    return children as JSX.Element;
 };
 
 export default AuthLayout;
