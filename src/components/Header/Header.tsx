@@ -34,8 +34,10 @@ export const Header: React.FC = () => {
 
                     {session?.user?.name && (
                         <DropdownMenu>
-                            <DropdownMenuTrigger>
-                                <RxHamburgerMenu />
+                            <DropdownMenuTrigger asChild>
+                                <Button variant='secondary'>
+                                    <RxHamburgerMenu />
+                                </Button>
                             </DropdownMenuTrigger>
 
                             <DropdownMenuContent>
