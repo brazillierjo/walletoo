@@ -5,7 +5,7 @@ import { redirect } from "next/navigation"
 import { UserApi } from "@/src/APIs/userApi"
 import { userAtom } from "@/src/atoms/user.atom"
 import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen"
-import { Route } from "@/src/enums/frontend-routes"
+import { Route } from "@/src/enums/frontendRoutes"
 import { useAtom } from "jotai"
 import { useSession } from "next-auth/react"
 

@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect } from "react"
 import { redirect } from "next/navigation"
-import { Route } from "@/src/enums/frontend-routes"
+import { Route } from "@/src/enums/frontendRoutes"
 import { useSession } from "next-auth/react"
 
 type SignInProps = {

@@ -1,4 +1,4 @@
-import { ApiRoute } from "@/src/enums/backend-routes"
+import { ApiRoute } from "@/src/enums/backendRoutes"
 import { IUser } from "@/src/interfaces/userInterface"
 import { PartialUserUpdate } from "@/src/mongoDB/userSchema"
 import fetchAPI from "@/src/utils/fetchAPI"

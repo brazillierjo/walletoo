@@ -6,7 +6,7 @@
 @import url("./spinner.css");
 
 .custom-min-h-screen {
-  min-height: calc(100vh - 322px);
+  min-height: calc(100vh - 342px);
 }
 
 ::-webkit-scrollbar {

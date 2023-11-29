@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation"
 import { Logo } from "@/src/components/Commons/Logo"
 import { Button } from "@/src/components/ui/button"
-import { Route } from "@/src/enums/frontend-routes"
+import { Route } from "@/src/enums/frontendRoutes"
 import { signIn, useSession } from "next-auth/react"
 
 export const RightSide: React.FC = () => {

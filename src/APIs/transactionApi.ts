@@ -1,4 +1,4 @@
-import { ApiRoute } from "@/src/enums/backend-routes"
+import { ApiRoute } from "@/src/enums/backendRoutes"
 import fetchAPI from "@/src/utils/fetchAPI"
 
 export class TransactionApi {

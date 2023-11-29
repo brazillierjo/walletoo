@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { buttonVariants } from "@/src/components/ui/button"
-import { Route } from "@/src/enums/frontend-routes"
+import { Route } from "@/src/enums/frontendRoutes"
 
 function Hero() {
   return (

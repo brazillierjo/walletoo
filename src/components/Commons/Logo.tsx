@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import WalletooLogo from "@/src/assets/svg/logo-walletoo.svg"
-import { Route } from "@/src/enums/frontend-routes"
+import { Route } from "@/src/enums/frontendRoutes"
 
 type LogoProps = {
   withLabel?: boolean

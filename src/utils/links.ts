@@ -1,5 +1,5 @@
 import { ElementType } from "react"
-import { Route } from "@/src/enums/frontend-routes"
+import { Route } from "@/src/enums/frontendRoutes"
 import { BiSolidDashboard } from "react-icons/bi"
 import { FaWallet } from "react-icons/fa6"
 import { IoHome } from "react-icons/io5"

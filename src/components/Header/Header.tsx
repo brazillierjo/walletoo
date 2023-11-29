@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu"
-import { Route } from "@/src/enums/frontend-routes"
+import { Route } from "@/src/enums/frontendRoutes"
 import { links } from "@/src/utils/links"
 import { signOut, useSession } from "next-auth/react"
 import { PiSignInBold, PiSignOut } from "react-icons/pi"
