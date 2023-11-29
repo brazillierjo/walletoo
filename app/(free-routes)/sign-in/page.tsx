@@ -3,7 +3,7 @@ import { RightSide } from "@/src/components/SignIn/RightSide"
 
 const SignIn: React.FC = () => {
   return (
-    <div className="min-h-screen flex-wrap md:flex">
+    <div className="flex-wrap md:flex">
       <LeftSide />
       <RightSide />
     </div>
