@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
+import DeleteBanner from "@/public/assets/webp/delete-banner.webp"
 import { UserApi } from "@/src/APIs/userApi"
-import DeleteBanner from "@/src/assets/webp/delete-banner.webp"
 import { userAtom } from "@/src/atoms/user.atom"
 import { Tooltip } from "@/src/components/Commons/Tooltip"
 import { Button } from "@/src/components/ui/button"

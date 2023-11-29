@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
+import ResetBanner from "@/public/assets/webp/reset-banner.webp"
 import { UserApi } from "@/src/APIs/userApi"
-import ResetBanner from "@/src/assets/webp/reset-banner.webp"
 import { userAtom } from "@/src/atoms/user.atom"
 import { Tooltip } from "@/src/components/Commons/Tooltip"
 import { Button } from "@/src/components/ui/button"
