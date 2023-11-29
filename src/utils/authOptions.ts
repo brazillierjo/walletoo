@@ -1,8 +1,8 @@
-import connectDB from "@/src/mongoDB/connect"
-import UserModel from "@/src/mongoDB/userSchema"
-import { NextAuthOptions, User } from "next-auth"
-import GitHubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
+import connectDB from "@/src/mongoDB/connect";
+import UserModel from "@/src/mongoDB/userSchema";
+import { NextAuthOptions, User } from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -21,11 +21,11 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async signIn({ user }: { user: User }) {
-      const { email, name, image } = user
+      const { email, name, image } = user;
 
-      if (!email) return false // if no email, don't sign in
+      if (!email) return false; // if no email, don't sign in
 
-      await connectDB()
+      await connectDB();
 
       const userDoc = await UserModel.findOneAndUpdate(
         { email },
@@ -37,9 +37,9 @@ export const authOptions: NextAuthOptions = {
           transactionFormat: "EU",
         },
         { upsert: true, new: true }
-      )
+      );
 
-      return !!userDoc
+      return !!userDoc;
     },
   },
-}
+};

@@ -1,14 +1,14 @@
-import { useState } from "react"
-import { Dialog } from "@headlessui/react"
+import { useState } from "react";
+import { Dialog } from "@headlessui/react";
 
 type ModalProps = {
-  title: string
-  description: string
-  children: React.ReactNode
-}
+  title: string;
+  description: string;
+  children: React.ReactNode;
+};
 
 export const Modal: React.FC<ModalProps> = ({ title, description, children }) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
@@ -19,5 +19,5 @@ export const Modal: React.FC<ModalProps> = ({ title, description, children }) =>
         {children}
       </Dialog.Panel>
     </Dialog>
-  )
-}
+  );
+};

@@ -1,41 +1,41 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Button } from "@/src/components/ui/button"
-import { Separator } from "@/src/components/ui/separator"
-import { Route } from "@/src/enums/frontendRoutes"
-import { links } from "@/src/utils/links"
-import { cn } from "@/src/utils/tailwindMerge"
-import { signOut, useSession } from "next-auth/react"
-import { MdChevronRight } from "react-icons/md"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/src/components/ui/button";
+import { Separator } from "@/src/components/ui/separator";
+import { Route } from "@/src/enums/frontendRoutes";
+import { links } from "@/src/utils/links";
+import { cn } from "@/src/utils/tailwindMerge";
+import { signOut, useSession } from "next-auth/react";
+import { MdChevronRight } from "react-icons/md";
 
 export const Sidebar: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
-  const [isContentVisible, setIsContentVisible] = useState(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isContentVisible, setIsContentVisible] = useState(true);
 
-  const sidebarLinks = links.filter((link) => link.isInSidebar)
+  const sidebarLinks = links.filter((link) => link.isInSidebar);
 
-  const { data: session } = useSession()
-  const pathname = usePathname()
+  const { data: session } = useSession();
+  const pathname = usePathname();
 
   const isActivelink = (to: string) => {
-    return pathname === to
-  }
+    return pathname === to;
+  };
 
   const timeoutVisibleContent = () => {
     setTimeout(() => {
-      setIsContentVisible(true)
-    }, 200)
-  }
+      setIsContentVisible(true);
+    }, 200);
+  };
 
   const handleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev)
-    setIsContentVisible(false)
-    timeoutVisibleContent()
-  }
+    setIsSidebarOpen((prev) => !prev);
+    setIsContentVisible(false);
+    timeoutVisibleContent();
+  };
 
   return (
     <div
@@ -108,5 +108,5 @@ export const Sidebar: React.FC = () => {
         )}
       </button>
     </div>
-  )
-}
+  );
+};

@@ -1,1 +1,1 @@
-export const transactionFormats = ["EU", "US"]
+export const transactionFormats = ["EU", "US"];

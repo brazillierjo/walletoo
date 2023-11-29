@@ -1,6 +1,6 @@
-import { ApiResponse } from "@/src/interfaces/requestInterface"
+import { ApiResponse } from "@/src/interfaces/requestInterface";
 
-type RequestBody = BodyInit | Record<string, unknown> | null
+type RequestBody = BodyInit | Record<string, unknown> | null;
 
 async function fetchAPI<T = unknown>(
   url: string,
@@ -9,21 +9,21 @@ async function fetchAPI<T = unknown>(
 ): Promise<ApiResponse<T>> {
   const headers: HeadersInit = {
     "Content-Type": "application/json",
-  }
+  };
 
-  const jsonBody = body && typeof body === "object" ? JSON.stringify(body) : body
+  const jsonBody = body && typeof body === "object" ? JSON.stringify(body) : body;
 
   const response = await fetch(url, {
     method,
     headers,
     body: jsonBody,
-  })
+  });
 
   if (!response.ok) {
-    throw new Error(`Erreur HTTP: ${response.status}`)
+    throw new Error(`Erreur HTTP: ${response.status}`);
   }
 
-  return response.json() as Promise<ApiResponse<T>>
+  return response.json() as Promise<ApiResponse<T>>;
 }
 
-export default fetchAPI
+export default fetchAPI;

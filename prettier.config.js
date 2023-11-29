@@ -1,7 +1,7 @@
 /** @type {import('prettier').Config} */
 module.exports = {
   endOfLine: "lf",
-  semi: false,
+  semi: true,
   singleQuote: false,
   printWidth: 120,
   tabWidth: 2,
@@ -24,4 +24,4 @@ module.exports = {
     "^[./]",
   ],
   plugins: ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
-}
+};

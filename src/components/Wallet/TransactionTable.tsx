@@ -1,66 +1,66 @@
-"use client"
+"use client";
 
-import { useMemo, useState } from "react"
-import { userAtom } from "@/src/atoms/user.atom"
-import FormattedTransaction from "@/src/components/Commons/FormattedTransaction"
-import { Card } from "@/src/components/ui/card"
-import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/src/components/ui/table"
-import { CreateTransactionForm } from "@/src/components/Wallet/CreateTransactionForm"
-import { TransactionFilter } from "@/src/enums/transactionFilter"
-import { TransactionType } from "@/src/enums/transactionType"
-import { makeCardOpacity } from "@/src/utils/animations"
-import { cn } from "@/src/utils/tailwindMerge"
-import { motion } from "framer-motion"
-import { useAtom } from "jotai"
-import { IoChevronDownOutline } from "react-icons/io5"
+import { useMemo, useState } from "react";
+import { userAtom } from "@/src/atoms/user.atom";
+import FormattedTransaction from "@/src/components/Commons/FormattedTransaction";
+import { Card } from "@/src/components/ui/card";
+import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/src/components/ui/table";
+import { CreateTransactionForm } from "@/src/components/Wallet/CreateTransactionForm";
+import { TransactionFilter } from "@/src/enums/transactionFilter";
+import { TransactionType } from "@/src/enums/transactionType";
+import { makeCardOpacity } from "@/src/utils/animations";
+import { cn } from "@/src/utils/tailwindMerge";
+import { motion } from "framer-motion";
+import { useAtom } from "jotai";
+import { IoChevronDownOutline } from "react-icons/io5";
 
 type TransactionTableProps = {
-  type: TransactionType
-}
+  type: TransactionType;
+};
 
 export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
-  const [user, setUser] = useAtom(userAtom)
-  const [sortType, setSortType] = useState<TransactionFilter>(TransactionFilter.AmountDESC)
+  const [user, setUser] = useAtom(userAtom);
+  const [sortType, setSortType] = useState<TransactionFilter>(TransactionFilter.AmountDESC);
 
-  const transactions = type === TransactionType.INCOMES ? user?.incomes : user?.expenses
+  const transactions = type === TransactionType.INCOMES ? user?.incomes : user?.expenses;
 
   const total = useMemo(() => {
-    if (!transactions) return 0
+    if (!transactions) return 0;
 
-    return transactions.reduce((acc, curr) => acc + curr.amount, 0)
-  }, [transactions])
+    return transactions.reduce((acc, curr) => acc + curr.amount, 0);
+  }, [transactions]);
 
   const sortedTransactions = useMemo(() => {
-    if (!transactions) return []
+    if (!transactions) return [];
 
     return [...transactions].sort((a, b) => {
       switch (sortType) {
         case TransactionFilter.LabelDESC:
-          return a.label.localeCompare(b.label)
+          return a.label.localeCompare(b.label);
         case TransactionFilter.LabelASC:
-          return b.label.localeCompare(a.label)
+          return b.label.localeCompare(a.label);
         case TransactionFilter.AmountASC:
-          return a.amount - b.amount
+          return a.amount - b.amount;
         case TransactionFilter.AmountDESC:
         default:
-          return b.amount - a.amount
+          return b.amount - a.amount;
       }
-    })
-  }, [transactions, sortType])
+    });
+  }, [transactions, sortType]);
 
   const toggleLabelSort = () => {
     setSortType((prevType) =>
       prevType === TransactionFilter.LabelDESC ? TransactionFilter.LabelASC : TransactionFilter.LabelDESC
-    )
-  }
+    );
+  };
 
   const toggleAmountSort = () => {
     setSortType((prevType) =>
       prevType === TransactionFilter.AmountDESC ? TransactionFilter.AmountASC : TransactionFilter.AmountDESC
-    )
-  }
+    );
+  };
 
-  if (!transactions || !user) return null
+  if (!transactions || !user) return null;
 
   return (
     <motion.div
@@ -131,5 +131,5 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
         <CreateTransactionForm type={type} user={user} setUser={setUser} />
       </Card>
     </motion.div>
-  )
-}
+  );
+};

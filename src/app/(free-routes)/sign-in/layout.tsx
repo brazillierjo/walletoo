@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { ReactNode, useEffect } from "react"
-import { redirect } from "next/navigation"
-import { Route } from "@/src/enums/frontendRoutes"
-import { useSession } from "next-auth/react"
+import { ReactNode, useEffect } from "react";
+import { redirect } from "next/navigation";
+import { Route } from "@/src/enums/frontendRoutes";
+import { useSession } from "next-auth/react";
 
 type SignInProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 const SignIn: React.FC<SignInProps> = ({ children }) => {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   useEffect(() => {
-    if (session) return redirect(Route.DASHBOARD)
-  }, [session])
+    if (session) return redirect(Route.DASHBOARD);
+  }, [session]);
 
-  return children as JSX.Element
-}
+  return children as JSX.Element;
+};
 
-export default SignIn
+export default SignIn;

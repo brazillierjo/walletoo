@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const TransactionFormSchema = z.object({
   label: z
@@ -12,4 +12,4 @@ export const TransactionFormSchema = z.object({
       message: "Le montant doit être un nombre positif.",
     }),
   category: z.string(),
-})
+});

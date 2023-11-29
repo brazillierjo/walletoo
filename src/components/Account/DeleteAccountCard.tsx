@@ -1,38 +1,38 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import DeleteBanner from "@/public/assets/webp/delete-banner.webp"
-import { UserApi } from "@/src/APIs/userApi"
-import { userAtom } from "@/src/atoms/user.atom"
-import { Tooltip } from "@/src/components/Commons/Tooltip"
-import { Button } from "@/src/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card"
-import { Separator } from "@/src/components/ui/separator"
-import { Route } from "@/src/enums/frontendRoutes"
-import { makeCardOpacity } from "@/src/utils/animations"
-import { cn } from "@/src/utils/tailwindMerge"
-import { motion } from "framer-motion"
-import { useAtom } from "jotai"
-import { signOut } from "next-auth/react"
+import { useState } from "react";
+import DeleteBanner from "@/public/assets/webp/delete-banner.webp";
+import { UserApi } from "@/src/APIs/userApi";
+import { userAtom } from "@/src/atoms/user.atom";
+import { Tooltip } from "@/src/components/Commons/Tooltip";
+import { Button } from "@/src/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Separator } from "@/src/components/ui/separator";
+import { Route } from "@/src/enums/frontendRoutes";
+import { makeCardOpacity } from "@/src/utils/animations";
+import { cn } from "@/src/utils/tailwindMerge";
+import { motion } from "framer-motion";
+import { useAtom } from "jotai";
+import { signOut } from "next-auth/react";
 
 export const DeleteAccountCard: React.FC = () => {
-  const [hasConfirmedDeletion, setHasConfirmedDeletion] = useState(false)
-  const [user] = useAtom(userAtom)
+  const [hasConfirmedDeletion, setHasConfirmedDeletion] = useState(false);
+  const [user] = useAtom(userAtom);
 
   const handleDelete = () => {
-    !hasConfirmedDeletion && setHasConfirmedDeletion(true)
+    !hasConfirmedDeletion && setHasConfirmedDeletion(true);
 
     hasConfirmedDeletion &&
       UserApi.delete().then((res) => {
-        if (!res) return
+        if (!res) return;
 
         signOut({
           callbackUrl: Route.HOME,
-        })
-      })
-  }
+        });
+      });
+  };
 
-  if (!user) return null
+  if (!user) return null;
 
   return (
     <motion.div className="w-full lg:w-fit" initial="hidden" animate="visible" variants={makeCardOpacity(0.4)}>
@@ -71,5 +71,5 @@ export const DeleteAccountCard: React.FC = () => {
         </CardFooter>
       </Card>
     </motion.div>
-  )
-}
+  );
+};

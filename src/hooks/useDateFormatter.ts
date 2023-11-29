@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { useMemo } from "react";
 
 const useDateFormatter = (date: Date, locale: string = "fr-FR") => {
   return useMemo(() => {
@@ -7,8 +7,8 @@ const useDateFormatter = (date: Date, locale: string = "fr-FR") => {
       month: "long",
       day: "numeric",
       hour: "numeric",
-    })
-  }, [date, locale])
-}
+    });
+  }, [date, locale]);
+};
 
-export default useDateFormatter
+export default useDateFormatter;

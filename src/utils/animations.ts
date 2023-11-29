@@ -7,4 +7,4 @@ export const makeCardOpacity = (delay = 0) => ({
       delay,
     },
   },
-})
+});

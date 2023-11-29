@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import WalletooLogo from "@/public/assets/svg/logo-walletoo.svg"
-import { Route } from "@/src/enums/frontendRoutes"
+import Image from "next/image";
+import Link from "next/link";
+import WalletooLogo from "@/public/assets/svg/logo-walletoo.svg";
+import { Route } from "@/src/enums/frontendRoutes";
 
 type LogoProps = {
-  withLabel?: boolean
-  withCatchPhrase?: boolean
-}
+  withLabel?: boolean;
+  withCatchPhrase?: boolean;
+};
 
 export const Logo: React.FC<LogoProps> = ({ withLabel = false, withCatchPhrase = false }) => {
   return (
@@ -22,5 +22,5 @@ export const Logo: React.FC<LogoProps> = ({ withLabel = false, withCatchPhrase =
         </div>
       </div>
     </Link>
-  )
-}
+  );
+};

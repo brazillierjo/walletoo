@@ -23,4 +23,4 @@ export const currencies = [
     name: "UAH",
     symbol: "₴",
   },
-]
+];

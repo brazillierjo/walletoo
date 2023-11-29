@@ -3,7 +3,7 @@ const SpinnerLoadingScreen: React.FC = () => {
     <div className="spinner-container">
       <div className="spinner" />
     </div>
-  )
-}
+  );
+};
 
-export default SpinnerLoadingScreen
+export default SpinnerLoadingScreen;

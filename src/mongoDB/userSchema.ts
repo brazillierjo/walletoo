@@ -1,13 +1,13 @@
-import { IUser } from "@/src/interfaces/userInterface"
-import mongoose, { Schema } from "mongoose"
+import { IUser } from "@/src/interfaces/userInterface";
+import mongoose, { Schema } from "mongoose";
 
-export type PartialUserUpdate = Partial<IUser>
+export type PartialUserUpdate = Partial<IUser>;
 
 const TransactionSchema: Schema = new Schema({
   label: { type: String, required: true },
   amount: { type: Number, required: true },
   category: { type: String },
-})
+});
 
 const UserSchema: Schema = new Schema({
   email: { type: String, required: true },
@@ -21,8 +21,8 @@ const UserSchema: Schema = new Schema({
   },
   transactionFormat: { type: String, required: true, default: "EU" },
   createdAt: { type: Date, default: Date.now },
-})
+});
 
-const UserModel = mongoose.models.User || mongoose.model<IUser>("User", UserSchema)
+const UserModel = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
 
-export default UserModel
+export default UserModel;

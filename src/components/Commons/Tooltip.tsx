@@ -1,11 +1,11 @@
-import { Button } from "@/src/components/ui/button"
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/src/components/ui/hover-card"
-import { BsQuestionCircle } from "react-icons/bs"
+import { Button } from "@/src/components/ui/button";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/src/components/ui/hover-card";
+import { BsQuestionCircle } from "react-icons/bs";
 
 type TooltipProps = {
-  title?: string
-  description?: string
-}
+  title?: string;
+  description?: string;
+};
 
 export const Tooltip: React.FC<TooltipProps> = ({ title, description }) => {
   return (
@@ -23,5 +23,5 @@ export const Tooltip: React.FC<TooltipProps> = ({ title, description }) => {
         </div>
       </HoverCardContent>
     </HoverCard>
-  )
-}
+  );
+};

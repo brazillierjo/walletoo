@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { buttonVariants } from "@/src/components/ui/button"
-import { Route } from "@/src/enums/frontendRoutes"
+import Link from "next/link";
+import { buttonVariants } from "@/src/components/ui/button";
+import { Route } from "@/src/enums/frontendRoutes";
 
 function Hero() {
   return (
@@ -30,7 +30,7 @@ function Hero() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

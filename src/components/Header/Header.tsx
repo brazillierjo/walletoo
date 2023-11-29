@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Logo } from "@/src/components/Commons/Logo"
-import { ModeToggle } from "@/src/components/Commons/ModeToggle"
-import { Button } from "@/src/components/ui/button"
+import Link from "next/link";
+import { Logo } from "@/src/components/Commons/Logo";
+import { ModeToggle } from "@/src/components/Commons/ModeToggle";
+import { Button } from "@/src/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,17 +11,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/src/components/ui/dropdown-menu"
-import { Route } from "@/src/enums/frontendRoutes"
-import { links } from "@/src/utils/links"
-import { signOut, useSession } from "next-auth/react"
-import { PiSignInBold, PiSignOut } from "react-icons/pi"
-import { RxHamburgerMenu } from "react-icons/rx"
+} from "@/src/components/ui/dropdown-menu";
+import { Route } from "@/src/enums/frontendRoutes";
+import { links } from "@/src/utils/links";
+import { signOut, useSession } from "next-auth/react";
+import { PiSignInBold, PiSignOut } from "react-icons/pi";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 export const Header: React.FC = () => {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
-  const headerLinks = links.filter((link) => link.isInHeader)
+  const headerLinks = links.filter((link) => link.isInHeader);
 
   return (
     <header className="bg-white dark:bg-black">
@@ -86,5 +86,5 @@ export const Header: React.FC = () => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};

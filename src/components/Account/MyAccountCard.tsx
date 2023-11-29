@@ -1,67 +1,67 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { UserApi } from "@/src/APIs/userApi"
-import { userAtom } from "@/src/atoms/user.atom"
-import { EditableContentSelect } from "@/src/components/Commons/EditableContent"
-import { Tooltip } from "@/src/components/Commons/Tooltip"
-import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card"
-import { Separator } from "@/src/components/ui/separator"
-import { useToast } from "@/src/components/ui/use-toast"
-import useDateFormatter from "@/src/hooks/useDateFormatter"
-import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl"
-import { makeCardOpacity } from "@/src/utils/animations"
-import { currencies } from "@/src/utils/currencies"
-import { transactionFormats } from "@/src/utils/transactionFormat"
-import { motion } from "framer-motion"
-import { useAtom } from "jotai"
+import Image from "next/image";
+import { UserApi } from "@/src/APIs/userApi";
+import { userAtom } from "@/src/atoms/user.atom";
+import { EditableContentSelect } from "@/src/components/Commons/EditableContent";
+import { Tooltip } from "@/src/components/Commons/Tooltip";
+import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Separator } from "@/src/components/ui/separator";
+import { useToast } from "@/src/components/ui/use-toast";
+import useDateFormatter from "@/src/hooks/useDateFormatter";
+import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
+import { makeCardOpacity } from "@/src/utils/animations";
+import { currencies } from "@/src/utils/currencies";
+import { transactionFormats } from "@/src/utils/transactionFormat";
+import { motion } from "framer-motion";
+import { useAtom } from "jotai";
 
 export const MyAccountCard: React.FC = () => {
-  const [user, setUser] = useAtom(userAtom)
+  const [user, setUser] = useAtom(userAtom);
 
-  const { toast } = useToast()
-  const formattedDate = useDateFormatter(user ? user.createdAt : new Date())
-  const randomImageUrl = useGetRandomImageUrl()
+  const { toast } = useToast();
+  const formattedDate = useDateFormatter(user ? user.createdAt : new Date());
+  const randomImageUrl = useGetRandomImageUrl();
 
-  const currenciesNames = currencies.map((currency) => currency.name)
+  const currenciesNames = currencies.map((currency) => currency.name);
 
   const handleCurrencyChange = (newCurrencyName: string) => {
-    const newCurrency = currencies.find((currency) => currency.name === newCurrencyName)
+    const newCurrency = currencies.find((currency) => currency.name === newCurrencyName);
 
     if (user && newCurrency && newCurrency.name !== user.currency.name) {
       UserApi.patch({ currency: newCurrency }).then((res) => {
         if (res.status === 200) {
-          const newUser = { ...user }
-          newUser.currency = newCurrency
+          const newUser = { ...user };
+          newUser.currency = newCurrency;
 
-          setUser(newUser)
+          setUser(newUser);
           toast({
             title: "Devise",
             description: "La devise a bien été mise à jour.",
-          })
+          });
         }
-      })
+      });
     }
-  }
+  };
 
   const handleFormatChange = (newFormat: string) => {
     if (user && newFormat !== user.transactionFormat) {
       UserApi.patch({ transactionFormat: newFormat }).then((res) => {
         if (res.status === 200) {
-          const newUser = { ...user }
-          newUser.transactionFormat = newFormat
+          const newUser = { ...user };
+          newUser.transactionFormat = newFormat;
 
-          setUser(newUser)
+          setUser(newUser);
           toast({
             title: "Format des transactions",
             description: "Le format des transactions a bien été mis à jour.",
-          })
+          });
         }
-      })
+      });
     }
-  }
+  };
 
-  if (!user) return null
+  if (!user) return null;
 
   return (
     <motion.div className="w-full lg:w-fit" initial="hidden" animate="visible" variants={makeCardOpacity()}>
@@ -127,5 +127,5 @@ export const MyAccountCard: React.FC = () => {
         </CardContent>
       </Card>
     </motion.div>
-  )
-}
+  );
+};

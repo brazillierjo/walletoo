@@ -1,9 +1,9 @@
-import Link from "next/link"
-import { links } from "@/src/utils/links"
+import Link from "next/link";
+import { links } from "@/src/utils/links";
 
 export const Footer: React.FC = () => {
-  const navigationLinks = links.filter((link) => link.isInHeader || link.isInSidebar)
-  const footerLinks = links.filter((link) => link.isInFooter)
+  const navigationLinks = links.filter((link) => link.isInHeader || link.isInSidebar);
+  const footerLinks = links.filter((link) => link.isInFooter);
 
   return (
     <footer className="mx-auto border-t border-gray-300 bg-secondary px-4 pt-2 text-sm dark:border-gray-700 lg:flex-row lg:px-8">
@@ -39,5 +39,5 @@ export const Footer: React.FC = () => {
         </p>
       </div>
     </footer>
-  )
-}
+  );
+};

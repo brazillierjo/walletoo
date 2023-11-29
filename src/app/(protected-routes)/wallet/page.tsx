@@ -1,6 +1,6 @@
-import BalanceTable from "@/src/components/Wallet/BalanceTable"
-import { TransactionTable } from "@/src/components/Wallet/TransactionTable"
-import { TransactionType } from "@/src/enums/transactionType"
+import BalanceTable from "@/src/components/Wallet/BalanceTable";
+import { TransactionTable } from "@/src/components/Wallet/TransactionTable";
+import { TransactionType } from "@/src/enums/transactionType";
 
 const Wallet: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const Wallet: React.FC = () => {
 
       <BalanceTable />
     </div>
-  )
-}
+  );
+};
 
-export default Wallet
+export default Wallet;

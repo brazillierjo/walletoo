@@ -1,19 +1,19 @@
-import { ElementType } from "react"
-import { Route } from "@/src/enums/frontendRoutes"
-import { BiSolidDashboard } from "react-icons/bi"
-import { FaWallet } from "react-icons/fa6"
-import { IoHome } from "react-icons/io5"
-import { RiAccountPinCircleFill } from "react-icons/ri"
+import { ElementType } from "react";
+import { Route } from "@/src/enums/frontendRoutes";
+import { BiSolidDashboard } from "react-icons/bi";
+import { FaWallet } from "react-icons/fa6";
+import { IoHome } from "react-icons/io5";
+import { RiAccountPinCircleFill } from "react-icons/ri";
 
 type Link = {
-  label: string
-  to: string
-  description: string
-  icon?: ElementType | null
-  isInSidebar: boolean
-  isInHeader: boolean
-  isInFooter: boolean
-}
+  label: string;
+  to: string;
+  description: string;
+  icon?: ElementType | null;
+  isInSidebar: boolean;
+  isInHeader: boolean;
+  isInFooter: boolean;
+};
 
 export const links: Link[] = [
   {
@@ -92,4 +92,4 @@ export const links: Link[] = [
     isInHeader: false,
     isInFooter: true,
   },
-]
+];

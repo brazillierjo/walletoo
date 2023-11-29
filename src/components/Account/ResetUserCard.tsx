@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import ResetBanner from "@/public/assets/webp/reset-banner.webp"
-import { UserApi } from "@/src/APIs/userApi"
-import { userAtom } from "@/src/atoms/user.atom"
-import { Tooltip } from "@/src/components/Commons/Tooltip"
-import { Button } from "@/src/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card"
-import { Separator } from "@/src/components/ui/separator"
-import { makeCardOpacity } from "@/src/utils/animations"
-import { cn } from "@/src/utils/tailwindMerge"
-import { motion } from "framer-motion"
-import { useAtom } from "jotai"
+import { useState } from "react";
+import ResetBanner from "@/public/assets/webp/reset-banner.webp";
+import { UserApi } from "@/src/APIs/userApi";
+import { userAtom } from "@/src/atoms/user.atom";
+import { Tooltip } from "@/src/components/Commons/Tooltip";
+import { Button } from "@/src/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Separator } from "@/src/components/ui/separator";
+import { makeCardOpacity } from "@/src/utils/animations";
+import { cn } from "@/src/utils/tailwindMerge";
+import { motion } from "framer-motion";
+import { useAtom } from "jotai";
 
 export const ResetUserCard: React.FC = () => {
-  const [hasConfirmedReset, setHasConfirmedReset] = useState(false)
-  const [user] = useAtom(userAtom)
+  const [hasConfirmedReset, setHasConfirmedReset] = useState(false);
+  const [user] = useAtom(userAtom);
 
   const handleReset = () => {
-    !hasConfirmedReset && setHasConfirmedReset(true)
+    !hasConfirmedReset && setHasConfirmedReset(true);
 
-    hasConfirmedReset && UserApi.resetUserData().then(() => window.location.reload())
-  }
+    hasConfirmedReset && UserApi.resetUserData().then(() => window.location.reload());
+  };
 
-  if (!user) return null
+  if (!user) return null;
 
   return (
     <motion.div className="w-full lg:w-fit" initial="hidden" animate="visible" variants={makeCardOpacity(0.2)}>
@@ -62,5 +62,5 @@ export const ResetUserCard: React.FC = () => {
         </CardFooter>
       </Card>
     </motion.div>
-  )
-}
+  );
+};
