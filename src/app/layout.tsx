@@ -6,10 +6,11 @@ import { Footer } from "@/src/components/Footer/Footer"
 import { Header } from "@/src/components/Header/Header"
 import { Sidebar } from "@/src/components/Sidebar/Sidebar"
 import { Toaster } from "@/src/components/ui/toaster"
-import SessionProvider from "@/src/providers/SessionProvider"
-import { ThemeProvider } from "@/src/providers/ThemeProvider"
 import { cn } from "@/src/utils/tailwindMerge"
 import { getServerSession } from "next-auth"
+
+import SessionProvider from "../providers/SessionProvider"
+import ThemeProvider from "../providers/ThemeProvider"
 
 const inter = Inter({ subsets: ["latin"] })
 
