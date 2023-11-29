@@ -1,4 +1,4 @@
-import { ApiResponse } from "../interfaces/requestInterface"
+import { ApiResponse } from "@/src/interfaces/requestInterface"
 
 type RequestBody = BodyInit | Record<string, unknown> | null
 

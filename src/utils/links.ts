@@ -1,10 +1,9 @@
 import { ElementType } from "react"
+import { Route } from "@/src/enums/frontend-routes"
 import { BiSolidDashboard } from "react-icons/bi"
 import { FaWallet } from "react-icons/fa6"
 import { IoHome } from "react-icons/io5"
 import { RiAccountPinCircleFill } from "react-icons/ri"
-
-import { Route } from "../enums/frontend-routes"
 
 type Link = {
   label: string

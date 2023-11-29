@@ -1,13 +1,12 @@
 "use client"
 
 import { userAtom } from "@/src/atoms/user.atom"
+import FormattedTransaction from "@/src/components//Commons/FormattedTransaction"
 import { Card } from "@/src/components/ui/card"
 import { Separator } from "@/src/components/ui/separator"
 import { makeCardOpacity } from "@/src/utils/animations"
 import { motion } from "framer-motion"
 import { useAtom } from "jotai"
-
-import FormattedTransaction from "../Commons/FormattedTransaction"
 
 const BalanceTable: React.FC = () => {
   const [user] = useAtom(userAtom)

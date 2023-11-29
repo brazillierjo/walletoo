@@ -1,9 +1,8 @@
 import { ApiRoute } from "@/src/enums/backend-routes"
+import { IUser } from "@/src/interfaces/userInterface"
 import { PartialUserUpdate } from "@/src/mongoDB/userSchema"
+import fetchAPI from "@/src/utils/fetchAPI"
 import { resetData } from "@/src/utils/resetData"
-
-import { IUser } from "../interfaces/userInterface"
-import fetchAPI from "../utils/fetchAPI"
 
 export class UserApi {
   static async get() {

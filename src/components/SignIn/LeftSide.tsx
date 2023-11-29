@@ -1,8 +1,7 @@
 "use client"
 
+import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen"
 import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl"
-
-import SpinnerLoadingScreen from "../Commons/LoadingScreen"
 
 export const LeftSide: React.FC = () => {
   const randomImageUrl = useGetRandomImageUrl()

@@ -1,4 +1,4 @@
-import { PartialUserUpdate } from "../mongoDB/userSchema"
+import { PartialUserUpdate } from "@/src/mongoDB/userSchema"
 
 export const resetData: PartialUserUpdate = {
   incomes: [],

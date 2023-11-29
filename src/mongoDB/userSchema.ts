@@ -1,6 +1,5 @@
+import { IUser } from "@/src/interfaces/userInterface"
 import mongoose, { Schema } from "mongoose"
-
-import { IUser } from "../interfaces/userInterface"
 
 export type PartialUserUpdate = Partial<IUser>
 

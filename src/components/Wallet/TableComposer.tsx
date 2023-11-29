@@ -1,11 +1,10 @@
 import FormattedTransaction from "@/src/components/Commons/FormattedTransaction"
+import { Button } from "@/src/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/src/components/ui/popover"
 import { TransactionFilter } from "@/src/enums/transactionFilter"
 import { ITransaction } from "@/src/interfaces/transactionInterface"
 import { cn } from "@/src/utils/tailwindMerge"
 import { IoChevronDownOutline } from "react-icons/io5"
-
-import { Button } from "../ui/button"
 
 type TableHeadProps = {
   toggleLabelSort: () => void
