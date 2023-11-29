@@ -6,9 +6,9 @@ import { Footer } from "@/src/components/Footer/Footer"
 import { Header } from "@/src/components/Header/Header"
 import { Sidebar } from "@/src/components/Sidebar/Sidebar"
 import { Toaster } from "@/src/components/ui/toaster"
+import SessionProvider from "@/src/providers/SessionProvider"
+import ThemeProvider from "@/src/providers/ThemeProvider"
 import { cn } from "@/src/utils/tailwindMerge"
-import SessionProvider from "@/src/wrappers/SessionProvider"
-import ThemeProvider from "@/src/wrappers/ThemeProvider"
 import { getServerSession } from "next-auth"
 
 const inter = Inter({ subsets: ["latin"] })
