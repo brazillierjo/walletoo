@@ -17,13 +17,13 @@ import { FaCheck } from "react-icons/fa6"
 import { LuCopyPlus } from "react-icons/lu"
 import * as z from "zod"
 
-type TransactionFormProps = {
-  type: TransactionType
+type CreateTransactionFormProps = {
+  type?: TransactionType
   user: IUser
   setUser: (user: IUser) => void
 }
 
-export const TransactionForm: React.FC<TransactionFormProps> = ({ type, user, setUser }) => {
+export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ type, user, setUser }) => {
   const [isFormDisplayed, setIsFormDisplayed] = useState(false)
 
   const ref = useClickAway<HTMLFormElement>(() => {

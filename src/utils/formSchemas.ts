@@ -11,4 +11,5 @@ export const TransactionFormSchema = z.object({
     .refine((value) => !isNaN(value) && value > 0, {
       message: "Le montant doit être un nombre positif.",
     }),
+  category: z.string(),
 })

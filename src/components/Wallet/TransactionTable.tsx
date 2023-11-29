@@ -1,20 +1,18 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { TransactionApi } from "@/src/APIs/transactionApi"
 import { userAtom } from "@/src/atoms/user.atom"
 import FormattedTransaction from "@/src/components/Commons/FormattedTransaction"
 import { Card } from "@/src/components/ui/card"
-import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams"
+import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/src/components/ui/table"
+import { CreateTransactionForm } from "@/src/components/Wallet/CreateTransactionForm"
 import { TransactionFilter } from "@/src/enums/transactionFilter"
 import { TransactionType } from "@/src/enums/transactionType"
-import { ITransaction } from "@/src/interfaces/transactionInterface"
 import { makeCardOpacity } from "@/src/utils/animations"
+import { cn } from "@/src/utils/tailwindMerge"
 import { motion } from "framer-motion"
 import { useAtom } from "jotai"
-
-import { TableHead, TableRow } from "./TableComposer"
-import { TransactionForm } from "./TransactionForm"
+import { IoChevronDownOutline } from "react-icons/io5"
 
 type TransactionTableProps = {
   type: TransactionType
@@ -25,7 +23,6 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
   const [sortType, setSortType] = useState<TransactionFilter>(TransactionFilter.AmountDESC)
 
   const transactions = type === TransactionType.INCOMES ? user?.incomes : user?.expenses
-  const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES
 
   const total = useMemo(() => {
     if (!transactions) return 0
@@ -50,19 +47,6 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
       }
     })
   }, [transactions, sortType])
-
-  const handleDelete = (transaction: ITransaction) => {
-    if (user && transaction._id) {
-      TransactionApi.delete(transaction._id, urlParam).then((res) => {
-        if (res.status === 200) {
-          const newUser = { ...user }
-
-          newUser[urlParam] = newUser[urlParam].filter((t) => t._id !== transaction._id)
-          setUser(newUser)
-        }
-      })
-    }
-  }
 
   const toggleLabelSort = () => {
     setSortType((prevType) =>
@@ -90,31 +74,61 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
 
         <div className="mb-4 px-2">
           {sortedTransactions.length > 0 ? (
-            <table className="w-full">
-              <thead className="border-b">
-                <TableHead toggleLabelSort={toggleLabelSort} toggleAmountSort={toggleAmountSort} sortType={sortType} />
-              </thead>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>
+                    Label
+                    <button onClick={toggleLabelSort}>
+                      <IoChevronDownOutline
+                        className={cn(
+                          "ml-1 h-3 w-3",
+                          sortType === TransactionFilter.LabelASC ? "rotate-180" : "rotate-0"
+                        )}
+                      />
+                    </button>
+                  </TableHead>
+                  <TableHead className="pb-1 text-right text-sm uppercase">
+                    Montant
+                    <button onClick={toggleAmountSort}>
+                      <IoChevronDownOutline
+                        className={cn(
+                          "ml-1 h-3 w-3",
+                          sortType === TransactionFilter.AmountASC ? "rotate-180" : "rotate-0"
+                        )}
+                      />
+                    </button>
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
 
-              <tbody>
+              <TableBody>
                 {sortedTransactions.map((transaction, index) => (
-                  <TableRow key={index} transaction={transaction} onDelete={handleDelete} />
+                  <TableRow key={index} className="cursor-pointer" onClick={() => console.log("click")}>
+                    <TableCell>{transaction.label}</TableCell>
+
+                    <TableCell className="text-right">
+                      <FormattedTransaction amount={transaction.amount} />
+                    </TableCell>
+                  </TableRow>
                 ))}
-                {total && (
-                  <tr className="border-t">
-                    <td className="py-1 pl-2 text-left text-base font-bold uppercase">Total</td>
-                    <td className="py-1 pr-2 text-right text-base font-bold">
-                      <FormattedTransaction amount={total} />
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+              </TableBody>
+
+              <TableFooter>
+                <TableRow>
+                  <TableCell colSpan={1}>Total</TableCell>
+                  <TableCell className="text-right">
+                    <FormattedTransaction amount={total} />
+                  </TableCell>
+                </TableRow>
+              </TableFooter>
+            </Table>
           ) : (
             <p className="mt-8 text-center text-xs italic">Aucune transaction enregistrée.</p>
           )}
         </div>
 
-        <TransactionForm type={type} user={user} setUser={setUser} />
+        <CreateTransactionForm type={type} user={user} setUser={setUser} />
       </Card>
     </motion.div>
   )
