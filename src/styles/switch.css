@@ -9,7 +9,7 @@
   cursor: pointer;
 }
 
-.switch[data-isOn="true"] {
+.switch[data-ison="true"] {
   justify-content: flex-end;
   background-color: rgba(43, 52, 134, 0.596);
 }

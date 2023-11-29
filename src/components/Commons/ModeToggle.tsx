@@ -15,7 +15,7 @@ export function ModeToggle() {
 
   return (
     <div className="flex items-center space-x-2">
-      <div className="switch" data-isOn={isDarkMode} onClick={handleMode}>
+      <div className="switch" data-ison={isDarkMode} onClick={handleMode}>
         <motion.div className="handle" layout />
       </div>
       <CgDarkMode className="h-5 w-5" />
