@@ -16,41 +16,36 @@ export async function POST(req: NextRequest, config: { params: { type: string } 
     if (type === DynamicUrlParams.INCOMES) {
       user.incomes.push(newTransaction)
       await user.save()
-      return new Response(
-        JSON.stringify({
-          data: user.incomes[user.incomes.length - 1],
-          message: "Transaction added.",
-          status: 200,
-        })
-      )
+
+      return Response.json({
+        data: user.incomes[user.incomes.length - 1],
+        message: "Transaction added.",
+        status: 200,
+      })
     }
 
     if (type === DynamicUrlParams.EXPENSES) {
       user.expenses.push(newTransaction)
       await user.save()
-      return new Response(
-        JSON.stringify({
-          data: user.expenses[user.expenses.length - 1],
-          message: "Transaction added.",
-          status: 200,
-        })
-      )
+      return Response.json({
+        data: user.expenses[user.expenses.length - 1],
+        message: "Transaction added.",
+        status: 200,
+      })
     }
 
-    return new Response(
-      JSON.stringify({
-        message: "There was an error during the POST request.",
-        status: 500,
-      })
-    )
+    return Response.json({
+      message: "There was an error during the POST request.",
+      status: 500,
+    })
   } catch (error) {
     console.error(error)
 
     if (error instanceof Error) {
-      return new Response(JSON.stringify({ message: error.message, status: 500 }))
+      return Response.json({ message: error.message, status: 500 })
     }
 
-    return new Response(JSON.stringify({ message: "Internal Server Error", status: 500 }))
+    return Response.json({ message: "Internal Server Error", status: 500 })
   }
 }
 
@@ -69,16 +64,14 @@ export async function DELETE(req: NextRequest, config: { params: { type: string 
 
     await user.save()
 
-    return new Response(JSON.stringify({ message: "Transaction deleted.", status: 200 }))
+    return Response.json({ message: "Transaction deleted.", status: 200 })
   } catch (error) {
     console.error(error)
 
     if (error instanceof Error) {
-      return new Response(JSON.stringify({ message: error.message }), {
-        status: 500,
-      })
+      return Response.json({ message: error.message, status: 500 })
     }
 
-    return new Response(JSON.stringify({ message: "Internal Server Error", status: 500 }))
+    return Response.json({ message: "Internal Server Error", status: 500 })
   }
 }
