@@ -1,9 +1,11 @@
+import { useState } from "react"
 import FormattedTransaction from "@/src/components/Commons/FormattedTransaction"
 import { Button } from "@/src/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/src/components/ui/popover"
 import { TransactionFilter } from "@/src/enums/transactionFilter"
 import { ITransaction } from "@/src/interfaces/transactionInterface"
 import { cn } from "@/src/utils/tailwindMerge"
+import { isBrowser } from "react-device-detect"
 import { IoChevronDownOutline } from "react-icons/io5"
 
 type TableHeadProps = {
@@ -41,15 +43,23 @@ type TransactionRowProps = {
 }
 
 export const TableRow: React.FC<TransactionRowProps> = ({ transaction, onDelete }) => {
+  const [showEditButton, setShowEditButton] = useState(false)
+
   return (
-    <tr className="border-b hover:bg-gray-100 hover:dark:bg-gray-700">
+    <tr
+      onMouseOver={() => setShowEditButton(true)}
+      onMouseLeave={() => setShowEditButton(false)}
+      className="border-b hover:bg-gray-100 hover:dark:bg-gray-700"
+    >
       <td className="flex items-center gap-3 px-4 py-2 text-left text-sm capitalize">
         <span>{transaction.label}</span>
         <Popover>
           <PopoverTrigger>
-            <button className="rounded border border-gray-400 px-2 py-1 text-xs hover:bg-gray-200 dark:border-gray-300 hover:dark:bg-gray-600">
-              Edit
-            </button>
+            {showEditButton && isBrowser && (
+              <button className="rounded border border-gray-400 px-2 text-xs hover:bg-gray-200 dark:border-gray-300 hover:dark:bg-gray-600">
+                Edit
+              </button>
+            )}
           </PopoverTrigger>
 
           <PopoverContent>
