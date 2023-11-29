@@ -1,10 +1,9 @@
-import { NextRequest } from "next/server"
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams"
 import { ITransaction } from "@/src/interfaces/transactionInterface"
 import { requestCheck } from "@/src/utils/requestCheck"
 import { sessionCheck } from "@/src/utils/sessionCheck"
 
-export async function POST(req: NextRequest, config: { params: { type: string } }) {
+export async function POST(req: Request, config: { params: { type: string } }) {
   try {
     const user = await sessionCheck()
     const { type } = config.params
@@ -49,7 +48,7 @@ export async function POST(req: NextRequest, config: { params: { type: string } 
   }
 }
 
-export async function DELETE(req: NextRequest, config: { params: { type: string } }) {
+export async function DELETE(req: Request, config: { params: { type: string } }) {
   try {
     const user = await sessionCheck()
     const { type } = config.params

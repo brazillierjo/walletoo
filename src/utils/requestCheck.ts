@@ -1,7 +1,6 @@
-import { NextRequest } from "next/server"
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams"
 
-export function requestCheck(req: NextRequest, type: string) {
+export function requestCheck(req: Request, type: string) {
   if (type !== DynamicUrlParams.INCOMES && type !== DynamicUrlParams.EXPENSES) {
     throw new Error("Invalid type")
   }
