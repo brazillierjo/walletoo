@@ -1,12 +1,12 @@
-import { ApiRoute } from "@/src/enums/backend-routes";
-import fetchAPI from "@/src/utils/fetchAPI";
+import { ApiRoute } from "@/src/enums/backend-routes"
+import fetchAPI from "@/src/utils/fetchAPI"
 
 export class TransactionApi {
-    static async post(data: { label: string; amount: number }, type: string) {
-        return fetchAPI(`${ApiRoute.TRANSACTION}/${type}`, "POST", data);
-    }
+  static async post(data: { label: string; amount: number }, type: string) {
+    return fetchAPI(`${ApiRoute.TRANSACTION}/${type}`, "POST", data)
+  }
 
-    static async delete(id: string, type: string) {
-        return fetchAPI(`${ApiRoute.TRANSACTION}/${type}`, "DELETE", { id });
-    }
+  static async delete(id: string, type: string) {
+    return fetchAPI(`${ApiRoute.TRANSACTION}/${type}`, "DELETE", { id })
+  }
 }

@@ -1,8 +1,8 @@
-import { PartialUserUpdate } from "../mongoDB/userSchema";
+import { PartialUserUpdate } from "../mongoDB/userSchema"
 
 export const resetData: PartialUserUpdate = {
-    incomes: [],
-    expenses: [],
-    currency: { name: "EUR", symbol: "€" },
-    transactionFormat: "EU",
-};
+  incomes: [],
+  expenses: [],
+  currency: { name: "EUR", symbol: "€" },
+  transactionFormat: "EU",
+}

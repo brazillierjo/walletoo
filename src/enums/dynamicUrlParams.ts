@@ -1,4 +1,4 @@
 export enum DynamicUrlParams {
-    INCOMES = "incomes",
-    EXPENSES = "expenses",
+  INCOMES = "incomes",
+  EXPENSES = "expenses",
 }

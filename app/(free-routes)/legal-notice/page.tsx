@@ -1,5 +1,5 @@
 const LegalNotice: React.FC = () => {
-    return <div>LegalNotice</div>;
-};
+  return <div>LegalNotice</div>
+}
 
-export default LegalNotice;
+export default LegalNotice
