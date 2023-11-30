@@ -1,36 +1,36 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { TransactionApi } from "@/src/APIs/transactionApi"
-import { Button } from "@/src/components/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form"
-import { Input } from "@/src/components/ui/input"
-import { toast } from "@/src/components/ui/use-toast"
-import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams"
-import { TransactionType } from "@/src/enums/transactionType"
-import { IUser } from "@/src/interfaces/userInterface"
-import { TransactionFormSchema } from "@/src/utils/formSchemas"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useClickAway } from "@uidotdev/usehooks"
-import { useForm } from "react-hook-form"
-import { FaCheck } from "react-icons/fa6"
-import { LuCopyPlus } from "react-icons/lu"
-import * as z from "zod"
+import { useState } from "react";
+import { TransactionApi } from "@/src/APIs/transactionApi";
+import { Button } from "@/src/components/ui/button";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form";
+import { Input } from "@/src/components/ui/input";
+import { toast } from "@/src/components/ui/use-toast";
+import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
+import { TransactionType } from "@/src/enums/transactionType";
+import { IUser } from "@/src/interfaces/userInterface";
+import { TransactionFormSchema } from "@/src/utils/formSchemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useClickAway } from "@uidotdev/usehooks";
+import { useForm } from "react-hook-form";
+import { FaCheck } from "react-icons/fa6";
+import { LuCopyPlus } from "react-icons/lu";
+import * as z from "zod";
 
 type CreateTransactionFormProps = {
-  type?: TransactionType
-  user: IUser
-  setUser: (user: IUser) => void
-}
+  type?: TransactionType;
+  user: IUser;
+  setUser: (user: IUser) => void;
+};
 
 export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ type, user, setUser }) => {
-  const [isFormDisplayed, setIsFormDisplayed] = useState(false)
+  const [isFormDisplayed, setIsFormDisplayed] = useState(false);
 
   const ref = useClickAway<HTMLFormElement>(() => {
-    setIsFormDisplayed(false)
-  })
+    setIsFormDisplayed(false);
+  });
 
-  const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES
+  const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
 
   const form = useForm<z.infer<typeof TransactionFormSchema>>({
     resolver: zodResolver(TransactionFormSchema),
@@ -38,24 +38,24 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
       label: "",
       amount: 0,
     },
-  })
+  });
 
   const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
     TransactionApi.post(data, urlParam).then((res) => {
       if (res.status === 200) {
-        setUser({ ...user, [urlParam]: [...user[urlParam], res.data] })
+        setUser({ ...user, [urlParam]: [...user[urlParam], res.data] });
 
         toast({
           title: "Transaction ajoutée",
           description: `La transaction "${data.label}" a bien été ajoutée.`,
           duration: 3000,
-        })
+        });
 
-        setIsFormDisplayed(false)
-        form.reset()
+        setIsFormDisplayed(false);
+        form.reset();
       }
-    })
-  }
+    });
+  };
 
   if (!isFormDisplayed) {
     return (
@@ -64,7 +64,7 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
           <LuCopyPlus className="h-6 w-6" />
         </Button>
       </div>
-    )
+    );
   }
 
   return (
@@ -103,5 +103,5 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
         </Button>
       </form>
     </Form>
-  )
-}
+  );
+};
