@@ -55,8 +55,8 @@ export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transa
       setUser(updatedUser);
       closePanel(false);
       toast({
-        title: "Transaction supprimée",
-        description: `La transaction "${transaction.label}" a bien été supprimée.`,
+        title: "Suppression d'une opération",
+        description: `L'opération "${transaction.label}" a bien été supprimée.`,
         duration: 3000,
       });
     });
@@ -73,10 +73,10 @@ export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transa
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h3 className="mb-4 text-lg font-bold">Modification de la transaction</h3>
+        <h3 className="mb-4 text-lg font-bold">Modification de l'opération</h3>
 
         <p className="mb-4 text-sm text-gray-600">
-          Remplissez les champs ci-dessous pour mettre à jour les informations de la transaction.
+          Remplissez les champs ci-dessous pour mettre à jour les informations de l'opération.
         </p>
 
         <Form {...form}>
@@ -145,7 +145,7 @@ export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transa
       <Separator />
 
       <div>
-        <h3 className="mb-4 text-lg font-bold">Suppression de la transaction</h3>
+        <h3 className="mb-4 text-lg font-bold">Suppression de l'opération</h3>
 
         <p className="mb-4 text-sm text-gray-600">
           Cliquez sur 'Supprimer' pour retirer définitivement cette transaction de votre historique. Cette action est

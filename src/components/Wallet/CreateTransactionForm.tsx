@@ -18,7 +18,7 @@ import { LuCopyPlus } from "react-icons/lu";
 import * as z from "zod";
 
 type CreateTransactionFormProps = {
-  type?: TransactionType;
+  type: TransactionType;
   user: IUser;
   setUser: (user: IUser) => void;
 };
@@ -47,8 +47,8 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
         setUser({ ...user, [urlParam]: [...user[urlParam], res.data] });
 
         toast({
-          title: "Transaction ajoutée",
-          description: `La transaction "${data.label}" a bien été ajoutée.`,
+          title: "Ajout d'une opération",
+          description: `L'opération "${data.label}" a bien été ajoutée.`,
           duration: 3000,
         });
 
@@ -79,7 +79,7 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
               <FormControl>
                 <Input type="text" placeholder="Label" {...field} />
               </FormControl>
-              <FormDescription className="px-2 text-xs italic">Label de la transaction.</FormDescription>
+              <FormDescription className="px-2 text-xs italic">Label de l'opération.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -93,7 +93,7 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
               <FormControl>
                 <Input type="text" placeholder="Montant" {...field} />
               </FormControl>
-              <FormDescription className="px-2 text-xs italic">Montant de la transaction.</FormDescription>
+              <FormDescription className="px-2 text-xs italic">Montant de l'opération.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
