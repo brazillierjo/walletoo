@@ -38,8 +38,33 @@ export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transa
     },
   });
 
-  const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
-    console.log(data);
+  const onSubmit = (formData: z.infer<typeof TransactionFormSchema>) => {
+    if (!user || !formData || !transaction._id) return;
+
+    const updatedOperation = {
+      ...formData,
+      _id: transaction._id,
+    };
+
+    const updatedUser = { ...user };
+    const transactionKey = urlParam === DynamicUrlParams.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+
+    TransactionApi.put(updatedOperation, urlParam).then((res) => {
+      if (res.status !== 200) return;
+
+      updatedUser[transactionKey] = user[transactionKey].map((t) => {
+        if (t._id === updatedOperation._id) return updatedOperation;
+        return t;
+      });
+
+      setUser(updatedUser);
+      closePanel(false);
+      toast({
+        title: "Mise à jour d'une opération",
+        description: `L'opération "${updatedOperation.label}" a bien été mise à jour.`,
+        duration: 3000,
+      });
+    });
   };
 
   const onDelete = () => {

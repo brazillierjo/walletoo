@@ -48,6 +48,53 @@ export async function POST(req: Request, config: { params: { type: string } }) {
   }
 }
 
+export async function PUT(req: Request, config: { params: { type: string } }) {
+  try {
+    const user = await sessionCheck();
+    const { type } = config.params;
+    const { _id, label, amount, category } = await req.json();
+
+    requestCheck(req, type);
+
+    if (type === DynamicUrlParams.INCOMES) {
+      const index = user.incomes.findIndex((income: ITransaction) => income._id?.toString() === _id);
+      user.incomes[index] = { _id, label, amount, category };
+      await user.save();
+
+      return Response.json({
+        data: user.incomes[index],
+        message: "Transaction updated.",
+        status: 200,
+      });
+    }
+
+    if (type === DynamicUrlParams.EXPENSES) {
+      const index = user.expenses.findIndex((expense: ITransaction) => expense._id?.toString() === _id);
+      user.expenses[index] = { _id, label, amount, category };
+      await user.save();
+
+      return Response.json({
+        data: user.expenses[index],
+        message: "Transaction updated.",
+        status: 200,
+      });
+    }
+
+    return Response.json({
+      message: "There was an error during the PUT request.",
+      status: 500,
+    });
+  } catch (error) {
+    console.error(error);
+
+    if (error instanceof Error) {
+      return Response.json({ message: error.message, status: 500 });
+    }
+
+    return Response.json({ message: "Internal Server Error", status: 500 });
+  }
+}
+
 export async function DELETE(req: Request, config: { params: { type: string } }) {
   try {
     const user = await sessionCheck();
