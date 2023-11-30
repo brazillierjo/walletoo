@@ -37,6 +37,7 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
     defaultValues: {
       label: "",
       amount: 0,
+      category: "",
     },
   });
 
