@@ -1,18 +1,24 @@
 "use client";
 
-import { Fragment, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { panelAtom } from "@/src/atoms/panel.atom";
 import { userAtom } from "@/src/atoms/user.atom";
-import FormattedTransaction from "@/src/components/Commons/FormattedTransaction";
+import Panel from "@/src/components/Commons/Panel";
 import { Card } from "@/src/components/ui/card";
-import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/src/components/ui/table";
+import { Table } from "@/src/components/ui/table";
 import { CreateTransactionForm } from "@/src/components/Wallet/CreateTransactionForm";
+import { EditTransactionForm } from "@/src/components/Wallet/EditTransactionForm";
+import {
+  TransactionTableBody,
+  TransactionTableFooter,
+  TransactionTableHeader,
+} from "@/src/components/Wallet/TableComposer";
 import { TransactionFilter } from "@/src/enums/transactionFilter";
 import { TransactionType } from "@/src/enums/transactionType";
+import { ITransaction } from "@/src/interfaces/transactionInterface";
 import { makeCardOpacity } from "@/src/utils/animations";
-import { cn } from "@/src/utils/tailwindMerge";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
-import { IoChevronDownOutline } from "react-icons/io5";
 
 type TransactionTableProps = {
   type: TransactionType;
@@ -20,10 +26,16 @@ type TransactionTableProps = {
 
 export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
   const [user, setUser] = useAtom(userAtom);
+  const [showPanel, setShowPanel] = useAtom(panelAtom);
   const [sortType, setSortType] = useState<TransactionFilter>(TransactionFilter.AmountDESC);
-  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState<ITransaction | null>(null);
 
   const transactions = type === TransactionType.INCOMES ? user?.incomes : user?.expenses;
+
+  const handleSelectedTransaction = (transaction: ITransaction) => {
+    setSelectedTransaction(transaction);
+    setShowPanel(true);
+  };
 
   const total = useMemo(() => {
     if (!transactions) return 0;
@@ -70,61 +82,30 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ type }) => {
       animate="visible"
       variants={type === TransactionType.EXPENSES ? makeCardOpacity(0.2) : makeCardOpacity()}
     >
+      {showPanel && selectedTransaction && (
+        <Panel onClose={() => setShowPanel(false)}>
+          <EditTransactionForm type={type} transaction={selectedTransaction} closePanel={() => setShowPanel(false)} />
+        </Panel>
+      )}
+
       <Card className="flex h-full flex-col rounded-md p-4">
         <h2 className="mb-4 text-lg font-semibold">{type}</h2>
 
         <div className="mb-4 px-2">
           {sortedTransactions.length > 0 ? (
             <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>
-                    Label
-                    <button onClick={toggleLabelSort}>
-                      <IoChevronDownOutline
-                        className={cn(
-                          "ml-1 h-3 w-3",
-                          sortType === TransactionFilter.LabelASC ? "rotate-180" : "rotate-0"
-                        )}
-                      />
-                    </button>
-                  </TableHead>
-                  <TableHead className="pb-1 text-right text-sm uppercase">
-                    Montant
-                    <button onClick={toggleAmountSort}>
-                      <IoChevronDownOutline
-                        className={cn(
-                          "ml-1 h-3 w-3",
-                          sortType === TransactionFilter.AmountASC ? "rotate-180" : "rotate-0"
-                        )}
-                      />
-                    </button>
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
+              <TransactionTableHeader
+                toggleLabelSort={toggleLabelSort}
+                toggleAmountSort={toggleAmountSort}
+                sortType={sortType}
+              />
 
-              <TableBody>
-                {sortedTransactions.map((transaction, index) => (
-                  <Fragment key={index}>
-                    <TableRow className="cursor-pointer" onClick={() => setIsTransactionModalOpen(true)}>
-                      <TableCell>{transaction.label}</TableCell>
+              <TransactionTableBody
+                sortedTransactions={sortedTransactions}
+                handleSelectedTransaction={handleSelectedTransaction}
+              />
 
-                      <TableCell className="text-right">
-                        <FormattedTransaction amount={transaction.amount} />
-                      </TableCell>
-                    </TableRow>
-                  </Fragment>
-                ))}
-              </TableBody>
-
-              <TableFooter>
-                <TableRow>
-                  <TableCell colSpan={1}>Total</TableCell>
-                  <TableCell className="text-right">
-                    <FormattedTransaction amount={total} />
-                  </TableCell>
-                </TableRow>
-              </TableFooter>
+              <TransactionTableFooter total={total} />
             </Table>
           ) : (
             <p className="mt-8 text-center text-xs italic">Aucune transaction enregistrée.</p>

@@ -99,7 +99,7 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
         />
 
         <Button variant="secondary" type="submit">
-          <FaCheck className="h-20 w-20" />
+          <FaCheck className="h-3 w-3" />
         </Button>
       </form>
     </Form>
