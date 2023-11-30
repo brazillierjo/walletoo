@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { UserApi } from "@/src/APIs/userApi";
 import { userAtom } from "@/src/atoms/user.atom";
-import { EditableContentSelect } from "@/src/components/Commons/EditableContent";
 import { Tooltip } from "@/src/components/Commons/Tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/src/components/ui/select";
 import { Separator } from "@/src/components/ui/separator";
 import { useToast } from "@/src/components/ui/use-toast";
 import useDateFormatter from "@/src/hooks/useDateFormatter";
@@ -109,20 +109,42 @@ export const MyAccountCard: React.FC = () => {
 
           <div className="flex items-center gap-2">
             <p className="whitespace-nowrap">Format des transactions :</p>
-            <EditableContentSelect
-              options={transactionFormats}
-              value={user.transactionFormat ?? ""}
-              onChange={handleFormatChange}
-            />
+            <Select
+              defaultValue={user.transactionFormat ?? ""}
+              onValueChange={(newValue) => handleFormatChange(newValue)}
+            >
+              <SelectTrigger className="h-6 w-fit">
+                <SelectValue />
+              </SelectTrigger>
+
+              <SelectContent>
+                {transactionFormats.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="flex items-center gap-2">
             <p className="whitespace-nowrap">Devise :</p>
-            <EditableContentSelect
-              options={currenciesNames}
-              value={user.currency.name ?? ""}
-              onChange={handleCurrencyChange}
-            />
+            <Select
+              defaultValue={user.currency.name ?? ""}
+              onValueChange={(newValue) => handleCurrencyChange(newValue)}
+            >
+              <SelectTrigger className="h-6 w-fit">
+                <SelectValue />
+              </SelectTrigger>
+
+              <SelectContent>
+                {currenciesNames.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </CardContent>
       </Card>
