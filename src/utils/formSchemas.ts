@@ -5,11 +5,11 @@ export const TransactionFormSchema = z.object({
     .string()
     .min(2, "Le label doit avoir au moins 2 caractères.")
     .max(25, "Le label ne doit pas dépasser 25 caractères."),
-  amount: z
-    .string()
-    .transform((value) => parseFloat(value.replace(",", ".")))
-    .refine((value) => !isNaN(value) && value > 0, {
-      message: "Le montant doit être un nombre positif.",
-    }),
+  amount: z.preprocess((arg) => {
+    if (typeof arg === "string") {
+      return parseFloat(arg.replace(",", "."));
+    }
+    return arg;
+  }, z.number().positive("Le montant doit être un nombre positif.")),
   category: z.string(),
 });

@@ -91,7 +91,7 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl>
-                <Input type="text" placeholder="Montant" {...field} />
+                <Input type="number" step="0.01" placeholder="Montant" {...field} />
               </FormControl>
               <FormDescription className="px-2 text-xs italic">Montant de l'opération.</FormDescription>
               <FormMessage />

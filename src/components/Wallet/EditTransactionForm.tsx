@@ -103,7 +103,7 @@ export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transa
                   <FormItem className="w-full">
                     <FormLabel>Montant</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="Montant" {...field} />
+                      <Input type="number" step="0.01" placeholder="Montant" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
