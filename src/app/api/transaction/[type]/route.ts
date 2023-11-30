@@ -99,7 +99,7 @@ export async function DELETE(req: Request, config: { params: { type: string } })
   try {
     const user = await sessionCheck();
     const { type } = config.params;
-    const { id: _id } = await req.json();
+    const { _id } = await req.json();
 
     requestCheck(req, type);
 
