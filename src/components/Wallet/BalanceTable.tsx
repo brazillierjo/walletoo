@@ -1,7 +1,7 @@
 "use client";
 
 import { userAtom } from "@/src/atoms/user.atom";
-import FormattedTransaction from "@/src/components//Commons/FormattedTransaction";
+import FormattedOperation from "@/src/components/Commons/FormattedOperation";
 import { Card } from "@/src/components/ui/card";
 import { Separator } from "@/src/components/ui/separator";
 import { makeCardOpacity } from "@/src/utils/animations";
@@ -12,8 +12,8 @@ const BalanceTable: React.FC = () => {
   const [user] = useAtom(userAtom);
   if (!user) return null;
 
-  const calculateTotal = (transactions: Array<{ amount: number }>) => {
-    return transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
+  const calculateTotal = (operations: Array<{ amount: number }>) => {
+    return operations.reduce((acc, operation) => acc + operation.amount, 0);
   };
 
   const totalIncomes = calculateTotal(user.incomes);
@@ -36,13 +36,13 @@ const BalanceTable: React.FC = () => {
           <div className="flex items-center justify-between">
             <h3>Total des revenus :</h3>
             <p className="font-bold">
-              <FormattedTransaction amount={totalIncomes} />
+              <FormattedOperation amount={totalIncomes} />
             </p>
           </div>
           <div className="flex items-center justify-between">
             <h3>Total des dépenses :</h3>
             <p className="font-bold">
-              <FormattedTransaction amount={totalExpenses} />
+              <FormattedOperation amount={totalExpenses} />
             </p>
           </div>
         </div>
@@ -52,7 +52,7 @@ const BalanceTable: React.FC = () => {
         <div className="mt-4 flex items-center justify-between">
           <h3>Restant à la fin du mois :</h3>
           <p className={`font-bold ${netIncome >= 0 ? "text-green-500" : "text-red-500"}`}>
-            <FormattedTransaction amount={netIncome} />
+            <FormattedOperation amount={netIncome} />
           </p>
         </div>
       </Card>

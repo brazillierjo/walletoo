@@ -1,6 +1,6 @@
 "use client";
 
-import { TransactionApi } from "@/src/APIs/transactionApi";
+import { OperationApi } from "@/src/APIs/operationApi";
 import { userAtom } from "@/src/atoms/user.atom";
 import { Button } from "@/src/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form";
@@ -9,50 +9,50 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/src/components/ui/separator";
 import { toast } from "@/src/components/ui/use-toast";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
-import { TransactionType } from "@/src/enums/transactionType";
-import { ITransaction } from "@/src/interfaces/transactionInterface";
+import { OperationType } from "@/src/enums/operationType";
+import { IOperation } from "@/src/interfaces/operationInterface";
 import { expenseCategories, incomeCategories } from "@/src/utils/categories";
-import { TransactionFormSchema } from "@/src/utils/formSchemas";
+import { OperationFormSchema } from "@/src/utils/formSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-type EditTransactionFormProps = {
+type EditOperationFormProps = {
   type: string;
-  transaction: ITransaction;
+  operation: IOperation;
   closePanel: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transaction, type, closePanel }) => {
+export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation, type, closePanel }) => {
   const [user, setUser] = useAtom(userAtom);
 
-  const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+  const urlParam = type === OperationType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
 
-  const form = useForm<z.infer<typeof TransactionFormSchema>>({
-    resolver: zodResolver(TransactionFormSchema),
+  const form = useForm<z.infer<typeof OperationFormSchema>>({
+    resolver: zodResolver(OperationFormSchema),
     defaultValues: {
-      label: transaction.label,
-      amount: transaction.amount,
-      category: transaction.category ?? "",
+      label: operation.label,
+      amount: operation.amount,
+      category: operation.category ?? "",
     },
   });
 
-  const onSubmit = (formData: z.infer<typeof TransactionFormSchema>) => {
-    if (!user || !formData || !transaction._id) return;
+  const onSubmit = (formData: z.infer<typeof OperationFormSchema>) => {
+    if (!user || !formData || !operation._id) return;
 
     const updatedOperation = {
       ...formData,
-      _id: transaction._id,
+      _id: operation._id,
     };
 
     const updatedUser = { ...user };
-    const transactionKey = urlParam === DynamicUrlParams.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+    const operationKey = urlParam === DynamicUrlParams.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
 
-    TransactionApi.put(updatedOperation, urlParam).then((res) => {
+    OperationApi.put(updatedOperation, urlParam).then((res) => {
       if (res.status !== 200) return;
 
-      updatedUser[transactionKey] = user[transactionKey].map((t) => {
+      updatedUser[operationKey] = user[operationKey].map((t) => {
         if (t._id === updatedOperation._id) return updatedOperation;
         return t;
       });
@@ -68,20 +68,20 @@ export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transa
   };
 
   const onDelete = () => {
-    if (!user || !transaction._id) return;
+    if (!user || !operation._id) return;
     const updatedUser = { ...user };
-    const transactionKey = urlParam === DynamicUrlParams.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+    const operationKey = urlParam === DynamicUrlParams.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
 
-    TransactionApi.delete(transaction._id, urlParam).then((res) => {
+    OperationApi.delete(operation._id, urlParam).then((res) => {
       if (res.status !== 200) return;
 
-      updatedUser[transactionKey] = user[transactionKey].filter((t) => t._id !== transaction._id);
+      updatedUser[operationKey] = user[operationKey].filter((t) => t._id !== operation._id);
 
       setUser(updatedUser);
       closePanel(false);
       toast({
         title: "Suppression d'une opération",
-        description: `L'opération "${transaction.label}" a bien été supprimée.`,
+        description: `L'opération "${operation.label}" a bien été supprimée.`,
         duration: 3000,
       });
     });
@@ -147,8 +147,8 @@ export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transa
                           <SelectValue placeholder="Sélectionnez une catégorie" />
                         </SelectTrigger>
                         <SelectContent>
-                          {type === TransactionType.INCOMES && renderCategoryOptions(incomeCategories)}
-                          {type === TransactionType.EXPENSES && renderCategoryOptions(expenseCategories)}
+                          {type === OperationType.INCOMES && renderCategoryOptions(incomeCategories)}
+                          {type === OperationType.EXPENSES && renderCategoryOptions(expenseCategories)}
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -173,7 +173,7 @@ export const EditTransactionForm: React.FC<EditTransactionFormProps> = ({ transa
         <h3 className="mb-4 text-lg font-bold">Suppression de l'opération</h3>
 
         <p className="mb-4 text-sm text-gray-600">
-          Cliquez sur 'Supprimer' pour retirer définitivement cette transaction de votre historique. Cette action est
+          Cliquez sur 'Supprimer' pour retirer définitivement cette opération de votre historique. Cette action est
           irréversible.
         </p>
 

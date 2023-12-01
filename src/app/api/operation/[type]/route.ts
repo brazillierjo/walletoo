@@ -1,5 +1,5 @@
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
-import { ITransaction } from "@/src/interfaces/transactionInterface";
+import { IOperation } from "@/src/interfaces/operationInterface";
 import { requestCheck } from "@/src/utils/requestCheck";
 import { sessionCheck } from "@/src/utils/sessionCheck";
 
@@ -8,27 +8,27 @@ export async function POST(req: Request, config: { params: { type: string } }) {
     const user = await sessionCheck();
     const { type } = config.params;
     const { label, amount } = await req.json();
-    const newTransaction = { label, amount };
+    const newOperation = { label, amount };
 
     requestCheck(req, type);
 
     if (type === DynamicUrlParams.INCOMES) {
-      user.incomes.push(newTransaction);
+      user.incomes.push(newOperation);
       await user.save();
 
       return Response.json({
         data: user.incomes[user.incomes.length - 1],
-        message: "Transaction added.",
+        message: "Operation added.",
         status: 200,
       });
     }
 
     if (type === DynamicUrlParams.EXPENSES) {
-      user.expenses.push(newTransaction);
+      user.expenses.push(newOperation);
       await user.save();
       return Response.json({
         data: user.expenses[user.expenses.length - 1],
-        message: "Transaction added.",
+        message: "Operation added.",
         status: 200,
       });
     }
@@ -57,25 +57,25 @@ export async function PUT(req: Request, config: { params: { type: string } }) {
     requestCheck(req, type);
 
     if (type === DynamicUrlParams.INCOMES) {
-      const index = user.incomes.findIndex((income: ITransaction) => income._id?.toString() === _id);
+      const index = user.incomes.findIndex((income: IOperation) => income._id?.toString() === _id);
       user.incomes[index] = { _id, label, amount, category };
       await user.save();
 
       return Response.json({
         data: user.incomes[index],
-        message: "Transaction updated.",
+        message: "Operation updated.",
         status: 200,
       });
     }
 
     if (type === DynamicUrlParams.EXPENSES) {
-      const index = user.expenses.findIndex((expense: ITransaction) => expense._id?.toString() === _id);
+      const index = user.expenses.findIndex((expense: IOperation) => expense._id?.toString() === _id);
       user.expenses[index] = { _id, label, amount, category };
       await user.save();
 
       return Response.json({
         data: user.expenses[index],
-        message: "Transaction updated.",
+        message: "Operation updated.",
         status: 200,
       });
     }
@@ -104,13 +104,13 @@ export async function DELETE(req: Request, config: { params: { type: string } })
     requestCheck(req, type);
 
     if (type === DynamicUrlParams.INCOMES)
-      user.incomes = user.incomes.filter((income: ITransaction) => income._id?.toString() !== _id);
+      user.incomes = user.incomes.filter((income: IOperation) => income._id?.toString() !== _id);
     if (type === DynamicUrlParams.EXPENSES)
-      user.expenses = user.expenses.filter((expense: ITransaction) => expense._id?.toString() !== _id);
+      user.expenses = user.expenses.filter((expense: IOperation) => expense._id?.toString() !== _id);
 
     await user.save();
 
-    return Response.json({ message: "Transaction deleted.", status: 200 });
+    return Response.json({ message: "Operation deleted.", status: 200 });
   } catch (error) {
     console.error(error);
 

@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
           fullName: name || "",
           avatar: image || "",
           currency: { name: "EUR", symbol: "€" },
-          transactionFormat: "EU",
+          operationFormat: "EU",
         },
         { upsert: true, new: true }
       );

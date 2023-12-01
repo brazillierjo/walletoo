@@ -1,4 +1,4 @@
-export enum TransactionFilter {
+export enum OperationFilter {
   LabelDESC = "label-desc",
   LabelASC = "label-asc",
   AmountDESC = "amount-desc",

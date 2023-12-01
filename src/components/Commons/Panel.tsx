@@ -1,7 +1,5 @@
-import { panelAtom } from "@/src/atoms/panel.atom";
 import { Button } from "@/src/components/ui/button";
 import { motion } from "framer-motion";
-import { useAtom } from "jotai";
 import { MdClose } from "react-icons/md";
 
 interface PanelProps {
@@ -10,8 +8,6 @@ interface PanelProps {
 }
 
 const Panel: React.FC<PanelProps> = ({ children, onClose }) => {
-  const [showPanel] = useAtom(panelAtom);
-
   const panelVariants = {
     initial: {
       x: "100%",
@@ -33,8 +29,6 @@ const Panel: React.FC<PanelProps> = ({ children, onClose }) => {
       },
     },
   };
-
-  if (!showPanel) return null;
 
   return (
     <div className="z-20 lg:fixed lg:left-0 lg:top-0 lg:flex lg:h-screen lg:w-screen">

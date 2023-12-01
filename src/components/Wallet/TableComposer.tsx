@@ -1,18 +1,22 @@
-import FormattedTransaction from "@/src/components/Commons/FormattedTransaction";
+import { panelAtom } from "@/src/atoms/panel.atom";
+import { selectedOperationAtom } from "@/src/atoms/selectedOperation.atom";
+import FormattedOperation from "@/src/components/Commons/FormattedOperation";
 import { TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/src/components/ui/table";
-import { TransactionFilter } from "@/src/enums/transactionFilter";
-import { ITransaction } from "@/src/interfaces/transactionInterface";
+import { OperationFilter } from "@/src/enums/operationFilter";
+import { OperationType } from "@/src/enums/operationType";
+import { IOperation } from "@/src/interfaces/operationInterface";
 import { cn } from "@/src/utils/tailwindMerge";
+import { useAtom } from "jotai";
 import { IoChevronDownOutline } from "react-icons/io5";
 
 // TABLE HEADER
-type TransactionTableHeaderProps = {
+type OperationTableHeaderProps = {
   toggleLabelSort: () => void;
   toggleAmountSort: () => void;
-  sortType: TransactionFilter;
+  sortType: OperationFilter;
 };
 
-export const TransactionTableHeader: React.FC<TransactionTableHeaderProps> = ({
+export const OperationTableHeader: React.FC<OperationTableHeaderProps> = ({
   toggleLabelSort,
   toggleAmountSort,
   sortType,
@@ -24,7 +28,7 @@ export const TransactionTableHeader: React.FC<TransactionTableHeaderProps> = ({
           Label
           <button onClick={toggleLabelSort}>
             <IoChevronDownOutline
-              className={cn("ml-1 h-3 w-3", sortType === TransactionFilter.LabelASC ? "rotate-180" : "rotate-0")}
+              className={cn("ml-1 h-3 w-3", sortType === OperationFilter.LabelASC ? "rotate-180" : "rotate-0")}
             />
           </button>
         </TableHead>
@@ -32,7 +36,7 @@ export const TransactionTableHeader: React.FC<TransactionTableHeaderProps> = ({
           Montant
           <button onClick={toggleAmountSort}>
             <IoChevronDownOutline
-              className={cn("ml-1 h-3 w-3", sortType === TransactionFilter.AmountASC ? "rotate-180" : "rotate-0")}
+              className={cn("ml-1 h-3 w-3", sortType === OperationFilter.AmountASC ? "rotate-180" : "rotate-0")}
             />
           </button>
         </TableHead>
@@ -42,22 +46,27 @@ export const TransactionTableHeader: React.FC<TransactionTableHeaderProps> = ({
 };
 
 // TABLE BODY
-type TransactionTableBodyProps = {
-  sortedTransactions: ITransaction[];
-  handleSelectedTransaction: (transaction: ITransaction) => void;
+type OperationTableBodyProps = {
+  type: OperationType;
+  sortedOperations: IOperation[];
 };
 
-export const TransactionTableBody: React.FC<TransactionTableBodyProps> = ({
-  sortedTransactions,
-  handleSelectedTransaction,
-}) => {
+export const OperationTableBody: React.FC<OperationTableBodyProps> = ({ type, sortedOperations }) => {
+  const [, setSelectedOperation] = useAtom(selectedOperationAtom);
+  const [, setShowPanel] = useAtom(panelAtom);
+
+  const handleSelectedOperation = (operation: IOperation) => {
+    setSelectedOperation({ type, operation });
+    setShowPanel(true);
+  };
+
   return (
     <TableBody>
-      {sortedTransactions.map((transaction, index) => (
-        <TableRow key={index} className="cursor-pointer" onClick={() => handleSelectedTransaction(transaction)}>
-          <TableCell>{transaction.label}</TableCell>
+      {sortedOperations.map((operation) => (
+        <TableRow key={operation._id} className="cursor-pointer" onClick={() => handleSelectedOperation(operation)}>
+          <TableCell>{operation.label}</TableCell>
           <TableCell className="text-right">
-            <FormattedTransaction amount={transaction.amount} />
+            <FormattedOperation amount={operation.amount} />
           </TableCell>
         </TableRow>
       ))}
@@ -66,17 +75,17 @@ export const TransactionTableBody: React.FC<TransactionTableBodyProps> = ({
 };
 
 // TABLE FOOTER
-type TransactionTableFooterProps = {
+type OperationTableFooterProps = {
   total: number;
 };
 
-export const TransactionTableFooter: React.FC<TransactionTableFooterProps> = ({ total }) => {
+export const OperationTableFooter: React.FC<OperationTableFooterProps> = ({ total }) => {
   return (
     <TableFooter>
       <TableRow>
         <TableCell colSpan={1}>Total</TableCell>
         <TableCell className="text-right">
-          <FormattedTransaction amount={total} />
+          <FormattedOperation amount={total} />
         </TableCell>
       </TableRow>
     </TableFooter>

@@ -1,15 +1,15 @@
-import { ITransaction } from "./transactionInterface";
+import { IOperation } from "./operationInterface";
 
 export interface IUser {
   email: string;
   fullName: string;
   avatar: string;
-  incomes: ITransaction[];
-  expenses: ITransaction[];
+  incomes: IOperation[];
+  expenses: IOperation[];
   currency: {
     name: string;
     symbol: string;
   };
-  transactionFormat: string;
+  operationFormat: string;
   createdAt: Date;
 }

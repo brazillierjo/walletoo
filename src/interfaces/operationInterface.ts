@@ -1,4 +1,4 @@
-export interface ITransaction {
+export interface IOperation {
   _id?: string;
   label: string;
   amount: number;

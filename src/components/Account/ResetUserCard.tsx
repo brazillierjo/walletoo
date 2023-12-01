@@ -37,7 +37,7 @@ export const ResetUserCard: React.FC = () => {
             <div className="float-right">
               <Tooltip
                 title="Demande de réinitialisation des données"
-                description="En confirmant la réinitialisation de vos données, vous supprimerez vos données de personnalisation (revenus, dépenses, format des transactions et devise). Cette action est irréversible."
+                description="En confirmant la réinitialisation de vos données, vous supprimerez vos données de personnalisation (revenus, dépenses, format des opérations et devise). Cette action est irréversible."
               />
             </div>
           </div>

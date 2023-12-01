@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 
 export type PartialUserUpdate = Partial<IUser>;
 
-const TransactionSchema: Schema = new Schema({
+const OperationSchema: Schema = new Schema({
   label: { type: String, required: true },
   amount: { type: Number, required: true },
   category: { type: String },
@@ -13,13 +13,13 @@ const UserSchema: Schema = new Schema({
   email: { type: String, required: true },
   fullName: { type: String, required: true },
   avatar: { type: String },
-  incomes: [TransactionSchema],
-  expenses: [TransactionSchema],
+  incomes: [OperationSchema],
+  expenses: [OperationSchema],
   currency: {
     name: { type: String, required: true, default: "EUR" },
     symbol: { type: String, required: true, default: "€" },
   },
-  transactionFormat: { type: String, required: true, default: "EU" },
+  operationFormat: { type: String, required: true, default: "EU" },
   createdAt: { type: Date, default: Date.now },
 });
 

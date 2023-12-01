@@ -1,17 +1,17 @@
 import { userAtom } from "@/src/atoms/user.atom";
 import { useAtom } from "jotai";
 
-interface FormattedTransactionProps {
+interface FormattedOperationProps {
   amount: number;
 }
 
-const FormattedTransaction: React.FC<FormattedTransactionProps> = ({ amount }) => {
+const FormattedOperation: React.FC<FormattedOperationProps> = ({ amount }) => {
   const [user] = useAtom(userAtom);
   if (!user) return <span>-</span>;
 
   const hasDecimals = amount % 1 !== 0;
 
-  const formatter = new Intl.NumberFormat(user.transactionFormat === "EU" ? "fr-FR" : "en-US", {
+  const formatter = new Intl.NumberFormat(user.operationFormat === "EU" ? "fr-FR" : "en-US", {
     style: "currency",
     currency: user.currency.name,
     currencyDisplay: "narrowSymbol",
@@ -22,4 +22,4 @@ const FormattedTransaction: React.FC<FormattedTransactionProps> = ({ amount }) =
   return formatter.format(amount);
 };
 
-export default FormattedTransaction;
+export default FormattedOperation;

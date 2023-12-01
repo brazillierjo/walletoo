@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { TransactionApi } from "@/src/APIs/transactionApi";
+import { OperationApi } from "@/src/APIs/operationApi";
 import { Button } from "@/src/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form";
 import { Input } from "@/src/components/ui/input";
 import { toast } from "@/src/components/ui/use-toast";
 import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
-import { TransactionType } from "@/src/enums/transactionType";
+import { OperationType } from "@/src/enums/operationType";
 import { IUser } from "@/src/interfaces/userInterface";
-import { TransactionFormSchema } from "@/src/utils/formSchemas";
+import { OperationFormSchema } from "@/src/utils/formSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useClickAway } from "@uidotdev/usehooks";
 import { useForm } from "react-hook-form";
@@ -17,23 +17,23 @@ import { FaCheck } from "react-icons/fa6";
 import { LuCopyPlus } from "react-icons/lu";
 import * as z from "zod";
 
-type CreateTransactionFormProps = {
-  type: TransactionType;
+type CreateOperationFormProps = {
+  type: OperationType;
   user: IUser;
   setUser: (user: IUser) => void;
 };
 
-export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ type, user, setUser }) => {
+export const CreateOperationForm: React.FC<CreateOperationFormProps> = ({ type, user, setUser }) => {
   const [isFormDisplayed, setIsFormDisplayed] = useState(false);
 
   const ref = useClickAway<HTMLFormElement>(() => {
     setIsFormDisplayed(false);
   });
 
-  const urlParam = type === TransactionType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+  const urlParam = type === OperationType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
 
-  const form = useForm<z.infer<typeof TransactionFormSchema>>({
-    resolver: zodResolver(TransactionFormSchema),
+  const form = useForm<z.infer<typeof OperationFormSchema>>({
+    resolver: zodResolver(OperationFormSchema),
     defaultValues: {
       label: "",
       amount: 0,
@@ -41,8 +41,8 @@ export const CreateTransactionForm: React.FC<CreateTransactionFormProps> = ({ ty
     },
   });
 
-  const onSubmit = (data: z.infer<typeof TransactionFormSchema>) => {
-    TransactionApi.post(data, urlParam).then((res) => {
+  const onSubmit = (data: z.infer<typeof OperationFormSchema>) => {
+    OperationApi.post(data, urlParam).then((res) => {
       if (res.status === 200) {
         setUser({ ...user, [urlParam]: [...user[urlParam], res.data] });
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const TransactionFormSchema = z.object({
+export const OperationFormSchema = z.object({
   label: z
     .string()
     .min(2, "Le label doit avoir au moins 2 caractères.")
