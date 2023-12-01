@@ -68,9 +68,7 @@ export const OperationTableBody: React.FC<OperationTableBodyProps> = ({ type, so
       {sortedOperations.map((operation) => (
         <TableRow key={operation._id} className="cursor-pointer" onClick={() => handleSelectedOperation(operation)}>
           <TableCell>{operation.label}</TableCell>
-          <TableCell>
-            <Badge variant="secondary">{operation.category || "Aucune"}</Badge>
-          </TableCell>
+          <TableCell>{operation.category && <Badge variant="secondary">{operation.category}</Badge>}</TableCell>
           <TableCell className="text-right">
             <FormattedOperation amount={operation.amount} />
           </TableCell>

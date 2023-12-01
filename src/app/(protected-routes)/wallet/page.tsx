@@ -6,6 +6,7 @@ import Panel from "@/src/components/Commons/Panel";
 import BalanceTable from "@/src/components/Wallet/BalanceTable";
 import { EditOperationForm } from "@/src/components/Wallet/EditOperationForm";
 import { OperationTable } from "@/src/components/Wallet/OperationTable";
+import { OperationByCategories } from "@/src/components/Widgets/OperationByCategories";
 import { OperationTypeLabel } from "@/src/enums/operationType";
 import { useAtom } from "jotai";
 
@@ -22,7 +23,10 @@ const Wallet: React.FC = () => {
         <OperationTable type={OperationTypeLabel.EXPENSES} />
       </div>
 
-      <BalanceTable />
+      <div className="flex flex-col justify-evenly gap-8 md:flex-row">
+        <BalanceTable />
+        <OperationByCategories />
+      </div>
 
       {showPanel && selectedOperation && (
         <Panel key={selectedOperation.operation._id} onClose={() => setShowPanel(false)}>

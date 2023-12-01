@@ -23,13 +23,8 @@ const BalanceTable: React.FC = () => {
   if (user.incomes.length === 0 && user.expenses.length === 0) return null;
 
   return (
-    <motion.div
-      className="flex justify-center gap-5"
-      initial="hidden"
-      animate="visible"
-      variants={makeCardOpacity(0.4)}
-    >
-      <Card className="w-full rounded-lg p-4 lg:w-2/5">
+    <motion.div className="flex" initial="hidden" animate="visible" variants={makeCardOpacity(0.4)}>
+      <Card className="w-full rounded-lg p-4">
         <h2 className="mb-4 text-lg font-semibold">Récapitulatif</h2>
 
         <div className="mb-4 flex flex-col">
