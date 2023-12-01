@@ -6,8 +6,7 @@ import { Button } from "@/src/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/src/components/ui/form";
 import { Input } from "@/src/components/ui/input";
 import { toast } from "@/src/components/ui/use-toast";
-import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
-import { OperationType } from "@/src/enums/operationType";
+import { OperationType, OperationTypeLabel } from "@/src/enums/operationType";
 import { IUser } from "@/src/interfaces/userInterface";
 import { OperationFormSchema } from "@/src/utils/formSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,7 +17,7 @@ import { LuCopyPlus } from "react-icons/lu";
 import * as z from "zod";
 
 type CreateOperationFormProps = {
-  type: OperationType;
+  type: OperationTypeLabel;
   user: IUser;
   setUser: (user: IUser) => void;
 };
@@ -30,7 +29,7 @@ export const CreateOperationForm: React.FC<CreateOperationFormProps> = ({ type, 
     setIsFormDisplayed(false);
   });
 
-  const urlParam = type === OperationType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+  const urlParam = type === OperationTypeLabel.INCOMES ? OperationType.INCOMES : OperationType.EXPENSES;
 
   const form = useForm<z.infer<typeof OperationFormSchema>>({
     resolver: zodResolver(OperationFormSchema),

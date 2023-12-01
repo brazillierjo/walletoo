@@ -8,8 +8,7 @@ import { Input } from "@/src/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/src/components/ui/select";
 import { Separator } from "@/src/components/ui/separator";
 import { toast } from "@/src/components/ui/use-toast";
-import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
-import { OperationType } from "@/src/enums/operationType";
+import { OperationType, OperationTypeLabel } from "@/src/enums/operationType";
 import { IOperation } from "@/src/interfaces/operationInterface";
 import { expenseCategories, incomeCategories } from "@/src/utils/categories";
 import { OperationFormSchema } from "@/src/utils/formSchemas";
@@ -27,7 +26,7 @@ type EditOperationFormProps = {
 export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation, type, closePanel }) => {
   const [user, setUser] = useAtom(userAtom);
 
-  const urlParam = type === OperationType.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+  const urlParam = type === OperationTypeLabel.INCOMES ? OperationType.INCOMES : OperationType.EXPENSES;
 
   const form = useForm<z.infer<typeof OperationFormSchema>>({
     resolver: zodResolver(OperationFormSchema),
@@ -47,7 +46,7 @@ export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation,
     };
 
     const updatedUser = { ...user };
-    const operationKey = urlParam === DynamicUrlParams.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+    const operationKey = urlParam === OperationType.INCOMES ? OperationType.INCOMES : OperationType.EXPENSES;
 
     OperationApi.put(updatedOperation, urlParam).then((res) => {
       if (res.status !== 200) return;
@@ -70,7 +69,7 @@ export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation,
   const onDelete = () => {
     if (!user || !operation._id) return;
     const updatedUser = { ...user };
-    const operationKey = urlParam === DynamicUrlParams.INCOMES ? DynamicUrlParams.INCOMES : DynamicUrlParams.EXPENSES;
+    const operationKey = urlParam === OperationType.INCOMES ? OperationType.INCOMES : OperationType.EXPENSES;
 
     OperationApi.delete(operation._id, urlParam).then((res) => {
       if (res.status !== 200) return;
@@ -147,8 +146,8 @@ export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation,
                           <SelectValue placeholder="Sélectionnez une catégorie" />
                         </SelectTrigger>
                         <SelectContent>
-                          {type === OperationType.INCOMES && renderCategoryOptions(incomeCategories)}
-                          {type === OperationType.EXPENSES && renderCategoryOptions(expenseCategories)}
+                          {type === OperationTypeLabel.INCOMES && renderCategoryOptions(incomeCategories)}
+                          {type === OperationTypeLabel.EXPENSES && renderCategoryOptions(expenseCategories)}
                         </SelectContent>
                       </Select>
                     </FormControl>

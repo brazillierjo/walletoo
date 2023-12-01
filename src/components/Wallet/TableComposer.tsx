@@ -3,7 +3,7 @@ import { selectedOperationAtom } from "@/src/atoms/selectedOperation.atom";
 import FormattedOperation from "@/src/components/Commons/FormattedOperation";
 import { TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/src/components/ui/table";
 import { OperationFilter } from "@/src/enums/operationFilter";
-import { OperationType } from "@/src/enums/operationType";
+import { OperationTypeLabel } from "@/src/enums/operationType";
 import { IOperation } from "@/src/interfaces/operationInterface";
 import { cn } from "@/src/utils/tailwindMerge";
 import { useAtom } from "jotai";
@@ -47,7 +47,7 @@ export const OperationTableHeader: React.FC<OperationTableHeaderProps> = ({
 
 // TABLE BODY
 type OperationTableBodyProps = {
-  type: OperationType;
+  type: OperationTypeLabel;
   sortedOperations: IOperation[];
 };
 

@@ -1,7 +1,7 @@
-import { OperationType } from "@/src/enums/operationType";
+import { OperationTypeLabel } from "@/src/enums/operationType";
 import { IOperation } from "@/src/interfaces/operationInterface";
 
 export type SelectedOperationAtom = {
-  type: OperationType;
+  type: OperationTypeLabel;
   operation: IOperation;
 };

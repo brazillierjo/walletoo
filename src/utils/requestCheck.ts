@@ -1,7 +1,7 @@
-import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
+import { OperationType } from "@/src/enums/operationType";
 
 export function requestCheck(req: Request, type: string) {
-  if (type !== DynamicUrlParams.INCOMES && type !== DynamicUrlParams.EXPENSES) {
+  if (type !== OperationType.INCOMES && type !== OperationType.EXPENSES) {
     throw new Error("Invalid type");
   }
 

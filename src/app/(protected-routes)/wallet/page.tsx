@@ -6,7 +6,7 @@ import Panel from "@/src/components/Commons/Panel";
 import BalanceTable from "@/src/components/Wallet/BalanceTable";
 import { EditOperationForm } from "@/src/components/Wallet/EditOperationForm";
 import { OperationTable } from "@/src/components/Wallet/OperationTable";
-import { OperationType } from "@/src/enums/operationType";
+import { OperationTypeLabel } from "@/src/enums/operationType";
 import { useAtom } from "jotai";
 
 const Wallet: React.FC = () => {
@@ -18,8 +18,8 @@ const Wallet: React.FC = () => {
       <h1 className="shrink text-xl font-bold">Mon Wallet personnel</h1>
 
       <div className="flex flex-col justify-evenly gap-8 md:flex-row">
-        <OperationTable type={OperationType.INCOMES} />
-        <OperationTable type={OperationType.EXPENSES} />
+        <OperationTable type={OperationTypeLabel.INCOMES} />
+        <OperationTable type={OperationTypeLabel.EXPENSES} />
       </div>
 
       <BalanceTable />

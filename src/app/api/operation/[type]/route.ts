@@ -1,4 +1,4 @@
-import { DynamicUrlParams } from "@/src/enums/dynamicUrlParams";
+import { OperationType } from "@/src/enums/operationType";
 import { IOperation } from "@/src/interfaces/operationInterface";
 import { requestCheck } from "@/src/utils/requestCheck";
 import { sessionCheck } from "@/src/utils/sessionCheck";
@@ -12,7 +12,7 @@ export async function POST(req: Request, config: { params: { type: string } }) {
 
     requestCheck(req, type);
 
-    if (type === DynamicUrlParams.INCOMES) {
+    if (type === OperationType.INCOMES) {
       user.incomes.push(newOperation);
       await user.save();
 
@@ -23,7 +23,7 @@ export async function POST(req: Request, config: { params: { type: string } }) {
       });
     }
 
-    if (type === DynamicUrlParams.EXPENSES) {
+    if (type === OperationType.EXPENSES) {
       user.expenses.push(newOperation);
       await user.save();
       return Response.json({
@@ -56,7 +56,7 @@ export async function PUT(req: Request, config: { params: { type: string } }) {
 
     requestCheck(req, type);
 
-    if (type === DynamicUrlParams.INCOMES) {
+    if (type === OperationType.INCOMES) {
       const index = user.incomes.findIndex((income: IOperation) => income._id?.toString() === _id);
       user.incomes[index] = { _id, label, amount, category };
       await user.save();
@@ -68,7 +68,7 @@ export async function PUT(req: Request, config: { params: { type: string } }) {
       });
     }
 
-    if (type === DynamicUrlParams.EXPENSES) {
+    if (type === OperationType.EXPENSES) {
       const index = user.expenses.findIndex((expense: IOperation) => expense._id?.toString() === _id);
       user.expenses[index] = { _id, label, amount, category };
       await user.save();
@@ -103,9 +103,9 @@ export async function DELETE(req: Request, config: { params: { type: string } })
 
     requestCheck(req, type);
 
-    if (type === DynamicUrlParams.INCOMES)
+    if (type === OperationType.INCOMES)
       user.incomes = user.incomes.filter((income: IOperation) => income._id?.toString() !== _id);
-    if (type === DynamicUrlParams.EXPENSES)
+    if (type === OperationType.EXPENSES)
       user.expenses = user.expenses.filter((expense: IOperation) => expense._id?.toString() !== _id);
 
     await user.save();
