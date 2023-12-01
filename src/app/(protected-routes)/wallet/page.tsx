@@ -18,14 +18,14 @@ const Wallet: React.FC = () => {
     <div className="relative flex w-full flex-col gap-6">
       <h1 className="shrink text-xl font-bold">Mon Wallet personnel</h1>
 
-      <div className="flex flex-col justify-evenly gap-8 md:flex-row">
+      <div className="flex flex-col justify-between gap-5 md:flex-row">
         <OperationTable type={OperationTypeLabel.INCOMES} />
         <OperationTable type={OperationTypeLabel.EXPENSES} />
       </div>
 
-      <div className="flex flex-col justify-evenly gap-8 md:flex-row">
-        <BalanceTable />
+      <div className="flex flex-col justify-between gap-5 md:flex-row">
         <OperationByCategories />
+        <BalanceTable />
       </div>
 
       {showPanel && selectedOperation && (
