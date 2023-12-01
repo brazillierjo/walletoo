@@ -141,9 +141,9 @@ export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation,
                   <FormItem className="w-full">
                     <FormLabel>Catégorie (facultatif)</FormLabel>
                     <FormControl>
-                      <Select {...field}>
+                      <Select>
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Sélectionnez une catégorie" />
+                          <SelectValue placeholder="Sélectionnez une catégorie" {...field} />
                         </SelectTrigger>
                         <SelectContent>
                           {type === OperationTypeLabel.INCOMES && renderCategoryOptions(incomeCategories)}
