@@ -61,37 +61,35 @@ export const OperationTable: React.FC<OperationTableProps> = ({ type }) => {
   if (!operations || !user) return null;
 
   return (
-    <>
-      <motion.div
-        className="w-full"
-        initial="hidden"
-        animate="visible"
-        variants={type === OperationTypeLabel.EXPENSES ? makeCardOpacity(0.2) : makeCardOpacity()}
-      >
-        <Card className="flex h-full flex-col rounded-md p-4">
-          <h2 className="mb-4 text-lg font-semibold">{type}</h2>
+    <motion.div
+      className="w-full"
+      initial="hidden"
+      animate="visible"
+      variants={type === OperationTypeLabel.EXPENSES ? makeCardOpacity(0.2) : makeCardOpacity()}
+    >
+      <Card className="flex h-full flex-col rounded-md p-4">
+        <h2 className="mb-4 text-lg font-semibold">{type}</h2>
 
-          <div className="mb-4 px-2">
-            {sortedOperations.length > 0 ? (
-              <Table>
-                <OperationTableHeader
-                  toggleLabelSort={toggleLabelSort}
-                  toggleAmountSort={toggleAmountSort}
-                  sortType={sortType}
-                />
+        <div className="mb-4 px-2">
+          {sortedOperations.length > 0 ? (
+            <Table>
+              <OperationTableHeader
+                toggleLabelSort={toggleLabelSort}
+                toggleAmountSort={toggleAmountSort}
+                sortType={sortType}
+              />
 
-                <OperationTableBody type={type} sortedOperations={sortedOperations} />
+              <OperationTableBody type={type} sortedOperations={sortedOperations} />
 
-                <OperationTableFooter total={total} />
-              </Table>
-            ) : (
-              <p className="mt-8 text-center text-xs italic">Aucune transaction enregistrée.</p>
-            )}
-          </div>
+              <OperationTableFooter total={total} />
+            </Table>
+          ) : (
+            <p className="mt-8 text-center text-xs italic">Aucune transaction enregistrée.</p>
+          )}
+        </div>
 
-          <CreateOperationForm type={type} user={user} setUser={setUser} />
-        </Card>
-      </motion.div>
-    </>
+        <CreateOperationForm type={type} user={user} setUser={setUser} />
+      </Card>
+    </motion.div>
   );
 };

@@ -9,6 +9,8 @@ import { cn } from "@/src/utils/tailwindMerge";
 import { useAtom } from "jotai";
 import { IoChevronDownOutline } from "react-icons/io5";
 
+import { Badge } from "../ui/badge";
+
 // TABLE HEADER
 type OperationTableHeaderProps = {
   toggleLabelSort: () => void;
@@ -32,7 +34,8 @@ export const OperationTableHeader: React.FC<OperationTableHeaderProps> = ({
             />
           </button>
         </TableHead>
-        <TableHead className="pb-1 text-right text-sm uppercase">
+        <TableHead>Catégorie</TableHead>
+        <TableHead className="pb-1 text-right text-sm">
           Montant
           <button onClick={toggleAmountSort}>
             <IoChevronDownOutline
@@ -65,6 +68,9 @@ export const OperationTableBody: React.FC<OperationTableBodyProps> = ({ type, so
       {sortedOperations.map((operation) => (
         <TableRow key={operation._id} className="cursor-pointer" onClick={() => handleSelectedOperation(operation)}>
           <TableCell>{operation.label}</TableCell>
+          <TableCell>
+            <Badge variant="secondary">{operation.category || "Aucune"}</Badge>
+          </TableCell>
           <TableCell className="text-right">
             <FormattedOperation amount={operation.amount} />
           </TableCell>
@@ -84,6 +90,7 @@ export const OperationTableFooter: React.FC<OperationTableFooterProps> = ({ tota
     <TableFooter>
       <TableRow>
         <TableCell colSpan={1}>Total</TableCell>
+        <TableCell />
         <TableCell className="text-right">
           <FormattedOperation amount={total} />
         </TableCell>
