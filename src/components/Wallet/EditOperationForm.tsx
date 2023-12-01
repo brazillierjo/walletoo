@@ -14,7 +14,7 @@ import { expenseCategories, incomeCategories } from "@/src/utils/categories";
 import { OperationFormSchema } from "@/src/utils/formSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
 
 type EditOperationFormProps = {
@@ -141,15 +141,25 @@ export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation,
                   <FormItem className="w-full">
                     <FormLabel>Catégorie (facultatif)</FormLabel>
                     <FormControl>
-                      <Select>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Sélectionnez une catégorie" {...field} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {type === OperationTypeLabel.INCOMES && renderCategoryOptions(incomeCategories)}
-                          {type === OperationTypeLabel.EXPENSES && renderCategoryOptions(expenseCategories)}
-                        </SelectContent>
-                      </Select>
+                      <Controller
+                        name="category"
+                        control={form.control}
+                        render={({ field: { onChange, value } }) => (
+                          <Select
+                            onValueChange={(val) => onChange(val === "none" ? "" : val)}
+                            value={value === "" ? "none" : value}
+                          >
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Sélectionnez une catégorie" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="none">Aucune</SelectItem>
+                              {type === OperationTypeLabel.INCOMES && renderCategoryOptions(incomeCategories)}
+                              {type === OperationTypeLabel.EXPENSES && renderCategoryOptions(expenseCategories)}
+                            </SelectContent>
+                          </Select>
+                        )}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
