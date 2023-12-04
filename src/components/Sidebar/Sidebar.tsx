@@ -12,7 +12,7 @@ import { links } from "@/src/utils/links";
 import { cn } from "@/src/utils/tailwindMerge";
 import { useAtom } from "jotai";
 import { signOut, useSession } from "next-auth/react";
-import { GoSidebarCollapse } from "react-icons/go";
+import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
 
 export const Sidebar: React.FC = () => {
   const [user] = useAtom(userAtom);
@@ -92,12 +92,12 @@ export const Sidebar: React.FC = () => {
       {/* CHEVRON TO OPEN/CLOSE SIDEBAR */}
       <button
         onClick={handleSidebar}
-        className={cn("absolute top-[55px] m-5 opacity-50 hover:opacity-100", isSidebarOpen ? "right-0" : "-right-11")}
+        className={cn("absolute top-[55px] m-5 opacity-60 hover:opacity-100", isSidebarOpen ? "right-0" : "-right-12")}
       >
         {isSidebarOpen ? (
-          <GoSidebarCollapse className="h-5 w-5 rotate-180 opacity-50 transition-all duration-300 hover:opacity-100" />
+          <TbLayoutSidebarLeftCollapseFilled className="h-6 w-6 rotate-0 transition-all duration-300 hover:opacity-100" />
         ) : (
-          <GoSidebarCollapse className="h-5 w-5 rotate-0 opacity-50 transition-all duration-300 hover:opacity-100" />
+          <TbLayoutSidebarLeftCollapseFilled className="h-6 w-6 rotate-180 transition-all duration-300 hover:opacity-100" />
         )}
       </button>
     </div>
