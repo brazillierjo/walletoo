@@ -1,0 +1,52 @@
+import Link from "next/link";
+import { RouterLinkType } from "@/src/utils/links";
+import { cn } from "@/src/utils/tailwindMerge";
+import { FaLock } from "react-icons/fa6";
+
+type DisabledLinkProps = {
+  link: RouterLinkType;
+  withIcon?: boolean;
+};
+
+export const DisabledLink: React.FC<DisabledLinkProps> = ({ link, withIcon }) => {
+  return (
+    <div className="flex items-center gap-2 opacity-40">
+      {withIcon && link.icon && <link.icon className="h-5 w-5" />}
+      <span className="flex items-center gap-2 text-sm transition-all duration-100">
+        {link.label}
+        <FaLock className="h-3 w-3" />
+      </span>
+    </div>
+  );
+};
+
+type RouterLinkProps = {
+  link: RouterLinkType;
+  isActivelink?: (link: string) => boolean;
+  withIcon?: boolean;
+};
+
+export const RouterLink: React.FC<RouterLinkProps> = ({ link, isActivelink, withIcon }) => {
+  return (
+    <Link
+      href={link.to}
+      className={cn(
+        "flex items-center gap-3",
+        isActivelink && isActivelink(link.to) && "border-r-4 border-slate-600 dark:border-white"
+      )}
+    >
+      {withIcon && link.icon && (
+        <link.icon className={cn("h-5 w-5", isActivelink && !isActivelink(link.to) && "opacity-40")} />
+      )}
+      <span
+        className={cn(
+          "flex items-center gap-2 transition-all duration-100",
+          isActivelink && !isActivelink(link.to) ? "text-sm opacity-60 hover:opacity-100" : "test-base"
+        )}
+      >
+        {link.label}
+        {link.isSubscribedRequired && <FaLock className="h-3 w-3" />}
+      </span>
+    </Link>
+  );
+};

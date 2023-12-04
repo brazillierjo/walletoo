@@ -57,10 +57,14 @@ const Wallet: React.FC = () => {
             <PieChart title="Répartition des dépenses" labels={expensesLabels ?? []} data={expensesData ?? []} />
           </div>
         </div>
-      ) : (
+      ) : user.incomes.length > 0 && user.expenses.length > 0 ? (
         <Button className="mx-auto flex w-fit items-center gap-2" onClick={() => setAreChartsDisplay(true)}>
           Afficher les graphiques <FaChartSimple />
         </Button>
+      ) : (
+        <small className="text-center italic opacity-80">
+          Ajouter des opérations pour voir les détails et analyses de celles-ci.
+        </small>
       )}
 
       {showPanel && selectedOperation && (

@@ -6,7 +6,7 @@ import { FcDoughnutChart } from "react-icons/fc";
 import { IoHome } from "react-icons/io5";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 
-type Link = {
+export type RouterLinkType = {
   label: string;
   to: string;
   description: string;
@@ -14,10 +14,10 @@ type Link = {
   isInSidebar: boolean;
   isInHeader: boolean;
   isInFooter: boolean;
-  isSubscribed?: boolean;
+  isSubscribedRequired: boolean;
 };
 
-export const links: Link[] = [
+export const links: RouterLinkType[] = [
   {
     label: "Accueil",
     to: Route.HOME,
@@ -26,6 +26,7 @@ export const links: Link[] = [
     isInSidebar: false,
     isInHeader: true,
     isInFooter: false,
+    isSubscribedRequired: false,
   },
   {
     label: "Mon dashboard",
@@ -35,6 +36,7 @@ export const links: Link[] = [
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
+    isSubscribedRequired: false,
   },
   {
     label: "Mon wallet",
@@ -44,6 +46,7 @@ export const links: Link[] = [
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
+    isSubscribedRequired: false,
   },
   {
     label: "Mon compte",
@@ -53,6 +56,7 @@ export const links: Link[] = [
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
+    isSubscribedRequired: false,
   },
   {
     label: "Ma stratégie",
@@ -62,6 +66,7 @@ export const links: Link[] = [
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
+    isSubscribedRequired: true,
   },
   {
     label: "Contact",
@@ -70,6 +75,7 @@ export const links: Link[] = [
     isInSidebar: false,
     isInHeader: false,
     isInFooter: true,
+    isSubscribedRequired: false,
   },
   {
     label: "A propos",
@@ -78,6 +84,7 @@ export const links: Link[] = [
     isInSidebar: false,
     isInHeader: false,
     isInFooter: true,
+    isSubscribedRequired: false,
   },
   {
     label: "CGU",
@@ -86,6 +93,7 @@ export const links: Link[] = [
     isInSidebar: false,
     isInHeader: false,
     isInFooter: true,
+    isSubscribedRequired: false,
   },
   {
     label: "Confidentialité",
@@ -94,6 +102,7 @@ export const links: Link[] = [
     isInSidebar: false,
     isInHeader: false,
     isInFooter: true,
+    isSubscribedRequired: false,
   },
   {
     label: "Mentions légales",
@@ -102,5 +111,6 @@ export const links: Link[] = [
     isInSidebar: false,
     isInHeader: false,
     isInFooter: true,
+    isSubscribedRequired: false,
   },
 ];

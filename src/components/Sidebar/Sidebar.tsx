@@ -2,17 +2,20 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { userAtom } from "@/src/atoms/user.atom";
+import { DisabledLink, RouterLink } from "@/src/components/Commons/Links";
 import { Button } from "@/src/components/ui/button";
 import { Separator } from "@/src/components/ui/separator";
 import { Route } from "@/src/enums/frontendRoutes";
 import { links } from "@/src/utils/links";
 import { cn } from "@/src/utils/tailwindMerge";
+import { useAtom } from "jotai";
 import { signOut, useSession } from "next-auth/react";
 import { MdChevronRight } from "react-icons/md";
 
 export const Sidebar: React.FC = () => {
+  const [user] = useAtom(userAtom);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isContentVisible, setIsContentVisible] = useState(true);
 
@@ -62,29 +65,14 @@ export const Sidebar: React.FC = () => {
 
             <Separator className="bg-gray-300" />
 
-            <div className="flex flex-col gap-2 py-8 pl-8">
-              {sidebarLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.to}
-                  className={cn(
-                    "flex items-center gap-3 py-2",
-                    isActivelink(link.to) && "border-r-4 border-slate-600 dark:border-white",
-                    link.isSubscribed === false && "opacity-40"
-                  )}
-                >
-                  {link.icon && <link.icon className={cn("h-5 w-5", !isActivelink(link.to) && "opacity-40")} />}
-                  <span
-                    className={cn(
-                      "transition-all duration-100",
-                      !isActivelink(link.to) ? "text-sm opacity-60 hover:opacity-100" : "test-base font-bold",
-                      link.isSubscribed === false && "opacity-40"
-                    )}
-                  >
-                    {link.label}
-                  </span>
-                </Link>
-              ))}
+            <div className="flex flex-col gap-5 py-8 pl-8">
+              {sidebarLinks.map((link, index) => {
+                return link.isSubscribedRequired && !user?.isSubscribed ? (
+                  <DisabledLink key={index} link={link} className="py-2" withIcon />
+                ) : (
+                  <RouterLink key={index} link={link} isActivelink={isActivelink} withIcon />
+                );
+              })}
             </div>
 
             <Button

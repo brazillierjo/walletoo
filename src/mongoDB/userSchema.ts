@@ -13,6 +13,7 @@ const UserSchema: Schema = new Schema({
   email: { type: String, required: true },
   fullName: { type: String, required: true },
   avatar: { type: String },
+  isSubscribed: { type: Boolean, required: true, default: false },
   incomes: [OperationSchema],
   expenses: [OperationSchema],
   currency: {
