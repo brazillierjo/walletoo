@@ -11,7 +11,7 @@
 
 .switch[data-ison="true"] {
   justify-content: flex-end;
-  background-color: rgba(43, 52, 134, 0.596);
+  background-color: rgba(2, 8, 23, 0.596);
 }
 
 .handle {

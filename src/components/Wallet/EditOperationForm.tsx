@@ -99,7 +99,7 @@ export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation,
       <div>
         <h3 className="mb-4 text-lg font-bold">Modification de l'opération</h3>
 
-        <p className="mb-4 text-sm text-gray-600">
+        <p className="mb-4 text-sm">
           Remplissez les champs ci-dessous pour mettre à jour les informations de l'opération.
         </p>
 
@@ -181,7 +181,7 @@ export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation,
       <div>
         <h3 className="mb-4 text-lg font-bold">Suppression de l'opération</h3>
 
-        <p className="mb-4 text-sm text-gray-600">
+        <p className="mb-4 text-sm">
           Cliquez sur 'Supprimer' pour retirer définitivement cette opération de votre historique. Cette action est
           irréversible.
         </p>

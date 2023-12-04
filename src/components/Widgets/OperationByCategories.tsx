@@ -1,15 +1,25 @@
+import { panelAtom } from "@/src/atoms/panel.atom";
+import { selectedOperationAtom } from "@/src/atoms/selectedOperation.atom";
 import { userAtom } from "@/src/atoms/user.atom";
 import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
 import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
 import { OperationType, OperationTypeLabel } from "@/src/enums/operationType";
+import { IOperation } from "@/src/interfaces/operationInterface";
 import { makeCardOpacity } from "@/src/utils/animations";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 
 export const OperationByCategories = () => {
   const [user] = useAtom(userAtom);
+  const [, setSelectedOperation] = useAtom(selectedOperationAtom);
+  const [, setShowPanel] = useAtom(panelAtom);
+
+  const handleSelectedOperation = (type: OperationTypeLabel, operation: IOperation) => {
+    setSelectedOperation({ type, operation });
+    setShowPanel(true);
+  };
 
   const uniqueUserIncomesCategories = Array.from(new Set(user?.incomes.map((income) => income.category)));
   console.log("uniqueUserIncomesCategories", uniqueUserIncomesCategories);
@@ -35,7 +45,12 @@ export const OperationByCategories = () => {
                   {user.incomes
                     .filter((income) => income.category === category)
                     .map((income) => (
-                      <Button variant="secondary" className="flex w-full justify-between" key={income._id}>
+                      <Button
+                        variant="secondary"
+                        className="flex w-full justify-between"
+                        key={income._id}
+                        onClick={() => handleSelectedOperation(OperationTypeLabel.INCOMES, income)}
+                      >
                         <p>{income.label}</p>
                         <p>{income.amount}</p>
                       </Button>
@@ -52,11 +67,16 @@ export const OperationByCategories = () => {
 
                 <div className="flex flex-col gap-1">
                   {user.expenses
-                    .filter((expenses) => expenses.category === category)
-                    .map((expenses) => (
-                      <Button variant="secondary" className="flex w-full justify-between" key={expenses._id}>
-                        <p>{expenses.label}</p>
-                        <p>{expenses.amount}</p>
+                    .filter((expense) => expense.category === category)
+                    .map((expense) => (
+                      <Button
+                        variant="secondary"
+                        className="flex w-full justify-between"
+                        key={expense._id}
+                        onClick={() => handleSelectedOperation(OperationTypeLabel.EXPENSES, expense)}
+                      >
+                        <p>{expense.label}</p>
+                        <p>{expense.amount}</p>
                       </Button>
                     ))}
                 </div>

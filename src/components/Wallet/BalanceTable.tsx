@@ -45,7 +45,7 @@ const BalanceTable: React.FC = () => {
             <TableRow>
               <TableCell className="font-medium">Montant restant :</TableCell>
               <TableCell
-                className={cn("text-right text-lg font-bold", netIncome > 0 ? "text-green-600" : "text-red-500")}
+                className={cn("text-right text-lg font-bold", netIncome >= 0 ? "text-green-600" : "text-red-500")}
               >
                 <FormattedOperation amount={netIncome} />
               </TableCell>
