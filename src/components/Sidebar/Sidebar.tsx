@@ -65,12 +65,12 @@ export const Sidebar: React.FC = () => {
 
             <Separator className="bg-gray-300" />
 
-            <div className="flex flex-col gap-5 py-8 pl-8">
+            <div className="flex flex-col gap-2 py-8 pl-8">
               {sidebarLinks.map((link, index) => {
                 return link.isSubscribedRequired && !user?.isSubscribed ? (
                   <DisabledLink key={index} link={link} className="py-2" withIcon />
                 ) : (
-                  <RouterLink key={index} link={link} isActivelink={isActivelink} withIcon />
+                  <RouterLink key={index} link={link} className="py-2" isActivelink={isActivelink} withIcon />
                 );
               })}
             </div>

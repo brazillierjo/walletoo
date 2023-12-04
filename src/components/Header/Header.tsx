@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { userAtom } from "@/src/atoms/user.atom";
+import { DisabledLink, RouterLink } from "@/src/components/Commons/Links";
 import { Logo } from "@/src/components/Commons/Logo";
 import { ModeToggle } from "@/src/components/Commons/ModeToggle";
 import { Button } from "@/src/components/ui/button";
@@ -14,11 +16,13 @@ import {
 } from "@/src/components/ui/dropdown-menu";
 import { Route } from "@/src/enums/frontendRoutes";
 import { links } from "@/src/utils/links";
+import { useAtom } from "jotai";
 import { signOut, useSession } from "next-auth/react";
 import { PiSignInBold, PiSignOut } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 export const Header: React.FC = () => {
+  const [user] = useAtom(userAtom);
   const { data: session } = useSession();
 
   const headerLinks = links.filter((link) => link.isInHeader);
@@ -45,12 +49,17 @@ export const Header: React.FC = () => {
                 <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
 
-                {headerLinks.map((link, index) => (
-                  <DropdownMenuItem key={index} className="flex gap-2">
-                    {link.icon && <link.icon className="h-4 w-4" />}
-                    <Link href={link.to}>{link.label}</Link>
-                  </DropdownMenuItem>
-                ))}
+                {headerLinks.map((link, index) =>
+                  link.isSubscribedRequired && !user?.isSubscribed ? (
+                    <DropdownMenuItem key={index} className="flex gap-2">
+                      <DisabledLink key={index} link={link} withIcon />
+                    </DropdownMenuItem>
+                  ) : (
+                    <DropdownMenuItem key={index} className="flex gap-2">
+                      <RouterLink key={index} link={link} withIcon />
+                    </DropdownMenuItem>
+                  )
+                )}
 
                 <Button
                   className="mt-1 w-full"

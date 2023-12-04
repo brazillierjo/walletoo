@@ -5,12 +5,13 @@ import { FaLock } from "react-icons/fa6";
 
 type DisabledLinkProps = {
   link: RouterLinkType;
+  className?: string;
   withIcon?: boolean;
 };
 
-export const DisabledLink: React.FC<DisabledLinkProps> = ({ link, withIcon }) => {
+export const DisabledLink: React.FC<DisabledLinkProps> = ({ link, className, withIcon }) => {
   return (
-    <div className="flex items-center gap-2 opacity-40">
+    <div className={cn("flex items-center gap-2 opacity-40", className)}>
       {withIcon && link.icon && <link.icon className="h-5 w-5" />}
       <span className="flex items-center gap-2 text-sm transition-all duration-100">
         {link.label}
@@ -23,15 +24,17 @@ export const DisabledLink: React.FC<DisabledLinkProps> = ({ link, withIcon }) =>
 type RouterLinkProps = {
   link: RouterLinkType;
   isActivelink?: (link: string) => boolean;
+  className?: string;
   withIcon?: boolean;
 };
 
-export const RouterLink: React.FC<RouterLinkProps> = ({ link, isActivelink, withIcon }) => {
+export const RouterLink: React.FC<RouterLinkProps> = ({ link, isActivelink, className, withIcon }) => {
   return (
     <Link
       href={link.to}
       className={cn(
         "flex items-center gap-3",
+        className,
         isActivelink && isActivelink(link.to) && "border-r-4 border-slate-600 dark:border-white"
       )}
     >
