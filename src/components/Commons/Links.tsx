@@ -48,7 +48,6 @@ export const RouterLink: React.FC<RouterLinkProps> = ({ link, isActivelink, clas
         )}
       >
         {link.label}
-        {link.isSubscribedRequired && <FaLock className="h-3 w-3" />}
       </span>
     </Link>
   );
