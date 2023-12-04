@@ -2,6 +2,7 @@
 
 import { panelAtom } from "@/src/atoms/panel.atom";
 import { selectedOperationAtom } from "@/src/atoms/selectedOperation.atom";
+import PieChart from "@/src/components/Charts/PieChart";
 import Panel from "@/src/components/Commons/Panel";
 import BalanceTable from "@/src/components/Wallet/BalanceTable";
 import { EditOperationForm } from "@/src/components/Wallet/EditOperationForm";
@@ -26,6 +27,16 @@ const Wallet: React.FC = () => {
       <div className="flex flex-col justify-between gap-5 md:flex-row">
         <OperationByCategories />
         <BalanceTable />
+      </div>
+
+      <div className="flex flex-col justify-between gap-5 md:flex-row">
+        <div className="w-full md:w-1/2">
+          <PieChart
+            title="Répartition des revenus"
+            data={[44, 55, 13, 43, 22]}
+            labels={["Équipe A", "Équipe B", "Équipe C", "Équipe D", "Équipe E"]}
+          />
+        </div>
       </div>
 
       {showPanel && selectedOperation && (
