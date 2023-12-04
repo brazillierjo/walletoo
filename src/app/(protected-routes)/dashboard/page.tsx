@@ -7,6 +7,7 @@ const Dashboard: React.FC = () => {
 
       <div className="grid-cols-auto-fit grid grid-flow-row-dense gap-4">
         <CalendarWidget />
+        <WeatherWidget />
       </div>
     </div>
   );
