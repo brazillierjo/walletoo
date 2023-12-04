@@ -12,7 +12,7 @@ import { links } from "@/src/utils/links";
 import { cn } from "@/src/utils/tailwindMerge";
 import { useAtom } from "jotai";
 import { signOut, useSession } from "next-auth/react";
-import { MdChevronRight } from "react-icons/md";
+import { GoSidebarCollapse } from "react-icons/go";
 
 export const Sidebar: React.FC = () => {
   const [user] = useAtom(userAtom);
@@ -90,11 +90,14 @@ export const Sidebar: React.FC = () => {
       </div>
 
       {/* CHEVRON TO OPEN/CLOSE SIDEBAR */}
-      <button onClick={handleSidebar} className="absolute -right-10 top-1/2 m-4 -translate-y-1/2">
+      <button
+        onClick={handleSidebar}
+        className={cn("absolute top-[55px] m-5 opacity-50 hover:opacity-100", isSidebarOpen ? "right-0" : "-right-11")}
+      >
         {isSidebarOpen ? (
-          <MdChevronRight className="h-5 w-5 rotate-180 opacity-50 transition-all duration-300 hover:opacity-100" />
+          <GoSidebarCollapse className="h-5 w-5 rotate-180 opacity-50 transition-all duration-300 hover:opacity-100" />
         ) : (
-          <MdChevronRight className="h-5 w-5 rotate-0 opacity-50 transition-all duration-300 hover:opacity-100" />
+          <GoSidebarCollapse className="h-5 w-5 rotate-0 opacity-50 transition-all duration-300 hover:opacity-100" />
         )}
       </button>
     </div>
