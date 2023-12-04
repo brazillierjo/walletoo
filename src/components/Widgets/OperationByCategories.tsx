@@ -28,15 +28,15 @@ export const OperationByCategories = () => {
 
           <TabsContent className="flex flex-nowrap gap-4 overflow-x-auto py-2" value={OperationType.INCOMES}>
             {uniqueUserIncomesCategories.map((category) => (
-              <Card key={category} className="w-full min-w-[220px] rounded-lg p-4">
-                <h4 className="mb-3 font-semibold">{category}</h4>
+              <Card key={category} className="w-full min-w-[250px] rounded-lg p-4">
+                <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">
                   {user.incomes
                     .filter((income) => income.category === category)
                     .map((income) => (
                       <Button variant="secondary" className="flex w-full justify-between" key={income._id}>
-                        <p>{income.label !== undefined ? income.label : "Non catégorisés"}</p>
+                        <p>{income.label}</p>
                         <p>{income.amount}</p>
                       </Button>
                     ))}
@@ -45,18 +45,18 @@ export const OperationByCategories = () => {
             ))}
           </TabsContent>
 
-          <TabsContent className="flex flex-col gap-4" value={OperationType.EXPENSES}>
+          <TabsContent className="flex flex-nowrap gap-4 overflow-x-auto py-2" value={OperationType.EXPENSES}>
             {uniqueUserExpensesCategories.map((category) => (
-              <Card key={category} className="w-full min-w-[220px] rounded-lg p-4">
-                <h4 className="mb-3 font-semibold">{category}</h4>
+              <Card key={category} className="w-full min-w-[250px] rounded-lg p-4">
+                <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">
-                  {user.incomes
-                    .filter((expense) => expense.category === category)
-                    .map((expense) => (
-                      <Button variant="secondary" className="flex w-full justify-between" key={expense._id}>
-                        <p>{expense.label !== undefined ? expense.label : "Non catégorisés"}</p>
-                        <p>{expense.amount}</p>
+                  {user.expenses
+                    .filter((expenses) => expenses.category === category)
+                    .map((expenses) => (
+                      <Button variant="secondary" className="flex w-full justify-between" key={expenses._id}>
+                        <p>{expenses.label}</p>
+                        <p>{expenses.amount}</p>
                       </Button>
                     ))}
                 </div>
