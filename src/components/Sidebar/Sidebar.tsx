@@ -70,7 +70,7 @@ export const Sidebar: React.FC = () => {
                   className={cn(
                     "flex items-center gap-3 py-2",
                     isActivelink(link.to) && "border-r-4 border-slate-600 dark:border-white",
-                    !link.isSubscribed && "opacity-40"
+                    link.isSubscribed === false && "opacity-40"
                   )}
                 >
                   {link.icon && <link.icon className={cn("h-5 w-5", !isActivelink(link.to) && "opacity-40")} />}
@@ -78,7 +78,7 @@ export const Sidebar: React.FC = () => {
                     className={cn(
                       "transition-all duration-100",
                       !isActivelink(link.to) ? "text-sm opacity-60 hover:opacity-100" : "test-base font-bold",
-                      !link.isSubscribed && "opacity-40"
+                      link.isSubscribed === false && "opacity-40"
                     )}
                   >
                     {link.label}
