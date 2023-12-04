@@ -33,6 +33,7 @@ export const authOptions: NextAuthOptions = {
           email,
           fullName: name || "",
           avatar: image || "",
+          isSubscribed: false,
           currency: { name: "EUR", symbol: "€" },
           operationFormat: "EU",
         },

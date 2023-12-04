@@ -4,6 +4,7 @@ export interface IUser {
   email: string;
   fullName: string;
   avatar: string;
+  isSubscribed: boolean;
   incomes: IOperation[];
   expenses: IOperation[];
   currency: {

@@ -2,6 +2,7 @@ import { ElementType } from "react";
 import { Route } from "@/src/enums/frontendRoutes";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaWallet } from "react-icons/fa6";
+import { FcDoughnutChart } from "react-icons/fc";
 import { IoHome } from "react-icons/io5";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 
@@ -13,6 +14,7 @@ type Link = {
   isInSidebar: boolean;
   isInHeader: boolean;
   isInFooter: boolean;
+  isSubscribed?: boolean;
 };
 
 export const links: Link[] = [
@@ -48,6 +50,15 @@ export const links: Link[] = [
     to: Route.ACCOUNT,
     description: "Accédez à votre compte",
     icon: RiAccountPinCircleFill,
+    isInSidebar: true,
+    isInHeader: true,
+    isInFooter: false,
+  },
+  {
+    label: "Ma stratégie",
+    to: Route.STRATEGY,
+    description: "Accédez à votre stratégie personnalisée",
+    icon: FcDoughnutChart,
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,

@@ -23,9 +23,10 @@ const Wallet: React.FC = () => {
 
   const incomesLabels = user?.incomes.map((operation) => operation.label);
   const incomesData = user?.incomes.map((operation) => operation.amount);
-
   const expensesLabels = user?.expenses.map((operation) => operation.label);
   const expensesData = user?.expenses.map((operation) => operation.amount);
+
+  if (!user) return null;
 
   return (
     <div className="relative flex w-full flex-col gap-6">
@@ -36,14 +37,16 @@ const Wallet: React.FC = () => {
         <OperationTable type={OperationTypeLabel.EXPENSES} />
       </div>
 
-      <div className="flex flex-col justify-between gap-5 md:flex-row">
-        <div className="w-full md:w-3/5">
-          <OperationByCategories />
+      {user?.incomes.length > 0 && user?.expenses.length > 0 && (
+        <div className="flex flex-col justify-between gap-5 md:flex-row">
+          <div className="w-full md:w-3/5">
+            <OperationByCategories />
+          </div>
+          <div className="w-full md:w-2/5">
+            <BalanceTable />
+          </div>
         </div>
-        <div className="w-full md:w-2/5">
-          <BalanceTable />
-        </div>
-      </div>
+      )}
 
       {areChartsDisplay ? (
         <div className="flex flex-col justify-between gap-5 md:flex-row">
