@@ -22,13 +22,12 @@ export const OperationByCategories = () => {
   };
 
   const uniqueUserIncomesCategories = Array.from(new Set(user?.incomes.map((income) => income.category)));
-  console.log("uniqueUserIncomesCategories", uniqueUserIncomesCategories);
   const uniqueUserExpensesCategories = Array.from(new Set(user?.expenses.map((expense) => expense.category)));
 
   if (!user) return <SpinnerLoadingScreen />;
 
   return (
-    <motion.div className="flex w-full lg:w-1/2" initial="hidden" animate="visible" variants={makeCardOpacity(0.6)}>
+    <motion.div className="flex h-full w-full" initial="hidden" animate="visible" variants={makeCardOpacity(0.4)}>
       <Card className="w-full rounded-lg p-4">
         <Tabs defaultValue={OperationType.INCOMES}>
           <TabsList>
@@ -38,7 +37,7 @@ export const OperationByCategories = () => {
 
           <TabsContent className="flex flex-nowrap gap-4 overflow-x-auto py-2" value={OperationType.INCOMES}>
             {uniqueUserIncomesCategories.map((category) => (
-              <Card key={category} className="w-full min-w-[250px] rounded-lg p-4">
+              <Card key={category} className="mt-6 w-full min-w-[250px] rounded-lg p-4">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">

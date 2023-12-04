@@ -13,20 +13,8 @@ const PieChart: React.FC<PieChartProps> = ({ title, data, labels }) => {
     series: data,
     options: {
       chart: {
-        type: "donut",
-        animations: {
-          enabled: true,
-          easing: "easeinout",
-          speed: 800,
-          animateGradually: {
-            enabled: true,
-            delay: 150,
-          },
-          dynamicAnimation: {
-            enabled: true,
-            speed: 350,
-          },
-        },
+        width: 380,
+        type: "pie",
       },
       labels: labels,
       responsive: [
@@ -46,11 +34,11 @@ const PieChart: React.FC<PieChartProps> = ({ title, data, labels }) => {
   };
 
   return (
-    <Card className="p-4">
+    <Card className="h-full p-4">
       <h2 className="mb-4 text-lg font-semibold">{title}</h2>
 
       <div className="mx-auto w-full lg:w-2/3">
-        <ApexCharts options={chartData.options} series={chartData.series} type="donut" />
+        <ApexCharts options={chartData.options} series={chartData.series} type="pie" />
       </div>
     </Card>
   );
