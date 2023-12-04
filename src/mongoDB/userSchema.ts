@@ -16,6 +16,7 @@ const UserSchema: Schema = new Schema({
   isSubscribed: { type: Boolean, required: true, default: false },
   incomes: [OperationSchema],
   expenses: [OperationSchema],
+  lang: { type: String, required: true, default: "fr" },
   currency: {
     name: { type: String, required: true, default: "EUR" },
     symbol: { type: String, required: true, default: "€" },

@@ -7,6 +7,7 @@ export interface IUser {
   isSubscribed: boolean;
   incomes: IOperation[];
   expenses: IOperation[];
+  lang: string;
   currency: {
     name: string;
     symbol: string;
