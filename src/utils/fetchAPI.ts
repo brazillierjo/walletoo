@@ -1,6 +1,6 @@
 type RequestBody = BodyInit | Record<string, unknown> | null;
 
-export type ApiResponse<T> = {
+type ApiResponse<T> = {
   status: number;
   message?: string;
   data?: T;

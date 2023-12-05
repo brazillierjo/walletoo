@@ -1,4 +1,5 @@
 import { CalendarWidget } from "@/src/components/Widgets/CalendarWidget";
+import { WeatherWidget } from "@/src/components/Widgets/WeatherWidget";
 
 const Dashboard: React.FC = () => {
   return (
