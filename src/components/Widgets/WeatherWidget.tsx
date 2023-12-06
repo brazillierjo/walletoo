@@ -1,56 +1,76 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Link from "next/link";
 import { WeatherApi } from "@/src/APIs/weatherApi";
 import { userAtom } from "@/src/atoms/user.atom";
 import { weatherAtom } from "@/src/atoms/weather.atom";
-import { SunLogo } from "@/src/components/Commons/WeatherLogos";
+import { WeatherLogo } from "@/src/components/Commons/WeatherLogos";
 import { Card, CardContent } from "@/src/components/ui/card";
+import { Route } from "@/src/enums/frontendRoutes";
 import { useAtom } from "jotai";
+
+import { Button } from "../ui/button";
 
 export const WeatherWidget: React.FC = () => {
   const [user] = useAtom(userAtom);
   const [weather, setWeather] = useAtom(weatherAtom);
+  console.log("weather", weather);
 
-  if (!user) return null;
+  if (!weather || !user)
+    return <Card className="h-fit w-full max-w-screen-sm rounded-xl p-4 ring">Chargement de la météo...</Card>;
 
   useEffect(() => {
-    !weather && fetchWeather();
+    if (!weather || user.city === "") fetchWeather();
   }, [weather]);
 
   const fetchWeather = async () => {
     try {
-      WeatherApi.get(user.city).then((data) => {
-        console.log(data);
-        setWeather(data);
-      });
+      WeatherApi.get(user.city).then((data) => setWeather(data));
     } catch (error) {
       console.error("Erreur lors de la récupération des données météo", error);
     }
   };
 
-  if (!weather) return null;
+  // IF NO CITY
+  if (user.city === "") {
+    return (
+      <Card className="h-fit w-full max-w-screen-sm rounded-xl p-4 ring">
+        <CardContent>
+          <div className="flex flex-col items-center text-center">
+            <span className="mb-3 text-6xl font-bold">🏙️</span>
+
+            <h3 className="text-lg font-semibold">Météo non disponible</h3>
+
+            <p className="mt-2 text-gray-500">
+              Pour afficher la météo, veuillez renseigner votre ville dans les informations de votre compte.
+            </p>
+
+            <Link href={Route.ACCOUNT}>
+              <Button className="mt-5" variant="secondary">
+                Ajouter une ville
+              </Button>
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     weather && (
       <Card className="h-fit w-full max-w-screen-sm rounded-xl p-4 ring">
         <CardContent>
           <div className="flex justify-between">
-            <div className="flex flex-col">
-              <span className="text-6xl font-bold">29°C</span>
-              <span className="mt-1 font-semibold text-gray-500">Paris, FR</span>
+            <div className="flex flex-col gap-1">
+              <span className="text-5xl font-bold">{(weather.main.temp - 273.15).toFixed(0)}°C</span>
+
+              <span className="font-semibold text-secondary-foreground">
+                {weather.name}, {weather.sys.country}
+              </span>
             </div>
 
-            <SunLogo className="h-20 w-20 fill-yellow-400" />
-          </div>
-
-          <div className="mt-6 flex justify-between">
-            <div className="flex flex-col items-center">
-              <span className="text-lg font-semibold">29°C</span>
-              <SunLogo className="my-2 h-9 w-9 fill-gray-400" />
-              <span className="mt-1 text-sm font-semibold">11:00</span>
-              <span className="text-xs font-semibold text-gray-400">AM</span>
-            </div>
+            <WeatherLogo className="h-20 w-20" />
           </div>
         </CardContent>
       </Card>
