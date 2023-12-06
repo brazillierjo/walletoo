@@ -1,32 +1,58 @@
 "use client";
 
-import React, { useState } from "react";
-import { Button } from "@/src/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card";
-import { Input } from "@/src/components/ui/input";
+import { useEffect, useState } from "react";
+import { WeatherApi } from "@/src/APIs/weatherApi";
+import { userAtom } from "@/src/atoms/user.atom";
+import { weatherAtom } from "@/src/atoms/weather.atom";
+import { SunLogo } from "@/src/components/Commons/WeatherLogos";
+import { Card, CardContent } from "@/src/components/ui/card";
+import { useAtom } from "jotai";
 
 export const WeatherWidget: React.FC = () => {
-  const [city, setCity] = useState<null | string>(null);
-  const [weather, setWeather] = useState(null);
+  const [user] = useAtom(userAtom);
+  const [weather, setWeather] = useAtom(weatherAtom);
 
-  const fetchWeather = async () => {};
+  if (!user) return null;
+
+  useEffect(() => {
+    !weather && fetchWeather();
+  }, [weather]);
+
+  const fetchWeather = async () => {
+    try {
+      WeatherApi.get("toulon").then((data) => {
+        setWeather(data);
+      });
+    } catch (error) {
+      console.error("Erreur lors de la récupération des données météo", error);
+    }
+  };
+
+  if (!weather) return null;
 
   return (
-    <Card className="w-fit">
-      <CardHeader>
-        <CardTitle>Météo</CardTitle>
-        <CardDescription>Saisissez une ville pour obtenir les informations météorologiques</CardDescription>
-      </CardHeader>
+    weather && (
+      <Card className="h-fit w-full max-w-screen-sm rounded-xl p-4 ring">
+        <CardContent>
+          <div className="flex justify-between">
+            <div className="flex flex-col">
+              <span className="text-6xl font-bold">29°C</span>
+              <span className="mt-1 font-semibold text-gray-500">Paris, FR</span>
+            </div>
 
-      <CardContent>
-        <Input value={city ?? ""} onChange={(e) => setCity(e.target.value)} placeholder="Entrez une ville" />
-        <Button onClick={fetchWeather}>Rechercher</Button>
-        {weather && <div></div>}
-      </CardContent>
+            <SunLogo className="h-20 w-20 fill-yellow-400" />
+          </div>
 
-      <CardFooter>
-        <p>Météo à jour</p>
-      </CardFooter>
-    </Card>
+          <div className="mt-6 flex justify-between">
+            <div className="flex flex-col items-center">
+              <span className="text-lg font-semibold">29°C</span>
+              <SunLogo className="my-2 h-9 w-9 fill-gray-400" />
+              <span className="mt-1 text-sm font-semibold">11:00</span>
+              <span className="text-xs font-semibold text-gray-400">AM</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    )
   );
 };

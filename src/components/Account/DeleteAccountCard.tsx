@@ -36,7 +36,7 @@ export const DeleteAccountCard: React.FC = () => {
 
   return (
     <motion.div className="w-full lg:w-fit" initial="hidden" animate="visible" variants={makeCardOpacity(0.4)}>
-      <Card className="flex h-full w-full flex-col justify-between lg:w-fit lg:min-w-[400px]">
+      <Card className="flex h-full w-full flex-col justify-between ring lg:w-fit lg:min-w-[400px]">
         <CardHeader className="p-2">
           <div className="relative">
             <picture>

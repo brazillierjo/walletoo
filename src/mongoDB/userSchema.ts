@@ -22,6 +22,7 @@ const UserSchema: Schema = new Schema({
     symbol: { type: String, required: true, default: "€" },
   },
   operationFormat: { type: String, required: true, default: "EU" },
+  city: { type: String, default: "" },
   createdAt: { type: Date, default: Date.now },
 });
 

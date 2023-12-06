@@ -13,5 +13,6 @@ export interface IUser {
     symbol: string;
   };
   operationFormat: string;
+  city: string;
   createdAt: Date;
 }
