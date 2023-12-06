@@ -15,14 +15,12 @@ import { Button } from "../ui/button";
 export const WeatherWidget: React.FC = () => {
   const [user] = useAtom(userAtom);
   const [weather, setWeather] = useAtom(weatherAtom);
-  console.log("weather", weather);
 
-  if (!weather || !user)
-    return <Card className="h-fit w-full max-w-screen-sm rounded-xl p-4 ring">Chargement de la météo...</Card>;
+  if (!user) return <Card className="h-fit w-full max-w-screen-sm rounded-xl p-4 ring">Chargement de la météo...</Card>;
 
   useEffect(() => {
-    if (!weather || user.city === "") fetchWeather();
-  }, [weather]);
+    if (!weather) fetchWeather();
+  }, [user.city, weather]);
 
   const fetchWeather = async () => {
     try {
@@ -32,7 +30,7 @@ export const WeatherWidget: React.FC = () => {
     }
   };
 
-  // IF NO CITY
+  // IF NO CITY SET
   if (user.city === "") {
     return (
       <Card className="h-fit w-full max-w-screen-sm rounded-xl p-4 ring">
