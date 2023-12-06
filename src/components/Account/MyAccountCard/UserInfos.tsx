@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { CitiesApi } from "@/src/APIs/citiesApi";
 import { UserApi } from "@/src/APIs/userApi";
+import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/src/components/ui/select";
+import { Separator } from "@/src/components/ui/separator";
 import { toast } from "@/src/components/ui/use-toast";
 import useDateFormatter from "@/src/hooks/useDateFormatter";
 import { IUser } from "@/src/interfaces/userInterface";
@@ -191,20 +193,25 @@ export const CityInput: React.FC<EditableComponentProps> = ({ user, setUser }) =
       />
 
       {suggestions && (
-        <div className="absolute top-10 w-full rounded-md bg-white shadow-lg dark:bg-slate-800">
+        <div className="absolute left-10 top-8 w-[250px] rounded-md bg-white shadow-lg dark:bg-slate-800">
           {suggestions.map((city) => (
-            <div
-              key={city}
-              className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              onClick={() => {
-                setInputValue(city);
-                setSuggestions(null);
-                setIsSearching(false);
-                handleCityChange(city);
-              }}
-            >
-              {city}
-            </div>
+            <>
+              <Button
+                key={city}
+                className="w-full"
+                variant="ghost"
+                onClick={() => {
+                  setInputValue(city);
+                  setSuggestions(null);
+                  setIsSearching(false);
+                  handleCityChange(city);
+                }}
+              >
+                {city}
+              </Button>
+
+              <Separator className="dark:bg-gray-500" />
+            </>
           ))}
         </div>
       )}
