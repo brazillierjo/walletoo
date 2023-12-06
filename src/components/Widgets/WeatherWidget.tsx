@@ -20,7 +20,8 @@ export const WeatherWidget: React.FC = () => {
 
   const fetchWeather = async () => {
     try {
-      WeatherApi.get("toulon").then((data) => {
+      WeatherApi.get(user.city).then((data) => {
+        console.log(data);
         setWeather(data);
       });
     } catch (error) {

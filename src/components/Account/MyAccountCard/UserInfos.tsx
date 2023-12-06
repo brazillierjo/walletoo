@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import { CitiesApi } from "@/src/APIs/citiesApi";
 import { UserApi } from "@/src/APIs/userApi";
@@ -195,7 +195,7 @@ export const CityInput: React.FC<EditableComponentProps> = ({ user, setUser }) =
       {suggestions && (
         <div className="absolute left-10 top-8 w-[250px] rounded-md bg-white shadow-lg dark:bg-slate-800">
           {suggestions.map((city) => (
-            <>
+            <Fragment key={city}>
               <Button
                 key={city}
                 className="w-full"
@@ -211,7 +211,7 @@ export const CityInput: React.FC<EditableComponentProps> = ({ user, setUser }) =
               </Button>
 
               <Separator className="dark:bg-gray-500" />
-            </>
+            </Fragment>
           ))}
         </div>
       )}
