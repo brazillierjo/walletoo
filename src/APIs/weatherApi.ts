@@ -7,7 +7,7 @@ export class WeatherApi {
     );
 
     if (!response.ok) {
-      throw new Error("Erreur lors de la récupération des données météo");
+      throw new Error("Error while fetching weather data");
     }
 
     return response.json() as Promise<WeatherResponse>;

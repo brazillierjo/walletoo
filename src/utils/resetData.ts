@@ -5,4 +5,6 @@ export const resetData: PartialUserUpdate = {
   expenses: [],
   currency: { name: "EUR", symbol: "€" },
   operationFormat: "EU",
+  lang: "fr",
+  city: "",
 };

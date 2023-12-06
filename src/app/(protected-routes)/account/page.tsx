@@ -1,5 +1,5 @@
 import { DeleteAccountCard } from "@/src/components/Account/DeleteAccountCard";
-import { MyAccountCard } from "@/src/components/Account/MyAccountCard";
+import { MyAccountCard } from "@/src/components/Account/MyAccountCard/MyAccountCard";
 import { ResetUserCard } from "@/src/components/Account/ResetUserCard";
 
 const Profile: React.FC = () => {
