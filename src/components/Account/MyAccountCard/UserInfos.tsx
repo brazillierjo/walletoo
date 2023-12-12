@@ -193,7 +193,7 @@ export const CityInput: React.FC<EditableComponentProps> = ({ user, setUser }) =
       />
 
       {suggestions && (
-        <div className="absolute left-10 top-8 w-[250px] rounded-md bg-white shadow-lg dark:bg-slate-800">
+        <div className="absolute left-10 top-8 z-10 w-[250px] rounded-md bg-white shadow-lg dark:bg-slate-800">
           {suggestions.map((city) => (
             <Fragment key={city}>
               <Button

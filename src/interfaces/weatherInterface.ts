@@ -11,6 +11,9 @@ export interface WeatherResponse {
       icon: string;
     },
   ];
+  rain?: {
+    [key: string]: number;
+  };
   base: string;
   main: {
     temp: number;
