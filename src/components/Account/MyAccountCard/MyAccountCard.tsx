@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { userAtom } from "@/src/atoms/user.atom";
-import { NonEditableUserAvatar } from "@/src/components/Account/MyAccountCard/UserInfos";
 import { Tooltip } from "@/src/components/Commons/Tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Separator } from "@/src/components/ui/separator";
@@ -29,7 +29,14 @@ export const MyAccountCard: React.FC = () => {
               <img className="h-32 w-full rounded-md object-cover" src={randomImageUrl ?? ""} alt="user banner" />
             </picture>
 
-            <NonEditableUserAvatar user={user} />
+            <Image
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black"
+              width={100}
+              height={100}
+              src={user.avatar}
+              alt="Avatar"
+              priority
+            />
 
             <div className="float-right">
               <Tooltip

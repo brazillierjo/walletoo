@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from "react";
-import Image from "next/image";
 import { CitiesApi } from "@/src/APIs/citiesApi";
 import { UserApi } from "@/src/APIs/userApi";
 import { Button } from "@/src/components/ui/button";
@@ -7,34 +6,26 @@ import { Input } from "@/src/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/src/components/ui/select";
 import { Separator } from "@/src/components/ui/separator";
 import { toast } from "@/src/components/ui/use-toast";
-import useDateFormatter from "@/src/hooks/useDateFormatter";
 import { IUser } from "@/src/interfaces/userInterface";
 import { currencies } from "@/src/utils/currencies";
-import { operationFormats } from "@/src/utils/operationFormats";
-
-type NonEditableComponentProps = {
-  user: IUser;
-};
+import { operationFormatExamples, operationFormats } from "@/src/utils/operationFormats";
 
 type EditableComponentProps = {
   user: IUser;
   setUser: React.Dispatch<React.SetStateAction<IUser | null>>;
 };
 
-export const NonEditableUserAvatar: React.FC<NonEditableComponentProps> = ({ user }) => {
-  return (
-    <Image
-      className="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black"
-      width={100}
-      height={100}
-      src={user.avatar}
-      alt="Avatar"
-      priority
-    />
-  );
-};
-
 export const OperationFormatSelect: React.FC<EditableComponentProps> = ({ user, setUser }) => {
+  const renderOptionWithExample = (option: string) => {
+    const validOption = option as keyof typeof operationFormatExamples;
+
+    return (
+      <div className="flex items-center gap-3">
+        {validOption} <span className="text-xs opacity-70">{operationFormatExamples[validOption]}</span>
+      </div>
+    );
+  };
+
   const handleFormatChange = (newFormat: string) => {
     if (user && newFormat !== user.operationFormat) {
       UserApi.patch({ operationFormat: newFormat }).then((res) => {
@@ -56,14 +47,14 @@ export const OperationFormatSelect: React.FC<EditableComponentProps> = ({ user, 
     <div className="flex items-center gap-2">
       <p className="whitespace-nowrap">Format des opérations :</p>
       <Select defaultValue={user.operationFormat ?? ""} onValueChange={(newValue) => handleFormatChange(newValue)}>
-        <SelectTrigger className="h-6 w-fit">
+        <SelectTrigger className="w-fit">
           <SelectValue />
         </SelectTrigger>
 
         <SelectContent>
           {operationFormats.map((option) => (
             <SelectItem key={option} value={option}>
-              {option}
+              {renderOptionWithExample(option)}
             </SelectItem>
           ))}
         </SelectContent>
@@ -100,7 +91,7 @@ export const CurrencySelect: React.FC<EditableComponentProps> = ({ user, setUser
     <div className="flex items-center gap-2">
       <p className="whitespace-nowrap">Devise :</p>
       <Select defaultValue={user.currency.name ?? ""} onValueChange={(newValue) => handleCurrencyChange(newValue)}>
-        <SelectTrigger className="h-6 w-fit">
+        <SelectTrigger className="w-fit">
           <SelectValue />
         </SelectTrigger>
 
@@ -164,7 +155,7 @@ export const CityInput: React.FC<EditableComponentProps> = ({ user, setUser }) =
       <p className="whitespace-nowrap">Ville :</p>
 
       <Input
-        className="h-7 w-fit"
+        className="w-fit"
         placeholder="Rechercher une ville..."
         value={inputValue}
         onChange={(e) => {
