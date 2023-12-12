@@ -2,8 +2,7 @@
 
 import { userAtom } from "@/src/atoms/user.atom";
 import { CityInput, CurrencySelect, OperationFormatSelect } from "@/src/components/Settings/UserInputs";
-import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
-import { Separator } from "@/src/components/ui/separator";
+import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { makeCardOpacity } from "@/src/utils/animations";
 import { motion } from "framer-motion";
@@ -28,6 +27,10 @@ const Settings: React.FC = () => {
                 <img className="h-32 w-full rounded-md object-cover" src={randomImageUrl ?? ""} alt="user banner" />
               </picture>
             </div>
+
+            <CardTitle className="relative px-3 text-lg font-semibold">
+              Modifier les paramètres de votre Wallet
+            </CardTitle>
           </CardHeader>
 
           <CardContent className="flex flex-col gap-5 p-5 text-sm">
