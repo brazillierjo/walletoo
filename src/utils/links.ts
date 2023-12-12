@@ -3,6 +3,7 @@ import { Route } from "@/src/enums/frontendRoutes";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaWallet } from "react-icons/fa6";
 import { FcDoughnutChart } from "react-icons/fc";
+import { IoMdSettings } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 
@@ -67,6 +68,16 @@ export const links: RouterLinkType[] = [
     isInHeader: true,
     isInFooter: false,
     isSubscribedRequired: true,
+  },
+  {
+    label: "Mes paramètres",
+    to: Route.SETTINGS,
+    description: "Accédez à vos paramètres",
+    icon: IoMdSettings,
+    isInSidebar: true,
+    isInHeader: true,
+    isInFooter: false,
+    isSubscribedRequired: false,
   },
   {
     label: "Contact",
