@@ -19,7 +19,6 @@ export const WeatherWidget: React.FC = () => {
 
   if (!user) return <CardWithLoading />;
   if (user.city === "") return <CardWithNoCity />;
-  if (!weather) return <CardWithNoCity />;
 
   useEffect(() => {
     if (user && user.city && !weather) fetchWeather();
@@ -38,6 +37,8 @@ export const WeatherWidget: React.FC = () => {
     const date = new Date(timestamp * 1000);
     return `${date.getHours()}h${date.getMinutes().toString().padStart(2, "0")}`;
   };
+
+  if (!weather) return <CardWithNoCity />;
 
   const temperature = convertTemperature(weather.main.temp, user.temperatureUnit);
   const temperatureSymbol = temperaturesUnit.find((unit) => unit.name === user.temperatureUnit)?.symbol;
