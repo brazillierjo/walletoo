@@ -134,10 +134,10 @@ const CardWithNoCity = () => (
         <h3 className="text-lg font-semibold">Météo non disponible</h3>
 
         <p className="mt-2 text-gray-500">
-          Pour afficher la météo, veuillez renseigner votre ville dans les informations de votre compte.
+          Pour afficher la météo, veuillez renseigner votre ville dans les paramètres de votre compte.
         </p>
 
-        <Link href={Route.ACCOUNT}>
+        <Link href={Route.SETTINGS}>
           <Button className="mt-5" variant="secondary">
             Ajouter une ville
           </Button>

@@ -9,6 +9,7 @@ import { toast } from "@/src/components/ui/use-toast";
 import { IUser } from "@/src/interfaces/userInterface";
 import { currencies } from "@/src/utils/currencies";
 import { operationFormatExamples, operationFormats } from "@/src/utils/operationFormats";
+import { IoClose } from "react-icons/io5";
 
 type EditableComponentProps = {
   user: IUser;
@@ -89,7 +90,7 @@ export const CurrencySelect: React.FC<EditableComponentProps> = ({ user, setUser
 
   return (
     <div className="flex items-center gap-2">
-      <p className="whitespace-nowrap">Devise :</p>
+      <p className="whitespace-nowrap">Devise des opérations :</p>
       <Select defaultValue={user.currency.name ?? ""} onValueChange={(newValue) => handleCurrencyChange(newValue)}>
         <SelectTrigger className="w-fit">
           <SelectValue />
@@ -152,18 +153,35 @@ export const CityInput: React.FC<EditableComponentProps> = ({ user, setUser }) =
 
   return (
     <div className="relative flex items-center gap-2">
-      <p className="whitespace-nowrap">Ville :</p>
+      <p className="whitespace-nowrap">Ville (widget météo) :</p>
 
-      <Input
-        className="w-fit"
-        placeholder="Rechercher une ville..."
-        value={inputValue}
-        onChange={(e) => {
-          setInputValue(e.target.value);
-          setSuggestions(null);
-          setIsSearching(true);
-        }}
-      />
+      <div className="relative">
+        <Input
+          className="w-fit"
+          placeholder="Rechercher une ville..."
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            setSuggestions(null);
+            setIsSearching(true);
+          }}
+        />
+
+        {inputValue.length > 0 && (
+          <Button
+            onClick={() => {
+              setInputValue("");
+              setSuggestions(null);
+              setIsSearching(false);
+              handleCityChange("");
+            }}
+            variant="ghost"
+            className="absolute right-0 -translate-y-9"
+          >
+            <IoClose />
+          </Button>
+        )}
+      </div>
 
       {suggestions && (
         <div className="absolute left-10 top-8 z-10 w-[250px] rounded-md bg-white shadow-lg dark:bg-slate-800">
