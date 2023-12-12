@@ -17,10 +17,8 @@ const UserSchema: Schema = new Schema({
   incomes: [OperationSchema],
   expenses: [OperationSchema],
   lang: { type: String, required: true, default: "fr" },
-  currency: {
-    name: { type: String, required: true, default: "EUR" },
-    symbol: { type: String, required: true, default: "€" },
-  },
+  currency: { type: String, required: true, default: "EUR" },
+  temperatureUnit: { type: String, required: true, default: "Celsius" },
   operationFormat: { type: String, required: true, default: "EU" },
   city: { type: String, default: "" },
   createdAt: { type: Date, default: Date.now },

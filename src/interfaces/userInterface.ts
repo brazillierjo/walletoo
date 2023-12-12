@@ -8,10 +8,8 @@ export interface IUser {
   incomes: IOperation[];
   expenses: IOperation[];
   lang: string;
-  currency: {
-    name: string;
-    symbol: string;
-  };
+  currency: string;
+  temperatureUnit: string;
   operationFormat: string;
   city: string;
   createdAt: Date;

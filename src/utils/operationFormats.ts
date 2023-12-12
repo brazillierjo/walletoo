@@ -1,6 +1,10 @@
-export const operationFormats = ["EU", "US"];
-
-export const operationFormatExamples = {
-  EU: "100,00 €",
-  US: "$100.00",
-};
+export const operationFormats = [
+  {
+    name: "EU",
+    example: "(100,00 €)",
+  },
+  {
+    name: "US",
+    example: "($100.00)",
+  },
+];

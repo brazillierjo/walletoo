@@ -13,7 +13,7 @@ const FormattedOperation: React.FC<FormattedOperationProps> = ({ amount }) => {
 
   const formatter = new Intl.NumberFormat(user.operationFormat === "EU" ? "fr-FR" : "en-US", {
     style: "currency",
-    currency: user.currency.name,
+    currency: user.currency,
     currencyDisplay: "narrowSymbol",
     minimumFractionDigits: hasDecimals ? 2 : 0,
     maximumFractionDigits: 2,

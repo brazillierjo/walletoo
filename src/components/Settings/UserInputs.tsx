@@ -8,7 +8,8 @@ import { Separator } from "@/src/components/ui/separator";
 import { toast } from "@/src/components/ui/use-toast";
 import { IUser } from "@/src/interfaces/userInterface";
 import { currencies } from "@/src/utils/currencies";
-import { operationFormatExamples, operationFormats } from "@/src/utils/operationFormats";
+import { operationFormats } from "@/src/utils/operationFormats";
+import { temperaturesUnit } from "@/src/utils/temperaturesUnit";
 import { IoClose } from "react-icons/io5";
 
 type EditableComponentProps = {
@@ -17,16 +18,6 @@ type EditableComponentProps = {
 };
 
 export const OperationFormatSelect: React.FC<EditableComponentProps> = ({ user, setUser }) => {
-  const renderOptionWithExample = (option: string) => {
-    const validOption = option as keyof typeof operationFormatExamples;
-
-    return (
-      <div className="flex items-center gap-3">
-        {validOption} <span className="text-xs opacity-70">{operationFormatExamples[validOption]}</span>
-      </div>
-    );
-  };
-
   const handleFormatChange = (newFormat: string) => {
     if (user && newFormat !== user.operationFormat) {
       UserApi.patch({ operationFormat: newFormat }).then((res) => {
@@ -54,8 +45,10 @@ export const OperationFormatSelect: React.FC<EditableComponentProps> = ({ user, 
 
         <SelectContent>
           {operationFormats.map((option) => (
-            <SelectItem key={option} value={option}>
-              {renderOptionWithExample(option)}
+            <SelectItem key={option.name} value={option.name}>
+              <div className="flex items-center gap-3">
+                {option.name} <span className="text-xs opacity-70">{option.example}</span>
+              </div>
             </SelectItem>
           ))}
         </SelectContent>
@@ -65,12 +58,8 @@ export const OperationFormatSelect: React.FC<EditableComponentProps> = ({ user, 
 };
 
 export const CurrencySelect: React.FC<EditableComponentProps> = ({ user, setUser }) => {
-  const currenciesNames = currencies.map((currency) => currency.name);
-
-  const handleCurrencyChange = (newCurrencyName: string) => {
-    const newCurrency = currencies.find((currency) => currency.name === newCurrencyName);
-
-    if (user && newCurrency && newCurrency.name !== user.currency.name) {
+  const handleCurrencyChange = (newCurrency: string) => {
+    if (user && newCurrency !== user.currency) {
       UserApi.patch({ currency: newCurrency }).then((res) => {
         if (res.status === 200) {
           const newUser = { ...user };
@@ -86,20 +75,20 @@ export const CurrencySelect: React.FC<EditableComponentProps> = ({ user, setUser
     }
   };
 
-  if (!user) return null;
-
   return (
     <div className="flex items-center gap-2">
-      <p className="whitespace-nowrap">Devise des opérations :</p>
-      <Select defaultValue={user.currency.name ?? ""} onValueChange={(newValue) => handleCurrencyChange(newValue)}>
+      <p className="whitespace-nowrap">Devise :</p>
+      <Select defaultValue={user.currency ?? ""} onValueChange={(newValue) => handleCurrencyChange(newValue)}>
         <SelectTrigger className="w-fit">
           <SelectValue />
         </SelectTrigger>
 
         <SelectContent>
-          {currenciesNames.map((option) => (
-            <SelectItem key={option} value={option}>
-              {option}
+          {currencies.map((option) => (
+            <SelectItem key={option.name} value={option.name}>
+              <div className="flex items-center gap-3">
+                {option.name} <span className="text-xs opacity-70">({option.symbol})</span>
+              </div>
             </SelectItem>
           ))}
         </SelectContent>
@@ -206,6 +195,50 @@ export const CityInput: React.FC<EditableComponentProps> = ({ user, setUser }) =
           ))}
         </div>
       )}
+    </div>
+  );
+};
+
+export const TemperatureUnitSelect: React.FC<EditableComponentProps> = ({ user, setUser }) => {
+  const handleTemperaturesUnitChange = (newTemperatureUnit: string) => {
+    if (user && newTemperatureUnit !== user.temperatureUnit) {
+      UserApi.patch({ temperatureUnit: newTemperatureUnit }).then((res) => {
+        if (res.status === 200) {
+          const newUser = { ...user };
+          newUser.temperatureUnit = newTemperatureUnit;
+
+          setUser(newUser);
+          toast({
+            title: "Unité des températures",
+            description: "L'unité des températures a bien été mise à jour.",
+          });
+        }
+      });
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <p className="whitespace-nowrap">Unité des températures :</p>
+      <Select
+        defaultValue={user.temperatureUnit ?? ""}
+        onValueChange={(newValue) => handleTemperaturesUnitChange(newValue)}
+      >
+        <SelectTrigger className="w-fit">
+          <SelectValue />
+        </SelectTrigger>
+
+        <SelectContent>
+          {temperaturesUnit &&
+            temperaturesUnit.map((option, index) => (
+              <SelectItem key={index} value={option.name}>
+                <span className="flex items-center gap-3">
+                  {option.name} <span className="text-xs opacity-70">({option.symbol})</span>
+                </span>
+              </SelectItem>
+            ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 };

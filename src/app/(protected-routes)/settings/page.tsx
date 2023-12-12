@@ -1,7 +1,12 @@
 "use client";
 
 import { userAtom } from "@/src/atoms/user.atom";
-import { CityInput, CurrencySelect, OperationFormatSelect } from "@/src/components/Settings/UserInputs";
+import {
+  CityInput,
+  CurrencySelect,
+  OperationFormatSelect,
+  TemperatureUnitSelect,
+} from "@/src/components/Settings/UserInputs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { makeCardOpacity } from "@/src/utils/animations";
@@ -35,10 +40,9 @@ const Settings: React.FC = () => {
 
           <CardContent className="flex flex-col gap-5 p-5 text-sm">
             <OperationFormatSelect user={user} setUser={setUser} />
-
             <CurrencySelect user={user} setUser={setUser} />
-
             <CityInput user={user} setUser={setUser} />
+            <TemperatureUnitSelect user={user} setUser={setUser} />
           </CardContent>
         </Card>
       </motion.div>
