@@ -34,24 +34,6 @@ export const NonEditableUserAvatar: React.FC<NonEditableComponentProps> = ({ use
   );
 };
 
-export const NonEditableUserInfos: React.FC<NonEditableComponentProps> = ({ user }) => {
-  const formattedDate = useDateFormatter(user ? user.createdAt : new Date());
-
-  return (
-    <>
-      <div className="flex items-center gap-2">
-        <p className="break-keep">E-mail :</p>
-        <b>{user.email}</b>
-      </div>
-
-      <div className="flex items-center gap-2">
-        <p className="break-keep">Création : </p>
-        <b>{formattedDate}</b>
-      </div>
-    </>
-  );
-};
-
 export const OperationFormatSelect: React.FC<EditableComponentProps> = ({ user, setUser }) => {
   const handleFormatChange = (newFormat: string) => {
     if (user && newFormat !== user.operationFormat) {
