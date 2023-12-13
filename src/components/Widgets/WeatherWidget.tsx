@@ -88,10 +88,10 @@ export const WeatherWidget: React.FC = () => {
 
               <div className="mt-2 text-center text-sm opacity-80">
                 <p>
-                  Lever du soleil: <b>{formatTime(weather.sys.sunrise)}</b>
+                  Lever du soleil : <b>{formatTime(weather.sys.sunrise)}</b>
                 </p>
                 <p>
-                  Coucher du soleil: <b>{formatTime(weather.sys.sunset)}</b>
+                  Coucher du soleil : <b>{formatTime(weather.sys.sunset)}</b>
                 </p>
               </div>
             </div>
