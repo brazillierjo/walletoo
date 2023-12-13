@@ -1,3 +1,5 @@
+"use client";
+
 import { userAtom } from "@/src/atoms/user.atom";
 import {
   CityInput,
@@ -31,7 +33,7 @@ export const SettingsCard: React.FC = () => {
           <CardTitle className="relative px-3 text-lg font-semibold">Modifier les paramètres de votre Wallet</CardTitle>
         </CardHeader>
 
-        <CardContent className="flex flex-col gap-5 p-5 text-sm">
+        <CardContent className="flex flex-col gap-3 p-5 text-sm">
           <OperationFormatSelect user={user} setUser={setUser} />
           <CurrencySelect user={user} setUser={setUser} />
           <CityInput user={user} setUser={setUser} />
