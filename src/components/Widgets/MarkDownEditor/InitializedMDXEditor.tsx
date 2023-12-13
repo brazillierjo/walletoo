@@ -8,15 +8,11 @@ import {
   CodeToggle,
   headingsPlugin,
   imagePlugin,
-  InsertTable,
-  InsertThematicBreak,
+  linkPlugin,
   listsPlugin,
-  ListsToggle,
   markdownShortcutPlugin,
   MDXEditor,
   quotePlugin,
-  tablePlugin,
-  thematicBreakPlugin,
   toolbarPlugin,
   UndoRedo,
   type MDXEditorMethods,
@@ -33,11 +29,11 @@ export default function InitializedMDXEditor({
       ref={editorRef}
       plugins={[
         headingsPlugin(),
+        quotePlugin(),
         listsPlugin(),
         quotePlugin(),
+        linkPlugin(),
         imagePlugin(),
-        tablePlugin(),
-        thematicBreakPlugin(),
         markdownShortcutPlugin(),
         toolbarPlugin({
           toolbarContents: () => (
@@ -45,9 +41,6 @@ export default function InitializedMDXEditor({
               <UndoRedo />
               <BoldItalicUnderlineToggles />
               <CodeToggle />
-              <ListsToggle />
-              <InsertTable />
-              <InsertThematicBreak />
             </>
           ),
         }),
