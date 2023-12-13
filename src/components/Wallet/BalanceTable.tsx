@@ -3,6 +3,7 @@
 import { userAtom } from "@/src/atoms/user.atom";
 import FormattedOperation from "@/src/components/Commons/FormattedOperation";
 import { Card } from "@/src/components/ui/card";
+import { Separator } from "@/src/components/ui/separator";
 import { Table, TableBody, TableCell, TableRow } from "@/src/components/ui/table";
 import { makeCardOpacity } from "@/src/utils/animations";
 import { cn } from "@/src/utils/tailwindMerge";
@@ -20,6 +21,7 @@ const BalanceTable: React.FC = () => {
   const totalIncomes = calculateTotal(user.incomes);
   const totalExpenses = calculateTotal(user.expenses);
   const netIncome = totalIncomes - totalExpenses;
+  const financialRatio = (totalExpenses / totalIncomes) * 100;
 
   if (user.incomes.length === 0 && user.expenses.length === 0) return null;
 
@@ -49,6 +51,11 @@ const BalanceTable: React.FC = () => {
               >
                 <FormattedOperation amount={netIncome} />
               </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell className="font-medium">Taux de charge financière :</TableCell>
+              <TableCell className="text-right">{financialRatio.toFixed(2)}%</TableCell>
             </TableRow>
           </TableBody>
         </Table>

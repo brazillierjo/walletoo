@@ -6,7 +6,7 @@ import {
   CurrencySelect,
   OperationFormatSelect,
   TemperatureUnitSelect,
-} from "@/src/components/Settings/UserInputs";
+} from "@/src/components/Settings/InputsSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { makeCardOpacity } from "@/src/utils/animations";

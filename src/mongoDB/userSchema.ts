@@ -10,18 +10,19 @@ const OperationSchema: Schema = new Schema({
 });
 
 const UserSchema: Schema = new Schema({
-  email: { type: String, required: true },
-  fullName: { type: String, required: true },
   avatar: { type: String },
-  isSubscribed: { type: Boolean, required: true, default: false },
-  incomes: [OperationSchema],
-  expenses: [OperationSchema],
-  lang: { type: String, required: true, default: "fr" },
-  currency: { type: String, required: true, default: "EUR" },
-  temperatureUnit: { type: String, required: true, default: "Celsius" },
-  operationFormat: { type: String, required: true, default: "EU" },
   city: { type: String, default: "" },
   createdAt: { type: Date, default: Date.now },
+  currency: { type: String, required: true, default: "EUR" },
+  email: { type: String, required: true },
+  expenses: [OperationSchema],
+  fullName: { type: String, required: true },
+  incomes: [OperationSchema],
+  isSubscribed: { type: Boolean, required: true, default: false },
+  lang: { type: String, required: true, default: "fr" },
+  notes: { type: String, default: "" },
+  operationFormat: { type: String, required: true, default: "EU" },
+  temperatureUnit: { type: String, required: true, default: "Celsius" },
 });
 
 const UserModel = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);

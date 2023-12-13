@@ -1,16 +1,17 @@
-import { IOperation } from "./operationInterface";
+import { IOperation } from "@/src/interfaces/operationInterface";
 
 export interface IUser {
-  email: string;
-  fullName: string;
   avatar: string;
-  isSubscribed: boolean;
-  incomes: IOperation[];
-  expenses: IOperation[];
-  lang: string;
-  currency: string;
-  temperatureUnit: string;
-  operationFormat: string;
   city: string;
   createdAt: Date;
+  currency: string;
+  email: string;
+  expenses: IOperation[];
+  fullName: string;
+  incomes: IOperation[];
+  isSubscribed: boolean;
+  lang: string;
+  notes: string;
+  operationFormat: string;
+  temperatureUnit: string;
 }
