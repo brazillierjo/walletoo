@@ -62,7 +62,7 @@ export const OperationTable: React.FC<OperationTableProps> = ({ type }) => {
 
   return (
     <motion.div
-      className="w-full lg:w-1/2"
+      className="w-full"
       initial="hidden"
       animate="visible"
       variants={type === OperationTypeLabel.EXPENSES ? makeCardOpacity(0.2) : makeCardOpacity()}

@@ -44,7 +44,7 @@ export const Sidebar: React.FC = () => {
     <div
       className={cn(
         "relative hidden min-h-screen bg-white transition-all duration-300 ease-in-out dark:bg-black lg:block",
-        isSidebarOpen ? "w-3/12 translate-x-0 2xl:w-2/12" : "w-0 -translate-x-full"
+        isSidebarOpen ? "w-1/4 min-w-[25%] translate-x-0 2xl:w-2/12 2xl:min-w-[16.67%]" : "w-0 -translate-x-full"
       )}
     >
       <div className="h-screen overflow-y-hidden">

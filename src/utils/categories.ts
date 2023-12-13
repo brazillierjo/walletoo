@@ -18,6 +18,8 @@ export const expenseCategories: string[] = [
   "Cadeaux",
   "Courses Alimentaires",
   "Crédit Immobilier",
+  "Crédit à la Consommation",
+  "Crédit auto",
   "Divertissement",
   "Eau et Assainissement",
   "Entretien de la Maison",

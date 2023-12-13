@@ -11,6 +11,8 @@ import { makeCardOpacity } from "@/src/utils/animations";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 
+import FormattedOperation from "../Commons/FormattedOperation";
+
 export const OperationByCategories = () => {
   const [user] = useAtom(userAtom);
   const [, setSelectedOperation] = useAtom(selectedOperationAtom);
@@ -35,9 +37,9 @@ export const OperationByCategories = () => {
             <TabsTrigger value={OperationType.EXPENSES}>{OperationTypeLabel.EXPENSES}</TabsTrigger>
           </TabsList>
 
-          <TabsContent className="flex flex-nowrap gap-4 overflow-x-auto py-2" value={OperationType.INCOMES}>
+          <TabsContent className="flex flex-col gap-4" value={OperationType.INCOMES}>
             {uniqueUserIncomesCategories.map((category) => (
-              <Card key={category} className="mt-6 w-full min-w-[250px] rounded-lg p-4">
+              <Card key={category} className="w-full rounded-lg border-0 p-1 shadow-none ring-0">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">
@@ -46,12 +48,14 @@ export const OperationByCategories = () => {
                     .map((income) => (
                       <Button
                         variant="secondary"
-                        className="flex w-full justify-between"
+                        className="flex w-full justify-between gap-4"
                         key={income._id}
                         onClick={() => handleSelectedOperation(OperationTypeLabel.INCOMES, income)}
                       >
                         <p>{income.label}</p>
-                        <p>{income.amount}</p>
+                        <p>
+                          <FormattedOperation amount={income.amount} />
+                        </p>
                       </Button>
                     ))}
                 </div>
@@ -59,9 +63,9 @@ export const OperationByCategories = () => {
             ))}
           </TabsContent>
 
-          <TabsContent className="flex flex-nowrap gap-4 overflow-x-auto py-2" value={OperationType.EXPENSES}>
+          <TabsContent className="flex flex-col gap-4" value={OperationType.EXPENSES}>
             {uniqueUserExpensesCategories.map((category) => (
-              <Card key={category} className="w-full min-w-[250px] rounded-lg p-4">
+              <Card key={category} className="w-full rounded-lg border-0 p-1 shadow-none ring-0">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">
@@ -70,12 +74,14 @@ export const OperationByCategories = () => {
                     .map((expense) => (
                       <Button
                         variant="secondary"
-                        className="flex w-full justify-between"
+                        className="flex w-full justify-between gap-4"
                         key={expense._id}
                         onClick={() => handleSelectedOperation(OperationTypeLabel.EXPENSES, expense)}
                       >
                         <p>{expense.label}</p>
-                        <p>{expense.amount}</p>
+                        <p>
+                          <FormattedOperation amount={expense.amount} />
+                        </p>
                       </Button>
                     ))}
                 </div>

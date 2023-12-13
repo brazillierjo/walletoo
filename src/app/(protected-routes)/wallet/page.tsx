@@ -32,21 +32,25 @@ const Wallet: React.FC = () => {
     <div className="relative flex w-full flex-col gap-6">
       <h1 className="shrink text-xl font-bold">Mon Wallet personnel</h1>
 
-      <div className="flex flex-col justify-between gap-5 md:flex-row">
-        <OperationTable type={OperationTypeLabel.INCOMES} />
-        <OperationTable type={OperationTypeLabel.EXPENSES} />
-      </div>
-
-      {user?.incomes.length > 0 && user?.expenses.length > 0 && (
-        <div className="flex flex-col justify-between gap-5 md:flex-row">
-          <div className="w-full md:w-3/5">
-            <OperationByCategories />
-          </div>
-          <div className="w-full md:w-2/5">
-            <BalanceTable />
-          </div>
+      <div className="flex w-full justify-between gap-5">
+        <div className="flex w-6/12 flex-col gap-5">
+          <OperationTable type={OperationTypeLabel.INCOMES} />
+          <OperationTable type={OperationTypeLabel.EXPENSES} />
         </div>
-      )}
+
+        <div className="w-6/12">
+          {user?.incomes.length > 0 && user?.expenses.length > 0 && (
+            <div className="flex flex-col justify-between gap-5">
+              <div className="w-full">
+                <OperationByCategories />
+              </div>
+              <div className="w-full">
+                <BalanceTable />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
 
       {areChartsDisplay ? (
         <div className="flex flex-col justify-between gap-5 md:flex-row">

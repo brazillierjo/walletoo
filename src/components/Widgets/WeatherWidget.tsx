@@ -46,7 +46,7 @@ export const WeatherWidget: React.FC = () => {
 
   return (
     weather && (
-      <Card className="h-fit w-full max-w-screen-sm rounded-xl px-4 py-6 ring">
+      <Card className="h-fit w-full max-w-screen-sm rounded-xl px-4 pb-2 pt-6 ring">
         <CardContent>
           <div className="flex flex-col lg:flex-row lg:justify-between">
             <div className="flex flex-row justify-between gap-1 lg:flex-col">
@@ -92,6 +92,10 @@ export const WeatherWidget: React.FC = () => {
               </div>
             </div>
           </div>
+
+          <Link href={Route.SETTINGS}>
+            <Button className="mt-5">Modifier la ville</Button>
+          </Link>
         </CardContent>
       </Card>
     )
