@@ -6,6 +6,7 @@ import { Footer } from "@/src/components/Footer/Footer";
 import { Header } from "@/src/components/Header/Header";
 import { Sidebar } from "@/src/components/Sidebar/Sidebar";
 import { Toaster } from "@/src/components/ui/toaster";
+import JotaiProvider from "@/src/providers/JotaiProvider";
 import SessionProvider from "@/src/providers/SessionProvider";
 import ThemeProvider from "@/src/providers/ThemeProvider";
 import { cn } from "@/src/utils/tailwindMerge";
@@ -28,20 +29,22 @@ const RootLayout: React.FC<Props> = async ({ children }: Props) => {
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={cn(inter.className, "relative bg-slate-200 dark:bg-slate-800")}>
-        <SessionProvider session={session}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <div className={session ? "flex" : "block"}>
-              {session && <Sidebar />}
+        <JotaiProvider>
+          <SessionProvider session={session}>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              <div className={session ? "flex" : "block"}>
+                {session && <Sidebar />}
 
-              <div className="w-full">
-                <Header />
-                <main className="custom-min-h-screen p-4 lg:p-8">{children}</main>
-                <Footer />
-                <Toaster />
+                <div className="w-full">
+                  <Header />
+                  <main className="custom-min-h-screen p-4 lg:p-8">{children}</main>
+                  <Footer />
+                  <Toaster />
+                </div>
               </div>
-            </div>
-          </ThemeProvider>
-        </SessionProvider>
+            </ThemeProvider>
+          </SessionProvider>
+        </JotaiProvider>
       </body>
     </html>
   );

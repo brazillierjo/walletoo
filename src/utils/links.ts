@@ -50,16 +50,6 @@ export const links: RouterLinkType[] = [
     isSubscribedRequired: false,
   },
   {
-    label: "Mon compte",
-    to: Route.ACCOUNT,
-    description: "Accédez à votre compte",
-    icon: RiAccountPinCircleFill,
-    isInSidebar: true,
-    isInHeader: true,
-    isInFooter: false,
-    isSubscribedRequired: false,
-  },
-  {
     label: "Ma stratégie",
     to: Route.STRATEGY,
     description: "Accédez à votre stratégie personnalisée",
@@ -68,6 +58,16 @@ export const links: RouterLinkType[] = [
     isInHeader: true,
     isInFooter: false,
     isSubscribedRequired: true,
+  },
+  {
+    label: "Mon compte",
+    to: Route.ACCOUNT,
+    description: "Accédez à votre compte",
+    icon: RiAccountPinCircleFill,
+    isInSidebar: true,
+    isInHeader: true,
+    isInFooter: false,
+    isSubscribedRequired: false,
   },
   {
     label: "Mes paramètres",

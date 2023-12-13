@@ -77,7 +77,7 @@ export const CurrencySelect: React.FC<EditableComponentProps> = ({ user, setUser
 
   return (
     <div className="flex items-center gap-2">
-      <p className="whitespace-nowrap">Devise :</p>
+      <p className="whitespace-nowrap">Devise des opérations :</p>
       <Select defaultValue={user.currency ?? ""} onValueChange={(newValue) => handleCurrencyChange(newValue)}>
         <SelectTrigger className="w-fit">
           <SelectValue />
