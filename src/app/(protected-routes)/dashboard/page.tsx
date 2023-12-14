@@ -1,7 +1,6 @@
 "use client";
 
 import { CalendarWidget } from "@/src/components/Widgets/CalendarWidget";
-import { MarkDownEditor } from "@/src/components/Widgets/MarkDownEditor/MarkDownEditor";
 import { WeatherWidget } from "@/src/components/Widgets/WeatherWidget";
 
 const Dashboard: React.FC = () => {
@@ -12,7 +11,6 @@ const Dashboard: React.FC = () => {
       <div className="flex flex-wrap gap-6">
         <WeatherWidget />
         <CalendarWidget />
-        <MarkDownEditor />
       </div>
     </div>
   );
