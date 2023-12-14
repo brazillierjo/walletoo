@@ -18,6 +18,7 @@ export function ModeToggle() {
       <div className="switch" data-ison={isDarkMode} onClick={handleMode}>
         <motion.div className="handle" layout />
       </div>
+
       <CgDarkMode className="h-5 w-5" />
     </div>
   );
