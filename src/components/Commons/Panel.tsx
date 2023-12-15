@@ -1,13 +1,15 @@
 import { Button } from "@/src/components/ui/button";
+import { cn } from "@/src/utils/tailwindMerge";
 import { motion } from "framer-motion";
 import { MdClose } from "react-icons/md";
 
 interface PanelProps {
+  widthClasses?: string;
   children: React.ReactNode;
   onClose: () => void;
 }
 
-const Panel: React.FC<PanelProps> = ({ children, onClose }) => {
+const Panel: React.FC<PanelProps> = ({ widthClasses, children, onClose }) => {
   const panelVariants = {
     initial: {
       x: "100%",
@@ -35,14 +37,17 @@ const Panel: React.FC<PanelProps> = ({ children, onClose }) => {
       <div onClick={onClose} className="w-full bg-black opacity-40" />
 
       <motion.div
-        className="fixed right-0 top-0 z-10 h-screen w-3/4 overflow-y-auto bg-white p-6 shadow-lg dark:bg-black lg:w-1/3"
+        className={cn(
+          "fixed right-0 top-0 z-10 h-screen overflow-y-auto bg-white p-6 shadow-lg dark:bg-black",
+          widthClasses ? widthClasses : "w-3/4 lg:w-1/3"
+        )}
         variants={panelVariants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
-        <Button onClick={onClose} className="absolute right-4 top-4">
-          <MdClose className="h-6 w-6" />
+        <Button variant="outline" onClick={onClose} className="absolute right-4 top-4">
+          <MdClose className="h-4 w-4" />
         </Button>
 
         {children}

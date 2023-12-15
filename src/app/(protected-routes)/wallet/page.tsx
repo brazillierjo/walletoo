@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { panelAtom } from "@/src/atoms/panel.atom";
+import { selectedOperationPanelAtom } from "@/src/atoms/panel.atom";
 import { selectedOperationAtom } from "@/src/atoms/selectedOperation.atom";
 import { userAtom } from "@/src/atoms/user.atom";
 import PieChart from "@/src/components/Charts/PieChart";
@@ -18,7 +18,7 @@ import { FaChartSimple } from "react-icons/fa6";
 const Wallet: React.FC = () => {
   const [areChartsDisplay, setAreChartsDisplay] = useState(false);
   const [user] = useAtom(userAtom);
-  const [showPanel, setShowPanel] = useAtom(panelAtom);
+  const [showPanel, setShowPanel] = useAtom(selectedOperationPanelAtom);
   const [selectedOperation] = useAtom(selectedOperationAtom);
 
   const incomesLabels = user?.incomes.map((operation) => operation.label);

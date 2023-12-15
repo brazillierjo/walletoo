@@ -1,3 +1,4 @@
 import { atom } from "jotai";
 
-export const panelAtom = atom<boolean>(false);
+export const selectedOperationPanelAtom = atom<boolean>(false);
+export const markdownExamplePanelAtom = atom<boolean>(false);

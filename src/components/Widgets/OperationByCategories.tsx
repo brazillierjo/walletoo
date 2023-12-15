@@ -1,4 +1,4 @@
-import { panelAtom } from "@/src/atoms/panel.atom";
+import { selectedOperationPanelAtom } from "@/src/atoms/panel.atom";
 import { selectedOperationAtom } from "@/src/atoms/selectedOperation.atom";
 import { userAtom } from "@/src/atoms/user.atom";
 import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
@@ -16,7 +16,7 @@ import FormattedOperation from "../Commons/FormattedOperation";
 export const OperationByCategories = () => {
   const [user] = useAtom(userAtom);
   const [, setSelectedOperation] = useAtom(selectedOperationAtom);
-  const [, setShowPanel] = useAtom(panelAtom);
+  const [, setShowPanel] = useAtom(selectedOperationPanelAtom);
 
   const handleSelectedOperation = (type: OperationTypeLabel, operation: IOperation) => {
     setSelectedOperation({ type, operation });

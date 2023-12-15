@@ -1,4 +1,4 @@
-import { panelAtom } from "@/src/atoms/panel.atom";
+import { selectedOperationPanelAtom } from "@/src/atoms/panel.atom";
 import { selectedOperationAtom } from "@/src/atoms/selectedOperation.atom";
 import FormattedOperation from "@/src/components/Commons/FormattedOperation";
 import { TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/src/components/ui/table";
@@ -56,7 +56,7 @@ type OperationTableBodyProps = {
 
 export const OperationTableBody: React.FC<OperationTableBodyProps> = ({ type, sortedOperations }) => {
   const [, setSelectedOperation] = useAtom(selectedOperationAtom);
-  const [, setShowPanel] = useAtom(panelAtom);
+  const [, setShowPanel] = useAtom(selectedOperationPanelAtom);
 
   const handleSelectedOperation = (operation: IOperation) => {
     setSelectedOperation({ type, operation });
