@@ -10,6 +10,8 @@ import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { makeCardOpacity } from "@/src/utils/animations";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
+import { GrValidate } from "react-icons/gr";
+import { RxCross2 } from "react-icons/rx";
 
 export const MyAccountCard: React.FC = () => {
   const [user] = useAtom(userAtom);
@@ -66,6 +68,17 @@ export const MyAccountCard: React.FC = () => {
             <div className="flex items-center gap-2">
               <p className="break-keep">Création : </p>
               <b>{formattedDate}</b>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <p className="break-keep">Premium : </p>
+              <b>
+                {user.isSubscribed ? (
+                  <GrValidate className="h-6 w-6 text-green-600" />
+                ) : (
+                  <RxCross2 className="h-6 w-6 text-red-600" />
+                )}
+              </b>
             </div>
           </>
         </CardContent>

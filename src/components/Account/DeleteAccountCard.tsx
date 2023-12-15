@@ -41,7 +41,7 @@ export const DeleteAccountCard: React.FC = () => {
       animate="visible"
       variants={makeCardOpacity(0.4)}
     >
-      <Card className="flex flex-col justify-between ring">
+      <Card className="flex flex-col h-full justify-between ring">
         <CardHeader className="p-2">
           <div className="relative">
             <picture>

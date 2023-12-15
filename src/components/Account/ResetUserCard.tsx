@@ -32,7 +32,7 @@ export const ResetUserCard: React.FC = () => {
       animate="visible"
       variants={makeCardOpacity(0.2)}
     >
-      <Card className="flex flex-col justify-between ring">
+      <Card className="flex h-full flex-col justify-between ring">
         <CardHeader className="p-2">
           <div className="relative">
             <picture>
