@@ -21,7 +21,7 @@ export const MyAccountCard: React.FC = () => {
   if (!user) return null;
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={makeCardOpacity()}>
+    <motion.div className="w-full" initial="hidden" animate="visible" variants={makeCardOpacity()}>
       <Card className="h-full w-full ring lg:w-fit lg:min-w-[400px]">
         <CardHeader className="p-2">
           <div className="relative mb-8">

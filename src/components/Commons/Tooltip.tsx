@@ -1,5 +1,6 @@
 import { Button } from "@/src/components/ui/button";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/src/components/ui/hover-card";
+import { useWindowSize } from "@uidotdev/usehooks";
 import { BsQuestionCircle } from "react-icons/bs";
 
 type TooltipProps = {
@@ -8,6 +9,10 @@ type TooltipProps = {
 };
 
 export const Tooltip: React.FC<TooltipProps> = ({ title, description }) => {
+  const { width } = useWindowSize();
+
+  if (width && width < 1024) return null;
+
   return (
     <HoverCard>
       <HoverCardTrigger asChild>

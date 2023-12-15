@@ -26,7 +26,7 @@ export const ResetUserCard: React.FC = () => {
   if (!user) return null;
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={makeCardOpacity(0.2)}>
+    <motion.div className="w-full" initial="hidden" animate="visible" variants={makeCardOpacity(0.2)}>
       <Card className="flex w-full flex-col justify-between ring lg:w-fit lg:min-w-[400px]">
         <CardHeader className="p-2">
           <div className="relative">
@@ -37,7 +37,7 @@ export const ResetUserCard: React.FC = () => {
             <div className="float-right">
               <Tooltip
                 title="Demande de réinitialisation des données"
-                description="En confirmant la réinitialisation de vos données, vous supprimerez vos données de personnalisation (revenus, dépenses, format des opérations et devise). Cette action est irréversible."
+                description="En confirmant la réinitialisation de vos données, vous supprimerez vos données de personnalisation. Cette action est irréversible."
               />
             </div>
           </div>
