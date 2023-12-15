@@ -107,13 +107,13 @@ export const WeatherWidget: React.FC = () => {
 };
 
 const CardWithLoading = () => (
-  <Card className="h-fit min-h-[300px] w-full max-w-screen-sm rounded-xl p-4 ring">
+  <Card className="h-fit min-h-[250px] w-full rounded-xl px-4 pb-2 pt-6 ring">
     <SpinnerLoadingScreen />
   </Card>
 );
 
 const CardWithNoCity = () => (
-  <Card className="h-fit w-full max-w-screen-sm rounded-xl p-4 ring">
+  <Card className="h-fit min-h-[250px] w-full rounded-xl px-4 pb-2 pt-6 ring">
     <CardContent>
       <div className="flex flex-col items-center text-center">
         <span className="mb-3 text-6xl font-bold">🏙️</span>
