@@ -1,5 +1,5 @@
 const Privacy: React.FC = () => {
-  return <div>Privacy</div>;
+  return <div className="p-4 lg:p-8">Privacy</div>;
 };
 
 export default Privacy;
