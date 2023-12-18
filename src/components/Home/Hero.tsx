@@ -1,35 +1,40 @@
 import Link from "next/link";
-import { buttonVariants } from "@/src/components/ui/button";
-import { Route } from "@/src/enums/frontendRoutes";
+import { Button } from "@/src/components/ui/button";
 
 function Hero() {
   return (
-    <div className="mt-20 flex flex-col justify-center px-6 lg:px-8">
-      <div className="mx-auto flex max-w-2xl flex-col gap-6">
-        <div className="mx-auto mb-8 w-fit justify-center text-center">
-          <h1 className="rounded-full px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-200 dark:ring-gray-300/50">
-            Gérez vos finances en toute simplicité 🍀
-          </h1>
-        </div>
-
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
-            Enrichissez votre expérience financière
-          </h1>
-
-          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-200">
-            Walletoo vous aide à visualiser et optimiser vos finances personnelles avec des graphiques et des calculs
-            intuitifs.
-          </p>
-
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link className={buttonVariants({ variant: "default" })} href={Route.SIGNIN}>
-              Je me lance ! 😍
-            </Link>
+    <section className="w-full py-6 sm:py-12 md:py-24 lg:py-32 xl:py-48">
+      <div className="container px-4 md:px-6">
+        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+          <img
+            alt="Hero"
+            className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+            height="550"
+            src="/placeholder.svg"
+            width="550"
+          />
+          <div className="flex flex-col justify-center space-y-4">
+            <div className="space-y-2">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Welcome to Walletoo</h1>
+              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl">
+                Walletoo - Votre partenaire de confiance pour une gestion financière efficace et des conseils avisés.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <Button className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300">
+                Get Started
+              </Button>
+              <Link
+                className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+                href="#"
+              >
+                Learn More
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
