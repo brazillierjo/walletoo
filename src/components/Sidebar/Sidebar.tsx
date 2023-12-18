@@ -43,7 +43,7 @@ export const Sidebar: React.FC = () => {
   return (
     <div
       className={cn(
-        "relative hidden min-h-screen bg-white transition-all duration-300 ease-in-out dark:bg-black lg:block",
+        "relative hidden min-h-screen bg-secondary transition-all duration-300 ease-in-out lg:block",
         isSidebarOpen ? "w-1/4 min-w-[25%] translate-x-0 2xl:w-2/12 2xl:min-w-[16.67%]" : "w-0 -translate-x-full"
       )}
     >

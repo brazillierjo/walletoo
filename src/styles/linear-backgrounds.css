@@ -1,0 +1,25 @@
+.radial-gradient-light {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+
+  /*Fallback if gradeints don't work */
+  background: #9b59b6;
+  /*Linear gradient... */
+  background: radial-gradient(at center, #89bbdd, #c8c3ca);
+}
+
+.radial-gradient-dark {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+
+  /*Fallback if gradeints don't work */
+  background: #9b59b6;
+  /*Linear gradient... */
+  background: radial-gradient(at center, #89bbdd, #c8c3ca);
+}

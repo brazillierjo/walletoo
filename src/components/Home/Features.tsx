@@ -1,66 +1,50 @@
 import { Badge } from "@/src/components/ui/badge";
-import { Button } from "@/src/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card";
 
 export const Features: React.FC = () => {
   return (
-    <main className="container mx-auto p-6">
-      <div className="mb-8 grid gap-6 md:grid-cols-3">
+    <section className="mx-auto py-12 md:py-24 lg:py-32">
+      <div className="grid gap-6 md:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle>Dashboard</CardTitle>
-            <CardDescription>Manage and organize your daily activities in one place.</CardDescription>
+            <CardTitle>Tableau de bord</CardTitle>
+            <CardDescription>Gérez et organisez vos activités quotidiennes en un seul endroit.</CardDescription>
           </CardHeader>
 
           <CardContent>
             <ul className="list-inside list-disc space-y-2">
               <li>
-                <Badge>Note-taking</Badge>
+                <Badge>Prise de notes</Badge>
               </li>
               <li>
-                <Badge>Weather updates</Badge>
+                <Badge>Mises à jour météorologiques</Badge>
               </li>
               <li>
-                <Badge>Calendar</Badge>
+                <Badge>Calendrier</Badge>
               </li>
             </ul>
           </CardContent>
-          <CardFooter>
-            <Button variant="link">Learn more</Button>
-          </CardFooter>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Wallet Page</CardTitle>
-            <CardDescription>Visualize and understand your financial data through charts and analyses.</CardDescription>
-          </CardHeader>
-
-          <CardContent>
-            <BarChart className="aspect-[2/1] w-full" />
-          </CardContent>
-          <CardFooter>
-            <Button variant="link">Learn more</Button>
-          </CardFooter>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Strategy Page</CardTitle>
+            <CardTitle>Page Portefeuille</CardTitle>
             <CardDescription>
-              Get in-depth analyses and compare your financial performance with recommendations from major international
-              financial organizations.
+              Visualisez et comprenez vos données financières à travers des graphiques et des analyses.
             </CardDescription>
           </CardHeader>
+        </Card>
 
-          <CardContent>
-            <LineChart className="aspect-[2/1] w-full" />
-          </CardContent>
-          <CardFooter>
-            <Button variant="link">Learn more</Button>
-          </CardFooter>
+        <Card>
+          <CardHeader>
+            <CardTitle>Page Stratégie</CardTitle>
+            <CardDescription>
+              Obtenez des analyses approfondies et comparez vos performances financières avec les recommandations de
+              grandes organisations financières internationales.
+            </CardDescription>
+          </CardHeader>
         </Card>
       </div>
-    </main>
+    </section>
   );
 };

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { Route } from "@/src/enums/frontendRoutes";
 
-function Hero() {
+export const Hero: React.FC = () => {
   return (
     <section className="custom-min-h-screen flex flex-col items-center justify-center py-12">
       <div className="flex flex-col items-center justify-center space-y-6">
@@ -24,6 +24,6 @@ function Hero() {
       </div>
     </section>
   );
-}
+};
 
 export default Hero;

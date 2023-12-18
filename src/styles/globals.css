@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("./linear-backgrounds.css");
 @import url("./switch.css");
 @import url("./spinner.css");
+@import url("./libs.css");
 
 .custom-min-h-screen {
   min-height: calc(100vh - 342px);
@@ -88,18 +90,7 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
   .ring {
     @apply ring-8 ring-white ring-opacity-40 dark:ring-slate-700;
   }
-}
-
-._contentEditable_utjas_351 {
-  max-height: 200px !important;
-  overflow-y: scroll !important;
 }

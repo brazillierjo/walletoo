@@ -37,7 +37,7 @@ const RootLayout: React.FC<Props> = async ({ children }: Props) => {
 
                 <div className="w-full">
                   <Header />
-                  <main className="custom-min-h-screen p-4 lg:p-8">{children}</main>
+                  <main className="custom-min-h-screen">{children}</main>
                   <Footer />
                   <Toaster />
                 </div>
