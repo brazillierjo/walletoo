@@ -27,7 +27,7 @@ const BalanceTable: React.FC = () => {
 
   return (
     <motion.div className="flex h-full w-full" initial="hidden" animate="visible" variants={makeCardOpacity(0.6)}>
-      <Card className="w-full rounded-lg p-4">
+      <Card className="w-full p-4">
         <h2 className="mb-4 text-lg font-semibold">Récapituliatif</h2>
 
         <Table>

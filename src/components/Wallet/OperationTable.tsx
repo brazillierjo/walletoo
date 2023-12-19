@@ -67,7 +67,7 @@ export const OperationTable: React.FC<OperationTableProps> = ({ type }) => {
       animate="visible"
       variants={type === OperationTypeLabel.EXPENSES ? makeCardOpacity(0.2) : makeCardOpacity()}
     >
-      <Card className="flex h-full flex-col rounded-md p-4">
+      <Card className="flex h-full flex-col p-4">
         <h2 className="mb-4 text-lg font-semibold">{type}</h2>
 
         <div className="mb-4 px-2">

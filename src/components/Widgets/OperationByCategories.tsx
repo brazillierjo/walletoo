@@ -30,7 +30,7 @@ export const OperationByCategories = () => {
 
   return (
     <motion.div className="flex h-full w-full" initial="hidden" animate="visible" variants={makeCardOpacity(0.4)}>
-      <Card className="w-full rounded-lg p-4">
+      <Card className="w-full p-4">
         <Tabs defaultValue={OperationType.EXPENSES}>
           <TabsList>
             <TabsTrigger value={OperationType.INCOMES}>{OperationTypeLabel.INCOMES}</TabsTrigger>
@@ -39,7 +39,7 @@ export const OperationByCategories = () => {
 
           <TabsContent className="flex max-h-[400px] flex-col gap-4 overflow-y-auto" value={OperationType.INCOMES}>
             {uniqueUserIncomesCategories.map((category) => (
-              <Card key={category} className="w-full rounded-lg border-0 p-1 shadow-none ring-0">
+              <Card key={category} className="w-full border-0 p-1 shadow-none">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">
@@ -65,7 +65,7 @@ export const OperationByCategories = () => {
 
           <TabsContent className="flex max-h-[400px] flex-col gap-4 overflow-y-auto" value={OperationType.EXPENSES}>
             {uniqueUserExpensesCategories.map((category) => (
-              <Card key={category} className="w-full rounded-lg border-0 p-1 shadow-none ring-0">
+              <Card key={category} className="w-full border-0 p-1 shadow-none">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">
