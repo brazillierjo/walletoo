@@ -10,12 +10,7 @@ const Home: React.FC = () => {
   const { theme } = useTheme();
 
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center justify-center",
-        theme === "dark" ? "radial-gradient-dark" : "radial-gradient-light"
-      )}
-    >
+    <div className={cn(theme === "dark" ? "radial-gradient-dark" : "radial-gradient-light")}>
       <Hero />
       <Services />
       <Features />

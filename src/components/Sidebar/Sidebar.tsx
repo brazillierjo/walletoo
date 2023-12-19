@@ -1,17 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { userAtom } from "@/src/atoms/user.atom";
 import { DisabledLink, RouterLink } from "@/src/components/Commons/Links";
-import { Button } from "@/src/components/ui/button";
+import { LogButton } from "@/src/components/Commons/LogButton";
+import { UserAvatar } from "@/src/components/Commons/UserAvatar";
 import { Separator } from "@/src/components/ui/separator";
 import { Route } from "@/src/enums/frontendRoutes";
 import { links } from "@/src/utils/links";
 import { cn } from "@/src/utils/tailwindMerge";
 import { useAtom } from "jotai";
-import { signOut, useSession } from "next-auth/react";
 import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
 
 export const Sidebar: React.FC = () => {
@@ -21,7 +20,6 @@ export const Sidebar: React.FC = () => {
 
   const sidebarLinks = links.filter((link) => link.isInSidebar);
 
-  const { data: session } = useSession();
   const pathname = usePathname();
 
   const isActivelink = (to: string) => {
@@ -40,6 +38,8 @@ export const Sidebar: React.FC = () => {
     timeoutVisibleContent();
   };
 
+  if (pathname === Route.SIGNIN || pathname === Route.HOME) return null;
+
   return (
     <div
       className={cn(
@@ -50,18 +50,7 @@ export const Sidebar: React.FC = () => {
       <div className="h-screen overflow-y-hidden">
         {isSidebarOpen && isContentVisible && (
           <div className="flex h-full flex-col">
-            <div className="flex flex-col gap-5 p-6">
-              {session?.user?.image && (
-                <Image
-                  src={session.user.image}
-                  width={80}
-                  height={80}
-                  alt="user avatar"
-                  className="mx-auto rounded-full"
-                />
-              )}
-              <h2 className="text-center text-xl font-bold">{session?.user?.name ?? "..."}</h2>
-            </div>
+            <UserAvatar />
 
             <Separator className="bg-gray-300" />
 
@@ -87,16 +76,7 @@ export const Sidebar: React.FC = () => {
             </div>
 
             <div className="m-8 mt-auto flex flex-col gap-3">
-              <Button
-                className="w-full"
-                onClick={() =>
-                  signOut({
-                    callbackUrl: Route.HOME,
-                  })
-                }
-              >
-                Déconnexion
-              </Button>
+              <LogButton />
             </div>
           </div>
         )}

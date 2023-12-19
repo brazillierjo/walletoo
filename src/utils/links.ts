@@ -30,7 +30,7 @@ export const links: RouterLinkType[] = [
     isSubscribedRequired: false,
   },
   {
-    label: "Mon dashboard",
+    label: "Dashboard",
     to: Route.DASHBOARD,
     description: "Accédez à votre dashboard",
     icon: BiSolidDashboard,
@@ -40,7 +40,7 @@ export const links: RouterLinkType[] = [
     isSubscribedRequired: false,
   },
   {
-    label: "Mon wallet",
+    label: "Mon Wallet",
     to: Route.WALLET,
     description: "Accédez à votre wallet",
     icon: FaWallet,
@@ -70,7 +70,7 @@ export const links: RouterLinkType[] = [
     isSubscribedRequired: false,
   },
   {
-    label: "Mes paramètres",
+    label: "Paramètres",
     to: Route.SETTINGS,
     description: "Accédez à vos paramètres",
     icon: IoMdSettings,
@@ -89,7 +89,7 @@ export const links: RouterLinkType[] = [
     isSubscribedRequired: false,
   },
   {
-    label: "A propos",
+    label: "À propos",
     to: Route.ABOUT,
     description: "En savoir plus sur Walletoo",
     isInSidebar: false,
