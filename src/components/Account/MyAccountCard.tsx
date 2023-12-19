@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { userAtom } from "@/src/atoms/user.atom";
-import { Tooltip } from "@/src/components/Commons/Tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Separator } from "@/src/components/ui/separator";
 import useDateFormatter from "@/src/hooks/useDateFormatter";
@@ -27,26 +26,19 @@ export const MyAccountCard: React.FC = () => {
     <motion.div className="w-full md:w-[400px]" initial="hidden" animate="visible" variants={makeCardOpacity()}>
       <Card className="w-full md:min-h-[444px]">
         <CardHeader className="p-2">
-          <div className="relative mb-8">
+          <div className="relative mb-24">
             <picture>
               <img className="h-32 w-full rounded-md object-cover" src={randomImageUrl ?? ""} alt="user banner" />
             </picture>
 
             <Image
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-4 border-white dark:border-black"
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-full rounded-full border-4 border-white dark:border-black"
               width={100}
               height={100}
               src={user.avatar}
               alt="Avatar"
               priority
             />
-
-            <div className="float-right">
-              <Tooltip
-                title="Pourquoi ne puis-je pas modifier mes informations personnelles ?"
-                description="Walletoo récupère vos informations directement du service tiers utilisé pour la connexion. Par conséquent, Walletoo ne peut pas modifier ces informations."
-              />
-            </div>
           </div>
 
           <CardTitle className="relative text-center text-lg font-semibold">{user.fullName}</CardTitle>

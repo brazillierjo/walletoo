@@ -8,6 +8,7 @@ import {
   TemperatureUnitSelect,
 } from "@/src/components/Account/SettingsCard/InputsSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Separator } from "@/src/components/ui/separator";
 import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { makeCardOpacity } from "@/src/utils/animations";
 import { motion } from "framer-motion";
@@ -30,8 +31,12 @@ export const SettingsCard: React.FC = () => {
             </picture>
           </div>
 
-          <CardTitle className="relative px-3 text-lg font-semibold">Modifier les paramètres de votre Wallet</CardTitle>
+          <CardTitle className="relative px-3 text-center text-lg font-semibold">
+            Modifier les paramètres de votre Wallet
+          </CardTitle>
         </CardHeader>
+
+        <Separator />
 
         <CardContent className="flex flex-col gap-3 p-5 text-sm">
           <OperationFormatSelect user={user} setUser={setUser} />
