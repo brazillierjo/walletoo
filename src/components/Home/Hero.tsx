@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { Route } from "@/src/enums/frontendRoutes";
+import { useScroll } from "@/src/hooks/useScroll";
 
 export const Hero: React.FC = () => {
+  const scrollTo = useScroll();
+
   return (
     <section className="custom-min-h-screen flex flex-col items-center justify-center py-12">
       <div className="flex flex-col items-center justify-center space-y-6">
@@ -14,11 +19,12 @@ export const Hero: React.FC = () => {
         </p>
 
         <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-          <Link href="#">
-            <Button variant="secondary">En savoir plus</Button>
-          </Link>
+          <Button size="lg" variant="secondary" onClick={() => scrollTo("details")}>
+            En savoir plus
+          </Button>
+
           <Link href={Route.WALLET}>
-            <Button>J'accède à mon Wallet</Button>
+            <Button size="lg">J'accède à mon Wallet</Button>
           </Link>
         </div>
       </div>

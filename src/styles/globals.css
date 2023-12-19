@@ -25,6 +25,10 @@
   background: #000000;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   :root {
     --background: #ffffff;

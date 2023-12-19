@@ -4,11 +4,11 @@ import { Services } from "@/src/components/Home/Services";
 
 const Home: React.FC = () => {
   return (
-    <div>
+    <>
       <Hero />
       <Services />
       <Features />
-    </div>
+    </>
   );
 };
 
