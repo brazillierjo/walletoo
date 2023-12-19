@@ -17,7 +17,7 @@ export const Logo: React.FC<LogoProps> = ({ withLabel = false, withCatchPhrase =
         <Image src={WalletooLogo} className="rounded-md p-1 dark:bg-slate-300" alt="Walletoo" height={45} />
 
         <div className="hidden flex-col lg:flex">
-          {withLabel && <h2 className="text-2xl">Walletoo</h2>}
+          {withLabel && <h2 className="text-xl">Walletoo</h2>}
           {withCatchPhrase && <h3 className="text-xs">Simplifiez vos finances, maximisez votre succès.</h3>}
         </div>
       </div>
