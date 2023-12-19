@@ -3,7 +3,6 @@
 import { userAtom } from "@/src/atoms/user.atom";
 import FormattedOperation from "@/src/components/Commons/FormattedOperation";
 import { Card } from "@/src/components/ui/card";
-import { Separator } from "@/src/components/ui/separator";
 import { Table, TableBody, TableCell, TableRow } from "@/src/components/ui/table";
 import { makeCardOpacity } from "@/src/utils/animations";
 import { cn } from "@/src/utils/tailwindMerge";

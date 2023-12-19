@@ -8,7 +8,7 @@ type WeatherLogoProps = {
 };
 
 export const WeatherLogo: React.FC<WeatherLogoProps> = ({ className }) => {
-  let [weather] = useAtom(weatherAtom);
+  const [weather] = useAtom(weatherAtom);
 
   if (!weather) return "...";
 

@@ -137,7 +137,7 @@ export const EditOperationForm: React.FC<EditOperationFormProps> = ({ operation,
               <FormField
                 control={form.control}
                 name="category"
-                render={({ field }) => (
+                render={() => (
                   <FormItem className="w-full">
                     <FormLabel>Catégorie (facultatif)</FormLabel>
                     <FormControl>
