@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
   const footerLinks = links.filter((link) => link.isInFooter);
 
   return (
-    <footer className="mx-auto border-t border-gray-300 bg-secondary px-4 pt-2 text-sm dark:border-gray-700 lg:flex-row lg:px-8">
+    <footer className="mx-auto border-t border-gray-300 px-4 pt-2 text-sm dark:border-gray-700 lg:flex-row lg:px-8">
       <div className="mx-auto mb-5 flex w-full justify-evenly pt-5">
         <div className="flex flex-col gap-5">
           <h4 className="text-md font-bold">Menu de navigation</h4>

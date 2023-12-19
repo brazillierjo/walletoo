@@ -29,7 +29,7 @@ export const MyAccountCard: React.FC = () => {
       animate="visible"
       variants={makeCardOpacity()}
     >
-      <Card className="min-h-[365px] ring">
+      <Card className="min-h-[365px]">
         <CardHeader className="p-2">
           <div className="relative mb-8">
             <picture>

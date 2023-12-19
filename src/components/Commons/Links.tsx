@@ -11,7 +11,7 @@ type DisabledLinkProps = {
 
 export const DisabledLink: React.FC<DisabledLinkProps> = ({ link, className, withIcon }) => {
   return (
-    <div className={cn("flex items-center gap-2 opacity-40", className)}>
+    <div className={cn("flex items-center gap-2 opacity-60", className)}>
       {withIcon && link.icon && <link.icon className="h-5 w-5" />}
       <span className="flex items-center gap-2 text-sm transition-all duration-100">
         {link.label}
@@ -35,7 +35,7 @@ export const RouterLink: React.FC<RouterLinkProps> = ({ link, isActivelink, clas
       className={cn(
         "flex items-center gap-3",
         className,
-        isActivelink && isActivelink(link.to) && "border-r-4 border-slate-600 dark:border-white"
+        isActivelink && isActivelink(link.to) && "border-r-2 border-secondary-foreground"
       )}
     >
       {withIcon && link.icon && (

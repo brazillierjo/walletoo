@@ -28,7 +28,7 @@ const RootLayout: React.FC<Props> = async ({ children }: Props) => {
 
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={cn(inter.className, "relative bg-slate-200 dark:bg-slate-800")}>
+      <body className={cn(inter.className, "relative bg-secondary")}>
         <JotaiProvider>
           <SessionProvider session={session}>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

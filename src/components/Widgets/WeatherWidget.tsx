@@ -46,7 +46,7 @@ export const WeatherWidget: React.FC = () => {
 
   return (
     weather && (
-      <Card className="h-fit min-h-[250px] w-full rounded-xl px-4 pb-2 pt-6 ring">
+      <Card className="h-fit min-h-[250px] w-full rounded-xl px-4 pb-2 pt-6">
         <CardContent>
           <div className="flex flex-col lg:flex-row lg:justify-between">
             <div className="flex flex-row justify-between gap-1 lg:flex-col">
@@ -107,13 +107,13 @@ export const WeatherWidget: React.FC = () => {
 };
 
 const CardWithLoading = () => (
-  <Card className="h-fit min-h-[250px] w-full rounded-xl px-4 pb-2 pt-6 ring">
+  <Card className="h-fit min-h-[250px] w-full rounded-xl px-4 pb-2 pt-6">
     <SpinnerLoadingScreen />
   </Card>
 );
 
 const CardWithNoCity = () => (
-  <Card className="h-fit min-h-[250px] w-full rounded-xl px-4 pb-2 pt-6 ring">
+  <Card className="h-fit min-h-[250px] w-full rounded-xl px-4 pb-2 pt-6">
     <CardContent>
       <div className="flex flex-col items-center text-center">
         <span className="mb-3 text-6xl font-bold">🏙️</span>

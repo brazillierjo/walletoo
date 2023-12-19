@@ -30,7 +30,7 @@ export const OperationByCategories = () => {
 
   return (
     <motion.div className="flex h-full w-full" initial="hidden" animate="visible" variants={makeCardOpacity(0.4)}>
-      <Card className="w-full rounded-lg p-4 ring">
+      <Card className="w-full rounded-lg p-4">
         <Tabs defaultValue={OperationType.EXPENSES}>
           <TabsList>
             <TabsTrigger value={OperationType.INCOMES}>{OperationTypeLabel.INCOMES}</TabsTrigger>

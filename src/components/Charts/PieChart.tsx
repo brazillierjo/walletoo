@@ -34,7 +34,7 @@ const PieChart: React.FC<PieChartProps> = ({ title, data, labels }) => {
   };
 
   return (
-    <Card className="h-full p-4 ring">
+    <Card className="h-full p-4">
       <h2 className="mb-4 text-lg font-semibold">{title}</h2>
 
       <div className="mx-auto w-full lg:w-2/3">
