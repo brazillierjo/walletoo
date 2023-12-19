@@ -31,7 +31,7 @@ const RootLayout: React.FC<Props> = async ({ children }: Props) => {
       <body className={cn(inter.className, "relative bg-background")}>
         <JotaiProvider>
           <SessionProvider session={session}>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
               <div className={session ? "flex" : "block"}>
                 {session && <Sidebar />}
 

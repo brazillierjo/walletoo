@@ -1,7 +1,23 @@
-.radial-gradient-dark {
-  background: radial-gradient(at center, #5a585a, #090947);
+.radial-gradient-light {
+  background: linear-gradient(-45deg, #ff99a6, #ffe082, #8de4fc, #9fffff);
+  background-size: 400% 400%;
+  animation: gradient 17s ease infinite;
 }
 
-.radial-gradient-light {
-  background: radial-gradient(at center, #edf1f4, #c3cbdc);
+.radial-gradient-dark {
+  background: radial-gradient(at center, #383838, #282628, #4d4d88, #333366);
+  background-size: 400% 400%;
+  animation: gradient 17s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
