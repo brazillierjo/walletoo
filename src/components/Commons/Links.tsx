@@ -3,17 +3,22 @@ import { RouterLinkType } from "@/src/utils/links";
 import { cn } from "@/src/utils/tailwindMerge";
 import { FaLock } from "react-icons/fa6";
 
-type DisabledLinkProps = {
+type LinkProps = {
   link: RouterLinkType;
-  className?: string;
+  isActivelink?: (link: string) => boolean;
+  className?: {
+    container?: string;
+    label?: "text-xs" | "text-sm" | "text-base" | "text-lg" | "text-xl" | "text-2xl";
+    active?: string;
+  };
   withIcon?: boolean;
 };
 
-export const DisabledLink: React.FC<DisabledLinkProps> = ({ link, className, withIcon }) => {
+export const DisabledLink: React.FC<LinkProps> = ({ link, className, withIcon }) => {
   return (
-    <div className={cn("flex items-center gap-2 opacity-60", className)}>
+    <div className={cn("flex items-center gap-2 opacity-60", className?.container)}>
       {withIcon && link.icon && <link.icon className="h-5 w-5" />}
-      <span className="flex items-center gap-2 text-sm transition-all duration-100">
+      <span className={cn("flex items-center gap-2 transition-all duration-100", className?.label ?? "text-sm")}>
         {link.label}
         <FaLock className="h-3 w-3" />
       </span>
@@ -21,21 +26,14 @@ export const DisabledLink: React.FC<DisabledLinkProps> = ({ link, className, wit
   );
 };
 
-type RouterLinkProps = {
-  link: RouterLinkType;
-  isActivelink?: (link: string) => boolean;
-  className?: string;
-  withIcon?: boolean;
-};
-
-export const RouterLink: React.FC<RouterLinkProps> = ({ link, isActivelink, className, withIcon }) => {
+export const RouterLink: React.FC<LinkProps> = ({ link, isActivelink, className, withIcon }) => {
   return (
     <Link
       href={link.to}
       className={cn(
         "flex items-center gap-3",
-        className,
-        isActivelink && isActivelink(link.to) && "border-r-2 border-secondary-foreground"
+        className?.container,
+        isActivelink && isActivelink(link.to) && className?.active
       )}
     >
       {withIcon && link.icon && (
@@ -44,7 +42,8 @@ export const RouterLink: React.FC<RouterLinkProps> = ({ link, isActivelink, clas
       <span
         className={cn(
           "flex items-center gap-2 transition-all duration-100",
-          isActivelink && !isActivelink(link.to) ? "text-sm opacity-60 hover:opacity-100" : "test-base"
+          isActivelink && !isActivelink(link.to) ? "opacity-60 hover:opacity-100" : "test-base",
+          className?.label ?? "text-sm"
         )}
       >
         {link.label}

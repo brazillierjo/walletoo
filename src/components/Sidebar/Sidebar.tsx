@@ -44,7 +44,7 @@ export const Sidebar: React.FC = () => {
     <div
       className={cn(
         "relative hidden min-h-screen transition-all duration-100 ease-in-out lg:block",
-        isSidebarOpen ? "w-1/4 min-w-[25%] translate-x-0 2xl:w-[15%] 2xl:min-w-[15%]" : "w-0 -translate-x-full"
+        isSidebarOpen ? "w-1/4 translate-x-0 xl:w-[15%] xl:min-w-[250px]" : "w-0 -translate-x-full"
       )}
     >
       <div className="h-screen overflow-y-hidden">
@@ -68,23 +68,36 @@ export const Sidebar: React.FC = () => {
             <div className="flex flex-col gap-2 py-8 pl-8">
               {sidebarLinks.map((link, index) => {
                 return link.isSubscribedRequired && !user?.isSubscribed ? (
-                  <DisabledLink key={index} link={link} className="py-2" withIcon />
+                  <DisabledLink
+                    key={index}
+                    link={link}
+                    className={{ container: "py-2", active: "border-r-2 border-secondary-foreground" }}
+                    withIcon
+                  />
                 ) : (
-                  <RouterLink key={index} link={link} className="py-2" isActivelink={isActivelink} withIcon />
+                  <RouterLink
+                    key={index}
+                    link={link}
+                    className={{ container: "py-2", active: "border-r-2 border-secondary-foreground" }}
+                    isActivelink={isActivelink}
+                    withIcon
+                  />
                 );
               })}
             </div>
 
-            <Button
-              className="m-8 mt-auto"
-              onClick={() =>
-                signOut({
-                  callbackUrl: Route.HOME,
-                })
-              }
-            >
-              Déconnexion
-            </Button>
+            <div className="m-8 mt-auto flex flex-col gap-3">
+              <Button
+                className="w-full"
+                onClick={() =>
+                  signOut({
+                    callbackUrl: Route.HOME,
+                  })
+                }
+              >
+                Déconnexion
+              </Button>
+            </div>
           </div>
         )}
       </div>

@@ -55,7 +55,7 @@ const BalanceTable: React.FC = () => {
 
             <TableRow>
               <TableCell className="font-medium">Taux de charge financière :</TableCell>
-              <TableCell className="text-right">{financialRatio.toFixed(2)}%</TableCell>
+              <TableCell className="text-right">{financialRatio.toFixed(1)}%</TableCell>
             </TableRow>
           </TableBody>
         </Table>
