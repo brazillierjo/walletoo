@@ -22,7 +22,7 @@ export const SettingsCard: React.FC = () => {
 
   return (
     <motion.div initial="hidden" animate="visible" variants={makeCardOpacity()}>
-      <Card className="h-full w-full ring lg:w-fit lg:min-w-[700px]">
+      <Card className="h-full w-full lg:w-fit lg:min-w-[700px]">
         <CardHeader className="p-2">
           <div className="relative mb-3">
             <picture>

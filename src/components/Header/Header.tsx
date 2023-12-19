@@ -28,13 +28,13 @@ export const Header: React.FC = () => {
   const headerLinks = links.filter((link) => link.isInHeader);
 
   return (
-    <header>
+    <header className="bg-background">
       <nav className="mx-auto flex items-center justify-between px-4 py-2 lg:px-8">
         <div className="flex items-center gap-2 text-xl font-bold">
           <Logo withLabel withCatchPhrase />
         </div>
 
-        <div className="flex items-center gap-6 rounded-full px-4 py-2">
+        <div className="flex items-center gap-6 rounded-full bg-secondary px-4 py-2">
           <ModeToggle />
 
           {session?.user?.name && (
