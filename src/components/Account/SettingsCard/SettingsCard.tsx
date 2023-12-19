@@ -6,7 +6,7 @@ import {
   CurrencySelect,
   OperationFormatSelect,
   TemperatureUnitSelect,
-} from "@/src/components/Settings/InputsSettings";
+} from "@/src/components/Account/SettingsCard/InputsSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { useGetRandomImageUrl } from "@/src/hooks/useGetRandomImageUrl";
 import { makeCardOpacity } from "@/src/utils/animations";
@@ -21,12 +21,12 @@ export const SettingsCard: React.FC = () => {
   if (!user) return null;
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={makeCardOpacity()}>
-      <Card className="h-full w-full lg:w-fit lg:min-w-[700px]">
+    <motion.div className="w-full md:w-[400px]" initial="hidden" animate="visible" variants={makeCardOpacity()}>
+      <Card>
         <CardHeader className="p-2">
           <div className="relative mb-3">
             <picture>
-              <img className="h-32 w-full rounded-md object-cover" src={randomImageUrl ?? ""} alt="user banner" />
+              <img className="h-40 w-full rounded-md object-cover" src={randomImageUrl ?? ""} alt="user banner" />
             </picture>
           </div>
 

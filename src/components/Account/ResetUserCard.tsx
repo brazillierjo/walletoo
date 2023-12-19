@@ -26,13 +26,8 @@ export const ResetUserCard: React.FC = () => {
   if (!user) return null;
 
   return (
-    <motion.div
-      className="h-full w-full lg:w-fit lg:min-w-[400px]"
-      initial="hidden"
-      animate="visible"
-      variants={makeCardOpacity(0.2)}
-    >
-      <Card className="flex h-full flex-col justify-between">
+    <motion.div className="w-full md:w-[400px]" initial="hidden" animate="visible" variants={makeCardOpacity(0.2)}>
+      <Card className="flex flex-col justify-between">
         <CardHeader className="p-2">
           <div className="relative">
             <picture>

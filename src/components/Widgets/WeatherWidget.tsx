@@ -97,7 +97,7 @@ export const WeatherWidget: React.FC = () => {
             </div>
           </div>
 
-          <Link href={Route.SETTINGS}>
+          <Link href={Route.ACCOUNT}>
             <Button className="mt-5">Modifier la ville</Button>
           </Link>
         </CardContent>
@@ -124,7 +124,7 @@ const CardWithNoCity = () => (
           Pour afficher la météo, veuillez renseigner votre ville dans les paramètres de votre compte.
         </p>
 
-        <Link href={Route.SETTINGS}>
+        <Link href={Route.ACCOUNT}>
           <Button className="mt-5" variant="outline">
             Ajouter une ville
           </Button>

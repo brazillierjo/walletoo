@@ -15,6 +15,7 @@ import { RxCross2 } from "react-icons/rx";
 
 export const MyAccountCard: React.FC = () => {
   const [user] = useAtom(userAtom);
+  console.log("user", user);
 
   const randomImageUrl = useGetRandomImageUrl();
 
@@ -23,13 +24,8 @@ export const MyAccountCard: React.FC = () => {
   if (!user) return null;
 
   return (
-    <motion.div
-      className="h-full w-full lg:w-fit lg:min-w-[400px]"
-      initial="hidden"
-      animate="visible"
-      variants={makeCardOpacity()}
-    >
-      <Card className="min-h-[365px]">
+    <motion.div className="w-full md:w-[400px]" initial="hidden" animate="visible" variants={makeCardOpacity()}>
+      <Card className="w-full md:min-h-[444px]">
         <CardHeader className="p-2">
           <div className="relative mb-8">
             <picture>
