@@ -29,7 +29,7 @@ const Wallet: React.FC = () => {
   if (!user) return null;
 
   return (
-    <div className="relative flex w-full flex-col gap-6 p-4 lg:p-8">
+    <div className="flex w-full flex-col gap-6 p-4 lg:p-8">
       <h1 className="shrink text-xl font-bold">Mon Wallet personnel</h1>
 
       <div className="flex w-full flex-col justify-between gap-10 md:flex-row">

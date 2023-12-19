@@ -43,8 +43,8 @@ export const Sidebar: React.FC = () => {
   return (
     <div
       className={cn(
-        "relative hidden min-h-screen bg-background transition-all duration-300 ease-in-out lg:block",
-        isSidebarOpen ? "w-1/4 min-w-[25%] translate-x-0 2xl:w-2/12 2xl:min-w-[16.67%]" : "w-0 -translate-x-full"
+        "relative hidden min-h-screen transition-all duration-100 ease-in-out lg:block",
+        isSidebarOpen ? "w-1/4 min-w-[25%] translate-x-0 2xl:w-[15%] 2xl:min-w-[15%]" : "w-0 -translate-x-full"
       )}
     >
       <div className="h-screen overflow-y-hidden">
@@ -92,13 +92,17 @@ export const Sidebar: React.FC = () => {
       {/* CHEVRON TO OPEN/CLOSE SIDEBAR */}
       <button
         onClick={handleSidebar}
-        className={cn("absolute top-[55px] m-5 opacity-60 hover:opacity-100", isSidebarOpen ? "right-0" : "-right-12")}
-      >
-        {isSidebarOpen ? (
-          <TbLayoutSidebarLeftCollapseFilled className="h-6 w-6 rotate-0 transition-all duration-300 hover:opacity-100" />
-        ) : (
-          <TbLayoutSidebarLeftCollapseFilled className="h-6 w-6 rotate-180 transition-all duration-300 hover:opacity-100" />
+        className={cn(
+          "absolute top-[55px] z-50 m-5 opacity-60 hover:opacity-100",
+          isSidebarOpen ? "right-0" : "-right-12"
         )}
+      >
+        <TbLayoutSidebarLeftCollapseFilled
+          className={cn("h-6 w-6 transition-all duration-300 hover:opacity-100", {
+            "rotate-0": isSidebarOpen,
+            "rotate-180": !isSidebarOpen,
+          })}
+        />
       </button>
     </div>
   );

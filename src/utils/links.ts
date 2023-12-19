@@ -24,7 +24,7 @@ export const links: RouterLinkType[] = [
     to: Route.HOME,
     description: "Accédez à la page d'accueil",
     icon: IoHome,
-    isInSidebar: false,
+    isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
     isSubscribedRequired: false,

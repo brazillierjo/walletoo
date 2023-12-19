@@ -51,7 +51,7 @@ export const NotesWidget: React.FC = () => {
     <motion.div initial="hidden" animate="visible" variants={makeCardOpacity()}>
       <Card className="w-full overflow-auto rounded-md p-4 lg:w-fit lg:min-w-[700px]">
         <div className="flex items-center justify-between">
-          <Button onClick={() => setShowExample(true)} variant="secondary">
+          <Button onClick={() => setShowExample(true)} variant="outline">
             Exemple
           </Button>
 

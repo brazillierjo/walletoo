@@ -47,7 +47,7 @@ export const OperationByCategories = () => {
                     .filter((income) => income.category === category)
                     .map((income) => (
                       <Button
-                        variant="secondary"
+                        variant="gray"
                         className="flex w-full justify-between gap-4"
                         key={income._id}
                         onClick={() => handleSelectedOperation(OperationTypeLabel.INCOMES, income)}
@@ -73,7 +73,7 @@ export const OperationByCategories = () => {
                     .filter((expense) => expense.category === category)
                     .map((expense) => (
                       <Button
-                        variant="secondary"
+                        variant="gray"
                         className="flex w-full justify-between gap-4"
                         key={expense._id}
                         onClick={() => handleSelectedOperation(OperationTypeLabel.EXPENSES, expense)}

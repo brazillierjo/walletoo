@@ -28,7 +28,7 @@ const RootLayout: React.FC<Props> = async ({ children }: Props) => {
 
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={cn(inter.className, "relative bg-secondary")}>
+      <body className={cn(inter.className, "relative bg-background")}>
         <JotaiProvider>
           <SessionProvider session={session}>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
@@ -37,7 +37,7 @@ const RootLayout: React.FC<Props> = async ({ children }: Props) => {
 
                 <div className="w-full">
                   <Header />
-                  <main className="custom-min-h-screen">{children}</main>
+                  <main className="custom-min-h-screen bg-secondary">{children}</main>
                   <Footer />
                   <Toaster />
                 </div>

@@ -8,7 +8,7 @@
 @import url("./libs.css");
 
 .custom-min-h-screen {
-  min-height: calc(100vh - 342px);
+  min-height: calc(100vh - 70px);
 }
 
 ::-webkit-scrollbar {

@@ -125,7 +125,7 @@ const CardWithNoCity = () => (
         </p>
 
         <Link href={Route.SETTINGS}>
-          <Button className="mt-5" variant="secondary">
+          <Button className="mt-5" variant="outline">
             Ajouter une ville
           </Button>
         </Link>

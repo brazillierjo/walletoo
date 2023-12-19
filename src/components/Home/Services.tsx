@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
 
 export const Services: React.FC = () => {
   return (
-    <section id="details" className="w-full bg-gray-100 py-12 dark:bg-gray-700 md:py-24 lg:py-32">
+    <section id="details" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
