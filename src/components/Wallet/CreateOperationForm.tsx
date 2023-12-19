@@ -98,7 +98,7 @@ export const CreateOperationForm: React.FC<CreateOperationFormProps> = ({ type, 
           )}
         />
 
-        <Button variant="secondary" type="submit">
+        <Button variant="outline" type="submit">
           <FaCheck className="h-3 w-3" />
         </Button>
       </form>
