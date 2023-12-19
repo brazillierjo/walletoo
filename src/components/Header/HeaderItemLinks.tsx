@@ -32,7 +32,7 @@ export const HeaderItemLinks: React.FC = () => {
     return pathname === to;
   };
 
-  if (!session || !session.user || !width) return null;
+  if (!width) return null;
 
   return width < 1280 ? (
     <DropdownMenu>
@@ -43,7 +43,7 @@ export const HeaderItemLinks: React.FC = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
+        <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
         {headerLinks.map((link, index) =>
