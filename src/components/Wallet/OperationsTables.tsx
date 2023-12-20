@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { userAtom } from "@/src/atoms/user.atom";
+import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import { Table } from "@/src/components/ui/table";
 import { CreateOperationForm } from "@/src/components/Wallet/CreateOperationForm";
@@ -10,8 +11,6 @@ import { makeCardOpacity } from "@/src/utils/animations";
 import { cn } from "@/src/utils/tailwindMerge";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
-
-import { Button } from "../ui/button";
 
 export const OperationsTables: React.FC = () => {
   const [user, setUser] = useAtom(userAtom);
