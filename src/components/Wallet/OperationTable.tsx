@@ -1,25 +1,32 @@
+"use client";
+
 import { useMemo, useState } from "react";
 import { userAtom } from "@/src/atoms/user.atom";
-import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import { Table } from "@/src/components/ui/table";
 import { CreateOperationForm } from "@/src/components/Wallet/CreateOperationForm";
 import { OperationTableBody, OperationTableFooter, OperationTableHeader } from "@/src/components/Wallet/TableComposer";
 import { OperationFilter } from "@/src/enums/operationFilter";
-import { OperationType, OperationTypeLabel } from "@/src/enums/operationType";
+import { OperationTypeLabel } from "@/src/enums/operationType";
 import { makeCardOpacity } from "@/src/utils/animations";
-import { cn } from "@/src/utils/tailwindMerge";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 
-export const OperationsTables: React.FC = () => {
-  const [user, setUser] = useAtom(userAtom);
-  if (!user) return null;
+type OperationTableProps = {
+  type: OperationTypeLabel;
+};
 
-  const [type, setType] = useState<OperationType>(OperationType.INCOMES);
+export const OperationTable: React.FC<OperationTableProps> = ({ type }) => {
+  const [user, setUser] = useAtom(userAtom);
   const [sortType, setSortType] = useState<OperationFilter>(OperationFilter.AmountDESC);
 
-  const operations = type === OperationType.INCOMES ? user?.incomes : user?.expenses;
+  const operations = type === OperationTypeLabel.INCOMES ? user?.incomes : user?.expenses;
+
+  const total = useMemo(() => {
+    if (!operations) return 0;
+
+    return operations.reduce((acc, curr) => acc + curr.amount, 0);
+  }, [operations]);
 
   const sortedOperations = useMemo(() => {
     if (!operations) return [];
@@ -39,12 +46,6 @@ export const OperationsTables: React.FC = () => {
     });
   }, [operations, sortType]);
 
-  const total = useMemo(() => {
-    if (!operations) return 0;
-
-    return operations.reduce((acc, curr) => acc + curr.amount, 0);
-  }, [operations]);
-
   const toggleLabelSort = () => {
     setSortType((prevType) =>
       prevType === OperationFilter.LabelDESC ? OperationFilter.LabelASC : OperationFilter.LabelDESC
@@ -57,26 +58,17 @@ export const OperationsTables: React.FC = () => {
     );
   };
 
-  return (
-    <motion.div className="w-full" initial="hidden" animate="visible" variants={makeCardOpacity()}>
-      <Card className="flex h-full flex-col p-4">
-        <div className="flex w-fit gap-3 rounded-md bg-secondary p-1">
-          <Button
-            variant="ghost"
-            className={cn(type === OperationType.INCOMES && "bg-background", "h-7")}
-            onClick={() => setType(OperationType.INCOMES)}
-          >
-            {OperationTypeLabel.INCOMES}
-          </Button>
+  if (!operations || !user) return null;
 
-          <Button
-            variant="ghost"
-            className={cn(type === OperationType.EXPENSES && "bg-background", "h-7")}
-            onClick={() => setType(OperationType.EXPENSES)}
-          >
-            {OperationTypeLabel.EXPENSES}
-          </Button>
-        </div>
+  return (
+    <motion.div
+      className="w-full"
+      initial="hidden"
+      animate="visible"
+      variants={type === OperationTypeLabel.EXPENSES ? makeCardOpacity(0.2) : makeCardOpacity()}
+    >
+      <Card className="flex h-full flex-col p-4">
+        <h2 className="mb-4 text-lg font-semibold">{type}</h2>
 
         <div className="mb-4 px-2">
           {sortedOperations.length > 0 ? (
@@ -87,7 +79,7 @@ export const OperationsTables: React.FC = () => {
                 sortType={sortType}
               />
 
-              <OperationTableBody type={OperationTypeLabel.INCOMES} sortedOperations={sortedOperations} />
+              <OperationTableBody type={type} sortedOperations={sortedOperations} />
 
               <OperationTableFooter total={total} />
             </Table>
@@ -96,7 +88,7 @@ export const OperationsTables: React.FC = () => {
           )}
         </div>
 
-        <CreateOperationForm type={OperationTypeLabel.INCOMES} user={user} setUser={setUser} />
+        <CreateOperationForm type={type} user={user} setUser={setUser} />
       </Card>
     </motion.div>
   );
