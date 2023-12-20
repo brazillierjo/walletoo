@@ -36,7 +36,7 @@ export const OperationByCategories = () => {
             <TabsTrigger value={OperationType.EXPENSES}>{OperationTypeLabel.EXPENSES}</TabsTrigger>
           </TabsList>
 
-          <TabsContent className="flex max-h-[300px] flex-col gap-4 overflow-y-auto" value={OperationType.INCOMES}>
+          <TabsContent className="flex max-h-[450px] flex-col gap-4 overflow-y-auto" value={OperationType.INCOMES}>
             {uniqueUserIncomesCategories.map((category) => (
               <Card key={category} className="w-full border-0 p-1 shadow-none">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
@@ -62,7 +62,7 @@ export const OperationByCategories = () => {
             ))}
           </TabsContent>
 
-          <TabsContent className="flex max-h-[300px] flex-col gap-4 overflow-y-auto" value={OperationType.EXPENSES}>
+          <TabsContent className="flex max-h-[450px] flex-col gap-4 overflow-y-auto" value={OperationType.EXPENSES}>
             {uniqueUserExpensesCategories.map((category) => (
               <Card key={category} className="w-full border-0 p-1 shadow-none">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>

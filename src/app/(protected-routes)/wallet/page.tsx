@@ -33,13 +33,13 @@ const Wallet: React.FC = () => {
       <h1 className="shrink text-xl font-bold">Mon Wallet personnel</h1>
 
       <div className="flex justify-between gap-10">
-        <div className="flex flex-col items-start gap-5">
+        <div className="flex w-full flex-col items-start gap-5 md:w-1/2">
           <OperationTable type={OperationTypeLabel.INCOMES} />
           <OperationTable type={OperationTypeLabel.EXPENSES} />
         </div>
 
         {user?.incomes.length > 0 && user?.expenses.length > 0 && (
-          <div className="flex w-full flex-col items-start justify-between gap-5">
+          <div className="flex w-full flex-col items-start gap-5 md:w-1/2">
             <OperationByCategories />
             <BalanceTable />
           </div>
