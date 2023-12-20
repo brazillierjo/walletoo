@@ -1,6 +1,7 @@
 import { selectedOperationPanelAtom } from "@/src/atoms/panel.atom";
 import { selectedOperationAtom } from "@/src/atoms/selectedOperation.atom";
 import { userAtom } from "@/src/atoms/user.atom";
+import FormattedOperation from "@/src/components/Commons/FormattedOperation";
 import SpinnerLoadingScreen from "@/src/components/Commons/LoadingScreen";
 import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
@@ -10,8 +11,6 @@ import { IOperation } from "@/src/interfaces/operationInterface";
 import { makeCardOpacity } from "@/src/utils/animations";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
-
-import FormattedOperation from "../Commons/FormattedOperation";
 
 export const OperationByCategories = () => {
   const [user] = useAtom(userAtom);
@@ -31,7 +30,7 @@ export const OperationByCategories = () => {
   return (
     <motion.div className="flex h-full w-full" initial="hidden" animate="visible" variants={makeCardOpacity(0.4)}>
       <Card className="w-full p-4">
-        <Tabs defaultValue={OperationType.EXPENSES}>
+        <Tabs defaultValue={OperationType.INCOMES}>
           <TabsList>
             <TabsTrigger value={OperationType.INCOMES}>{OperationTypeLabel.INCOMES}</TabsTrigger>
             <TabsTrigger value={OperationType.EXPENSES}>{OperationTypeLabel.EXPENSES}</TabsTrigger>

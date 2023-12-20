@@ -9,9 +9,8 @@ import Panel from "@/src/components/Commons/Panel";
 import { Button } from "@/src/components/ui/button";
 import BalanceTable from "@/src/components/Wallet/BalanceTable";
 import { EditOperationForm } from "@/src/components/Wallet/EditOperationForm";
-import { OperationTable } from "@/src/components/Wallet/OperationTable";
+import { OperationsTables } from "@/src/components/Wallet/OperationsTables";
 import { OperationByCategories } from "@/src/components/Widgets/OperationByCategories";
-import { OperationTypeLabel } from "@/src/enums/operationType";
 import { useAtom } from "jotai";
 import { FaChartSimple } from "react-icons/fa6";
 
@@ -34,14 +33,13 @@ const Wallet: React.FC = () => {
 
       <div className="flex flex-col justify-between gap-10">
         <div className="flex flex-col items-start gap-5 md:flex-row">
-          <OperationTable type={OperationTypeLabel.INCOMES} />
-          <OperationTable type={OperationTypeLabel.EXPENSES} />
+          <OperationsTables />
+          <OperationByCategories />
         </div>
 
         <div className="w-full">
           {user?.incomes.length > 0 && user?.expenses.length > 0 && (
             <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
-              <OperationByCategories />
               <BalanceTable />
             </div>
           )}
