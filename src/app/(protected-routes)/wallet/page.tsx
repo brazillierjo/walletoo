@@ -32,20 +32,18 @@ const Wallet: React.FC = () => {
     <div className="flex w-full flex-col gap-6 p-4 lg:p-8">
       <h1 className="shrink text-xl font-bold">Mon Wallet personnel</h1>
 
-      <div className="flex flex-col justify-between gap-10">
-        <div className="flex flex-col items-start gap-5 md:flex-row">
+      <div className="flex justify-between gap-10">
+        <div className="flex flex-col items-start gap-5">
           <OperationTable type={OperationTypeLabel.INCOMES} />
           <OperationTable type={OperationTypeLabel.EXPENSES} />
         </div>
 
-        <div className="w-full">
-          {user?.incomes.length > 0 && user?.expenses.length > 0 && (
-            <div className="flex flex-col items-start justify-between gap-5 md:flex-row">
-              <OperationByCategories />
-              <BalanceTable />
-            </div>
-          )}
-        </div>
+        {user?.incomes.length > 0 && user?.expenses.length > 0 && (
+          <div className="flex w-full flex-col items-start justify-between gap-5">
+            <OperationByCategories />
+            <BalanceTable />
+          </div>
+        )}
       </div>
 
       {areChartsDisplay ? (
