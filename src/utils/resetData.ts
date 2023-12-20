@@ -8,4 +8,5 @@ export const resetData: PartialUserUpdate = {
   temperatureUnit: "Celsius",
   lang: "fr",
   city: "",
+  notes: "",
 };
