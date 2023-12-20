@@ -69,7 +69,7 @@ export const OperationTableBody: React.FC<OperationTableBodyProps> = ({ type, so
         <TableRow key={operation._id} className="cursor-pointer" onClick={() => handleSelectedOperation(operation)}>
           <TableCell>{operation.label}</TableCell>
           <TableCell>{operation.category && <Badge variant="secondary">{operation.category}</Badge>}</TableCell>
-          <TableCell className="text-right font-bold">
+          <TableCell className="text-right">
             <FormattedOperation amount={operation.amount} />
           </TableCell>
         </TableRow>
@@ -87,7 +87,9 @@ export const OperationTableFooter: React.FC<OperationTableFooterProps> = ({ tota
   return (
     <TableFooter>
       <TableRow>
-        <TableCell colSpan={1}>Total</TableCell>
+        <TableCell className="text-base font-bold" colSpan={1}>
+          Total
+        </TableCell>
         <TableCell />
         <TableCell className="text-right text-base font-bold">
           <FormattedOperation amount={total} />
