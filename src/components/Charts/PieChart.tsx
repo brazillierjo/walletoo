@@ -1,6 +1,8 @@
+import dynamic from "next/dynamic";
 import { Card } from "@/src/components/ui/card";
 import { ApexOptions } from "apexcharts";
-import ApexCharts from "react-apexcharts";
+
+const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface PieChartProps {
   title: string;
