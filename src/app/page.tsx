@@ -1,20 +1,16 @@
 "use client";
 
-import { Features } from "@/src/components/Home/Features";
 import { Hero } from "@/src/components/Home/Hero";
+import { Privacy } from "@/src/components/Home/Privacy";
 import { Services } from "@/src/components/Home/Services";
-import { cn } from "@/src/utils/tailwindMerge";
-import { useTheme } from "next-themes";
 
 const Home: React.FC = () => {
-  const { theme } = useTheme();
-
   return (
-    <div className={cn(theme === "dark" ? "radial-gradient-dark" : "radial-gradient-light")}>
+    <>
       <Hero />
       <Services />
-      <Features />
-    </div>
+      <Privacy />
+    </>
   );
 };
 

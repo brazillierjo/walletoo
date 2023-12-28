@@ -7,11 +7,11 @@ export const LeftSide: React.FC = () => {
   const randomImageUrl = useGetRandomImageUrl();
 
   return (
-    <div className="h-40 w-full bg-no-repeat object-contain md:h-[85vh] md:w-1/2 lg:w-2/3">
+    <div className="h-40 w-full bg-no-repeat object-contain md:h-[85vh] md:min-h-screen md:w-1/2 lg:w-2/3">
       {randomImageUrl ? (
         <picture>
           <img
-            className="h-full w-full rounded-md bg-cover object-cover"
+            className="h-full w-full rounded-md bg-cover object-cover md:rounded-none"
             src={randomImageUrl ?? ""}
             alt="Left side presentation"
           />
