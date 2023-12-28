@@ -1,6 +1,5 @@
 "use client";
 
-import BalanceTable from "@/src/components/Wallet/BalanceTable";
 import { CalendarWidget } from "@/src/components/Widgets/CalendarWidget";
 import { NotesWidget } from "@/src/components/Widgets/NotesWidget";
 import { WeatherWidget } from "@/src/components/Widgets/WeatherWidget";
@@ -15,7 +14,6 @@ const Dashboard: React.FC = () => {
           <WeatherWidget />
           <div className="flex flex-col gap-6 lg:flex-row">
             <CalendarWidget />
-            <BalanceTable />
           </div>
         </div>
 
