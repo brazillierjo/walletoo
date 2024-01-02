@@ -1,13 +1,10 @@
-"use client";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { Route } from "@/src/enums/frontendRoutes";
-import { useClickAway, useWindowSize } from "@uidotdev/usehooks";
+import { useWindowSize } from "@uidotdev/usehooks";
 import { signOut, useSession } from "next-auth/react";
-import { GiConfirmed } from "react-icons/gi";
-import { RiLoginBoxLine, RiLogoutBoxRLine } from "react-icons/ri";
+import { GoSignIn, GoSignOut } from "react-icons/go";
 
 interface LogButtonProps {
   withIcon?: boolean;
@@ -21,9 +18,19 @@ export const LogButton: React.FC<LogButtonProps> = ({ withIcon }) => {
 
   const isMobile = width && width < 1280;
 
-  const ref = useClickAway<HTMLButtonElement>(() => {
-    setWantsToSignOut(false);
-  });
+  useEffect(() => {
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setWantsToSignOut(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, []); // Ensure this effect runs only on client-side
 
   const handleSignOut = async () => {
     !wantsToSignOut && setWantsToSignOut(true);
@@ -39,27 +46,31 @@ export const LogButton: React.FC<LogButtonProps> = ({ withIcon }) => {
       <Link href={Route.SIGNIN}>
         <Button className="flex w-fit items-center gap-3">
           {isMobile || withIcon ? " Se connecter" : null}
-          <RiLoginBoxLine className="h-4 w-4" />
+          <GoSignOut className="h-4 w-4" />
         </Button>
       </Link>
     );
 
   return (
-    <Button ref={ref} variant={wantsToSignOut ? "destructive" : "default"} onClick={handleSignOut}>
+    <Button
+      variant={wantsToSignOut ? "destructive" : "default"}
+      onClick={handleSignOut}
+      onKeyDown={(e) => e.key === "Escape" && setWantsToSignOut(false)}
+    >
       {withIcon ? (
         !wantsToSignOut ? (
-          <div className="flex w-fit items-center gap-3">
-            Se déconnecter
-            <RiLogoutBoxRLine className="h-4 w-4" />
+          <div className="flex w-fit items-center gap-1">
+            Déconnexion
+            <GoSignOut className="h-4 w-4" />
           </div>
         ) : (
-          <div className="flex w-fit items-center gap-3">
+          <div className="flex w-fit items-center gap-1">
             Confirmer
-            <GiConfirmed className="h-4 w-4" />
+            <GoSignIn className="h-4 w-4" />
           </div>
         )
       ) : !wantsToSignOut ? (
-        "Se déconnecter"
+        "Déconnexion"
       ) : (
         "Confirmer"
       )}
