@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import { UserApi } from "@/src/APIs/userApi";
-import { markdownExamplePanelAtom } from "@/src/atoms/panel.atom";
 import { userAtom } from "@/src/atoms/user.atom";
-import Panel from "@/src/components/Commons/Panel";
 import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import { Separator } from "@/src/components/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/src/components/ui/sheet";
 import { toast } from "@/src/components/ui/use-toast";
 import { makeCardOpacity } from "@/src/utils/animations";
 import { MarkdownDiv, sampleMarkdown } from "@/src/utils/markdown";
@@ -18,7 +24,6 @@ export const NotesWidget: React.FC = () => {
   const [user, setUser] = useAtom(userAtom);
   if (!user) return null;
 
-  const [showExample, setShowExample] = useAtom(markdownExamplePanelAtom);
   const [notes, setNotes] = useState<string>(user.notes);
   const [editNotes, setEditNotes] = useState<boolean>(false);
 
@@ -49,68 +54,71 @@ export const NotesWidget: React.FC = () => {
 
   return (
     <motion.div initial="hidden" animate="visible" variants={makeCardOpacity()}>
-      <Card className="w-full overflow-auto p-4 lg:w-fit lg:min-w-[700px]">
-        <div className="flex items-center justify-between">
-          <Button onClick={() => setShowExample(true)} variant="outline">
-            Exemple
-          </Button>
+      <Sheet>
+        <Card className="w-full overflow-auto p-4 lg:w-fit lg:min-w-[700px]">
+          <div className="flex items-center justify-between">
+            <SheetTrigger>
+              <Button variant="outline">Exemple</Button>
+            </SheetTrigger>
 
-          <h4 className="text-sm font-semibold uppercase">Mes notes</h4>
+            <h4 className="text-sm font-semibold uppercase">Mes notes</h4>
 
-          <div className="flex items-center gap-2">
-            <MdEdit />
-            <div className="switch" data-ison={editNotes} onClick={() => setEditNotes(!editNotes)}>
-              <motion.div className="handle" layout />
+            <div className="flex items-center gap-2">
+              <MdEdit />
+              <div className="switch" data-ison={editNotes} onClick={() => setEditNotes(!editNotes)}>
+                <motion.div className="handle" layout />
+              </div>
             </div>
           </div>
-        </div>
 
-        <Separator className="my-3" />
+          <Separator className="my-3" />
 
-        {!editNotes && (
-          <MarkdownDiv
-            className="min-h-[203px]"
-            dangerouslySetInnerHTML={{
-              __html: marked(notes !== "" ? notes : "*Écrivez vos notes ici en activant l'édition...*"),
-            }}
-          />
-        )}
+          {!editNotes && (
+            <MarkdownDiv
+              className="min-h-[203px]"
+              dangerouslySetInnerHTML={{
+                __html: marked(notes !== "" ? notes : "*Écrivez vos notes ici en activant l'édition...*"),
+              }}
+            />
+          )}
 
-        {editNotes && (
-          <textarea
-            className="h-full w-full focus:outline-none"
-            placeholder="Écrivez vos notes ici..."
-            value={notes}
-            rows={20}
-            onChange={(e) => setNotes(e.target.value)}
-          />
-        )}
-      </Card>
+          {editNotes && (
+            <textarea
+              className="h-full w-full focus:outline-none"
+              placeholder="Écrivez vos notes ici..."
+              value={notes}
+              rows={20}
+              onChange={(e) => setNotes(e.target.value)}
+            />
+          )}
+        </Card>
 
-      {showExample && (
-        <Panel widthClasses="w-full lg:w-2/3 xl:w-7/12" onClose={() => setShowExample(false)}>
-          <h4 className="mb-8 text-xl font-semibold">Exemple de markdown</h4>
+        <SheetContent side="top">
+          <SheetHeader>
+            <SheetTitle>Exemple de markdown</SheetTitle>
+            <SheetDescription>
+              <div className="flex justify-evenly gap-4">
+                <div className="h-full w-full px-2">
+                  <h4 className="mb-2 font-semibold">Syntaxe d'écriture :</h4>
 
-          <div className="flex justify-evenly gap-4">
-            <div className="w-1/2 px-2">
-              <h4 className="mb-2 font-semibold">Syntaxe d'écriture :</h4>
+                  <pre className="rounded-md border-2 p-2">
+                    <code>{sampleMarkdown}</code>
+                  </pre>
+                </div>
 
-              <pre className="rounded-md border-2">
-                <code>{sampleMarkdown}</code>
-              </pre>
-            </div>
+                <div className="h-full w-full px-2">
+                  <h4 className="mb-2 font-semibold">Rendu :</h4>
 
-            <div className="w-1/2 px-2">
-              <h4 className="mb-2 font-semibold">Rendu :</h4>
-
-              <MarkdownDiv
-                className="rounded-md border-2"
-                dangerouslySetInnerHTML={{ __html: marked(sampleMarkdown) }}
-              />
-            </div>
-          </div>
-        </Panel>
-      )}
+                  <MarkdownDiv
+                    className="rounded-md border-2 p-2"
+                    dangerouslySetInnerHTML={{ __html: marked(sampleMarkdown) }}
+                  />
+                </div>
+              </div>
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
     </motion.div>
   );
 };
