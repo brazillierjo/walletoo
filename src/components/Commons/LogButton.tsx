@@ -37,19 +37,26 @@ export const LogButton: React.FC<LogButtonProps> = ({ withIcon }) => {
   if (!session)
     return (
       <Link href={Route.SIGNIN}>
-        <Button className="w-fit">
-          {isMobile || withIcon ? <RiLoginBoxLine className="h-4 w-4" /> : "Se connecter"}
+        <Button className="flex w-fit items-center gap-3">
+          {isMobile || withIcon ? " Se connecter" : null}
+          <RiLoginBoxLine className="h-4 w-4" />
         </Button>
       </Link>
     );
 
   return (
     <Button ref={ref} variant={wantsToSignOut ? "destructive" : "default"} onClick={handleSignOut}>
-      {isMobile || withIcon ? (
+      {withIcon ? (
         !wantsToSignOut ? (
-          <RiLogoutBoxRLine className="h-4 w-4" />
+          <div className="flex w-fit items-center gap-3">
+            Se déconnecter
+            <RiLogoutBoxRLine className="h-4 w-4" />
+          </div>
         ) : (
-          <GiConfirmed className="h-4 w-4" />
+          <div className="flex w-fit items-center gap-3">
+            Confirmer
+            <GiConfirmed className="h-4 w-4" />
+          </div>
         )
       ) : !wantsToSignOut ? (
         "Se déconnecter"
