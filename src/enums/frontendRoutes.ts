@@ -5,9 +5,7 @@ export enum Route {
   WALLET = "/wallet",
   ACCOUNT = "/account",
   STRATEGY = "/strategy",
-  ABOUT = "/about",
   CONTACT = "/contact",
   TERMS = "/terms",
   PRIVACY = "/privacy",
-  LEGAL_NOTICE = "/legal-notice",
 }
