@@ -14,8 +14,12 @@ export const CalendarWidget: React.FC = () => {
   const locale = getLocale(user?.lang);
 
   return (
-    <Card className="h-fit w-fit">
-      <Calendar mode="single" selected={date} onSelect={setDate} locale={locale} className="rounded-md" />
+    <Card className="h-fit min-h-[350px] w-full px-4 pb-2 pt-6">
+      <h4 className="text-center text-sm font-semibold uppercase">Mon calendrier</h4>
+
+      <div className="mt-2 flex justify-center">
+        <Calendar mode="single" selected={date} onSelect={setDate} locale={locale} />
+      </div>
     </Card>
   );
 };

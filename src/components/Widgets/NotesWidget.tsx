@@ -13,7 +13,6 @@ import {
   SheetTrigger,
 } from "@/src/components/ui/sheet";
 import { toast } from "@/src/components/ui/use-toast";
-import { makeCardOpacity } from "@/src/utils/animations";
 import { MarkdownDiv, sampleMarkdown } from "@/src/utils/markdown";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
@@ -53,45 +52,43 @@ export const NotesWidget: React.FC = () => {
   };
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={makeCardOpacity()}>
+    <Card className="h-fit min-h-[350px] w-full overflow-auto p-4 px-4 pb-2 pt-6 lg:w-fit lg:min-w-[700px]">
       <Sheet>
-        <Card className="w-full overflow-auto p-4 lg:w-fit lg:min-w-[700px]">
-          <div className="flex items-center justify-between">
-            <SheetTrigger>
-              <Button variant="outline">Exemple</Button>
-            </SheetTrigger>
+        <div className="flex items-center justify-between">
+          <SheetTrigger>
+            <Button variant="outline">Exemple</Button>
+          </SheetTrigger>
 
-            <h4 className="text-sm font-semibold uppercase">Mes notes</h4>
+          <h4 className="text-sm font-semibold uppercase">Mes notes</h4>
 
-            <div className="flex items-center gap-2">
-              <MdEdit />
-              <div className="switch" data-ison={editNotes} onClick={() => setEditNotes(!editNotes)}>
-                <motion.div className="handle" layout />
-              </div>
+          <div className="flex items-center gap-2">
+            <MdEdit />
+            <div className="switch" data-ison={editNotes} onClick={() => setEditNotes(!editNotes)}>
+              <motion.div className="handle" layout />
             </div>
           </div>
+        </div>
 
-          <Separator className="my-3" />
+        <Separator className="my-3" />
 
-          {!editNotes && (
-            <MarkdownDiv
-              className="min-h-[203px]"
-              dangerouslySetInnerHTML={{
-                __html: marked(notes !== "" ? notes : "*Écrivez vos notes ici en activant l'édition...*"),
-              }}
-            />
-          )}
+        {!editNotes && (
+          <MarkdownDiv
+            className="min-h-[200px]"
+            dangerouslySetInnerHTML={{
+              __html: marked(notes !== "" ? notes : "*Écrivez vos notes ici en activant l'édition...*"),
+            }}
+          />
+        )}
 
-          {editNotes && (
-            <textarea
-              className="h-full w-full focus:outline-none"
-              placeholder="Écrivez vos notes ici..."
-              value={notes}
-              rows={20}
-              onChange={(e) => setNotes(e.target.value)}
-            />
-          )}
-        </Card>
+        {editNotes && (
+          <textarea
+            className="h-full w-full rounded bg-slate-100 px-2 focus:outline-none dark:bg-slate-900"
+            placeholder="Écrivez vos notes ici..."
+            value={notes}
+            rows={10}
+            onChange={(e) => setNotes(e.target.value)}
+          />
+        )}
 
         <SheetContent side="top">
           <SheetHeader>
@@ -119,6 +116,6 @@ export const NotesWidget: React.FC = () => {
           </SheetHeader>
         </SheetContent>
       </Sheet>
-    </motion.div>
+    </Card>
   );
 };
