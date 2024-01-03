@@ -1,5 +1,6 @@
 "use client";
 
+import Calculator from "@/src/components/Widgets/CalculatorWidget";
 import { CalendarWidget } from "@/src/components/Widgets/CalendarWidget";
 import { NotesWidget } from "@/src/components/Widgets/NotesWidget";
 import { WeatherWidget } from "@/src/components/Widgets/WeatherWidget";
@@ -13,6 +14,7 @@ const Dashboard: React.FC = () => {
         <WeatherWidget />
         <NotesWidget />
         <CalendarWidget />
+        <Calculator />
       </div>
     </div>
   );
