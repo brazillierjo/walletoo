@@ -4,7 +4,7 @@ import { Card } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";
 
 function Calculator() {
-  const [resultValue, setResultValue] = useState("0");
+  const [resultValue, setResultValue] = useState<string>("0");
 
   const handleBtnClick = (buttonValue: React.SetStateAction<string>) => {
     if (resultValue === "0") {

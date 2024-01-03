@@ -12,9 +12,9 @@ const Dashboard: React.FC = () => {
 
       <div className="flex flex-wrap gap-6">
         <WeatherWidget />
-        <NotesWidget />
         <CalendarWidget />
         <Calculator />
+        <NotesWidget />
       </div>
     </div>
   );
