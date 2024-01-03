@@ -14,7 +14,6 @@ import { RxCross2 } from "react-icons/rx";
 
 export const MyAccountCard: React.FC = () => {
   const [user] = useAtom(userAtom);
-  console.log("user", user);
 
   const randomImageUrl = useGetRandomImageUrl();
 

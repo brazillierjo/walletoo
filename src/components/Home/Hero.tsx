@@ -37,7 +37,7 @@ export const Hero: React.FC = () => {
         </div>
 
         <div className="hidden lg:col-span-5 lg:ml-4 lg:mt-0 lg:flex">
-          <Image src={HeroSectionImage} className="rounded-md object-cover" alt="Hero section" />
+          <Image src={HeroSectionImage} priority className="rounded-md object-cover" alt="Hero section" />
         </div>
       </div>
     </section>
