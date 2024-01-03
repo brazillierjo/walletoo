@@ -46,7 +46,7 @@ export const WeatherWidget: React.FC = () => {
 
   return (
     weather && (
-      <Card className="h-fit min-h-[350px] w-full px-4 pb-2 pt-6">
+      <Card className="h-fit min-h-[350px] w-full flex-shrink-0 px-4 pb-2 pt-6 sm:w-1/2 lg:w-[450px]">
         <CardContent>
           <div className="flex flex-col lg:flex-row lg:justify-between">
             <div className="flex flex-row justify-between gap-1 lg:flex-col">

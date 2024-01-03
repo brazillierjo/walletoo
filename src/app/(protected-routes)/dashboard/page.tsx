@@ -9,12 +9,10 @@ const Dashboard: React.FC = () => {
     <div className="flex w-full flex-col gap-6 p-4 lg:p-8">
       <h1 className="shrink text-xl font-bold">Dashboard</h1>
 
-      <div className="flex flex-col justify-between gap-6 lg:flex-row">
-        <div className="flex flex-wrap gap-6 lg:flex-nowrap">
-          <WeatherWidget />
-          <NotesWidget />
-          <CalendarWidget />
-        </div>
+      <div className="flex flex-wrap gap-6">
+        <WeatherWidget />
+        <NotesWidget />
+        <CalendarWidget />
       </div>
     </div>
   );

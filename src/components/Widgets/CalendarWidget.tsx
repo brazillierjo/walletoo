@@ -14,7 +14,7 @@ export const CalendarWidget: React.FC = () => {
   const locale = getLocale(user?.lang);
 
   return (
-    <Card className="h-fit min-h-[350px] w-full px-4 pb-2 pt-6">
+    <Card className="h-fit min-h-[350px] w-full flex-shrink-0 px-4 pb-2 pt-6 sm:w-1/2 lg:w-[300px]">
       <h4 className="text-center text-sm font-semibold uppercase">Mon calendrier</h4>
 
       <div className="mt-2 flex justify-center">

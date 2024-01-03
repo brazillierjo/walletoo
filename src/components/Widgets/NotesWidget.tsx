@@ -52,7 +52,7 @@ export const NotesWidget: React.FC = () => {
   };
 
   return (
-    <Card className="h-fit min-h-[350px] w-full overflow-auto p-4 px-4 pb-2 pt-6 lg:w-fit lg:min-w-[700px]">
+    <Card className="h-fit min-h-[350px] w-full flex-shrink-0 px-4 pb-2 pt-6 sm:w-1/2 lg:w-[700px]">
       <Sheet>
         <div className="flex items-center justify-between">
           <SheetTrigger>
