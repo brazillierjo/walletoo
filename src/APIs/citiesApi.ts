@@ -3,8 +3,7 @@ import { GeoNamesResponse } from "@/src/interfaces/geonamesInterface";
 export class CitiesApi {
   static async get(inputValue: string): Promise<GeoNamesResponse> {
     const response = await fetch(
-      `https://api.geonames.org/searchJSON?q=${inputValue}&maxRows=3&username=dovah&cities=cities1000`,
-      { mode: "no-cors" }
+      `https://secure.geonames.org/searchJSON?q=${inputValue}&maxRows=3&username=dovah&cities=cities1000`
     );
 
     if (!response.ok) {
