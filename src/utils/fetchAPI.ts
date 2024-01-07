@@ -13,7 +13,6 @@ async function fetchAPI<T = unknown>(
 ): Promise<ApiResponse<T>> {
   const headers: HeadersInit = {
     "Content-Type": "application/json",
-    "upgrade-insecure-requests": "1",
   };
 
   const jsonBody = body && typeof body === "object" ? JSON.stringify(body) : body;
