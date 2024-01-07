@@ -1,8 +1,8 @@
-import dynamic from "next/dynamic";
+"use client";
+
 import { Card } from "@/src/components/ui/card";
 import { ApexOptions } from "apexcharts";
-
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
+import Chart from "react-apexcharts";
 
 interface PieChartProps {
   title: string;
@@ -11,6 +11,9 @@ interface PieChartProps {
 }
 
 const PieChart: React.FC<PieChartProps> = ({ title, data, labels }) => {
+  console.log(labels);
+  const chartLabels = labels && labels.length > 0 ? labels : ["No Data"];
+
   const chartData: { series: number[]; options: ApexOptions } = {
     series: data,
     options: {
@@ -18,7 +21,7 @@ const PieChart: React.FC<PieChartProps> = ({ title, data, labels }) => {
         width: 380,
         type: "pie",
       },
-      labels: labels,
+      labels: chartLabels,
       responsive: [
         {
           breakpoint: 480,
@@ -39,9 +42,7 @@ const PieChart: React.FC<PieChartProps> = ({ title, data, labels }) => {
     <Card className="h-full p-4">
       <h2 className="mb-4 text-lg font-semibold">{title}</h2>
 
-      <div className="mx-auto w-full lg:w-2/3">
-        <ApexCharts options={chartData.options} series={chartData.series} type="pie" />
-      </div>
+      <Chart options={chartData.options} series={chartData.series} type="pie" />
     </Card>
   );
 };
