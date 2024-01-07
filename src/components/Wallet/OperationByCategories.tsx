@@ -38,7 +38,7 @@ export const OperationByCategories = () => {
 
           <TabsContent className="flex max-h-[450px] flex-col gap-4 overflow-y-auto" value={OperationType.INCOMES}>
             {uniqueUserIncomesCategories.map((category) => (
-              <Card key={category} className="w-full border-0 p-1 shadow-none">
+              <Card key={category || "Non catégorisés"} className="w-full border-0 p-1 shadow-none">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">
@@ -46,9 +46,9 @@ export const OperationByCategories = () => {
                     .filter((income) => income.category === category)
                     .map((income) => (
                       <Button
+                        key={income._id}
                         variant="gray"
                         className="flex w-full justify-between gap-4"
-                        key={income._id}
                         onClick={() => handleSelectedOperation(OperationTypeLabel.INCOMES, income)}
                       >
                         <p>{income.label}</p>
@@ -64,7 +64,7 @@ export const OperationByCategories = () => {
 
           <TabsContent className="flex max-h-[450px] flex-col gap-4 overflow-y-auto" value={OperationType.EXPENSES}>
             {uniqueUserExpensesCategories.map((category) => (
-              <Card key={category} className="w-full border-0 p-1 shadow-none">
+              <Card key={category || "Non catégorisés"} className="w-full border-0 p-1 shadow-none">
                 <h4 className="mb-3 font-semibold">{category ?? "Non catégorisés"}</h4>
 
                 <div className="flex flex-col gap-1">
@@ -72,9 +72,9 @@ export const OperationByCategories = () => {
                     .filter((expense) => expense.category === category)
                     .map((expense) => (
                       <Button
+                        key={expense._id}
                         variant="gray"
                         className="flex w-full justify-between gap-4"
-                        key={expense._id}
                         onClick={() => handleSelectedOperation(OperationTypeLabel.EXPENSES, expense)}
                       >
                         <p>{expense.label}</p>
