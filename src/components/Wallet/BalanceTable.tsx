@@ -20,7 +20,6 @@ const BalanceTable: React.FC = () => {
   const totalIncomes = calculateTotal(user.incomes);
   const totalExpenses = calculateTotal(user.expenses);
   const netIncome = totalIncomes - totalExpenses;
-  const financialRatio = (totalExpenses / totalIncomes) * 100;
 
   if (user.incomes.length === 0 && user.expenses.length === 0) return null;
 
@@ -50,11 +49,6 @@ const BalanceTable: React.FC = () => {
               >
                 <FormattedOperation amount={netIncome} />
               </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell className="font-medium">Taux de charge financière :</TableCell>
-              <TableCell className="text-right">{financialRatio.toFixed(1)}%</TableCell>
             </TableRow>
           </TableBody>
         </Table>
