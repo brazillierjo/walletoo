@@ -2,7 +2,6 @@ import { ElementType } from "react";
 import { Route } from "@/src/enums/frontendRoutes";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaWallet } from "react-icons/fa6";
-import { FcDoughnutChart } from "react-icons/fc";
 import { IoHome } from "react-icons/io5";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 
@@ -14,7 +13,6 @@ export type RouterLinkType = {
   isInSidebar: boolean;
   isInHeader: boolean;
   isInFooter: boolean;
-  isSubscribedRequired: boolean;
 };
 
 export const links: RouterLinkType[] = [
@@ -26,7 +24,6 @@ export const links: RouterLinkType[] = [
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
-    isSubscribedRequired: false,
   },
   {
     label: "Dashboard",
@@ -36,7 +33,6 @@ export const links: RouterLinkType[] = [
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
-    isSubscribedRequired: false,
   },
   {
     label: "Mon Wallet",
@@ -46,17 +42,6 @@ export const links: RouterLinkType[] = [
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
-    isSubscribedRequired: false,
-  },
-  {
-    label: "Ma stratégie",
-    to: Route.STRATEGY,
-    description: "Accédez à votre stratégie personnalisée",
-    icon: FcDoughnutChart,
-    isInSidebar: true,
-    isInHeader: true,
-    isInFooter: false,
-    isSubscribedRequired: true,
   },
   {
     label: "Mon compte",
@@ -66,7 +51,6 @@ export const links: RouterLinkType[] = [
     isInSidebar: true,
     isInHeader: true,
     isInFooter: false,
-    isSubscribedRequired: false,
   },
   {
     label: "Contact",
@@ -75,7 +59,6 @@ export const links: RouterLinkType[] = [
     isInSidebar: false,
     isInHeader: false,
     isInFooter: true,
-    isSubscribedRequired: false,
   },
   {
     label: "CGU",
@@ -84,7 +67,6 @@ export const links: RouterLinkType[] = [
     isInSidebar: false,
     isInHeader: false,
     isInFooter: true,
-    isSubscribedRequired: false,
   },
   {
     label: "Confidentialité",
@@ -93,6 +75,5 @@ export const links: RouterLinkType[] = [
     isInSidebar: false,
     isInHeader: false,
     isInFooter: true,
-    isSubscribedRequired: false,
   },
 ];
