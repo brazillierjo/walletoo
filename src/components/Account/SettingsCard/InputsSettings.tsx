@@ -146,7 +146,7 @@ export const CityInput: React.FC<EditableComponentProps> = ({ user, setUser }) =
 
       <div className="relative">
         <Input
-          className="w-fit"
+          className="w-full min-w-[200px] max-w-[200px]"
           placeholder="Rechercher une ville..."
           value={inputValue}
           onChange={(e) => {
