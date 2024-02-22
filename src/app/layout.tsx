@@ -1,7 +1,7 @@
 import "@/src/styles/globals.css";
 
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Footer } from "@/src/components/Footer/Footer";
 import { Header } from "@/src/components/Header/Header";
 import { Sidebar } from "@/src/components/Sidebar/Sidebar";
@@ -12,7 +12,7 @@ import ThemeProvider from "@/src/providers/ThemeProvider";
 import { cn } from "@/src/utils/tailwindMerge";
 import { getServerSession } from "next-auth";
 
-const montSerrat = Noto_Sans({ subsets: ["latin"], weight: ["400"] });
+const montSerrat = Inter({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "Walletoo - Page d'accueil",
