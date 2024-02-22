@@ -1,7 +1,7 @@
 export enum Route {
   HOME = "/",
   SIGNIN = "/sign-in",
-  DASHBOARD = "/dashboard",
+  WIDGETS = "/widgets",
   WALLET = "/wallet",
   ACCOUNT = "/account",
   STRATEGY = "/strategy",

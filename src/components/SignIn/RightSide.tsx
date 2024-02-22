@@ -8,7 +8,7 @@ import { signIn, useSession } from "next-auth/react";
 
 export const RightSide: React.FC = () => {
   const { data: session } = useSession();
-  if (session?.user?.name) redirect(Route.DASHBOARD);
+  if (session?.user?.name) redirect(Route.WIDGETS);
 
   return (
     <div className="mt-8 flex flex-col gap-16 overflow-hidden px-4 md:mt-0 md:w-1/2 md:justify-center lg:w-1/3 lg:px-12">
