@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("./linear-backgrounds.css");
 @import url("./switch.css");
 @import url("./spinner.css");
 @import url("./libs.css");
