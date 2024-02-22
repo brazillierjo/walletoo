@@ -18,11 +18,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex flex-col gap-3">
             {navigationLinks.map((link, index) =>
-              link.isSubscribedRequired && !user?.isSubscribed ? (
-                <DisabledLink key={index} link={link} />
-              ) : (
-                <RouterLink key={index} link={link} />
-              )
+              !user?.isSubscribed ? <DisabledLink key={index} link={link} /> : <RouterLink key={index} link={link} />
             )}
           </div>
         </div>
@@ -32,11 +28,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex flex-col gap-3">
             {footerLinks.map((link, index) =>
-              link.isSubscribedRequired && !user?.isSubscribed ? (
-                <DisabledLink key={index} link={link} />
-              ) : (
-                <RouterLink key={index} link={link} />
-              )
+              !user?.isSubscribed ? <DisabledLink key={index} link={link} /> : <RouterLink key={index} link={link} />
             )}
           </div>
         </div>

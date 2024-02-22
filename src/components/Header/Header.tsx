@@ -26,7 +26,7 @@ export const Header: React.FC = () => {
           <NavigationMenuList className="flex items-center gap-4">
             {navigationLinks.map((link, index) => (
               <NavigationMenuLink key={index} asChild>
-                {link.isSubscribedRequired && !user?.isSubscribed ? (
+                {!user?.isSubscribed ? (
                   <DisabledLink key={index} link={link} />
                 ) : (
                   <RouterLink key={index} link={link} />
@@ -49,7 +49,7 @@ export const Header: React.FC = () => {
           <SheetContent side="right">
             <div className="grid gap-2 py-6">
               {navigationLinks.map((link, index) =>
-                link.isSubscribedRequired && !user?.isSubscribed ? (
+                !user?.isSubscribed ? (
                   <DisabledLink key={index} className={{ container: "my-2" }} link={link} withIcon />
                 ) : (
                   <RouterLink key={index} className={{ container: "my-2" }} link={link} withIcon />

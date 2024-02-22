@@ -56,7 +56,7 @@ export const Sidebar: React.FC = () => {
 
             <div className="flex flex-col gap-2 py-8 pl-8">
               {sidebarLinks.map((link, index) => {
-                return link.isSubscribedRequired && !user?.isSubscribed ? (
+                return !user?.isSubscribed ? (
                   <DisabledLink
                     key={index}
                     link={link}
