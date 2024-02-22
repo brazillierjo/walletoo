@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { RouterLinkType } from "@/src/utils/links";
 import { cn } from "@/src/utils/tailwindMerge";
-import { FaLock } from "react-icons/fa6";
 
 type LinkProps = {
   link: RouterLinkType;
@@ -14,20 +13,6 @@ type LinkProps = {
   };
   withIcon?: boolean;
 };
-
-export const DisabledLink: React.FC<LinkProps> = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ link, className, withIcon }) => {
-    return (
-      <div className={cn("flex items-center gap-2 opacity-60", className?.container)}>
-        {withIcon && link.icon && <link.icon className="h-5 w-5" />}
-        <span className={cn("flex items-center gap-2 transition-all duration-100", className?.label ?? "text-sm")}>
-          {link.label}
-          <FaLock className="h-3 w-3" />
-        </span>
-      </div>
-    );
-  }
-);
 
 export const RouterLink: React.FC<LinkProps> = React.forwardRef<HTMLAnchorElement, LinkProps>(
   ({ link, isActivelink, className, withIcon }, ref) => {

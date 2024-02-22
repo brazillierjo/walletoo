@@ -2,19 +2,16 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { userAtom } from "@/src/atoms/user.atom";
-import { DisabledLink, RouterLink } from "@/src/components/Commons/Links";
+import { RouterLink } from "@/src/components/Commons/Links";
 import { LogButton } from "@/src/components/Commons/LogButton";
 import { UserAvatar } from "@/src/components/Commons/UserAvatar";
 import { Separator } from "@/src/components/ui/separator";
 import { Route } from "@/src/enums/frontendRoutes";
 import { links } from "@/src/utils/links";
 import { cn } from "@/src/utils/tailwindMerge";
-import { useAtom } from "jotai";
 import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
 
 export const Sidebar: React.FC = () => {
-  const [user] = useAtom(userAtom);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isContentVisible, setIsContentVisible] = useState(true);
 
@@ -55,24 +52,15 @@ export const Sidebar: React.FC = () => {
             <Separator className="bg-gray-300" />
 
             <div className="flex flex-col gap-2 py-8 pl-8">
-              {sidebarLinks.map((link, index) => {
-                return !user?.isSubscribed ? (
-                  <DisabledLink
-                    key={index}
-                    link={link}
-                    className={{ container: "py-2", active: "border-r-2 border-secondary-foreground" }}
-                    withIcon
-                  />
-                ) : (
-                  <RouterLink
-                    key={index}
-                    link={link}
-                    className={{ container: "py-2", active: "border-r-2 border-secondary-foreground" }}
-                    isActivelink={isActivelink}
-                    withIcon
-                  />
-                );
-              })}
+              {sidebarLinks.map((link, index) => (
+                <RouterLink
+                  key={index}
+                  link={link}
+                  className={{ container: "py-2", active: "border-r-2 border-secondary-foreground" }}
+                  isActivelink={isActivelink}
+                  withIcon
+                />
+              ))}
             </div>
 
             <div className="m-8 mt-auto flex flex-col gap-3">

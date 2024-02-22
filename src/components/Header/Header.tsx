@@ -1,7 +1,6 @@
 "use client";
 
-import { userAtom } from "@/src/atoms/user.atom";
-import { DisabledLink, RouterLink } from "@/src/components/Commons/Links";
+import { RouterLink } from "@/src/components/Commons/Links";
 import { LogButton } from "@/src/components/Commons/LogButton";
 import { Logo } from "@/src/components/Commons/Logo";
 import { ModeToggle } from "@/src/components/Commons/ModeToggle";
@@ -9,12 +8,9 @@ import { Button } from "@/src/components/ui/button";
 import { NavigationMenu, NavigationMenuLink, NavigationMenuList } from "@/src/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/src/components/ui/sheet";
 import { links } from "@/src/utils/links";
-import { useAtom } from "jotai";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 export const Header: React.FC = () => {
-  const [user] = useAtom(userAtom);
-
   const navigationLinks = links.filter((link) => link.isInHeader || link.isInSidebar);
 
   return (
@@ -26,11 +22,7 @@ export const Header: React.FC = () => {
           <NavigationMenuList className="flex items-center gap-4">
             {navigationLinks.map((link, index) => (
               <NavigationMenuLink key={index} asChild>
-                {!user?.isSubscribed ? (
-                  <DisabledLink key={index} link={link} />
-                ) : (
-                  <RouterLink key={index} link={link} />
-                )}
+                <RouterLink key={index} link={link} />
               </NavigationMenuLink>
             ))}
           </NavigationMenuList>
@@ -48,13 +40,9 @@ export const Header: React.FC = () => {
 
           <SheetContent side="right">
             <div className="grid gap-2 py-6">
-              {navigationLinks.map((link, index) =>
-                !user?.isSubscribed ? (
-                  <DisabledLink key={index} className={{ container: "my-2" }} link={link} withIcon />
-                ) : (
-                  <RouterLink key={index} className={{ container: "my-2" }} link={link} withIcon />
-                )
-              )}
+              {navigationLinks.map((link, index) => (
+                <RouterLink key={index} className={{ container: "my-2" }} link={link} withIcon />
+              ))}
 
               <div className="mt-5">
                 <LogButton withIcon />

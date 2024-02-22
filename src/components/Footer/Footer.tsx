@@ -1,12 +1,9 @@
 "use client";
 
-import { userAtom } from "@/src/atoms/user.atom";
-import { DisabledLink, RouterLink } from "@/src/components/Commons/Links";
+import { RouterLink } from "@/src/components/Commons/Links";
 import { links } from "@/src/utils/links";
-import { useAtom } from "jotai";
 
 export const Footer: React.FC = () => {
-  const [user] = useAtom(userAtom);
   const navigationLinks = links.filter((link) => link.isInHeader || link.isInSidebar);
   const footerLinks = links.filter((link) => link.isInFooter);
 
@@ -17,9 +14,9 @@ export const Footer: React.FC = () => {
           <h4 className="text-md font-bold">Menu de navigation</h4>
 
           <div className="flex flex-col gap-3">
-            {navigationLinks.map((link, index) =>
-              !user?.isSubscribed ? <DisabledLink key={index} link={link} /> : <RouterLink key={index} link={link} />
-            )}
+            {navigationLinks.map((link, index) => (
+              <RouterLink key={index} link={link} />
+            ))}
           </div>
         </div>
 
@@ -27,9 +24,9 @@ export const Footer: React.FC = () => {
           <h4 className="text-md font-bold">En savoir plus</h4>
 
           <div className="flex flex-col gap-3">
-            {footerLinks.map((link, index) =>
-              !user?.isSubscribed ? <DisabledLink key={index} link={link} /> : <RouterLink key={index} link={link} />
-            )}
+            {footerLinks.map((link, index) => (
+              <RouterLink key={index} link={link} />
+            ))}
           </div>
         </div>
       </div>
