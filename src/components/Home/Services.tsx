@@ -8,7 +8,7 @@ export const Services: React.FC = () => {
     <section className="bg-gray-50 dark:bg-gray-800">
       <div className="mx-auto max-w-screen-xl space-y-12 px-4 py-8 lg:space-y-20 lg:px-20 lg:py-24">
         <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-          <div className="text-gray-500 sm:text-lg dark:text-gray-400">
+          <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Accéder à des outils que vous connaissez 📝
             </h2>
@@ -50,7 +50,7 @@ export const Services: React.FC = () => {
         <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
           <Image className="mb-4 hidden w-full rounded-lg lg:mb-0 lg:flex" src={FeatureOne} alt="Walletoo Features" />
 
-          <div className="text-gray-500 sm:text-lg dark:text-gray-400">
+          <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Gérez vos finances avec flexibilité et précision
             </h2>

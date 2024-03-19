@@ -9,11 +9,11 @@ export const Privacy: React.FC = () => {
         <div className="col-span-2 mb-8">
           <p className="text-lg font-medium text-blue-600 dark:text-blue-500">Sécurité et Facilité</p>
 
-          <h2 className="mb-4 mt-3 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl dark:text-white">
+          <h2 className="mb-4 mt-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-3xl">
             Vos données sont en sécurité 🔐
           </h2>
 
-          <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">
+          <p className="font-light text-gray-500 dark:text-gray-400 sm:text-xl">
             Chez Walletoo, nous redéfinissons la gestion de vos finances avec sécurité et simplicité. Profitez d'une
             expérience utilisateur fluide, soutenue par une authentification sécurisée et une politique de
             confidentialité rigoureuse.
